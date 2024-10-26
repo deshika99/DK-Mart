@@ -507,13 +507,13 @@ b {
   font-size: 24px;
 }
 .menu-aside .menu-item.active .icon {
-  color: #3BB77E;
+  color: #bd0f0f  ;
 }
 .menu-aside .menu-item.active .menu-link {
-  background-color: rgba(59, 183, 126, 0.2);
+  background-color: rgba(183, 59, 59, 0.2);
 }
 .menu-aside .menu-item.active .submenu a.active {
-  color: #3BB77E !important;
+  color: #bd0f0f  !important;
 }
 .menu-aside .menu-link {
   padding: 10px;
@@ -600,7 +600,7 @@ b {
 }
 .pagination-area .page-item.active .page-link, .pagination-area .page-item:hover .page-link {
   color: #fff;
-  background: #3BB77E;
+  background: #b73b3b;
 }
 .pagination-area .page-item .page-link {
   border: 0;
@@ -632,7 +632,7 @@ b {
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #3BB77E;
+  color: #bd0f0f ;
   background-color: rgba(59, 183, 126, 0.2);
 }
 
@@ -647,7 +647,7 @@ b {
   padding: 10px 40px;
   color: #ffffff;
   border: none;
-  background-color: #3BB77E;
+  background-color: #bd0f0f ;
   border-radius: 4px;
 }
 .btn.btn-primary i {
@@ -656,12 +656,12 @@ b {
   margin-top: -4px;
 }
 .btn.btn-primary:hover {
-  background-color: #29A56C;
+  background-color: #a52929;
 }
 .btn.btn-secondary {
   font-size: 14px;
   font-weight: 500;
-  padding: 10px 40px;
+  padding: 10px 15px;
   color: #fff;
   background-color: #6c757d;
   border: none;
@@ -673,14 +673,14 @@ b {
 .btn.btn-md {
   padding: 0.5rem 0.95rem;
   font-weight: 500;
-  background-color: #3BB77E;
+  background-color: #bd0f0f ;
   color: #ffffff;
 }
 .btn.btn-md:hover {
-  background-color: #29A56C;
+  background-color: #bd0f0f ;
 }
 .btn.btn-xs {
-  background-color: #3BB77E;
+  background-color: #bd0f0f ;
   color: #ffffff;
   border: none;
   font-size: 11px;
@@ -747,12 +747,12 @@ b {
 
 .btn-light {
   background-color: transparent;
-  border-color: #c0dbd9;
+  border-color: #dbc0c0;
   box-shadow: none;
   padding: 0.5rem 0.95rem;
 }
 .btn-light:hover {
-  background-color: #3BB77E;
+  background-color: #bd0f0f ;
   color: #fff !important;
 }
 .btn-light:hover i {
@@ -869,8 +869,8 @@ textarea.form-control {
 }
 
 .form-check-input:checked {
-  background-color: #3BB77E;
-  border-color: #3BB77E;
+  background-color: #bd0f0f ;
+  border-color: #bd0f0f ;
 }
 
 /*Nice select*/
@@ -1501,8 +1501,7 @@ textarea.form-control {
 }
 
 .rounded-pill {
-  padding-right: 0.6em;
-  padding-left: 0.6em;
+  padding: 0.8em;
 }
 
 .badge.bg-dark {
@@ -3449,14 +3448,14 @@ body.offcanvas-active {
   line-height: 17px;
   display: block;
   padding: 0;
-  background-color: #3BB77E;
+  background-color: #bd0f0f ;
 }
 .main-header .nav-item.dropdown {
   margin-right: 5px;
 }
 .main-header .nav-link:hover {
   background-color: transparent;
-  color: #3BB77E;
+  color: #bd0f0f ;
 }
 .main-header .col-search {
   flex-grow: 0.5;
@@ -3474,7 +3473,7 @@ body.offcanvas-active {
   border: 2px solid #eee;
 }
 .nav-item img.rounded-circle:hover {
-  border-color: #3BB77E;
+  border-color: #bd0f0f ;
 }
 
 .content-header {
