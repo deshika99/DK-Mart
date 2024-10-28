@@ -29,7 +29,7 @@
                                     <input class="form-check-input" type="checkbox" value="" />
                                 </div>
                             </th>
-                            <th>ID</th>
+                            <th>#</th>
                             <th>Main Category</th>
                             <th>Sub Category</th>
                             <th class="text-end">Action</th>

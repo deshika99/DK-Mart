@@ -46,5 +46,18 @@ Route::get('/admin/categories/{category}/edit', [CategoryController::class, 'edi
 Route::put('/admin/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/admin/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
+Route::view('/admin/customers', 'AdminDashboard.customer')->name('customers');
+Route::view('/admin/customer-details', 'AdminDashboard.customer-details')->name('customer-details');
+
+Route::view('/admin/orders', 'AdminDashboard.orders')->name('orders');
+Route::view('/admin/order-details', 'AdminDashboard.order-details')->name('order-details');
+
+Route::view('/admin/affiliate_customers', 'AdminDashboard.affiliate_customers')->name('affiliate_customers');
+Route::view('/admin/Affiliatecustomer-details', 'AdminDashboard.Affiliatecustomer-details')->name('Affiliatecustomer-details');
+
+Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
+Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inquiries');
+
+Route::view('/admin/profile', 'AdminDashboard.profile')->name('profile');
 
 require __DIR__.'/auth.php';

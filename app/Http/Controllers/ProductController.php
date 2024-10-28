@@ -38,6 +38,7 @@ class ProductController extends Controller
         $products = Product::with(['images', 'category'])->paginate(10);
         return view('AdminDashboard.products_list', compact('products'));
     }
+
     
     
 
