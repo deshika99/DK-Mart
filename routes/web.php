@@ -24,3 +24,4 @@ Route::get('/home',[HomeTemplateController::class,'index']);
 
 
 require __DIR__.'/auth.php';
+
