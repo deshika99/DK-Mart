@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminTemplateController;
 use App\Http\Controllers\HomeTemplateController;
+use App\Http\Controllers\AffiliateTemplateController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController; 
 
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/admin',[AdminTemplateController::class,'index'])->name('admin.index');
+Route::get('/affiliate',[AffiliateTemplateController::class,'index'])->name('affiliate');
 Route::get('/home',[HomeTemplateController::class,'index']);
 
 
