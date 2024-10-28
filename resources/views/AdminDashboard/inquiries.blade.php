@@ -90,13 +90,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div>
+                <div class="mb-1">
                     <strong class="fw-bold">Customer Name:</strong> <span id="customerName"></span>
                 </div>
-                <div>
+                <div class="mb-1">
                     <strong class="fw-bold">Order ID:</strong> <span id="orderId"></span>
                 </div>
-                <div>
+                <div class="mb-1">
                     <strong class="fw-bold">Subject:</strong> <span id="inquirySubject"></span>
                 </div>
                 <div class="mt-3 mb-3">
