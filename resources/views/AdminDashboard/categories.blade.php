@@ -24,11 +24,6 @@
                     <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="text-center">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" />
-                                </div>
-                            </th>
                             <th>#</th>
                             <th>Main Category</th>
                             <th>Sub Category</th>
@@ -38,11 +33,6 @@
                     <tbody>
                             @foreach ($categories as $category)
                                 <tr>
-                                    <td class="text-center">
-                                        <div class="form-check">
-                                         <input class="form-check-input" type="checkbox" value="" />
-                                        </div>
-                                    </td>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $category->name }}</td>
                                     <td>

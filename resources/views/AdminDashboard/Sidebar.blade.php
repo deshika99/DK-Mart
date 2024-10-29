@@ -1,5 +1,5 @@
 
-<aside class="navbar-aside" id="offcanvas_aside">
+<aside class="navbar-aside shadow-sm" id="offcanvas_aside">
             <div class="aside-top" style="padding:0">
                 <a href="" class="brand-wrap">
                     <img src="{{ asset('/backend/assets/DK mart-01.png') }}" class="logo" alt="DK-Mart"/>
@@ -51,17 +51,11 @@
                             <span class="text">Orders</span>
                         </a>
                     </li>
-
-                    <li class="menu-item has-submenu">
-                        <a class="menu-link" href="page-sellers-cards.html">
-                            <i class="icon material-icons md-store"></i>
+                    <li class="menu-item {{ request()->routeIs('sellers') ? 'active' : '' }}">
+                        <a class="menu-link" href="{{ route('sellers') }}">
+                        <i class="icon material-icons md-store"></i>
                             <span class="text">Sellers</span>
                         </a>
-                        <div class="submenu">
-                            <a href="page-sellers-cards.html">Sellers cards</a>
-                            <a href="page-sellers-list.html">Sellers list</a>
-                            <a href="page-seller-detail.html">Seller profile</a>
-                        </div>
                     </li>
                     <li class="menu-item {{ request()->routeIs('reviews') ? 'active' : '' }}">
                         <a class="menu-link" href="{{ route('reviews') }}">
@@ -74,6 +68,23 @@
                         <i class="icon material-icons md-email"></i>
                             <span class="text">Customer Inquiries</span>
                         </a>
+                    </li>
+                    <li class="menu-item has-submenu {{ request()->is('admin/manage_company*') || request()->is('admin/users*') || request()->is('admin/role_list*') ? 'active' : '' }}">
+                        <a class="menu-link" href="#">
+                            <i class="icon material-icons md-settings"></i>
+                            <span class="text">Settings</span>
+                        </a>
+                        <div class="submenu {{ request()->is('admin/manage_company*') || request()->is('admin/users*') || request()->is('admin/role_list*') ? 'show' : '' }}">
+                            <a href="{{ route('manage_company') }}" class="{{ request()->is('admin/manage_company') ? 'active' : '' }}">
+                                Manage Company
+                            </a>
+                            <a href="{{ route('users') }}" class="{{ request()->is('admin/users') ? 'active' : '' }}">
+                                Users
+                            </a>
+                            <a href="{{ route('role_list') }}" class="{{ request()->is('admin/role_list') ? 'active' : '' }}">
+                                Role List
+                            </a>
+                        </div>
                     </li>
 
                 </ul>

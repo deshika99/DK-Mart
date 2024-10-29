@@ -1,4 +1,4 @@
-<header class="main-header navbar">
+<header class="main-header navbar shadow-sm">
                 <div class="col-search">
                     <form class="searchform">
                         <div class="input-group">

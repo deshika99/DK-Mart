@@ -36,6 +36,7 @@
                     <input name="is_affiliate" id="affiliate_checkbox" class="form-check-input" type="checkbox" {{ $product->is_affiliate ? 'checked' : '' }} />
                     <span class="form-check-label">Affiliate the Product</span>
                 </label>
+
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="mb-4">
@@ -56,6 +57,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="mb-4">
                     <label class="form-label">Total price</label>
                     <input name="total_price" id="total_price" value="{{ old('total_price', $product->total_price) }}" placeholder="Rs" type="number" class="form-control" readonly />
@@ -301,6 +303,33 @@
 });
 
 
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const affiliateCheckbox = document.getElementById('affiliate_checkbox');
+        const affiliatePriceInput = document.getElementById('affiliate_price');
+        const commissionInput = document.getElementById('commission');
+        const normalPriceInput = document.getElementById('normal_price');
+        const totalPriceInput = document.getElementById('total_price');
+
+        // Event listener for the affiliate checkbox
+        affiliateCheckbox.addEventListener('change', function () {
+            if (!affiliateCheckbox.checked) {
+                // Clear affiliate price and commission percentage when checkbox is unchecked
+                affiliatePriceInput.value = '';
+                commissionInput.value = '';
+                // Set total price to equal normal price
+                totalPriceInput.value = normalPriceInput.value;
+            }
+        });
+
+        // Update total price when normal price changes and affiliate is unchecked
+        normalPriceInput.addEventListener('input', function () {
+            if (!affiliateCheckbox.checked) {
+                totalPriceInput.value = normalPriceInput.value;
+            }
+        });
+    });
 </script>
 
 @endsection

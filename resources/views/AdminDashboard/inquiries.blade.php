@@ -27,11 +27,6 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="text-center">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" />
-                                    </div>
-                                </th>
                                 <th>#</th>
                                 <th>Customer</th>
                                 <th>Order ID</th>
@@ -43,11 +38,6 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="text-center">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" />
-                                    </div>
-                                </td>
                                 <td>1</td>
                                 <td>John Doe</td>
                                 <td>12345</td>
@@ -76,7 +66,6 @@
 <div class="pagination-area mt-30 mb-50">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-start">
-            <!-- Pagination items here -->
         </ul>
     </nav>
 </div>

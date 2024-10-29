@@ -33,11 +33,6 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" />
-                                    </div>
-                                </th>
                                 <th>#ID</th>
                                 <th>Product</th>
                                 <th>Reviewer</th>
@@ -49,11 +44,6 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" />
-                                    </div>
-                                </td>
                                 <td>1</td>
                                 <td><b>Organic Quinoa, Brown, & Red Rice</b></td>
                                 <td>Devon Lane</td>
@@ -87,11 +77,6 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" />
-                                </div>
-                            </th>
                             <th>#ID</th>
                             <th>Product</th>
                             <th>Reviewer</th>
@@ -103,11 +88,6 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" />
-                                </div>
-                            </td>
                             <td>2</td>
                             <td><b>Pure Coconut Oil</b></td>
                             <td>Jane Doe</td>
@@ -197,9 +177,7 @@
 <script>
     function showApprovalModal(reviewId) {
         const approveForm = document.getElementById('approveReviewForm');
-        // Set the form action with the review ID for approval (example URL)
         approveForm.action = `/admin/reviews/${reviewId}/approve`;
-        // Show the modal
         const modal = new bootstrap.Modal(document.getElementById('approvalModal'));
         modal.show();
     }

@@ -44,6 +44,10 @@ body {
   line-height: 1;
 }
 
+strong{
+  font-weight: bold;
+}
+
 ol, ul {
   list-style: none;
 }
@@ -245,7 +249,7 @@ table .form-check {
 }
 
 .bg-primary-light {
-  background-color: rgba(59, 183, 126, 0.2) !important;
+  background-color: rgba(183, 59, 59, 0.2) !important;
 }
 
 .dropdown-item.active, .dropdown-item:active {
@@ -784,7 +788,7 @@ b {
 }
 
 .btn-sm {
-  padding: 5px 10px;
+  padding: 6px 6px;
   display: inline-flex;
   align-content: center;
   align-items: center;
@@ -1016,7 +1020,7 @@ textarea.form-control {
 
 .card {
   margin-bottom: 24px;
-  box-shadow: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 1px solid #eee;
   border-radius: 10px;
   transition-duration: 0.3s;
@@ -1025,7 +1029,7 @@ textarea.form-control {
 .card:hover {
   transform: translateY(-2px);
   transition-duration: 0.3s;
-  box-shadow: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .icontext {
