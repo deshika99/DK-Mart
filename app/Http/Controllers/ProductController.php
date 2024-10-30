@@ -36,9 +36,20 @@ class ProductController extends Controller
     public function showproducts()
     {
         $products = Product::with(['images', 'category'])->paginate(10);
-        return view('AdminDashboard.products_list', compact('products'));
+        $categories = Category::all();
+
+        return view('AdminDashboard.products_list', compact('products', 'categories'));
     }
+
     
+
+
+    public function view_details($id)
+    {
+        $product = Product::with(['category', 'images'])->findOrFail($id); 
+        return view('AdminDashboard.product-details', compact('product'));
+    }
+
     
 
 
