@@ -1,12 +1,13 @@
 @extends ('AdminDashboard.master')
 
 @section('content')
+<form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
+@csrf
 <div class="row">
     <div class="col-12">
         <div class="content-header">
             <h2 class="content-title">Add New Product</h2>
-            <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
-            @csrf
+            
             <div>
                     <button type="submit" class="btn btn-md rounded font-sm hover-up">Publish</button>
                 
@@ -62,7 +63,44 @@
                 </div>
             </div>
         </div>
+ 
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Variations</h4>
+            </div>
+            <div class="card-body">
+                <div id="variationsContainer">
+                    <!-- Initial Row -->
+                    <div class="row mb-3 variation-row">
+                        <div class="col-lg-4">
+                            <label class="form-label">Select Type</label>
+                            <select name="variations[0][type]" class="form-select" onchange="toggleColorInput(this)">
+                                <option value="">Select</option>
+                                <option value="size">Size</option>
+                                <option value="color">Color</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="form-label">Value</label>
+                            <input type="text" name="variations[0][value]" class="form-control" placeholder="Enter value" />
+                            <input type="color" name="variations[0][hex_value]" class="form-control color-input" style="display: none;" />
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="form-label">Quantity</label>
+                            <input type="number" name="variations[0][quantity]" class="form-control" placeholder="Qty" />
+                        </div>
+                        <div class="col-lg-1 text-center">
+                            <label class="form-label">Delete</label>
+                            <button type="button" class="btn btn-danger delete-variation" onclick="removeVariation(this)">✖</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success" onclick="addVariation()">Add Variation</button>
+            </div>
+        </div>
+
     </div>
+
     <div class="col-lg-5">
         <div class="card mb-4">
             <div class="card-header">
@@ -112,9 +150,13 @@
                 </div>
             </div>
         </div>
-        </form>
+
+        
+        
     </div>
 </div>
+</form>
+ 
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -269,7 +311,63 @@
     });
 });
 
+</script>
 
+<script>
+    let variationIndex = 1; 
+
+    function addVariation() {
+        const variationsContainer = document.getElementById('variationsContainer');
+        
+        const newVariationRow = document.createElement('div');
+        newVariationRow.className = 'row mb-3 variation-row';
+        newVariationRow.innerHTML = `
+            <div class="col-lg-4">
+                <label class="form-label">Select Type</label>
+                <select name="variations[${variationIndex}][type]" class="form-select" onchange="toggleColorInput(this)">
+                    <option value="">Select</option>
+                    <option value="size">Size</option>
+                    <option value="color">Color</option>
+                </select>
+            </div>
+            <div class="col-lg-4">
+                <label class="form-label">Value</label>
+                <input type="text" name="variations[${variationIndex}][value]" class="form-control" placeholder="Enter value" />
+                <input type="color" name="variations[${variationIndex}][hex_value]" class="form-control color-input" style="display: none;" />
+            </div>
+            <div class="col-lg-3">
+                <label class="form-label">Quantity</label>
+                <input type="number" name="variations[${variationIndex}][quantity]" class="form-control" placeholder="Qty" />
+            </div>
+            <div class="col-lg-1 text-center">
+                <label class="form-label">Delete</label>
+                <button type="button" class="btn btn-danger delete-variation" onclick="removeVariation(this)">✖</button>
+            </div>
+        `;
+        
+        variationsContainer.appendChild(newVariationRow);
+        variationIndex++;
+    }
+
+    function toggleColorInput(select) {
+        const colorInput = select.closest('.variation-row').querySelector('.color-input');
+        const valueInput = select.closest('.variation-row').querySelector('input[name*="[value]"]');
+        
+        if (select.value === 'color') {
+            colorInput.style.display = 'block';
+            valueInput.style.display = 'none';
+            valueInput.value = '';
+        } else {
+            colorInput.style.display = 'none';
+            valueInput.style.display = 'block';
+            colorInput.value = '';
+        }
+    }
+
+    function removeVariation(button) {
+        const variationRow = button.closest('.variation-row');
+        variationRow.remove();
+    }
 </script>
 
 @endsection

@@ -7,7 +7,7 @@ use App\Http\Controllers\HomeTemplateController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController; 
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\CompanySettingsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -66,7 +66,11 @@ Route::view('/admin/profile', 'AdminDashboard.profile')->name('profile');
 Route::view('/admin/sellers', 'AdminDashboard.sellers')->name('sellers');
 Route::view('/admin/seller-details', 'AdminDashboard.seller-details')->name('seller_details');
 
-Route::view('/admin/manage_company', 'AdminDashboard.manage_company')->name('manage_company');
+Route::view('/admin/role_list', 'AdminDashboard.role_list')->name('role_list');
+
+Route::get('/admin/manage_company', [CompanySettingsController::class, 'index'])->name('manage_company');
+Route::post('/admin/manage_company', [CompanySettingsController::class, 'store'])->name('manage_company.store');
+
 
 Route::resource('system_users', UserController::class);
 Route::get('/admin/users', [UserController::class, 'show'])->name('users');
@@ -75,6 +79,6 @@ Route::get('/admin/edit_users/{id}', [UserController::class, 'edit'])->name('edi
 Route::post('/admin/edit_users/{id}', [UserController::class, 'update'])->name('update_users');
 Route::delete('/admin/edit_users/{id}', [UserController::class, 'destroy'])->name('delete_users');
 
-Route::view('/admin/role_list', 'AdminDashboard.role_list')->name('role_list');
+
 
 require __DIR__.'/auth.php';

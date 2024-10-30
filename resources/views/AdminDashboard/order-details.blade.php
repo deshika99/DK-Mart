@@ -34,7 +34,7 @@
             <div class="col-md-4">
                 <article class="icontext align-items-start">
                     <span class="icon icon-sm rounded-circle bg-primary-light">
-                        <i class=" material-icons md-person"></i>
+                        <i class="text-primary material-icons md-person"></i>
                     </span>
                     <div class="text">
                         <h6 class="mb-1">Customer</h6>
@@ -50,7 +50,7 @@
             <div class="col-md-4">
                 <article class="icontext align-items-start">
                     <span class="icon icon-sm rounded-circle bg-primary-light">
-                        <i class=" material-icons md-local_shipping"></i>
+                        <i class="text-primary material-icons md-local_shipping"></i>
                     </span>
                     <div class="text">
                         <h6 class="mb-1">Order info</h6>
@@ -66,7 +66,7 @@
             <div class="col-md-4">
                 <article class="icontext align-items-start">
                     <span class="icon icon-sm rounded-circle bg-primary-light">
-                        <i class="material-icons md-place"></i>
+                        <i class="text-primary material-icons md-place"></i>
                     </span>
                     <div class="text">
                         <h6 class="mb-1">Deliver to</h6>
