@@ -48,3 +48,4 @@ Route::delete('/admin/categories/{category}', [CategoryController::class, 'destr
 
 
 require __DIR__.'/auth.php';
+

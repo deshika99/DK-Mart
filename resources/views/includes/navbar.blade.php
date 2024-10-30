@@ -985,48 +985,23 @@
                 <div class="header-menu d-lg-block d-none">
                     <!-- Nav Menu Start -->
 <ul class="nav-menu flex-align ">
-    <li class="on-hover-item nav-menu__item has-submenu activePage">
-        <a href="javascript:void(0)" class="nav-menu__link">Home</a>
-        <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-            <li class="common-dropdown__item nav-submenu__item activePage">
-                <a href="index.html" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"> Home Grocery</a>
-            </li>
-            <li class="common-dropdown__item nav-submenu__item">
-                <a href="index-two.html" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"> Home Electronics</a>
-            </li>
-            <li class="common-dropdown__item nav-submenu__item">
-                <a href="index-three.html" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"> Home Fashion</a>
-            </li>
-        </ul>
-    </li>
-    <li class="on-hover-item nav-menu__item has-submenu">
-        <a href="javascript:void(0)" class="nav-menu__link">Shop</a>
-         <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-            <li class="common-dropdown__item nav-submenu__item">
-                <a href="shop.html" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"> Shop</a>
-            </li>
-            <li class="common-dropdown__item nav-submenu__item">
-                <a href="product-details.html" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"> Shop Details</a>
-            </li>
-            <li class="common-dropdown__item nav-submenu__item">
-                <a href="product-details-two.html" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"> Shop Details Two</a>
-            </li>
-        </ul>
-    </li>
     <li class="nav-menu__item">
-        
-        <a href="javascript:void(0)" class="nav-menu__link">About Us</a>
-         <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-           
-        </ul>
+        <a href="javascript:void(0)" class="nav-menu__link">Home</a>
+    </li>
+   
+    <li class="nav-menu__item">
+        <a href="javascript:void(0)" class="nav-menu__link">Shop</a>
+    </li>
+   
+    <li class="nav-menu__item">
+         <a href="javascript:void(0)" class="nav-menu__link">About Us</a>
     </li>
    
     <li class="nav-menu__item">  
         <a href="contact.html" class="nav-menu__link">Contact Us</a>
      </li>
    
-   
-    <li class="nav-menu__item">
+   <li class="nav-menu__item">
         <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
     </li>
 </ul>
