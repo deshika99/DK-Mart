@@ -47,7 +47,7 @@
                                         <td><b>Marvin McKinney</b></td>
                                         <td>marvin@example.com</td>
                                         <td>$9.00</td>
-                                        <td><span class="badge rounded-pill alert-warning">Pending</span></td>
+                                        <td><span class="badge rounded-pill alert-warning text-dark">Pending</span></td>
                                         <td>03.12.2020</td>
                                         <td class="text-end">
                                         <div>

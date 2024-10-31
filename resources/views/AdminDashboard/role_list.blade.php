@@ -38,7 +38,7 @@
                                 <td></td>
                                 <td class="text-end">
                                     <div>
-                                        <a href="{{ route('edit_users') }}" class="btn btn-warning btn-sm me-2">
+                                        <a href="" class="btn btn-warning btn-sm me-2">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <form action="" method="POST" style="display: inline;">
