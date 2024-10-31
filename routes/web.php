@@ -20,6 +20,9 @@ Route::get('/dashboard', function () {
 Route::get('/about', function () {
     return view('frontend.about');
 });
+Route::get('/contact', function () {
+    return view('frontend.contact');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

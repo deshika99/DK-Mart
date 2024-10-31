@@ -162,15 +162,15 @@
     width: 40px;
     height: 40px;
     margin-right: 15px;
-}
+}..
 .values-item h3 {
     color: #FF6F00;
-    font-size: 16px;
+    
     margin-bottom: 10px;
 }
 .values-item p {
     margin-top: 0;
-    font-size: 14px;
+   
     color: white;
     text-align: justify;
 }
