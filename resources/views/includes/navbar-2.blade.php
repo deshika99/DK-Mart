@@ -1,6 +1,6 @@
 <!--==================== Preloader Start ====================-->
-  <div class="preloader">
-    <img src="frontend/assets/images/icon/preloader.gif" alt="">
+<div class="preloader">
+    <img src="assets/images/icon/preloader.gif" alt="">
   </div>
 <!--==================== Preloader End ====================-->
 
@@ -13,7 +13,6 @@
 <!--==================== Sidebar Overlay End ====================-->
 
 <!-- ==================== Scroll to Top End Here ==================== -->
-
 <div class="progress-wrap">
   <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
       <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
@@ -42,30 +41,32 @@
     <button type="button" class="close-button"> <i class="ph ph-x"></i> </button>
     <div class="mobile-menu__inner">
         <a href="index.html" class="mobile-menu__logo">
-            <img src="frontend/assets/images/logo/logo.png" alt="Logo">
+            <img src="assets/images/logo/logo.png" alt="Logo">
         </a>
         <div class="mobile-menu__menu">
             <!-- Nav Menu Start -->
 <ul class="nav-menu flex-align nav-menu--mobile">
     <li class="nav-menu__item">
         <a href="javascript:void(0)" class="nav-menu__link">Home</a>
+       
     </li>
-   
     <li class="nav-menu__item">
         <a href="javascript:void(0)" class="nav-menu__link">Shop</a>
+        
+    </li>
+    <li class="nav-menu__item">
+       
+        <a href="javascript:void(0)" class="nav-menu__link">About Us</a>
+      
+    </li>
+    <li class="nav-menu__item">
+       
+        <a href="contact.html" class="nav-menu__link">Contact Us</a>
+       
     </li>
    
     <li class="nav-menu__item">
-        <a href="javascript:void(0)" class="nav-menu__link">About Us</a>
-    </li>
-    
-    <li class="nav-menu__item">
-        <a href="contact.html" class="nav-menu__link">Contact Us</a>
-        
-    </li>
-    
-    <li class="nav-menu__item">
-        <a href="vendor-tow.html" class="nav-menu__link">Vendors</a>
+        <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
     </li>
 </ul>
 <!-- Nav Menu End -->
@@ -97,37 +98,37 @@
         <ul class="selectable-text-list on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag1.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag1.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     English
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag2.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag2.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     Japan
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag3.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag3.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     French
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag4.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag4.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     Germany
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag6.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag6.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     Bangladesh
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag5.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag5.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     South Korea
                 </a>
             </li>
@@ -138,37 +139,37 @@
        <ul class="selectable-text-list on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag1.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag1.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     USD
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag2.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag2.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     Yen
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag3.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag3.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     Franc 
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag4.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag4.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     EURO
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag6.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag6.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     BDT
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag5.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag5.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     WON
                 </a>
             </li>
@@ -252,7 +253,7 @@
             <div class="flex-align menu-category-wrapper">
 
                 <!-- Category Dropdown Start -->
-                <div class="category-two d-block">
+                <div class="category-two d-none">
                     <button type="button" class="category__button flex-align gap-8 fw-medium bg-main-two-600 p-16 text-white">
                         <span class="icon text-2xl d-xs-flex d-none"><i class="ph ph-dots-nine"></i></span>
                         <span class="d-sm-flex d-none">All</span>  Categories
@@ -264,7 +265,7 @@
 
     <div class="logo px-16 d-lg-none d-block">
         <a href="index.html" class="link">
-            <img src="frontend/assets/images/logo/logo.png" alt="Logo">
+            <img src="assets/images/logo/logo.png" alt="Logo">
         </a>
     </div>
 
@@ -692,7 +693,7 @@
     </ul>
 </div>
                 </div> 
-                <div class="category d-none on-hover-item bg-main-600 text-white">
+                <div class="category d-block on-hover-item bg-main-600 text-white">
                     <button type="button" class="category__button flex-align gap-8 fw-medium p-16 border-end border-start border-gray-100 text-white">
                         <span class="icon text-2xl d-xs-flex d-none"><i class="ph ph-dots-nine"></i></span>
                         <span class="d-sm-flex d-none">All</span>  Categories
@@ -703,214 +704,411 @@
                         <button type="button" class="close-responsive-dropdown rounded-circle text-xl position-absolute inset-inline-end-0 inset-block-start-0 mt-4 me-8 d-lg-none d-flex"> <i class="ph ph-x"></i> </button>
                         <div class="logo px-16 d-lg-none d-block">
                             <a href="index.html" class="link">
-                                <img src="frontend/assets/images/logo/logo.png" alt="Logo">
+                                <img src="assets/images/logo/logo.png" alt="Logo">
                             </a>
                         </div>
-                        <ul class="scroll-sm p-0 py-8 w-300 max-h-400 overflow-y-auto">
+                        <ul class="scroll-sm p-0 py-8 w-300 max-h-650 overflow-y-auto">
                             <li class="has-submenus-submenu">
                                 <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-carrot"></i></span>
-                                    <span>Vegetables &amp; Fruit</span>
-                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
+                                    <span class="text-xl d-flex"></span>
+                                    <span>Cell Phone</span>
+                                    <span class="icon text-md d-flex ms-auto"></span>
                                 </a>
     
                                 <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Vegetables &amp; Fruit</h6>
+                                    <h6 class="text-lg px-16 submenus-submenu__title">Cell Phone</h6>
                                     <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                         <li>
-                                            <a href="shop.html">Potato &amp; Tomato</a>
+                                            <a href="shop.html">Samsung</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html">Cucumber &amp; Capsicum</a>
+                                            <a href="shop.html">Iphone</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html">Leafy Vegetables</a>
+                                            <a href="shop.html">Vivo</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html">Root Vegetables</a>
+                                            <a href="shop.html">Oppo</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html">Beans &amp; Okra</a>
+                                            <a href="shop.html">Itel</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html">Cabbage &amp; Cauliflower</a>
+                                            <a href="shop.html">Realme</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Additional categories go here (Beverages, Meats & Seafood, etc.) -->
+
+            <!-- New Item 1: Bakery & Pastries -->
+            <li class="has-submenus-submenu">
+                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                    <span class="text-xl d-flex"></span>
+                    <span>Wear</span>
+                    <span class="icon text-md d-flex ms-auto"></span>
+                </a>
+                <div class="submenus-submenu py-16">
+                    <h6 class="text-lg px-16 submenus-submenu__title">Wear</h6>
+                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                        <li>
+                            <a href="shop.html">Samsung</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Iphone</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Vivo</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Oppo</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Itel</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Realme</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- New Item 2: Health & Wellness -->
+            <li class="has-submenus-submenu">
+                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                    <span class="text-xl d-flex"></span>
+                    <span>Computer</span>
+                    <span class="icon text-md d-flex ms-auto"></span>
+                </a>
+                <div class="submenus-submenu py-16">
+                    <h6 class="text-lg px-16 submenus-submenu__title">Computer</h6>
+                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                        <li>
+                            <a href="shop.html">Samsung</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Iphone</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Vivo</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Oppo</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Itel</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Realme</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+              <!-- New Item 2: Health & Wellness -->
+              <li class="has-submenus-submenu">
+                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                    <span class="text-xl d-flex"></span>
+                    <span>Headphone</span>
+                    <span class="icon text-md d-flex ms-auto"></span>
+                </a>
+                <div class="submenus-submenu py-16">
+                    <h6 class="text-lg px-16 submenus-submenu__title">Headphone</h6>
+                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                        <li>
+                            <a href="shop.html">Samsung</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Iphone</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Vivo</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Oppo</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Itel</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Realme</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+              <!-- New Item 2: Health & Wellness -->
+              <li class="has-submenus-submenu">
+                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                    <span class="text-xl d-flex"></span>
+                    <span>Smart Screen</span>
+                    <span class="icon text-md d-flex ms-auto"></span>
+                </a>
+                <div class="submenus-submenu py-16">
+                    <h6 class="text-lg px-16 submenus-submenu__title">Smart Screen</h6>
+                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                        <li>
+                            <a href="shop.html">Samsung</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Iphone</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Vivo</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Oppo</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Itel</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Realme</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+              <!-- New Item 2: Health & Wellness -->
+              <li class="has-submenus-submenu">
+                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                    <span class="text-xl d-flex"></span>
+                    <span>Smart Home</span>
+                    <span class="icon text-md d-flex ms-auto"></span>
+                </a>
+                <div class="submenus-submenu py-16">
+                    <h6 class="text-lg px-16 submenus-submenu__title">Smart Home</h6>
+                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                        <li>
+                            <a href="shop.html">Samsung</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Iphone</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Vivo</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Oppo</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Itel</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Realme</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+              <!-- New Item 2: Health & Wellness -->
+              <li class="has-submenus-submenu">
+                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                    <span class="text-xl d-flex"></span>
+                    <span>Digital Accessories</span>
+                    <span class="icon text-md d-flex ms-auto"></span>
+                </a>
+                <div class="submenus-submenu py-16">
+                    <h6 class="text-lg px-16 submenus-submenu__title">Digital Accessories</h6>
+                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                        <li>
+                            <a href="shop.html">Samsung</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Iphone</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Vivo</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Oppo</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Itel</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">Realme</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="has-submenus-submenu">
+                                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                    <span class="text-xl d-flex"></span>
+                                    <span>Value Added Services</span>
+                                    <span class="icon text-md d-flex ms-auto"></span>
+                                </a>
+                                <div class="submenus-submenu py-16">
+                                    <h6 class="text-lg px-16 submenus-submenu__title">Value Added Services</h6>
+                                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                        <li>
+                                            <a href="shop.html">Samsung</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html">Gourd &amp; Drumstick</a>
+                                            <a href="shop.html">Iphone</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html">Specialty</a>
+                                            <a href="shop.html">Vivo</a>
+                                        </li>
+                                        <li>
+                                            <a href="shop.html">Oppo</a>
+                                        </li>
+                                        <li>
+                                            <a href="shop.html">Itel</a>
+                                        </li>
+                                        <li>
+                                            <a href="shop.html">Realme</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             <li class="has-submenus-submenu">
                                 <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                    <span>Beverages</span>
-                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
+                                    <span class="text-xl d-flex"></span>
+                                    <span>Car Products</span>
+                                    <span class="icon text-md d-flex ms-auto"></span>
                                 </a>
                                 <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Beverages</h6>
+                                    <h6 class="text-lg px-16 submenus-submenu__title">Car Products</h6>
                                     <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                         <li>
-                                            <a href="shop.html">Soda &amp; Cocktail Mix </a>
+                                            <a href="shop.html">Samsung</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Sports &amp; Energy Drinks</a>
+                                            <a href="shop.html">Iphone</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Non Alcoholic Drinks</a>
+                                            <a href="shop.html">Vivo</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Packaged Water </a>
+                                            <a href="shop.html">Oppo</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Spring Water</a>
+                                            <a href="shop.html">Itel</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Flavoured Water    </a>
+                                            <a href="shop.html">Realme</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             <li class="has-submenus-submenu">
                                 <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                    <span>Meats &amp; Seafood</span>
-                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
+                                    <span class="text-xl d-flex"></span>
+                                    <span>Ecological Products</span>
+                                    <span class="icon text-md d-flex ms-auto"></span>
                                 </a>
                                 <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Meats &amp; Seafood</h6>
+                                    <h6 class="text-lg px-16 submenus-submenu__title">Ecological Products</h6>
                                     <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                         <li>
-                                            <a href="shop.html"> Fresh Meat </a>
+                                            <a href="shop.html">Samsung</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Frozen Meat</a>
+                                            <a href="shop.html">Iphone</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Marinated Meat</a>
+                                            <a href="shop.html">Vivo</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Fresh &amp; Frozen Meat</a>
+                                            <a href="shop.html">Oppo</a>
+                                        </li>
+                                        <li>
+                                            <a href="shop.html">Itel</a>
+                                        </li>
+                                        <li>
+                                            <a href="shop.html">Realme</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             <li class="has-submenus-submenu">
                                 <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                    <span>Breakfast &amp; Dairy</span>
-                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
+                                    <span class="text-xl d-flex"></span>
+                                    <span>Flat</span>
+                                    <span class="icon text-md d-flex ms-auto"></span>
                                 </a>
                                 <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Breakfast &amp; Dairy</h6>
+                                    <h6 class="text-lg px-16 submenus-submenu__title">Flat</h6>
                                     <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                         <li>
-                                            <a href="shop.html"> Oats &amp; Porridge</a>
+                                            <a href="shop.html">Samsung</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Kids Cereal</a>
+                                            <a href="shop.html">Iphone</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Muesli</a>
+                                            <a href="shop.html">Vivo</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Flakes</a>
+                                            <a href="shop.html">Oppo</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Granola &amp; Cereal Bars</a>
+                                            <a href="shop.html">Itel</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Instant Noodles</a>
+                                            <a href="shop.html">Realme</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             <li class="has-submenus-submenu">
                                 <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                    <span>Frozen Foods</span>
-                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
+                                    <span class="text-xl d-flex"></span>
+                                    <span>Commercial Terminal</span>
+                                    <span class="icon text-md d-flex ms-auto"></span>
                                 </a>
                                 <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Frozen Foods</h6>
+                                    <h6 class="text-lg px-16 submenus-submenu__title">Commercial Terminal</h6>
                                     <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                         <li>
-                                            <a href="shop.html"> Instant Noodles </a>
+                                            <a href="shop.html">Samsung</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Hakka Noodles</a>
+                                            <a href="shop.html">Iphone</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Cup Noodles</a>
+                                            <a href="shop.html">Vivo</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Vermicelli</a>
+                                            <a href="shop.html">Oppo</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Instant Pasta</a>
+                                            <a href="shop.html">Itel</a>
+                                        </li>
+                                        <li>
+                                            <a href="shop.html">Realme</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
+
+                            
                             <li class="has-submenus-submenu">
                                 <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                    <span>Biscuits &amp; Snacks</span>
-                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
+                                    <span class="text-xl d-flex"></span>
+                                    <span>HeadPhone</span>
+                                    <span class="icon text-md d-flex ms-auto"></span>
                                 </a>
                                 <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Biscuits &amp; Snacks</h6>
+                                    <h6 class="text-lg px-16 submenus-submenu__title">HeadPhone</h6>
                                     <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                         <li>
-                                            <a href="shop.html"> Salted Biscuits </a>
+                                            <a href="shop.html">Samsung</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Marie, Health, Digestive</a>
+                                            <a href="shop.html">Iphone</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Cream Biscuits &amp; Wafers </a>
+                                            <a href="shop.html">Vivo</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Glucose &amp; Milk biscuits</a>
+                                            <a href="shop.html">Oppo</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Cookies</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="has-submenus-submenu">
-                                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                    <span>Grocery &amp; Staples</span>
-                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-                                </a>
-                                <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Grocery &amp; Staples</h6>
-                                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                        <li>
-                                            <a href="shop.html"> Lemon, Ginger &amp; Garlic </a>
+                                            <a href="shop.html">Itel</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html"> Indian &amp; Exotic Herbs</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Orangic Vegetables</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">Orangic Fruits </a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Orangic Dry Fruits</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Orangic Dals &amp; pulses</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Orangic Millet &amp; Flours</a>
+                                            <a href="shop.html">Realme</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -926,23 +1124,27 @@
 <ul class="nav-menu flex-align ">
     <li class="nav-menu__item">
         <a href="javascript:void(0)" class="nav-menu__link">Home</a>
+        
     </li>
-   
     <li class="nav-menu__item">
         <a href="javascript:void(0)" class="nav-menu__link">Shop</a>
+        
+    </li>
+    <li class="nav-menu__item">
+        
+        <a href="javascript:void(0)" class="nav-menu__link">About Us</a>
+       
+    </li>
+    <li class="nav-menu__item">
+       
+        <a href="contact.html" class="nav-menu__link">Contact Us</a>
+       
     </li>
    
     <li class="nav-menu__item">
-         <a href="javascript:void(0)" class="nav-menu__link">About Us</a>
-    </li>
-   
-    <li class="nav-menu__item">  
-        <a href="contact.html" class="nav-menu__link">Contact Us</a>
-     </li>
-   
-   <li class="nav-menu__item">
         <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
     </li>
+
 </ul>
 <!-- Nav Menu End -->
                 </div>
@@ -960,37 +1162,37 @@
         <ul class="selectable-text-list on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag1.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag1.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     English
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag2.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag2.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     Japan
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag3.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag3.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     French
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag4.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag4.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     Germany
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag6.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag6.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     Bangladesh
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag5.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag5.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     South Korea
                 </a>
             </li>
@@ -1001,37 +1203,37 @@
        <ul class="selectable-text-list on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag1.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag1.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     USD
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag2.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag2.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     Yen
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag3.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag3.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     Franc 
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag4.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag4.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     EURO
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag6.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag6.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     BDT
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="frontend/assets/images/thumbs/flag5.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
+                    <img src="assets/images/thumbs/flag5.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
                     WON
                 </a>
             </li>
@@ -1083,6 +1285,4 @@
         </nav>
     </div>
 </header>
-
-
- 
+<!-- ==================== Header End Here ==================== -->

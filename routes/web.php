@@ -25,3 +25,10 @@ Route::get('/home',[HomeTemplateController::class,'index']);
 
 require __DIR__.'/auth.php';
 
+Route::get('/register', function () {
+    return view('frontend.register');
+})->name('register');
+
+Route::get('/login', function () {
+    return view('frontend.login');
+})->name('login');
