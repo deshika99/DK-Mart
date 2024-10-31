@@ -136,10 +136,11 @@ class ProductController extends Controller
 
     public function edit($productId)
     {
-        $product = Product::with('category', 'subcategory', 'subSubcategory')->findOrFail($productId);
+        $product = Product::with(['category', 'subcategory', 'subSubcategory', 'variations'])->findOrFail($productId);
         $categories = Category::with('subcategories.subSubcategories')->get();
         return view('AdminDashboard.edit_products', compact('product', 'categories'));
     }
+    
 
     
 
@@ -171,48 +172,71 @@ class ProductController extends Controller
     
         $product = Product::findOrFail($id);
     
-        $product->product_name = $validatedData['product_name'];
-        $product->product_description = $validatedData['product_description'];
-        $product->category_id = $validatedData['category_id'];
-        $product->subcategory_id = $validatedData['subcategory_id'];
-        $product->sub_subcategory_id = $validatedData['sub_subcategory_id'];
-        $product->quantity = $validatedData['quantity'];
-        $product->tags = $validatedData['tags'];
-        $product->normal_price = $validatedData['normal_price'];
-        $product->is_affiliate = $validatedData['is_affiliate'];
-        $product->affiliate_price = $validatedData['affiliate_price'];
-        $product->commission_percentage = $validatedData['commission_percentage'];
-        $product->total_price = $validatedData['total_price'];
-        $product->save();
+        $product->update([
+            'product_name' => $validatedData['product_name'],
+            'product_description' => $validatedData['product_description'],
+            'category_id' => $validatedData['category_id'],
+            'subcategory_id' => $validatedData['subcategory_id'],
+            'sub_subcategory_id' => $validatedData['sub_subcategory_id'],
+            'quantity' => $validatedData['quantity'],
+            'tags' => $validatedData['tags'],
+            'normal_price' => $validatedData['normal_price'],
+            'is_affiliate' => $validatedData['is_affiliate'],
+            'affiliate_price' => $validatedData['affiliate_price'],
+            'commission_percentage' => $validatedData['commission_percentage'],
+            'total_price' => $validatedData['total_price'],
+        ]);
     
-        // Handle image uploads if any
         if ($request->hasFile('images')) {
-            try {
-                foreach ($request->file('images') as $image) {
-                    $imageName = time() . '_' . $image->getClientOriginalName();
-                    $imagePath = $image->storeAs('product_images', $imageName, 'public');
+            foreach ($request->file('images') as $image) {
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $imagePath = $image->storeAs('product_images', $imageName, 'public');
     
-                    ProductImage::create([
-                        'product_id' => $product->product_id,
-                        'image_path' => $imagePath,
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_path' => $imagePath,
+                ]);
+            }
+        }
+    
+        if ($request->has('deleted_images')) {
+            ProductImage::whereIn('id', $validatedData['deleted_images'])->delete();
+        }
+    
+        $variationIds = collect($request->input('variations'))->pluck('id')->filter();
+        
+        Variations::where('product_id', $product->product_id)
+            ->whereNotIn('id', $variationIds)
+            ->delete();
+
+        foreach ($request->input('variations') as $variationData) {
+            if (isset($variationData['id'])) {
+                $variation = Variations::where('id', $variationData['id'])
+                    ->where('product_id', $product->product_id)
+                    ->first();
+
+                if ($variation) {
+                    $variation->update([
+                        'type' => $variationData['type'],
+                        'value' => $variationData['type'] === 'color' ? null : $variationData['value'],
+                        'hex_value' => $variationData['type'] === 'color' ? $variationData['hex_value'] : null,
+                        'quantity' => $variationData['quantity']
                     ]);
                 }
-            } catch (\Exception $e) {
-                return redirect()->route('products_list')->with('error', 'Failed to upload images.');
+            } else {
+                Variations::create([
+                    'product_id' => $product->product_id,
+                    'type' => $variationData['type'],
+                    'value' => $variationData['type'] === 'color' ? null : $variationData['value'],
+                    'hex_value' => $variationData['type'] === 'color' ? $variationData['hex_value'] : null,
+                    'quantity' => $variationData['quantity']
+                ]);
             }
         }
     
-        // Handle deletion of images if any
-        if ($request->has('deleted_images')) {
-            try {
-                ProductImage::whereIn('id', $validatedData['deleted_images'])->delete();
-            } catch (\Exception $e) {
-                return redirect()->route('products_list')->with('error', 'Failed to delete images.');
-            }
+            return redirect()->route('products_list')->with('success', 'Product updated successfully.');
         }
     
-        return redirect()->route('products_list')->with('success', 'Product updated successfully.');
-    }
     
     
 

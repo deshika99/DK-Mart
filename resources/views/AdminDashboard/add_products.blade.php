@@ -7,10 +7,8 @@
     <div class="col-12">
         <div class="content-header">
             <h2 class="content-title">Add New Product</h2>
-            
             <div>
-                    <button type="submit" class="btn btn-md rounded font-sm hover-up">Publish</button>
-                
+                <button type="submit" class="btn btn-md rounded font-sm hover-up">Publish</button>
             </div>
         </div>
     </div>
