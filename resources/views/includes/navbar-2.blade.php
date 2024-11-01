@@ -1,3 +1,43 @@
+<style>
+    /* Dropdown styles */
+.profile-dropdown {
+    position: relative;
+}
+
+.profile-toggle {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 10;
+    min-width: 60px;
+}
+
+.dropdown-item {
+    color: hsl(0, 2%, 66%);
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-item:hover {
+    background-color: #f2f2f2;
+    color: rgb(238, 82, 10);
+}
+
+.profile-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+</style>
 <!--==================== Preloader Start ====================-->
 <div class="preloader">
     <img src="assets/images/icon/preloader.gif" alt="">
@@ -211,12 +251,22 @@
             <i class="ph ph-magnifying-glass"></i>
         </span>
     </button>
-    <a href="account.html" class="flex-align flex-column gap-8 item-hover-two">
+  <!-- Profile Dropdown -->
+  <div class="profile-dropdown">
+    <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
         <span class="text-2xl text-white d-flex position-relative item-hover__text">
             <i class="ph ph-user"></i>
         </span>
         <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
     </a>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu">
+        <a href="{{ route('login') }}" class="dropdown-item">Login</a>
+        <a href="{{ route('register') }}" class="dropdown-item">Sign Up</a>
+    </div>
+</div>
+
     <a href="wishlist.html" class="flex-align flex-column gap-8 item-hover-two">
         <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
             <i class="ph ph-heart"></i>
@@ -1250,12 +1300,22 @@
             <i class="ph ph-magnifying-glass"></i>
         </span>
     </button>
-    <a href="account.html" class="flex-align flex-column gap-8 item-hover-two">
+   <!-- Profile Dropdown -->
+   <div class="profile-dropdown">
+    <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
         <span class="text-2xl text-white d-flex position-relative item-hover__text">
             <i class="ph ph-user"></i>
         </span>
         <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
     </a>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu">
+        <a href="{{ route('login') }}" class="dropdown-item">Login</a>
+        <a href="{{ route('register') }}" class="dropdown-item">Sign Up</a>
+    </div>
+</div>
+
     <a href="wishlist.html" class="flex-align flex-column gap-8 item-hover-two">
         <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
             <i class="ph ph-heart"></i>
@@ -1277,6 +1337,7 @@
         </span>
         <span class="text-md text-white item-hover__text d-none d-lg-flex">Cart</span>
     </a>
+    
 </div>
                 </div>
                 <button type="button" class="toggle-mobileMenu d-lg-none ms-3n text-gray-800 text-4xl d-flex"> <i class="ph ph-list"></i> </button>
