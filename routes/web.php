@@ -17,6 +17,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/about', function () {
+    return view('frontend.about');
+});
+Route::get('/contact', function () {
+    return view('frontend.contact');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -83,6 +90,7 @@ Route::delete('/admin/edit_users/{id}', [UserController::class, 'destroy'])->nam
 
 require __DIR__.'/auth.php';
 
+
 Route::get('/register', function () {
     return view('frontend.register');
 })->name('register');
@@ -90,3 +98,4 @@ Route::get('/register', function () {
 Route::get('/login', function () {
     return view('frontend.login');
 })->name('login');
+
