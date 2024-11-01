@@ -90,3 +90,12 @@ Route::delete('/admin/edit_users/{id}', [UserController::class, 'destroy'])->nam
 
 require __DIR__.'/auth.php';
 
+
+Route::get('/register', function () {
+    return view('frontend.register');
+})->name('register');
+
+Route::get('/login', function () {
+    return view('frontend.login');
+})->name('login');
+
