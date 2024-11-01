@@ -30,9 +30,56 @@
     @include('includes.navbar')
 
     <!-- ============================ Banner Section start =============================== -->
-    <div class="banner-two">
-        <div class="container container-lg">
-            <div class="banner-two-wrapper d-flex align-items-start">
+
+<div class="banner-two">
+    <div class="container container-lg">
+        <div class="banner-two-wrapper d-flex align-items-start">
+
+            <div class="w-265 d-lg-block d-none flex-shrink-0">
+                <div class="responsive-dropdown style-two common-dropdown nav-submenu p-0 submenus-submenu-wrapper shadow-none border border-gray-100 position-relative border-top-0">
+                    <button type="button" class="close-responsive-dropdown rounded-circle text-xl position-absolute inset-inline-end-0 inset-block-start-0 mt-4 me-8 d-lg-none d-flex"> <i class="ph ph-x"></i> </button>
+
+                    <ul class="responsive-dropdown__list scroll-sm p-0 py-8 overflow-y-auto">
+                        @foreach ($categories as $category)
+                            <li class="has-submenus-submenu">
+                                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                    <span>{{ $category->name }}</span>
+                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
+                                </a>
+
+                                <!-- Subcategories Column -->
+                                <div class="submenus-submenu py-16">
+                                    <h6 class="text-lg px-16 submenus-submenu__title">{{ $category->name }}</h6>
+                                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                        @foreach ($category->subcategories as $subcategory)
+                                        <li class="has-sub-submenu1">
+                                            <a href="javascript:void(0)">{{ $subcategory->name }}</a>
+
+                                            <!-- Sub-Subcategories Column -->
+                                            @if ($subcategory->subSubcategories->isNotEmpty())
+                                                <div class="sub-submenu-column">
+                                                    <ul class="sub-submenu1 max-h-300 overflow-y-auto scroll-sm">
+                                                        @foreach ($subcategory->subSubcategories as $subSubcategory)
+                                                            <li>
+                                                                <a href="javascript:void(0)">{{ $subSubcategory->name }}</a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                        </li>
+
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>   
+
+
+                </div>
+            </div>
+
 
                 <div class="w-265 d-lg-block d-none flex-shrink-0">
                     <div class="responsive-dropdown style-two common-dropdown nav-submenu p-0 submenus-submenu-wrapper shadow-none border border-gray-100 position-relative border-top-0">
@@ -4030,7 +4077,21 @@
     <!-- main js -->
     <script src="frontend/assets/js/main.js"></script>
 
+<style>
+    document.querySelectorAll('.has-sub-submenu').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        const submenu = item.querySelector('.sub-submenu-column');
+        submenu.style.visibility = 'visible';
+        submenu.style.opacity = '1';
+    });
+    item.addEventListener('mouseleave', () => {
+        const submenu = item.querySelector('.sub-submenu-column');
+        submenu.style.visibility = 'hidden';
+        submenu.style.opacity = '0';
+    });
+});
 
+</style>
 
 </body>
 

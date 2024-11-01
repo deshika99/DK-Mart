@@ -303,19 +303,13 @@
                  
                 <form action="#" class="flex-align flex-wrap form-location-wrapper">
                     <div class="search-category style-two d-flex h-48 search-form d-sm-flex d-none">
-                        <select class="js-example-basic-single border border-gray-200 border-end-0 rounded-0 border-0" name="state">
-                            <option value="1" selected disabled>All Categories</option>
-                            <option value="1">Grocery</option>
-                            <option value="1">Breakfast & Dairy</option>
-                            <option value="1">Vegetables</option>
-                            <option value="1">Milks and Dairies</option>
-                            <option value="1">Pet Foods & Toy</option>
-                            <option value="1">Breads & Bakery</option>
-                            <option value="1">Fresh Seafood</option>
-                            <option value="1">Fronzen Foods</option>
-                            <option value="1">Noodles & Rice</option>
-                            <option value="1">Ice Cream</option>
-                        </select>
+                    <select class="js-example-basic-single border border-gray-200 border-end-0 rounded-0 border-0" name="category">
+                        <option value="" selected disabled>All Categories</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+
                         <div class="search-form__wrapper position-relative">
                             <input type="text" class="search-form__input common-input py-13 ps-16 pe-18 rounded-0 border-0" placeholder="Search for a product or brand">
                         </div>
@@ -394,691 +388,79 @@
                     </button>
 
                     <div class="responsive-dropdown common-dropdown d-lg-none d-block nav-submenu p-0 submenus-submenu-wrapper shadow-none border border-gray-100">
-    <button type="button" class="close-responsive-dropdown rounded-circle text-xl position-absolute inset-inline-end-0 inset-block-start-0 mt-4 me-8 d-lg-none d-flex"> <i class="ph ph-x"></i> </button>
-
-    <div class="logo px-16 d-lg-none d-block">
-        <a href="index.html" class="link">
-            <img src="frontend/assets/images/logo/logo.png" alt="Logo">
-        </a>
-    </div>
-
-    <ul class="scroll-sm p-0 py-8 overflow-y-auto">
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span>Cell Phone</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title">Cell Phone</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span>Wear</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title">Wear</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span>Computer</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title">Computer</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span>Headphone</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title">Headphone</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span>Smart Screen</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title">Smart Screen</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span>Smart Home</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title">Smart Home</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span>Digital Accessories</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title">Digital Accessories</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span> Value Added Services</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title"> Value Added Services</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span>Car Products</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title">Car Products</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span>Ecological Products</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title">Ecological Products</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span>Flat</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title">Flat</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span>Commercial Terminal</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title">Commercial Terminal</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span>Headphone</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title">Headphone</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="has-submenus-submenu">
-            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                <span>Smart Screen</span>
-                <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-            </a>
-
-            <div class="submenus-submenu py-16">
-                <h6 class="text-lg px-16 submenus-submenu__title">Smart Screen</h6>
-                <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                    <li>
-                        <a href="shop.html">Samsung</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Iphone</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Vivo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Oppo</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Itel</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Realme</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-    </ul>
-</div>
-                </div> 
-                <div class="category d-none on-hover-item bg-main-600 text-white">
-                    <button type="button" class="category__button flex-align gap-8 fw-medium p-16 border-end border-start border-gray-100 text-white">
-                        <span class="icon text-2xl d-xs-flex d-none"><i class="ph ph-dots-nine"></i></span>
-                        <span class="d-sm-flex d-none">All</span>  Categories
-                        <span class="arrow-icon text-xl d-flex"><i class="ph ph-caret-down"></i></span>
-                    </button>
-
-                    <div class="responsive-dropdown on-hover-dropdown common-dropdown nav-submenu p-0 submenus-submenu-wrapper">
                         <button type="button" class="close-responsive-dropdown rounded-circle text-xl position-absolute inset-inline-end-0 inset-block-start-0 mt-4 me-8 d-lg-none d-flex"> <i class="ph ph-x"></i> </button>
+
                         <div class="logo px-16 d-lg-none d-block">
                             <a href="index.html" class="link">
                                 <img src="frontend/assets/images/logo/logo.png" alt="Logo">
                             </a>
                         </div>
-                        <ul class="scroll-sm p-0 py-8 w-300 max-h-400 overflow-y-auto">
+
+                     <ul class="responsive-dropdown__list scroll-sm p-0 py-8 overflow-y-auto">
+                        @foreach ($categories as $category)
                             <li class="has-submenus-submenu">
                                 <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-carrot"></i></span>
-                                    <span>Vegetables &amp; Fruit</span>
+                                    <span>{{ $category->name }}</span>
                                     <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
                                 </a>
-    
+
+                                <!-- Subcategories Column -->
                                 <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Vegetables &amp; Fruit</h6>
+                                    <h6 class="text-lg px-16 submenus-submenu__title">{{ $category->name }}</h6>
                                     <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                        <li>
-                                            <a href="shop.html">Potato &amp; Tomato</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">Cucumber &amp; Capsicum</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">Leafy Vegetables</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">Root Vegetables</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">Beans &amp; Okra</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">Cabbage &amp; Cauliflower</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">Gourd &amp; Drumstick</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">Specialty</a>
-                                        </li>
+                                        @foreach ($category->subcategories as $subcategory)
+                                            <li class="has-sub-submenu">
+                                                <a href="javascript:void(0)">{{ $subcategory->name }}</a>
+
+                                                <!-- Sub-Subcategories Column -->
+                                                @if ($subcategory->subSubcategories->isNotEmpty())
+                                                    <div class="sub-submenu-column">
+                                                        <ul class="sub-submenu max-h-300 overflow-y-auto scroll-sm">
+                                                            @foreach ($subcategory->subSubcategories as $subSubcategory)
+                                                                <li>
+                                                                    <a href="javascript:void(0)">{{ $subSubcategory->name }}</a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </li>
-                            <li class="has-submenus-submenu">
-                                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                    <span>Beverages</span>
-                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-                                </a>
-                                <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Beverages</h6>
-                                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                        <li>
-                                            <a href="shop.html">Soda &amp; Cocktail Mix </a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Sports &amp; Energy Drinks</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Non Alcoholic Drinks</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Packaged Water </a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Spring Water</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Flavoured Water    </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="has-submenus-submenu">
-                                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                    <span>Meats &amp; Seafood</span>
-                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-                                </a>
-                                <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Meats &amp; Seafood</h6>
-                                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                        <li>
-                                            <a href="shop.html"> Fresh Meat </a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Frozen Meat</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Marinated Meat</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Fresh &amp; Frozen Meat</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="has-submenus-submenu">
-                                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                    <span>Breakfast &amp; Dairy</span>
-                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-                                </a>
-                                <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Breakfast &amp; Dairy</h6>
-                                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                        <li>
-                                            <a href="shop.html"> Oats &amp; Porridge</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Kids Cereal</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Muesli</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Flakes</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Granola &amp; Cereal Bars</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Instant Noodles</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="has-submenus-submenu">
-                                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                    <span>Frozen Foods</span>
-                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-                                </a>
-                                <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Frozen Foods</h6>
-                                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                        <li>
-                                            <a href="shop.html"> Instant Noodles </a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Hakka Noodles</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Cup Noodles</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Vermicelli</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Instant Pasta</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="has-submenus-submenu">
-                                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                    <span>Biscuits &amp; Snacks</span>
-                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-                                </a>
-                                <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Biscuits &amp; Snacks</h6>
-                                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                        <li>
-                                            <a href="shop.html"> Salted Biscuits </a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Marie, Health, Digestive</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Cream Biscuits &amp; Wafers </a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Glucose &amp; Milk biscuits</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Cookies</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="has-submenus-submenu">
-                                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                    <span>Grocery &amp; Staples</span>
-                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
-                                </a>
-                                <div class="submenus-submenu py-16">
-                                    <h6 class="text-lg px-16 submenus-submenu__title">Grocery &amp; Staples</h6>
-                                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                        <li>
-                                            <a href="shop.html"> Lemon, Ginger &amp; Garlic </a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Indian &amp; Exotic Herbs</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Orangic Vegetables</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">Orangic Fruits </a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Orangic Dry Fruits</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Orangic Dals &amp; pulses</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html"> Orangic Millet &amp; Flours</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                        @endforeach
+                    </ul>   
+         
                 </div>
-                <!-- Category Dropdown End  -->
+                </div> 
+              
     
                 <!-- Menu Start  -->
                 <div class="header-menu d-lg-block d-none">
                     <!-- Nav Menu Start -->
-<ul class="nav-menu flex-align ">
-    <li class="nav-menu__item">
-        <a href="javascript:void(0)" class="nav-menu__link">Home</a>
-    </li>
-   
-    <li class="nav-menu__item">
-        <a href="javascript:void(0)" class="nav-menu__link">Shop</a>
-    </li>
-   
-    <li class="nav-menu__item">
-         <a href="javascript:void(0)" class="nav-menu__link">About Us</a>
-    </li>
-   
-    <li class="nav-menu__item">  
-        <a href="contact.html" class="nav-menu__link">Contact Us</a>
-     </li>
-   
-   <li class="nav-menu__item">
-        <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
-    </li>
-</ul>
-<!-- Nav Menu End -->
+                        <ul class="nav-menu flex-align ">
+                            <li class="nav-menu__item">
+                                <a href="javascript:void(0)" class="nav-menu__link">Home</a>
+                            </li>
+                        
+                            <li class="nav-menu__item">
+                                <a href="javascript:void(0)" class="nav-menu__link">Shop</a>
+                            </li>
+                        
+                            <li class="nav-menu__item">
+                                <a href="javascript:void(0)" class="nav-menu__link">About Us</a>
+                            </li>
+                        
+                            <li class="nav-menu__item">  
+                                <a href="contact.html" class="nav-menu__link">Contact Us</a>
+                            </li>
+                        
+                        <li class="nav-menu__item">
+                                <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
+                            </li>
+                        </ul>
+                        <!-- Nav Menu End -->
                 </div>
                 <!-- Menu End  -->
             </div>

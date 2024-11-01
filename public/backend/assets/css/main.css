@@ -251,10 +251,20 @@ table .form-check {
 .bg-primary-light {
   background-color: rgba(183, 59, 59, 0.2) !important;
 }
+.bg-success-light{
+  background-color: rgba(86, 183, 59, 0.2) !important;
+}
+.bg-warning-light{
+  background-color: rgba(255, 244, 119, 0.452) !important;
+}
+.bg-info-light{
+  background-color: rgba(59, 183, 160, 0.2) !important;
+}
 
 .dropdown-item.active, .dropdown-item:active {
   background-color: #bd0f0f;
 }
+
 
 .screen-overlay {
   width: 0%;
