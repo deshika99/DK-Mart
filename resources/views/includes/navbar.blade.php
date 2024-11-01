@@ -1,3 +1,43 @@
+<style>
+    /* Dropdown styles */
+.profile-dropdown {
+    position: relative;
+}
+
+.profile-toggle {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 10;
+    min-width: 60px;
+}
+
+.dropdown-item {
+    color: hsl(0, 2%, 66%);
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-item:hover {
+    background-color: #f2f2f2;
+    color: rgb(238, 82, 10);
+}
+
+.profile-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+</style>
 <!--==================== Preloader Start ====================-->
   <div class="preloader">
     <img src="frontend/assets/images/icon/preloader.gif" alt="">
@@ -278,45 +318,56 @@
                 </form>
             </div>
             <!-- form Category start -->
-             
-            <!-- Header Middle Right start -->
-            <div class="header-right flex-align d-lg-block d-none">
-                <div class="header-two-activities flex-align flex-wrap gap-32">
-    <button type="button" class="flex-align search-icon d-lg-none d-flex gap-4 item-hover-two">
-        <span class="text-2xl text-white d-flex position-relative item-hover__text">
-            <i class="ph ph-magnifying-glass"></i>
-        </span>
-    </button>
-    <a href="account.html" class="flex-align flex-column gap-8 item-hover-two">
-        <span class="text-2xl text-white d-flex position-relative item-hover__text">
-            <i class="ph ph-user"></i>
-        </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
-    </a>
-    <a href="wishlist.html" class="flex-align flex-column gap-8 item-hover-two">
-        <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
-            <i class="ph ph-heart"></i>
-            <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>
-        </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Wishlist</span>
-    </a>
-    <a href="cart.html" class="flex-align flex-column gap-8 item-hover-two">
-        <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
-            <i class="ph-fill ph-shuffle"></i>
-            <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>
-        </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Compare</span>
-    </a>
-    <a href="cart.html" class="flex-align flex-column gap-8 item-hover-two">
-        <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
-            <i class="ph ph-shopping-cart-simple"></i>
-            <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>
-        </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Cart</span>
-    </a>
-</div>
+   <!-- Header Middle Right start -->
+<div class="header-right flex-align d-lg-block d-none">
+    <div class="header-two-activities flex-align flex-wrap gap-32">
+        <button type="button" class="flex-align search-icon d-lg-none d-flex gap-4 item-hover-two">
+            <span class="text-2xl text-white d-flex position-relative item-hover__text">
+                <i class="ph ph-magnifying-glass"></i>
+            </span>
+        </button>
+
+        <!-- Profile Dropdown -->
+        <div class="profile-dropdown">
+            <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
+                <span class="text-2xl text-white d-flex position-relative item-hover__text">
+                    <i class="ph ph-user"></i>
+                </span>
+                <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
+            </a>
+
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu">
+                <a href="{{ route('login') }}" class="dropdown-item">Login</a>
+                <a href="{{ route('register') }}" class="dropdown-item">Sign Up</a>
             </div>
-            <!-- Header Middle Right End  -->
+        </div>
+
+        <a href="wishlist.html" class="flex-align flex-column gap-8 item-hover-two">
+            <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
+                <i class="ph ph-heart"></i>
+                <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>
+            </span>
+            <span class="text-md text-white item-hover__text d-none d-lg-flex">Wishlist</span>
+        </a>
+        <a href="cart.html" class="flex-align flex-column gap-8 item-hover-two">
+            <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
+                <i class="ph-fill ph-shuffle"></i>
+                <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>
+            </span>
+            <span class="text-md text-white item-hover__text d-none d-lg-flex">Compare</span>
+        </a>
+        <a href="cart.html" class="flex-align flex-column gap-8 item-hover-two">
+            <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
+                <i class="ph ph-shopping-cart-simple"></i>
+                <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>
+            </span>
+            <span class="text-md text-white item-hover__text d-none d-lg-flex">Cart</span>
+        </a>
+    </div>
+</div>
+<!-- Header Middle Right End -->
+
         </nav>
     </div>
 </header>
@@ -513,12 +564,21 @@
             <i class="ph ph-magnifying-glass"></i>
         </span>
     </button>
-    <a href="account.html" class="flex-align flex-column gap-8 item-hover-two">
-        <span class="text-2xl text-white d-flex position-relative item-hover__text">
-            <i class="ph ph-user"></i>
-        </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
-    </a>
+      <!-- Profile Dropdown -->
+      <div class="profile-dropdown">
+        <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
+            <span class="text-2xl text-white d-flex position-relative item-hover__text">
+                <i class="ph ph-user"></i>
+            </span>
+            <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
+        </a>
+
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu">
+            <a href="{{ route('login') }}" class="dropdown-item">Login</a>
+            <a href="{{ route('register') }}" class="dropdown-item">Sign Up</a>
+        </div>
+    </div>
     <a href="wishlist.html" class="flex-align flex-column gap-8 item-hover-two">
         <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
             <i class="ph ph-heart"></i>
