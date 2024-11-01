@@ -352,18 +352,17 @@
         const normalPriceInput = document.getElementById('normal_price');
         const totalPriceInput = document.getElementById('total_price');
 
-        // Event listener for the affiliate checkbox
+    
         affiliateCheckbox.addEventListener('change', function () {
             if (!affiliateCheckbox.checked) {
-                // Clear affiliate price and commission percentage when checkbox is unchecked
+
                 affiliatePriceInput.value = '';
                 commissionInput.value = '';
-                // Set total price to equal normal price
                 totalPriceInput.value = normalPriceInput.value;
             }
         });
 
-        // Update total price when normal price changes and affiliate is unchecked
+        
         normalPriceInput.addEventListener('input', function () {
             if (!affiliateCheckbox.checked) {
                 totalPriceInput.value = normalPriceInput.value;
@@ -372,7 +371,7 @@
     });
 </script>
 <script>
-    let variationIndex = {{ count($product->variations) }}; // Initialize with existing variations count
+    let variationIndex = {{ count($product->variations) }};
 
     function addVariation() {
         const variationsContainer = document.getElementById('variationsContainer');
