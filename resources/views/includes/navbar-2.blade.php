@@ -101,7 +101,7 @@
     </li>
     <li class="nav-menu__item">
        
-        <a href="contact.html" class="nav-menu__link">Contact Us</a>
+        <a href="{{ route('contact') }}" class="nav-menu__link">Contact Us</a>
        
     </li>
    
@@ -1187,7 +1187,7 @@
     </li>
     <li class="nav-menu__item">
        
-        <a href="contact.html" class="nav-menu__link">Contact Us</a>
+        <a href="{{ route('contact') }}" class="nav-menu__link">Contact Us</a>
        
     </li>
    

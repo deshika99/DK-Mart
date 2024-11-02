@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanySettingsController;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,7 +23,8 @@ Route::get('/about', function () {
 });
 Route::get('/contact', function () {
     return view('frontend.contact');
-});
+})->name('contact');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -94,6 +96,8 @@ require __DIR__.'/auth.php';
 Route::get('/register', function () {
     return view('frontend.register');
 })->name('register');
+
+
 
 Route::get('/login', function () {
     return view('frontend.login');
