@@ -10,8 +10,8 @@
             </div>
             <nav>
                 <ul class="menu-aside">
-                    <li class="menu-item {{ request()->routeIs('admin.index') ? 'active' : '' }}">
-                        <a class="menu-link" href="{{ route('admin.index') }}">
+                    <li class="menu-item {{ request()->routeIs('affiliate') ? 'active' : '' }}">
+                        <a class="menu-link" href="{{ route('affiliate') }}">
                             <i class="icon material-icons md-home"></i>
                             <span class="text">Dashboard</span>
                         </a>
