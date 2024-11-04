@@ -629,55 +629,7 @@
                     </div>
                 </div>
 
-                <div class="row g-12">
-                    @if ($products->isNotEmpty())
-                    @foreach($products as $product)
-                    <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="200">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller</span>
-                                <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" alt="{{ $product->product_name }}" class="w-auto max-w-unset" style="width: 200px; height: 200px; object-fit: cover;">
 
-                            </a>
-                            <div class="product-card__content mt-16">
-                                @if($product->normal_price > $product->total_price)
-                                <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">
-                                    {{ round(100 - ($product->total_price / $product->normal_price) * 100) }}% OFF
-                                </span>
-                                @endif
-                                <h6 class="title text-lg fw-semibold my-16">
-                                    <a href="" class="link text-line-2" tabindex="0">{{ $product->product_name }}</a>
-                                </h6>
-                                <div class="flex-align gap-6">
-                                    <!-- Assuming static rating here; could be dynamic if ratings data available -->
-                                    <div class="flex-align gap-8">
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    </div>
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-xs fw-medium text-gray-500">(12K)</span>
-                                </div>
-
-                                <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by DK Mart</span>
-
-                                <div class="product-card__price mt-16 mb-30">
-                                    @if($product->normal_price > $product->total_price)
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through">${{ $product->normal_price }}</span>
-                                    @endif
-                                    <span class="text-heading text-md fw-semibold ">LKR {{ $product->total_price }} <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-                                <span class="text-neutral-600">Delivered by <span class="text-main-600">Aug 02</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                    @else
-                    <p>No products available at the moment.</p>
-                    @endif
-                </div>
 
 
             </div>
