@@ -14,9 +14,15 @@
         <link rel="shortcut icon" type="image/x-icon" href="backend/assets/imgs/theme/favicon.svg" />
         <!-- Template CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
 
         <script src="{{ asset('backend/assets/js/vendors/color-modes.js') }}"></script>
         <link rel="stylesheet" href="{{ asset('backend/assets/css/main.css') }}">
+
+
     </head>
 
     <body>
@@ -31,19 +37,76 @@
            
             <section class="content-main">
             @yield('content')
+
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    @if (session('success'))
+                        Swal.fire({
+                            title: 'Success!',
+                            text: "{{ session('success') }}",
+                            icon: 'success',
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer);
+                                toast.addEventListener('mouseleave', Swal.resumeTimer);
+                            }
+                        });
+                    @endif
+
+                    @if (session('error'))
+                        Swal.fire({
+                            title: 'Error!',
+                            text: "{{ session('error') }}",
+                            icon: 'error',
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer);
+                                toast.addEventListener('mouseleave', Swal.resumeTimer);
+                            }
+                        });
+                    @endif
+                });
+
+                function confirmDelete(formId, message) {
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: message || "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'Cancel',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById(formId).submit();
+                        }
+                    });
+                }
+            </script>
+
    
             </section>
 
             <footer class="main-footer font-xs">
                 <div class="row pb-30 pt-15">
                     <div class="col-sm-6">
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script>
-                        &copy; Nest - HTML Ecommerce Template .
+
                     </div>
                     <div class="col-sm-6">
-                        <div class="text-sm-end">All rights reserved</div>
+                        <div class="text-sm-end"> <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        &copy; All rights reserved</div>
                     </div>
                 </div>
             </footer>
@@ -55,6 +118,8 @@
         <script src="{{ asset('backend/assets/js/vendors/perfect-scrollbar.js') }}"></script>
         <script src="{{ asset('backend/assets/js/vendors/jquery.fullscreen.min.js') }}"></script>
         <script src="{{ asset('backend/assets/js/vendors/chart.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
         <!-- Main Script -->
         <script src="{{ asset('backend/assets/js/main.js?v=6.0') }}" type="text/javascript"></script>
