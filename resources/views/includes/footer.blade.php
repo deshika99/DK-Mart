@@ -1,6 +1,6 @@
 
 <!-- ==================== Footer Two Start Here ==================== -->
-<footer class="footer py-80 overflow-hidden">
+<footer class="footer py-80 overflow-hidden" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border: 1px solid #e0e0e0;">
     <div class="container container-lg">
         <div class="footer-item-two-wrapper d-flex align-items-start flex-wrap">
             <div class="footer-item max-w-275" data-aos="fade-up" data-aos-duration="200">
