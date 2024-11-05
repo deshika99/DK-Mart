@@ -49,6 +49,25 @@ class ShopPageController extends Controller
     }
     
 
+
+    public function showProductDetails($product_id)
+    {
+        $product = Product::with(['images', 'variations', 'category'])->where('product_id', $product_id)->first();
+        if (!$product) {
+            abort(404);
+        }
+    
+        // Fetch similar products in the same category, excluding the current product
+        $similarProducts = Product::where('category_id', $product->category_id)
+                                  ->where('product_id', '!=', $product_id)
+                                  ->with(['images', 'variations'])
+                                  ->take(10) // Limit the number of similar products
+                                  ->get();
+    
+        return view('frontend.product-details', compact('product', 'similarProducts'));
+    }
+    
+
     
 
    

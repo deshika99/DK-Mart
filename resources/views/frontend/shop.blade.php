@@ -228,12 +228,13 @@
                 <div class="list-grid-wrapper">
                     @foreach($products as $product)
                         <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <a href="{{ url('/product-details/' . $product->product_id) }}" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
                                 <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" 
                                     alt="{{ $product->product_name }}" 
                                     class="product-image">
                                 <span class="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Sale</span>
                             </a>
+
                             <div class="product-card__content mt-16">
                                 <h6 class="title text-lg fw-semibold mt-12 mb-8">
                                     <a href="" class="link text-line-2" tabindex="0">{{ $product->product_name }}</a>
@@ -334,7 +335,13 @@
     </div>
  </section>
 <!-- ========================== Shipping Section End ============================ -->
-    
+    <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- jQuery UI -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
 
    
     <script>

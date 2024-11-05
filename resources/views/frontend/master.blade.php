@@ -67,6 +67,7 @@
     <script src="{{ asset('frontend/assets/js/counter.min.js') }}"></script>
     <!-- Main js -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
     document.querySelectorAll('.has-sub-submenu').forEach(item => {

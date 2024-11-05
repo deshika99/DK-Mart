@@ -4,17 +4,14 @@
 <div class="banner-two">
     <div class="container container-lg">
         <div class="banner-two-wrapper d-flex align-items-start">
-
-          
-
                 <div class="banner-item-two-wrapper rounded-24 overflow-hidden position-relative arrow-center flex-grow-1 mb-0">
-                    <img src="frontend/assets/images/bg/banner-two-bg.png" alt="" class="banner-img position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 z-n1 object-fit-cover rounded-24">
+                    <img src="{{ asset('frontend/assets/images/bg/banner-two-bg.png') }}" alt="" class="banner-img position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 z-n1 object-fit-cover rounded-24">
                     <div class="banner-item-two__slider">
                         <div class="banner-item-two">
                             <div class="banner-item-two__content">
-                                <span class="text-white mb-8 h6 wow bounceInDown">Starting at only $250</span>
+                                <span class="text-white mb-8 h6 wow bounceInDown">Starting at only Rs 500</span>
                                 <h2 class="banner-item-two__title bounce text-white wow bounceInLeft">Get The Sound You Love For Less</h2>
-                                <a href="shop.html" class="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48 wow bounceInUp">
+                                <a href="{{ route('shop.index') }}" class="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48 wow bounceInUp">
                                     Shop Now<span class="icon text-xl d-flex"><i class="ph ph-shopping-cart-simple"></i> </span>
                                 </a>
                             </div>
@@ -24,9 +21,9 @@
                         </div>
                         <div class="banner-item-two">
                             <div class="banner-item-two__content">
-                                <span class="text-white mb-8 h6 wow bounceInDown">Starting at only $250</span>
+                                <span class="text-white mb-8 h6 wow bounceInDown">Starting at only Rs 500</span>
                                 <h2 class="banner-item-two__title bounce text-white wow bounceInLeft">Get The Sound You Love For Less</h2>
-                                <a href="shop.html" class="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48 wow bounceInUp">
+                                <a href="{{ route('shop.index') }}" class="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48 wow bounceInUp">
                                     Shop Now<span class="icon text-xl d-flex"><i class="ph ph-shopping-cart-simple"></i> </span>
                                 </a>
                             </div>
@@ -114,68 +111,158 @@
                     <div class="flex-between flex-wrap gap-8">
                         <h5 class="mb-0 wow bounceInLeft">Latest Products</h5>
                         <div class="flex-align gap-16 wow bounceInRight">
-                            <a href="shop.html" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Products</a>
+                            <a href="{{ route('shop.index') }}" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Products</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="row g-12">
                     @if ($products->isNotEmpty())
-                    @foreach($products as $product)
-                    <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="200">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller</span>
-                                <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" alt="{{ $product->product_name }}" class="w-auto max-w-unset" style="width: 200px; height: 200px; object-fit: cover;">
+                        @foreach($products->take(6) as $product) <!-- Limit to 6 products -->
+                            <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="200">
+                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                    <a href="{{ route('showProductDetails', $product->product_id) }}" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller</span>
+                                        <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" alt="{{ $product->product_name }}" class="w-auto max-w-unset" style="width: 200px; height: 200px; object-fit: cover;">
+                                    </a>
+                                    <div class="product-card__content mt-16">
+                                        @if($product->normal_price > $product->total_price)
+                                        <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">
+                                            {{ round(100 - ($product->total_price / $product->normal_price) * 100) }}% OFF
+                                        </span>
+                                        @endif
+                                        <h6 class="title text-lg fw-semibold my-16">
+                                            <a href="{{ route('showProductDetails', $product->product_id) }}" class="link text-line-2" tabindex="0">{{ $product->product_name }}</a>
+                                        </h6>
+                                        <div class="flex-align gap-6">
+                                            <!-- Assuming static rating here; could be dynamic if ratings data available -->
+                                            <div class="flex-align gap-8">
+                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                            </div>
+                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                        </div>
 
-                            </a>
-                            <div class="product-card__content mt-16">
-                                @if($product->normal_price > $product->total_price)
-                                <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">
-                                    {{ round(100 - ($product->total_price / $product->normal_price) * 100) }}% OFF
-                                </span>
-                                @endif
-                                <h6 class="title text-lg fw-semibold my-16">
-                                    <a href="" class="link text-line-2" tabindex="0">{{ $product->product_name }}</a>
-                                </h6>
-                                <div class="flex-align gap-6">
-                                    <!-- Assuming static rating here; could be dynamic if ratings data available -->
-                                    <div class="flex-align gap-8">
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by DK Mart</span>
+
+                                        <div class="product-card__price mt-16 mb-30">
+                                            @if($product->normal_price > $product->total_price)
+                                            <span class="text-gray-400 text-md fw-semibold text-decoration-line-through">${{ $product->normal_price }}</span>
+                                            @endif
+                                            <span class="text-heading text-md fw-semibold ">LKR {{ $product->total_price }} <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                                        </div>
                                     </div>
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-xs fw-medium text-gray-500">(12K)</span>
                                 </div>
-
-                                <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by DK Mart</span>
-
-                                <div class="product-card__price mt-16 mb-30">
-                                    @if($product->normal_price > $product->total_price)
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through">${{ $product->normal_price }}</span>
-                                    @endif
-                                    <span class="text-heading text-md fw-semibold ">LKR {{ $product->total_price }} <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-                                <span class="text-neutral-600">Delivered by <span class="text-main-600">Aug 02</span></span>
                             </div>
-                        </div>
-                    </div>
-                    @endforeach
+                        @endforeach
                     @else
-                    <p>No products available at the moment.</p>
+                        <p>No products available at the moment.</p>
                     @endif
                 </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= recently viewed End ================================ -->
 
+
+    <!-- ========================= Popular Products Start ================================ -->
+    <section class="popular-products pt-80 overflow-hidden">
+        <div class="container container-lg">
+            <div class="border border-gray-100 p-24 rounded-16">
+                <div class="section-heading mb-24">
+                    <div class="flex-between flex-wrap gap-8">
+                        <h5 class="mb-0 wow bounceInLeft">Popular Products</h5>
+                        <div class="flex-align gap-16 wow bounceInRight">
+                            <a href="shop.html" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Products</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="popular-products-box rounded-16 overflow-hidden flex-between position-relative z-1 mb-24">
+                    <img src="frontend/assets/images/bg/expensive-offer-bg.png" alt="" class="position-absolute inset-block-start-0 inset-block-start-0 w-100 h-100 z-n1">
+                    <div class="d-lg-block d-none ps-32" data-aos="zoom-in" data-aos-duration="800">
+                        <img src="frontend/assets/images/thumbs/expensive-offer1.png" alt="">
+                    </div>
+                    <div class="popular-products-box__content px-sm-4 d-block w-100 text-center py-20">
+                        <div class="flex-align gap-16 justify-content-center" data-aos="zoom-in" data-aos-duration="800">
+                            <h6 class="mb-0">Exclusive Offer</h6>
+                            <h4 class="mb-0">45% OFF</h4>
+                        </div>
+                        <div class="countdown mt-4" id="countdown10">
+                            <ul class="countdown-list style-four flex-center flex-wrap">
+                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
+                                    <span class="days"></span>Days
+                                </li>
+                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
+                                    <span class="hours"></span>Hour
+                                </li>
+                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
+                                    <span class="minutes"></span>Min
+                                </li>
+                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
+                                    <span class="seconds"></span>Sec
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="d-lg-block d-none" data-aos="zoom-in" data-aos-duration="800">
+                        <img src="frontend/assets/images/thumbs/expensive-offer2.png" alt="">
+                    </div>
+                </div>
+
+                <div class="row gy-4">
+                    @foreach ($categories->slice(0, 8) as $category)
+                        <div class="col-xxl-3 col-xl-4 col-sm-6 col-xs-6 wow bounceIn">
+                            <div class="product-card h-100 d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <a href="{{ route('shop.index') }}" class="product-card__thumb flex-center h-unset rounded-8 position-relative w-unset flex-shrink-0 p-0" tabindex="0">
+                                    <img src="
+                                        @if (Str::contains(strtolower($category->name), 'women'))
+                                            {{ asset('frontend/assets/images/imgs/category-1.jpg') }}
+                                        @elseif (Str::contains(strtolower($category->name), 'men'))
+                                            {{ asset('frontend/assets/images/imgs/category-2.jpg') }}
+                                        @elseif (Str::contains(strtolower($category->name), 'health'))
+                                            {{ asset('frontend/assets/images/imgs/category-4.jpg') }}
+                                        @elseif (Str::contains(strtolower($category->name), 'electronic'))
+                                            {{ asset('frontend/assets/images/imgs/category-3.jpg') }}
+                                        @elseif (Str::contains(strtolower($category->name), 'sports'))
+                                            {{ asset('frontend/assets/images/imgs/category-5.jpg') }}
+                                        @elseif (Str::contains(strtolower($category->name), 'watch'))
+                                            {{ asset('frontend/assets/images/imgs/category-6.jpg') }}
+                                        @elseif (Str::contains(strtolower($category->name), 'appliances'))
+                                            {{ asset('frontend/assets/images/imgs/category-7.jpg') }}
+                                        @elseif (Str::contains(strtolower($category->name), 'home'))
+                                            {{ asset('frontend/assets/images/imgs/category-8.jpg') }}
+                                        @else
+                                            {{ asset('frontend/assets/images/imgs/default.png') }}
+                                        @endif
+                                    " alt="{{ $category->name }}" class="w-100 max-w-unset">
+                                </a>
+                                <div class="product-card__content flex-grow-1">
+                                    <h6 class="title text-lg fw-semibold mb-12">
+                                        <a href="{{ route('shop.index') }}" class="link text-line-2" tabindex="0">{{ $category->name }}</a>
+                                    </h6>
+                                    @foreach ($category->subcategories->take(4) as $subcategory)
+                                        <span class="text-gray-600 text-sm mb-4">{{ $subcategory->name }}</span><br>
+                                    @endforeach
+
+                                    <a href="{{ route('shop.index') }}" class="text-tertiary-600 flex-align gap-8 mt-24">
+                                        All Categories
+                                        <i class="ph ph-arrow-right d-flex"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
 
             </div>
         </div>
     </section>
-
-
-    <!-- ========================= recently viewed End ================================ -->
+    <!-- ========================= Popular Products End ================================ -->
 
     <!-- ========================= Deals Week Start ================================ -->
     <section class="deals-weeek pt-80 overflow-hidden">
@@ -230,266 +317,48 @@
                 </div>
 
                 <div class="deals-week-slider arrow-style-two">
-                    <div data-aos="fade-up" data-aos-duration="200">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold </span>
-                                <img src="frontend/assets/images/thumbs/product-two-img1.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content mt-16">
-                                <div class="flex-align gap-6">
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
-                                </div>
-                                <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                    <a href="product-details-two.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
-                                </h6>
-                                <div class="flex-align gap-4">
-                                    <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                    <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
-                                </div>
-                                <div class="mt-8">
-                                    <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
-                                    </div>
-                                    <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
-                                </div>
-
-                                <div class="product-card__price my-20">
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                    <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-
-                                <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
-                                    Add To Cart <i class="ph ph-shopping-cart"></i>
+                    @foreach ($products->slice(0, 10) as $product)
+                        <div data-aos="fade-up" data-aos-duration="200">
+                            <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <a href="{{ route('showProductDetails', $product->product_id) }}" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                                    @if($product->quantity == 0)
+                                        <span class="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
+                                    @endif
+                                    <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" alt="{{ $product->product_name }}" class="w-auto max-w-unset" style="width: 200px; height: 200px; object-fit: cover;">
                                 </a>
+                                <div class="product-card__content mt-16">
+                                    <div class="flex-align gap-6">
+                                        <span class="text-xs fw-medium text-gray-500">{{ $product->rating ?? '4.8' }}</span>
+                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                        <span class="text-xs fw-medium text-gray-500">({{ $product->review_count ?? '17k' }})</span>
+                                    </div>
+                                    <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                        <a href="{{ route('showProductDetails', $product->product_id) }}" class="link text-line-2" tabindex="0">{{ $product->product_name }}</a>
+                                    </h6>
+                                    <div class="flex-align gap-4">
+                                        <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
+                                        <span class="text-gray-500 text-xs">By {{ $product->seller_name ?? 'Store Name' }}</span>
+                                    </div>
+                                    <div class="mt-8">
+                                        <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Sold Progress" aria-valuenow="{{ $product->sold_percentage ?? 35 }}" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: {{ $product->sold_percentage ?? 35 }}%"></div>
+                                        </div>
+                                        <span class="text-gray-900 text-xs fw-medium mt-8">Sold: {{ $product->sold_units ?? 18 }}/{{ $product->total_units ?? 35 }}</span>
+                                    </div>
+
+                                    <div class="product-card__price my-20">
+                                        <span class="text-heading text-md fw-semibold ">Rs {{ $product->normal_price }} <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                                    </div>
+
+                                    <a href="" style="width:230px" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                        Add To Cart <i class="ph ph-shopping-cart"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div data-aos="fade-up" data-aos-duration="400">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50% </span>
-                                <img src="frontend/assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content mt-16">
-                                <div class="flex-align gap-6">
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
-                                </div>
-                                <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                    <a href="product-details-two.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
-                                </h6>
-                                <div class="flex-align gap-4">
-                                    <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                    <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
-                                </div>
-                                <div class="mt-8">
-                                    <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
-                                    </div>
-                                    <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
-                                </div>
-
-                                <div class="product-card__price my-20">
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                    <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-
-                                <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
-                                    Add To Cart <i class="ph ph-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="fade-up" data-aos-duration="600">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New </span>
-                                <img src="frontend/assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content mt-16">
-                                <div class="flex-align gap-6">
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
-                                </div>
-                                <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                    <a href="product-details-two.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
-                                </h6>
-                                <div class="flex-align gap-4">
-                                    <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                    <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
-                                </div>
-                                <div class="mt-8">
-                                    <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
-                                    </div>
-                                    <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
-                                </div>
-
-                                <div class="product-card__price my-20">
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                    <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-
-                                <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
-                                    Add To Cart <i class="ph ph-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="fade-up" data-aos-duration="800">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best seller</span>
-                                <img src="frontend/assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content mt-16">
-                                <div class="flex-align gap-6">
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
-                                </div>
-                                <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                    <a href="product-details-two.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
-                                </h6>
-                                <div class="flex-align gap-4">
-                                    <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                    <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
-                                </div>
-                                <div class="mt-8">
-                                    <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
-                                    </div>
-                                    <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
-                                </div>
-
-                                <div class="product-card__price my-20">
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                    <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-
-                                <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
-                                    Add To Cart <i class="ph ph-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="fade-up" data-aos-duration="1000">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
-                                <img src="frontend/assets/images/thumbs/product-two-img5.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content mt-16">
-                                <div class="flex-align gap-6">
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
-                                </div>
-                                <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                    <a href="product-details-two.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
-                                </h6>
-                                <div class="flex-align gap-4">
-                                    <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                    <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
-                                </div>
-                                <div class="mt-8">
-                                    <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
-                                    </div>
-                                    <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
-                                </div>
-
-                                <div class="product-card__price my-20">
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                    <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-
-                                <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
-                                    Add To Cart <i class="ph ph-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="fade-up" data-aos-duration="1200">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best seller</span>
-                                <img src="frontend/assets/images/thumbs/product-two-img6.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content mt-16">
-                                <div class="flex-align gap-6">
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
-                                </div>
-                                <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                    <a href="product-details-two.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
-                                </h6>
-                                <div class="flex-align gap-4">
-                                    <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                    <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
-                                </div>
-                                <div class="mt-8">
-                                    <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
-                                    </div>
-                                    <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
-                                </div>
-
-                                <div class="product-card__price my-20">
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                    <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-
-                                <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
-                                    Add To Cart <i class="ph ph-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="fade-up" data-aos-duration="1400">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New </span>
-                                <img src="frontend/assets/images/thumbs/product-two-img9.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content mt-16">
-                                <div class="flex-align gap-6">
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
-                                </div>
-                                <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                    <a href="product-details-two.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
-                                </h6>
-                                <div class="flex-align gap-4">
-                                    <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                    <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
-                                </div>
-                                <div class="mt-8">
-                                    <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
-                                    </div>
-                                    <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
-                                </div>
-
-                                <div class="product-card__price my-20">
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                    <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-
-                                <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
-                                    Add To Cart <i class="ph ph-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
+
             </div>
         </div>
     </section>
@@ -2713,225 +2582,7 @@
     <!-- ========================= Top Selling Products End ================================ -->
 
 
-    <!-- ========================= Popular Products Start ================================ -->
-    <section class="popular-products pt-80 overflow-hidden">
-        <div class="container container-lg">
-            <div class="border border-gray-100 p-24 rounded-16">
-                <div class="section-heading mb-24">
-                    <div class="flex-between flex-wrap gap-8">
-                        <h5 class="mb-0 wow bounceInLeft">Popular Products</h5>
-                        <div class="flex-align gap-16 wow bounceInRight">
-                            <a href="shop.html" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Products</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="popular-products-box rounded-16 overflow-hidden flex-between position-relative z-1 mb-24">
-                    <img src="frontend/assets/images/bg/expensive-offer-bg.png" alt="" class="position-absolute inset-block-start-0 inset-block-start-0 w-100 h-100 z-n1">
-                    <div class="d-lg-block d-none ps-32" data-aos="zoom-in" data-aos-duration="800">
-                        <img src="frontend/assets/images/thumbs/expensive-offer1.png" alt="">
-                    </div>
-                    <div class="popular-products-box__content px-sm-4 d-block w-100 text-center py-20">
-                        <div class="flex-align gap-16 justify-content-center" data-aos="zoom-in" data-aos-duration="800">
-                            <h6 class="mb-0">Exclusive Offer</h6>
-                            <h4 class="mb-0">45% OFF</h4>
-                        </div>
-                        <div class="countdown mt-4" id="countdown10">
-                            <ul class="countdown-list style-four flex-center flex-wrap">
-                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
-                                    <span class="days"></span>Days
-                                </li>
-                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
-                                    <span class="hours"></span>Hour
-                                </li>
-                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
-                                    <span class="minutes"></span>Min
-                                </li>
-                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
-                                    <span class="seconds"></span>Sec
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-lg-block d-none" data-aos="zoom-in" data-aos-duration="800">
-                        <img src="frontend/assets/images/thumbs/expensive-offer2.png" alt="">
-                    </div>
-                </div>
-
-                <div class="row gy-4">
-                    <div class="col-xxl-3 col-xl-4 col-sm-6 col-xs-6 wow bounceIn">
-                        <div class="product-card h-100 d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                <img src="frontend/assets/images/thumbs/popular-img1.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content flex-grow-1">
-                                <h6 class="title text-lg fw-semibold mb-12">
-                                    <a href="product-details.html" class="link text-line-2" tabindex="0">Headphone & Earphone</a>
-                                </h6>
-                                <span class="text-gray-600 text-sm mb-4">Wired Headphones</span>
-                                <span class="text-gray-600 text-sm mb-4">Over-Ear Headphone</span>
-                                <span class="text-gray-600 text-sm mb-4">Sports Headphone</span>
-                                <span class="text-gray-600 text-sm mb-0">Earbud Headphone</span>
-
-                                <a href="shop.html" class="text-tertiary-600 flex-align gap-8 mt-24">
-                                    All Categories
-                                    <i class="ph ph-arrow-right d-flex"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-sm-6 col-xs-6 wow bounceIn">
-                        <div class="product-card h-100 d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                <img src="frontend/assets/images/thumbs/popular-img2.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content flex-grow-1">
-                                <h6 class="title text-lg fw-semibold mb-12">
-                                    <a href="product-details.html" class="link text-line-2" tabindex="0">TV & Smart Home</a>
-                                </h6>
-                                <span class="text-gray-600 text-sm mb-4">Wired Headphones</span>
-                                <span class="text-gray-600 text-sm mb-4">Over-Ear Headphone</span>
-                                <span class="text-gray-600 text-sm mb-4">Sports Headphone</span>
-                                <span class="text-gray-600 text-sm mb-0">Earbud Headphone</span>
-
-                                <a href="shop.html" class="text-tertiary-600 flex-align gap-8 mt-24">
-                                    All Categories
-                                    <i class="ph ph-arrow-right d-flex"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-sm-6 col-xs-6 wow bounceIn">
-                        <div class="product-card h-100 d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                <img src="frontend/assets/images/thumbs/popular-img3.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content flex-grow-1">
-                                <h6 class="title text-lg fw-semibold mb-12">
-                                    <a href="product-details.html" class="link text-line-2" tabindex="0">Video Games</a>
-                                </h6>
-                                <span class="text-gray-600 text-sm mb-4">Wired Headphones</span>
-                                <span class="text-gray-600 text-sm mb-4">Over-Ear Headphone</span>
-                                <span class="text-gray-600 text-sm mb-4">Sports Headphone</span>
-                                <span class="text-gray-600 text-sm mb-0">Earbud Headphone</span>
-
-                                <a href="shop.html" class="text-tertiary-600 flex-align gap-8 mt-24">
-                                    All Categories
-                                    <i class="ph ph-arrow-right d-flex"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-sm-6 col-xs-6 wow bounceIn">
-                        <div class="product-card h-100 d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                <img src="frontend/assets/images/thumbs/popular-img4.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content flex-grow-1">
-                                <h6 class="title text-lg fw-semibold mb-12">
-                                    <a href="product-details.html" class="link text-line-2" tabindex="0">Computer & Tablets</a>
-                                </h6>
-                                <span class="text-gray-600 text-sm mb-4">Wired Headphones</span>
-                                <span class="text-gray-600 text-sm mb-4">Over-Ear Headphone</span>
-                                <span class="text-gray-600 text-sm mb-4">Sports Headphone</span>
-                                <span class="text-gray-600 text-sm mb-0">Earbud Headphone</span>
-
-                                <a href="shop.html" class="text-tertiary-600 flex-align gap-8 mt-24">
-                                    All Categories
-                                    <i class="ph ph-arrow-right d-flex"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-sm-6 col-xs-6 wow bounceIn">
-                        <div class="product-card h-100 d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                <img src="frontend/assets/images/thumbs/popular-img5.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content flex-grow-1">
-                                <h6 class="title text-lg fw-semibold mb-12">
-                                    <a href="product-details.html" class="link text-line-2" tabindex="0">Car & GPS</a>
-                                </h6>
-                                <span class="text-gray-600 text-sm mb-4">Wired Headphones</span>
-                                <span class="text-gray-600 text-sm mb-4">Over-Ear Headphone</span>
-                                <span class="text-gray-600 text-sm mb-4">Sports Headphone</span>
-                                <span class="text-gray-600 text-sm mb-0">Earbud Headphone</span>
-
-                                <a href="shop.html" class="text-tertiary-600 flex-align gap-8 mt-24">
-                                    All Categories
-                                    <i class="ph ph-arrow-right d-flex"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-sm-6 col-xs-6 wow bounceIn">
-                        <div class="product-card h-100 d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                <img src="frontend/assets/images/thumbs/popular-img6.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content flex-grow-1">
-                                <h6 class="title text-lg fw-semibold mb-12">
-                                    <a href="product-details.html" class="link text-line-2" tabindex="0">Camera & Video</a>
-                                </h6>
-                                <span class="text-gray-600 text-sm mb-4">Wired Headphones</span>
-                                <span class="text-gray-600 text-sm mb-4">Over-Ear Headphone</span>
-                                <span class="text-gray-600 text-sm mb-4">Sports Headphone</span>
-                                <span class="text-gray-600 text-sm mb-0">Earbud Headphone</span>
-
-                                <a href="shop.html" class="text-tertiary-600 flex-align gap-8 mt-24">
-                                    All Categories
-                                    <i class="ph ph-arrow-right d-flex"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-sm-6 col-xs-6 wow bounceIn">
-                        <div class="product-card h-100 d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                <img src="frontend/assets/images/thumbs/popular-img7.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content flex-grow-1">
-                                <h6 class="title text-lg fw-semibold mb-12">
-                                    <a href="product-details.html" class="link text-line-2" tabindex="0">Kitchen Appliance</a>
-                                </h6>
-                                <span class="text-gray-600 text-sm mb-4">Wired Headphones</span>
-                                <span class="text-gray-600 text-sm mb-4">Over-Ear Headphone</span>
-                                <span class="text-gray-600 text-sm mb-4">Sports Headphone</span>
-                                <span class="text-gray-600 text-sm mb-0">Earbud Headphone</span>
-
-                                <a href="shop.html" class="text-tertiary-600 flex-align gap-8 mt-24">
-                                    All Categories
-                                    <i class="ph ph-arrow-right d-flex"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-sm-6 col-xs-6 wow bounceIn">
-                        <div class="product-card h-100 d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                <img src="frontend/assets/images/thumbs/popular-img8.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content flex-grow-1">
-                                <h6 class="title text-lg fw-semibold mb-12">
-                                    <a href="product-details.html" class="link text-line-2" tabindex="0">Phone & Accessories</a>
-                                </h6>
-                                <span class="text-gray-600 text-sm mb-4">Wired Headphones</span>
-                                <span class="text-gray-600 text-sm mb-4">Over-Ear Headphone</span>
-                                <span class="text-gray-600 text-sm mb-4">Sports Headphone</span>
-                                <span class="text-gray-600 text-sm mb-0">Earbud Headphone</span>
-
-                                <a href="shop.html" class="text-tertiary-600 flex-align gap-8 mt-24">
-                                    All Categories
-                                    <i class="ph ph-arrow-right d-flex"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ========================= Popular Products End ================================ -->
+    
 
 
     <!-- =========================== Top Vendor Section Start ========================== -->
@@ -3178,224 +2829,7 @@
     </section>
     <!-- ================================== Day Sale Section End =================================== -->
 
-    <!-- ========================= recently viewed Start ================================ -->
-    <section class="recently-viewed pt-80 overflow-hidden">
-        <div class="container container-lg">
-            <div class="border border-gray-100 p-24 rounded-16">
-                <div class="section-heading mb-24">
-                    <div class="flex-between flex-wrap gap-8">
-                        <h5 class="mb-0 wow bounceInLeft">Recently Viewed Products</h5>
-                        <div class="flex-align gap-16 wow bounceInRight">
-                            <a href="shop.html" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Products</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row g-12">
-                    <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="200">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
-                                <img src="frontend/assets/images/thumbs/product-two-img1.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content mt-16">
-                                <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                <h6 class="title text-lg fw-semibold my-16">
-                                    <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
-                                </h6>
-                                <div class="flex-align gap-6">
-                                    <div class="flex-align gap-8">
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    </div>
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-xs fw-medium text-gray-500">(12K)</span>
-                                </div>
-
-                                <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
-
-                                <div class="product-card__price mt-16 mb-30">
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                    <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-                                <span class="text-neutral-600">Delivered by <span class="text-main-600">Aug 02</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="400">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
-                                <img src="frontend/assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content mt-16">
-                                <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                <h6 class="title text-lg fw-semibold my-16">
-                                    <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
-                                </h6>
-                                <div class="flex-align gap-6">
-                                    <div class="flex-align gap-8">
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    </div>
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-xs fw-medium text-gray-500">(12K)</span>
-                                </div>
-
-                                <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
-
-                                <div class="product-card__price mt-16 mb-30">
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                    <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-                                <span class="text-neutral-600">Delivered by <span class="text-main-600">Aug 02</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="600">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
-                                <img src="frontend/assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content mt-16">
-                                <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                <h6 class="title text-lg fw-semibold my-16">
-                                    <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
-                                </h6>
-                                <div class="flex-align gap-6">
-                                    <div class="flex-align gap-8">
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    </div>
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-xs fw-medium text-gray-500">(12K)</span>
-                                </div>
-
-                                <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
-
-                                <div class="product-card__price mt-16 mb-30">
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                    <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-                                <span class="text-neutral-600">Delivered by <span class="text-main-600">Aug 02</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="800">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-success-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
-                                <img src="frontend/assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content mt-16">
-                                <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                <h6 class="title text-lg fw-semibold my-16">
-                                    <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
-                                </h6>
-                                <div class="flex-align gap-6">
-                                    <div class="flex-align gap-8">
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    </div>
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-xs fw-medium text-gray-500">(12K)</span>
-                                </div>
-
-                                <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
-
-                                <div class="product-card__price mt-16 mb-30">
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                    <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-                                <span class="text-neutral-600">Delivered by <span class="text-main-600">Aug 02</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1000">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
-                                <img src="frontend/assets/images/thumbs/product-two-img5.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content mt-16">
-                                <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                <h6 class="title text-lg fw-semibold my-16">
-                                    <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
-                                </h6>
-                                <div class="flex-align gap-6">
-                                    <div class="flex-align gap-8">
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    </div>
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-xs fw-medium text-gray-500">(12K)</span>
-                                </div>
-
-                                <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
-
-                                <div class="product-card__price mt-16 mb-30">
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                    <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-                                <span class="text-neutral-600">Delivered by <span class="text-main-600">Aug 02</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1200">
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                            <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
-                                <img src="frontend/assets/images/thumbs/product-two-img6.png" alt="" class="w-auto max-w-unset">
-                            </a>
-                            <div class="product-card__content mt-16">
-                                <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                <h6 class="title text-lg fw-semibold my-16">
-                                    <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
-                                </h6>
-                                <div class="flex-align gap-6">
-                                    <div class="flex-align gap-8">
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    </div>
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-xs fw-medium text-gray-500">(12K)</span>
-                                </div>
-
-                                <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
-
-                                <div class="product-card__price mt-16 mb-30">
-                                    <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                    <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                </div>
-                                <span class="text-neutral-600">Delivered by <span class="text-main-600">Aug 02</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- ========================= recently viewed End ================================ -->
+    
 
 
     <!-- ============================== Top Brand Section Start ==================================== -->

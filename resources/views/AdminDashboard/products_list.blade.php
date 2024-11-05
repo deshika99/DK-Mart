@@ -51,7 +51,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $product->product_id }}</td>
                                     <td>
-                                        <div class="col-lg-2 col-sm-4 col-8 flex-grow-1 col-name">
+                                        <div class="col-lg-2 col-sm-4 col-8 flex-grow-1 col-name" style="white-space: nowrap; ">
                                             <a class="itemside" href="#">
                                                 <div class="left">
                                                     <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" class="img-sm img-thumbnail" alt="Item" />

@@ -37,6 +37,9 @@ Route::get('/home',[HomeTemplateController::class,'index']);
 Route::get('/shop', [ShopPageController::class, 'index'])->name('shop.index');
 Route::get('/shop/category/{category}', [ShopPageController::class, 'filterByCategory'])->name('shop.filterByCategory');
 
+Route::get('/product-details/{product_id}', [ShopPageController::class, 'showProductDetails'])->name('showProductDetails');
+
+
 
 //admin dashboard
 

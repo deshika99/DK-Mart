@@ -944,26 +944,8 @@
   // ========================= Product Details Thumbs Slider Js End ===================
 
   
-  // ========================= Increment & Decrement Js Start ===================
-  var minus = $('.quantity__minus');
-  var plus = $('.quantity__plus');
 
-  $(plus).on('click', function () {
-    var input = $(this).siblings('.quantity__input');
-    var value = input.val(); 
-    value++;
-    input.val(value); 
-  }); 
 
-  $(minus).on('click', function () {
-    var input = $(this).siblings('.quantity__input');
-    var value = input.val(); 
-    if(value > 1) {
-      value--;
-    }
-    input.val(value); 
-  }); 
-  // ========================= Increment & Decrement Js End ===================
 
   
   // ========================= Color List Js Start ===================
