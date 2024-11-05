@@ -1,61 +1,68 @@
-@extends ('frontend.master')
-
-@section('content')
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-  
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         .hero-section {
-    background-image: url('images/aboutus1.jpg');
-    background-size: cover;
-    color: white;
-    background-position: center;
-    background-repeat: no-repeat;
-    text-align: center;
-    padding: 100px 20px;
-    height: 100vh;
-    position: relative; /* Ensure relative positioning */
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-}
-
-.hero-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); 
-    z-index: 1000; /* This stays the same */
-}
-
+            background-image: url('images/aboutus1.jpg');
+            background-size: cover;
+            color: white;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+            padding: 100px 20px;
+            height: 100vh;
+        }
+        .hero-section::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); 
+            z-index: 1;
+        }
 .hero-section h1 {
     font-size: 54px;
     color: white;
-    z-index: 2; /* Adjust z-index for layering */
-    font-family: 'Noteworthy';
+    position: relative;
+    z-index: 2;
+    font-family:'Noteworthy';
+    position: absolute;
+    bottom: 170px;
+    left: 50%;
+    transform: translateX(-50%);
     font-weight: bold;
     white-space: nowrap; 
     overflow: hidden; 
     border-right: 2px solid white;
     animation: typing 4s steps(30, end), blink 0.75s step-end infinite; 
-    text-align: center; /* Center the text */
 }
-
 .hero-section p {
     font-size: 40px;
     color: white;
-    z-index: 2; /* Adjust z-index for layering */
-    font-family: 'Noteworthy';
+    position: relative;
+    z-index: 2;
+    font-family: Noteworthy;
     font-weight: bold;
     opacity: 0;
-    animation: fadeIn 2s forwards 2s; /* Keep the animation */
-    text-align: center; /* Center the text */
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: fadeIn 2s forwards 2s;
 }
-
 .story-section {
     max-width: 1200px;
     margin: 0 auto;
@@ -110,7 +117,10 @@
     width: 100%;
     height: auto;
 }
-
+.container {
+    margin:  auto;
+    padding: 20px;
+}
 .values-section {
     text-align: center;
     padding: 40px;
@@ -365,14 +375,21 @@
     }
 }
     </style>
-
-
+</head>
+<body>
 
 <div class="hero-section">
     <h1>Delivering happiness on the go!</h1>
     <p>Happy Shopping</p>
 </div>
-
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const heroText = document.querySelector(".hero-section p");
+        setTimeout(() => {
+            heroText.style.opacity = "1";
+        }, 4000); 
+    });
+</script>
 
 <section class="story-section">
         <h2 class="story-title">Our Story</h2>
@@ -510,13 +527,5 @@
             <p>Free & Easy Return</p>
         </div>
     </section>
-
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const heroText = document.querySelector(".hero-section p");
-        setTimeout(() => {
-            heroText.style.opacity = "1";
-        }, 4000); 
-    });
-</script>
-@endsection
+</body>
+</html>
