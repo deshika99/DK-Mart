@@ -121,9 +121,9 @@
     <div class="container container-lg">
         <nav class="header-inner flex-between">
             <!-- Logo Start -->
-            <div class="logo">
+            <div class="logo"style="margin-left: 120px;  margin-top: 0; margin-bottom: 0;">
                 <a href="index.html" class="link">
-                    <img src="{{ asset('frontend/assets/images/logo/logo-two.png') }}" alt="Logo" style="width:90px;height:90px;">
+                    <img src="{{ asset('frontend/assets/images/logo/logo-two.png') }}" alt="Logo" style="width:110px;height:110px; margin-top: 0; margin-bottom: 0; ">
                 </a>
             </div>
             <!-- Logo End  -->
