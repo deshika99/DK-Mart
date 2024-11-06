@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController; 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanySettingsController;
+use App\Http\Controllers\ShopPageController;
 
 
 Route::get('/', function () {
@@ -34,6 +35,11 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin',[AdminTemplateController::class,'index'])->name('admin.index');
 Route::get('/home',[HomeTemplateController::class,'index']);
+
+Route::get('/shop', [ShopPageController::class, 'index'])->name('shop.index');
+Route::get('/shop/category/{category}', [ShopPageController::class, 'filterByCategory'])->name('shop.filterByCategory');
+
+Route::get('/product-details/{product_id}', [ShopPageController::class, 'showProductDetails'])->name('showProductDetails');
 
 
 
@@ -93,13 +99,4 @@ Route::delete('/admin/edit_users/{id}', [UserController::class, 'destroy'])->nam
 require __DIR__.'/auth.php';
 
 
-Route::get('/register', function () {
-    return view('frontend.register');
-})->name('register');
-
-
-
-Route::get('/login', function () {
-    return view('frontend.login');
-})->name('login');
 

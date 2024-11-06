@@ -1,13 +1,13 @@
 
 <!-- ==================== Footer Two Start Here ==================== -->
-<footer class="footer py-80 overflow-hidden">
+<footer class="footer py-40 overflow-hidden" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border: 1px solid #e0e0e0;">
     <div class="container container-lg">
         <div class="footer-item-two-wrapper d-flex align-items-start flex-wrap">
             <div class="footer-item max-w-275" data-aos="fade-up" data-aos-duration="200">
                 <div class="footer-item__logo">
                     <a href="index.html"> <img src="frontend/assets/images/logo/logo-two-black.png" alt=""></a>
                 </div>
-                <p class="mb-24">Marketpro  become the largest computer parts, gaming pc parts, and other IT related products.</p>
+                <p class="mb-24">DK Mart  become the largest computer parts, gaming pc parts, and other IT related products.</p>
                 <div class="flex-align gap-16 mb-16">
                     <span class="w-32 h-32 flex-center rounded-circle border border-gray-100 text-main-two-600 text-md flex-shrink-0"><i class="ph-fill ph-phone-call"></i></span>
                     <a href="tel:+00123456789" class="text-md text-gray-900 hover-text-main-600">+00 123 456 789</a>

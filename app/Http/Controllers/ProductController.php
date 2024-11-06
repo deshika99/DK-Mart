@@ -75,10 +75,10 @@ class ProductController extends Controller
             'images' => 'required|array',
             'images.*' => 'image|mimes:jpg,jpeg,png|max:2048',
             'variations' => 'nullable|array',
-            'variations.*.type' => 'required|string',
+            'variations.*.type' => 'nullable|string',
             'variations.*.value' => 'nullable|string',
             'variations.*.hex_value' => 'nullable|string',
-            'variations.*.quantity' => 'required|integer',
+            'variations.*.quantity' => 'nullable|integer',
         ]);
     
         $product = Product::create([
@@ -191,9 +191,9 @@ class ProductController extends Controller
             foreach ($request->file('images') as $image) {
                 $imageName = time() . '_' . $image->getClientOriginalName();
                 $imagePath = $image->storeAs('product_images', $imageName, 'public');
-    
+        
                 ProductImage::create([
-                    'product_id' => $product->id,
+                    'product_id' => $product->product_id,
                     'image_path' => $imagePath,
                 ]);
             }
