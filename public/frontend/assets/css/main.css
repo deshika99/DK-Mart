@@ -363,6 +363,10 @@
         font-size: 0.875rem;
     }
 }
+.common-input {
+    box-shadow: none !important;
+}
+
 
 .btn-sm {
     padding: 10px 16px !important;
@@ -1546,7 +1550,18 @@ input[type=number] {
 }
 
 .custom--range__prices {
-    width: 58px;
+    width: 150px;
+}
+.color-filter-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; 
+}
+
+.color-item {
+    width: calc(22% - 16px); 
+    flex: 0 1 auto;
+    text-align: center;
 }
 
 .custom--range input {
@@ -8380,6 +8395,7 @@ input:focus-visible {
     background: var(--gray-600);
 }
 
+
 /* Sub-Submenu Styling */
 .sub-submenu-column {
     position: absolute;
@@ -8393,13 +8409,10 @@ input:focus-visible {
     overflow: hidden;
     transition: opacity 0.2s ease, visibility 0.2s ease;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    inset-inline-start: 100%; /* Aligns next to parent category */
-    inset-block-start: 0;
 }
 
-
 /* Show sub-submenu on hover */
-.has-sub-submenu:hover > .sub-submenu-column1 {
+.has-sub-submenu:hover > .sub-submenu-column {
     visibility: visible !important;
     opacity: 1 !important;
     display: block; /* Add this line */
@@ -8865,17 +8878,21 @@ input:focus-visible {
     margin-block-start: auto;
 }
 
-.footer-item-wrapper {
-    gap: clamp(2rem, 0.715rem + 1.714vw, 2.75rem);
-}
-
 .footer-item-two-wrapper {
+    display: flex;
+    flex-wrap: wrap;
     gap: clamp(2rem, -4.209rem + 8.286vw, 5.625rem);
 }
 
-.footer-item__logo {
-    margin-block-end: 20px;
+.footer-item {
+    flex: 1 1 180px; /* Base size for all items, but can grow */
+    max-width: 100%;
 }
+
+.footer-item:first-child {
+    flex: 2 1 300px; /* First item takes up more space */
+}
+
 
 .footer-item__logo a img {
     width: 100%;
@@ -9420,11 +9437,24 @@ input:focus-visible {
     flex-direction: column;
     justify-content: space-between;
     align-items: start;
+    overflow: hidden; /* Ensure that the contents don't overflow */
+    position: relative; /* This is important for positioning the scaling effect */
+}
+
+.product-card__thumb {
+    overflow: hidden; /* Hide overflow from the image scaling */
+}
+
+.product-card__thumb img {
+    transition: transform 0.3s ease; /* Add a smooth transition */
+    width: 100%; /* Make sure the image takes the full width of the container */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .product-card:hover .product-card__thumb img {
-    transform: scale(1.2);
+    transform: scale(1.2); /* Scale effect on hover */
 }
+
 
 @media screen and (max-width: 1499px) {
     .product-card__cart {
@@ -9437,6 +9467,12 @@ input:focus-visible {
     border-radius: 16px 0 16px 0;
 }
 
+.product-image {
+    width: 200px;
+    height: 200px; 
+    object-fit: cover; 
+}
+
 .product-card__thumb {
     height: 232px;
     width: 100%;
@@ -9444,8 +9480,6 @@ input:focus-visible {
 }
 
 .product-card__thumb img {
-    max-width: 160px;
-    width: 100%;
     transition: 0.2s linear;
 }
 
@@ -10018,9 +10052,21 @@ input:focus-visible {
 }
 /* ================================= Testimonials Section Css End ==================================== */
 /* ============================ Product Details Css Start ============================= */
-.product-details__thumb-slider {
-    padding: clamp(3rem, -2.173rem + 10.777vw, 7.25rem);
+
+.img-responsive {
+    width: 100%;  
+    height: auto; 
+    border-radius: 15px; 
+    object-fit: cover; 
 }
+
+.product-details__thumb-slider .product-details__thumb,
+.product-details__images-slider .border {
+    border-radius: 15px; 
+    overflow: hidden; 
+}
+
+
 
 .product-details .slick-initialized.slick-slider .slick-slide > div > div {
     height: 100%;
