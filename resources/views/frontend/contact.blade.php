@@ -4,6 +4,7 @@
 
     
 
+
 <!--==================== Overlay Start ====================-->
 <div class="overlay"></div>
 <!--==================== Overlay End ====================-->
@@ -52,6 +53,7 @@
     </div>
 </div>
 <!-- ==================== Mobile Menu End Here ==================== -->
+
 
 
     <!-- ========================= Breadcrumb Start =============================== -->
@@ -188,6 +190,41 @@
     </div>
  </section>
 <!-- ========================== Shipping Section End ============================ -->
+
       
  
  @endsection
+
+@include('includes.footer')     
+    <!-- Jquery js -->
+    <script src="frontend/assets/js/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap Bundle Js -->
+    <script src="frontend/assets/js/boostrap.bundle.min.js"></script>
+    <!-- Bootstrap Bundle Js -->
+    <script src="frontend/assets/js/phosphor-icon.js"></script>
+    <!-- Select 2 -->
+    <script src="frontend/assets/js/select2.min.js"></script>
+    <!-- Slick js -->
+    <script src="frontend/assets/js/slick.min.js"></script>
+    <!-- Slick js -->
+    <script src="frontend/assets/js/count-down.js"></script>
+    <!-- jquery UI js -->
+    <script src="frontend/assets/js/jquery-ui.js"></script>
+    <!-- wow js -->
+    <script src="frontend/assets/js/wow.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="frontend/assets/js/aos.js"></script>
+    <!-- marque -->
+    <script src="frontend/assets/js/marque.min.js"></script>
+    <!-- marque -->
+    <script src="frontend/assets/js/vanilla-tilt.min.js"></script>
+    <!-- Counter -->
+    <script src="frontend/assets/js/counter.min.js"></script>
+    <!-- main js -->
+    <script src="frontend/assets/js/main.js"></script>
+
+
+
+    </body>
+</html>
+

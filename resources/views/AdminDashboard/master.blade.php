@@ -124,7 +124,7 @@
         <!-- Main Script -->
         <script src="{{ asset('backend/assets/js/main.js?v=6.0') }}" type="text/javascript"></script>
         <script src="{{ asset('backend/assets/js/custom-chart.js') }}" type="text/javascript"></script>
-        <x-notify::notify />
+        
 
     </body>
 </html>
