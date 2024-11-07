@@ -356,7 +356,6 @@
     <ul class="nav-menu flex-align ">
         <li class="nav-menu__item">
             <a href="/home" class="nav-menu__link">Home</a>
-https://vvilla.lk/
         </li>
         <li class="nav-menu__item">
             <a href="/shop" class="nav-menu__link">Shop</a>
