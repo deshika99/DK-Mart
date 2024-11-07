@@ -5,7 +5,7 @@
         <div class="footer-item-two-wrapper d-flex align-items-start flex-wrap">
             <div class="footer-item max-w-275" data-aos="fade-up" data-aos-duration="200">
                 <div class="footer-item__logo">
-                    <a href="index.html"> <img src="frontend/assets/images/logo/logo-two-black.png" alt=""></a>
+                    <a href="index.html"> <img src="{{ asset('frontend/assets/images/logo/logo-two-black.png')}} " alt=""></a>
                 </div>
                 <p class="mb-24">DK Mart  become the largest computer parts, gaming pc parts, and other IT related products.</p>
                 <div class="flex-align gap-16 mb-16">

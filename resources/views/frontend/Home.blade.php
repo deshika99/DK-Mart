@@ -236,8 +236,10 @@
                                             {{ asset('frontend/assets/images/imgs/category-7.jpg') }}
                                         @elseif (Str::contains(strtolower($category->name), 'home'))
                                             {{ asset('frontend/assets/images/imgs/category-8.jpg') }}
+                                        @elseif (Str::contains(strtolower($category->name), 'groceries'))
+                                            {{ asset('frontend/assets/images/imgs/category-9.jpg') }}
                                         @else
-                                            {{ asset('frontend/assets/images/imgs/default.png') }}
+                                            {{ asset('frontend/assets/images/imgs/default-1.png') }}
                                         @endif
                                     " alt="{{ $category->name }}" class="w-100 max-w-unset">
                                 </a>
