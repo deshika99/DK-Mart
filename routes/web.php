@@ -4,11 +4,24 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminTemplateController;
 use App\Http\Controllers\HomeTemplateController;
+use App\Http\Controllers\AffiliateTemplateController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController; 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanySettingsController;
 use App\Http\Controllers\ShopPageController;
+
+
+
+//Affiliate_Dashboard Links
+use App\Http\Controllers\AffiliateProductController;
+use App\Http\Controllers\AffiliateCustomerController;
+use App\Http\Controllers\AffiliateTrackingController;
+use App\Http\Controllers\AffiliateReportController;
+use App\Http\Controllers\AffiliateLinkController;
+use App\Http\Controllers\AffiliateRulesController;
+use App\Http\Controllers\AffiliateDashboardController;
+
 
 
 Route::get('/', function () {
@@ -34,6 +47,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/admin',[AdminTemplateController::class,'index'])->name('admin.index');
+Route::get('/affiliate',[AffiliateTemplateController::class,'index'])->name('affiliate');
 Route::get('/home',[HomeTemplateController::class,'index']);
 
 Route::get('/shop', [ShopPageController::class, 'index'])->name('shop.index');
@@ -96,7 +110,76 @@ Route::delete('/admin/edit_users/{id}', [UserController::class, 'destroy'])->nam
 
 
 
+//AffiliateDashBoard Links
+Route::view('/home/affiliate/affiliate_home', 'aff_home')->name('aff_home');
+Route::post('/home/affiliate/register', [AffiliateCustomerController::class, 'register'])->name('aff_reg');
+Route::view('/home/affiliate/register/', 'aff_reg')->name('register_form');
+Route::post('/home/affiliate/login', [AffiliateCustomerController::class, 'login'])->name('aff_login');
+Route::get('/affiliate/dashboard', [AffiliateCustomerController::class, 'index'])->name('index');
+Route::post('/affiliate/logout', [AffiliateCustomerController::class, 'logout'])->name('aff_logout');
+
+
+Route::get('/affiliate/dashboard/ad_center', [AffiliateProductController::class, 'showAdCenter'])->name('ad_center');
+Route::get('/affiliate/dashboard/ad_center/{product_id}/promote-modal', [AffiliateProductController::class, 'showPromoteModal'])->name('products.promoteModal');
+Route::get('/affiliate/dashboard/ad_center/download-images', [AffiliateProductController::class, 'downloadImages'])->name('products.downloadImages');
+Route::get('/affiliate/dashboard/ad_center/{id}/promote-modal', [AffiliateProductController::class, 'showPromoteModal'])->name('products.promoteModal');
+Route::get('/affiliate/dashboard/ad_center/download-images', [AffiliateProductController::class, 'downloadImages'])->name('products.downloadImages');
+Route::post('/generate-promo', [AffiliateProductController::class, 'generatePromo'])->name('generate.promo');
+Route::view('/affiliate/dashboard/incentive_campaign', 'affiliate_dashboard.incentive_campaign')->name('incentive_campaign');
+Route::post('/affiliate/promo/maritial/genaratr', [AffiliateCustomerController::class, 'promomatirials'])->name('promo_matirials');
+
+
+Route::view('/affiliate/dashboard/reports/income_report', 'affiliate_dashboard.income_report')->name('income_report');
+Route::view('/affiliate/dashboard/reports/order_tracking', 'affiliate_dashboard.order_tracking')->name('order_tracking');
+Route::view('/affiliate/dashboard/reports/transaction_product_report', 'affiliate_dashboard.transaction_product_report')->name('transaction_product_report');
+Route::view('/affiliate/dashboard/payment/withdrawals', 'affiliate_dashboard.withdrawals')->name('withdrawals');
+Route::view('/affiliate/dashboard/payment/account_balance', 'affiliate_dashboard.account_balance')->name('account_balance');
+
+
+Route::get('/affiliate-tool', [AffiliateLinkController::class, 'showAffiliateForm'])->name('affiliatetools');
+Route::post('/affiliate/tool/create/affiliate_link', [AffiliateLinkController::class, 'generateNewLink'])->name('genarate_tracking_Link');
+Route::get('/track/{tracking_id}/{product_id}', [AffiliateLinkController::class, 'trackClick'])->name('affiliate.track');
+Route::post('/track-referral/{tracking_id}', [AffiliateLinkController::class, 'trackReferral'])->name('affiliate.trackReferral');
+Route::get('/affiliate/dashboard/code_center', [AffiliateLinkController::class, 'codeCenter'])->name('code_center');
+
+
+Route::view('/affiliate/dashboard/payment/account_balance', 'affiliate_dashboard.account_balance')->name('account_balance');
+Route::get('/affiliate/dashboard/payment/bank_acc', [PaymentController::class, 'bank_acc'])->name('bank_acc');
+Route::post('/affiliate/dashboard/payment/updatebank', [PaymentController::class, 'updatebank'])->name('updatebank');
+Route::post('/affiliate/dashboard/payment/paymentrequest', [PaymentController::class, 'paymentrequest'])->name('paymentrequest');
+Route::view('/affiliate/dashboard/payment/commission_rules', 'affiliate_dashboard.commission_rules')->name('commission_rules');
+Route::get('/affiliate/dashboard/payment/affiliate_rules', [AffiliateRulesController::class, 'showrules'])->name('show_affiliate_rules');
+Route::post('/affiliate/update-site-info', [AffiliateDashboardController::class, 'updateSiteInfo'])->name('affiliate.updateSiteInfo');
+Route::post('/affiliate/update-basic-info', [AffiliateDashboardController::class, 'updateBasicInfo'])->name('affiliate.updateBasicInfo');
+Route::get('/affiliate/dashboard/account/mywebsites_page', [AffiliateDashboardController::class, 'index'])->name('mywebsites_page');
+
+
+Route::get('/affiliate/dashboard/account/tracking_id', [AffiliateTrackingController::class, 'index'])->name('tracking_id');
+Route::post('/affiliate/dashboard/store/tracking_id', [AffiliateTrackingController::class, 'store'])->name('tracking_id_store');
+Route::put('/raffletickets/{id}/setDefault', [AffiliateTrackingController::class, 'setDefault'])->name('raffletickets.setDefault');
+Route::delete('/raffletickets/{id}', [AffiliateTrackingController::class, 'destroy'])->name('raffletickets.destroy');
+
+Route::get('/raffletickets/{id}/report', [AffiliateReportController::class, 'report'])->name('raffletickets.report');
+Route::get('/affiliate/dashboard/reports/traffic_report',[AffiliateReportController::class, 'trafficreport'] )->name('traffic_report');
+Route::get('/affiliate/dashboard/payment/withdrawals', [AffiliateReportController::class, 'withdrawals'] )->name('withdrawals');
+Route::get('/affiliate/dashboard/payment/payment_info', [AffiliateReportController::class, 'showPaymentInfo'])->name('payment_info');
+Route::post('/affiliate/dashboard/payment/realtime_tracking', [AffiliateReportController::class, 'realtimereport'])->name('realtime_tracking');
+
+
+
 require __DIR__.'/auth.php';
 
+
+
+
+Route::get('/register', function () {
+    return view('frontend.register');
+})->name('register');
+
+
+
+Route::get('/login', function () {
+    return view('frontend.login');
+})->name('login');
 
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="color-two font-exo">
 
@@ -28,7 +29,9 @@
 
 <body>
 
+
 @include('includes.navbar-2')
+
 
 
     <!-- ============================ Banner Section start =============================== -->

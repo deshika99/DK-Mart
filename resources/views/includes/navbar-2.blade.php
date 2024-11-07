@@ -123,7 +123,9 @@
             <!-- Logo Start -->
             <div class="logo"style="margin-left: 120px;  margin-top: 0; margin-bottom: 0;">
                 <a href="index.html" class="link">
+
                     <img src="{{ asset('frontend/assets/images/logo/logo-two.png') }}" alt="Logo" style="width:110px;height:110px; margin-top: 0; margin-bottom: 0; ">
+
                 </a>
             </div>
             <!-- Logo End  -->
@@ -354,6 +356,7 @@
     <ul class="nav-menu flex-align ">
         <li class="nav-menu__item">
             <a href="/home" class="nav-menu__link">Home</a>
+https://vvilla.lk/
         </li>
         <li class="nav-menu__item">
             <a href="/shop" class="nav-menu__link">Shop</a>
@@ -365,11 +368,16 @@
             <a href="/contact" class="nav-menu__link">Contact Us</a>
         </li>
         <li class="nav-menu__item">
+
+    
             <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
         </li>
     </ul>
 </div>
+
 </div>
+
+
 
 
             <!-- Header Right start -->
