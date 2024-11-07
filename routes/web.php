@@ -12,6 +12,7 @@ use App\Http\Controllers\CompanySettingsController;
 use App\Http\Controllers\ShopPageController;
 
 
+
 //Affiliate_Dashboard Links
 use App\Http\Controllers\AffiliateProductController;
 use App\Http\Controllers\AffiliateCustomerController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\AffiliateReportController;
 use App\Http\Controllers\AffiliateLinkController;
 use App\Http\Controllers\AffiliateRulesController;
 use App\Http\Controllers\AffiliateDashboardController;
+
 
 
 Route::get('/', function () {
@@ -166,6 +168,7 @@ Route::post('/affiliate/dashboard/payment/realtime_tracking', [AffiliateReportCo
 
 
 require __DIR__.'/auth.php';
+
 
 
 
