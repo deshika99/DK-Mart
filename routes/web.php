@@ -35,6 +35,7 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('frontend.contact');
 })->name('contact');
+
 Route::get('/cart', function () {
     return view('frontend.cart');
 })->name('cart');
