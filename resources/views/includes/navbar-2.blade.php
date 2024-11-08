@@ -96,7 +96,7 @@
     </li>
     <li class="nav-menu__item">
        
-        <a href="javascript:void(0)" class="nav-menu__link">About Us</a>
+        <a href="{{ route('about') }}" class="nav-menu__link">About Us</a>
       
     </li>
     <li class="nav-menu__item">
@@ -121,9 +121,11 @@
     <div class="container container-lg">
         <nav class="header-inner flex-between">
             <!-- Logo Start -->
-            <div class="logo">
+            <div class="logo"style="margin-left: 120px;  margin-top: 0; margin-bottom: 0;">
                 <a href="index.html" class="link">
-                    <img src="{{ asset('frontend/assets/images/logo/logo-two.png') }}" alt="Logo" style="width:90px;height:90px;">
+
+                    <img src="{{ asset('frontend/assets/images/logo/logo-two.png') }}" alt="Logo" style="width:110px;height:110px; margin-top: 0; margin-bottom: 0; ">
+
                 </a>
             </div>
             <!-- Logo End  -->
@@ -295,6 +297,7 @@
         </span>
         <span class="text-md text-white item-hover__text d-none d-lg-flex">Compare</span>
     </a>
+
     
     <a href="{{ route ('cart') }}" class="flex-align flex-column gap-8 item-hover-two">
     <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
@@ -302,6 +305,7 @@
         <!-- Display the cart count dynamically -->
         <span id="cart-count" class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
            0
+
         </span>
     </span>
     <span class="text-md text-white item-hover__text d-none d-lg-flex">Cart</span>
@@ -392,6 +396,8 @@
             <a href="/contact" class="nav-menu__link">Contact Us</a>
         </li>
         <li class="nav-menu__item">
+
+    
             <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
         </li>
     </ul>
@@ -399,8 +405,7 @@
 
 </div>
 
-       
-                
+
 
 
 
