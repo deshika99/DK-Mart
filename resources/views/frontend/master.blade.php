@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/aos.css') }}">
     <!-- Main css -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 
 <body>
@@ -37,7 +40,46 @@
     <!-- ============================ Banner Section start =============================== -->
     @yield('content')
     <div class="preloader">
-    <img src="frontend/assets/images/icon/preloader.gif" alt="">
+    <img src="{{ asset('frontend/assets/images/icon/preloader.gif') }}" alt=""></div>
+
+    <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    @if (session('success'))
+                        Swal.fire({
+                            title: 'Success!',
+                            text: "{{ session('success') }}",
+                            icon: 'success',
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer);
+                                toast.addEventListener('mouseleave', Swal.resumeTimer);
+                            }
+                        });
+                    @endif
+
+                    @if (session('error'))
+                        Swal.fire({
+                            title: 'Error!',
+                            text: "{{ session('error') }}",
+                            icon: 'error',
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer);
+                                toast.addEventListener('mouseleave', Swal.resumeTimer);
+                            }
+                        });
+                    @endif
+                });
+
+            </script>
   </div>
 
     @include('includes.footer')
@@ -71,8 +113,9 @@
     <!-- Main js -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<style>
+<script>
     document.querySelectorAll('.has-sub-submenu').forEach(item => {
     item.addEventListener('mouseenter', () => {
         const submenu = item.querySelector('.sub-submenu-column');
@@ -85,8 +128,17 @@
         submenu.style.opacity = '0';
     });
 });
+</script>
+<script>
+    $(document).ready(function() {
+        $.get("{{ route('cart.count') }}", function(data) {
+            if (data.cart_count !== undefined) {
+                $('#cart-count').text(data.cart_count);
+            }
+        });
 
-</style>
+    });
+</script>
 
 </body>
 

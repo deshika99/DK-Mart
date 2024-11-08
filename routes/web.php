@@ -10,7 +10,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanySettingsController;
 use App\Http\Controllers\ShopPageController;
-
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CustomerOrderController;
 
 
 //Affiliate_Dashboard Links
@@ -39,9 +40,13 @@ Route::get('/contact', function () {
     return view('frontend.contact');
 })->name('contact');
 
+
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
 Route::get('/cart', function () {
     return view('frontend.cart');
 })->name('cart');
+
 
 
 Route::middleware('auth')->group(function () {
@@ -52,14 +57,27 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin',[AdminTemplateController::class,'index'])->name('admin.index');
 Route::get('/affiliate',[AffiliateTemplateController::class,'index'])->name('affiliate');
-Route::get('/home',[HomeTemplateController::class,'index']);
+Route::get('/home',[HomeTemplateController::class,'index'])->name('home');
 
 Route::get('/shop', [ShopPageController::class, 'index'])->name('shop.index');
 Route::get('/shop/category/{category}', [ShopPageController::class, 'filterByCategory'])->name('shop.filterByCategory');
 
 Route::get('/product-details/{product_id}', [ShopPageController::class, 'showProductDetails'])->name('showProductDetails');
 
+Route::get('/cart/count', [CartController::class, 'getCartCount'])->name('cart.count');
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
+Route::put('/cart/update/{cartItem}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/remove/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
 
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+
+Route::post('/place-order', [CustomerOrderController::class, 'placeOrder'])->name('placeOrder');
+
+Route::post('/test-order', function() {
+    Log::info('Test Order placed');
+    return 'Test order placed';
+});
 
 //admin dashboard
 
@@ -176,6 +194,7 @@ require __DIR__.'/auth.php';
 
 
 
+
 Route::get('/register', function () {
     return view('frontend.register');
 })->name('register');
@@ -185,5 +204,6 @@ Route::get('/register', function () {
 Route::get('/login', function () {
     return view('frontend.login');
 })->name('login');
+
 
 

@@ -8334,18 +8334,18 @@ input:focus-visible {
     gap: clamp(0.75rem, -8.243rem + 12vw, 4.5rem);
 }
 
-/* Wrapper styles */
+
 .submenus-submenu-wrapper {
     overflow: unset;
 }
 
-/* Main Submenu Styling */
+
 .submenus-submenu {
     position: absolute;
     z-index: 10;
     background: hsl(var(--white));
     width: 300px;
-    inset-inline-start: 100%; /* Aligns next to parent category */
+    inset-inline-start: 100%; 
     inset-block-start: 0;
     border-radius: 6px;
     visibility: hidden;
@@ -8361,7 +8361,7 @@ input:focus-visible {
     opacity: 1;
 }
 
-/* Submenu list items */
+
 .submenus-submenu__list li a {
     padding: 10px 16px;
     padding-inline-start: 32px;
@@ -8370,7 +8370,6 @@ input:focus-visible {
     position: relative;
 }
 
-/* Bullet point for list items */
 .submenus-submenu__list li a::before {
     position: absolute;
     content: "";
@@ -8384,7 +8383,6 @@ input:focus-visible {
     transition: 0.2s linear;
 }
 
-/* Styling on hover */
 .submenus-submenu__list li a:hover {
     background-color: var(--gray-50);
     color: var(--gray-800);
@@ -8396,13 +8394,12 @@ input:focus-visible {
 }
 
 
-/* Sub-Submenu Styling */
 .sub-submenu-column {
     position: absolute;
     z-index: 1000 !important;
     background: hsl(var(--white));
     width: 300px;
-    left: 100%; /* Aligns next to subcategory */
+    left: 100%; 
     top: 0; 
     visibility: hidden;
     opacity: 0;
@@ -8411,16 +8408,14 @@ input:focus-visible {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Show sub-submenu on hover */
+
 .has-sub-submenu:hover > .sub-submenu-column {
     visibility: visible !important;
     opacity: 1 !important;
-    display: block; /* Add this line */
+    display: block; 
 }
 
 
-
-/* Sub-submenu list items */
 .sub-submenu li a {
     display: block;
     color: var(--gray-500);
@@ -8434,16 +8429,14 @@ input:focus-visible {
     font-weight: 600;
 }
 
-/* Ensure submenu and sub-submenu spacing is correct */
 .submenus-submenu__list, .sub-submenu {
     max-height: 300px;
     overflow-y: auto;
 }
 
 
-/* Base styling */
 .category-dropdown {
-    position: relative; /* Ensures dropdown aligns relative to this container */
+    position: relative; 
 }
 
 
@@ -8480,7 +8473,7 @@ input:focus-visible {
     background-color: #f0f0f0;
 }
 
-/* Submenu styling */
+
 .submenu {
     position: absolute;
     left: 100%;
@@ -8496,7 +8489,6 @@ input:focus-visible {
     display: block;
 }
 
-/* Subcategory list */
 .subcategory-list > li {
     position: relative;
 }
@@ -8512,7 +8504,6 @@ input:focus-visible {
     background-color: #f0f0f0;
 }
 
-/* Sub-submenu styling */
 .sub-submenu {
     position: absolute;
     left: 100%;
@@ -8528,7 +8519,7 @@ input:focus-visible {
     display: block;
 }
 
-/* Sub-subcategory list */
+
 .sub-subcategory-link {
     padding: 10px 16px;
     display: block;
@@ -8540,6 +8531,51 @@ input:focus-visible {
     background-color: #f0f0f0;
 }
 
+
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-initial {
+    background-color: #6c757d; /* Grey background */
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.profile-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+    color: #333;
+}
 
 
 
@@ -10152,15 +10188,15 @@ input:focus-visible {
 /* ================================ Shop Page css End =============================== */
 /* ========================== Cart Page Css Start ============================ */
 .table-product__thumb {
-    max-width: 150px;
-    max-height: 150px;
-    width: 100%;
+    max-width: 50px;
+    max-height: 50px;
+    width: 80%;
     height: 100%;
     aspect-ratio: 1;
 }
 
 .table-product__thumb img {
-    max-width: 75px;
+    max-width: 55px;
 }
 
 /* ========================== Cart Page Css End ============================ */

@@ -64,9 +64,9 @@
                 <div class="border border-gray-100 hover-border-main-600 transition-1 rounded-16 px-24 py-40">
                     <h6 class="text-xl mb-32 text-center">Login</h6>
 
-                    <!-- Username or Email Address -->
+                    <!--  Email Address -->
                     <div class="mb-24">
-                        <x-input-label class="fw-bold" for="email" :value="__('Username or Email Address')" />
+                        <x-input-label class="fw-bold" for="email" :value="__('Email Address')" />
                         <span class="text-danger">*</span>
                         <x-text-input id="email" class="common-input w-100" style="box-shadow: none;" type="text" name="email" :value="old('email')" placeholder="Enter your username or email" required autofocus autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />

@@ -246,21 +246,42 @@
             <i class="ph ph-magnifying-glass"></i>
         </span>
     </button>
-  <!-- Profile Dropdown -->
-  <div class="profile-dropdown">
-    <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
-        <span class="text-2xl text-white d-flex position-relative item-hover__text">
-            <i class="ph ph-user"></i>
-        </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
-    </a>
 
-    <!-- Dropdown Menu -->
-    <div class="dropdown-menu"  style="width: 170px">
-        <a href="{{ route('login') }}" class="dropdown-item">Login</a>
-        <a href="{{ route('register') }}" class="dropdown-item">Sign Up</a>
-    </div>
+
+<!-- Profile Dropdown -->
+<div class="profile-dropdown">
+    @auth
+        <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
+            <span class="profile-initial d-flex justify-content-center align-items-center">
+                {{ auth()->user()->name[0] }}
+            </span>
+        </a>
+
+        <!-- Dropdown Menu for Logged-In User -->
+        <div class="dropdown-menu" style="width: 170px">
+            <a href="" class="dropdown-item">Profile</a>
+            <form method="POST" action="{{ route('logout') }}" class="dropdown-item p-0">
+                @csrf
+                <button type="submit" class="dropdown-item w-100">Logout</button>
+            </form>
+        </div>
+    @else
+        <!-- Default Profile Icon and Links for Guests -->
+        <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
+            <span class="text-2xl text-white d-flex position-relative item-hover__text">
+                <i class="ph ph-user"></i>
+            </span>
+            <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
+        </a>
+
+        <!-- Dropdown Menu for Guests -->
+        <div class="dropdown-menu" style="width: 170px">
+            <a href="{{ route('login') }}" class="dropdown-item">Login</a>
+            <a href="{{ route('register') }}" class="dropdown-item">Sign Up</a>
+        </div>
+    @endauth
 </div>
+
 
     <a href="wishlist.html" class="flex-align flex-column gap-8 item-hover-two">
         <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
@@ -276,13 +297,21 @@
         </span>
         <span class="text-md text-white item-hover__text d-none d-lg-flex">Compare</span>
     </a>
-    <a href="{{ route('cart') }}" class="flex-align flex-column gap-8 item-hover-two">
-        <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
-            <i class="ph ph-shopping-cart-simple"></i>
-            <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>
+
+    
+    <a href="{{ route ('cart') }}" class="flex-align flex-column gap-8 item-hover-two">
+    <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
+        <i class="ph ph-shopping-cart-simple"></i>
+        <!-- Display the cart count dynamically -->
+        <span id="cart-count" class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
+           0
+
         </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Cart</span>
-    </a>
+    </span>
+    <span class="text-md text-white item-hover__text d-none d-lg-flex">Cart</span>
+</a>
+
+
 </div>
             </div>
             <!-- Header Middle Right End  -->
@@ -310,7 +339,7 @@
             <i class="ph ph-x"></i> 
         </button>
 
-        <ul class="responsive-dropdown__list scroll-sm p-0 py-8 overflow-y-auto">
+        <ul class="responsive-dropdown__list scroll-sm p-0 py-8 overflow-y-auto max-h-400">
             @foreach ($categories as $category)
                 <li class="has-submenus-submenu" style="width: 240px;">
                     <a href="{{ url('/shop?category_id=' . $category->id) }}" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
@@ -375,6 +404,7 @@
 </div>
 
 </div>
+
 
 
 
@@ -478,21 +508,43 @@
             <i class="ph ph-magnifying-glass"></i>
         </span>
     </button>
+
+
    <!-- Profile Dropdown -->
    <div class="profile-dropdown">
-    <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
-        <span class="text-2xl text-white d-flex position-relative item-hover__text">
-            <i class="ph ph-user"></i>
-        </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
-    </a>
+    @auth
+        <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
+            <span class="profile-initial d-flex justify-content-center align-items-center">
+                {{ auth()->user()->name[0] }}
+            </span>
+        </a>
 
-    <!-- Dropdown Menu -->
-    <div class="dropdown-menu">
-        <a href="{{ route('login') }}" class="dropdown-item">Login</a>
-        <a href="{{ route('register') }}" class="dropdown-item">Sign Up</a>
-    </div>
+        <!-- Dropdown Menu for Logged-In User -->
+        <div class="dropdown-menu" style="width: 170px">
+            <a href="" class="dropdown-item">Profile</a>
+            <form method="POST" action="{{ route('logout') }}" class="dropdown-item p-0">
+                @csrf
+                <button type="submit" class="dropdown-item w-100">Logout</button>
+            </form>
+        </div>
+    @else
+        <!-- Default Profile Icon and Links for Guests -->
+        <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
+            <span class="text-2xl text-white d-flex position-relative item-hover__text">
+                <i class="ph ph-user"></i>
+            </span>
+            <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
+        </a>
+
+        <!-- Dropdown Menu for Guests -->
+        <div class="dropdown-menu" style="width: 170px">
+            <a href="{{ route('login') }}" class="dropdown-item">Login</a>
+            <a href="{{ route('register') }}" class="dropdown-item">Sign Up</a>
+        </div>
+    @endauth
 </div>
+
+
 
     <a href="wishlist.html" class="flex-align flex-column gap-8 item-hover-two">
         <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
@@ -508,13 +560,17 @@
         </span>
         <span class="text-md text-white item-hover__text d-none d-lg-flex">Compare</span>
     </a>
-    <a href="cart.html" class="flex-align flex-column gap-8 item-hover-two">
-        <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
-            <i class="ph ph-shopping-cart-simple"></i>
-            <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>
+    <a href="{{ route ('cart') }}" class="flex-align flex-column gap-8 item-hover-two">
+    <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
+        <i class="ph ph-shopping-cart-simple"></i>
+        <!-- Display the cart count dynamically -->
+        <span id="cart-count" class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
+           0
         </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Cart</span>
-    </a>
+    </span>
+    <span class="text-md text-white item-hover__text d-none d-lg-flex">Cart</span>
+</a>
+
     
 </div>
                 </div>
