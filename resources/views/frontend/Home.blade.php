@@ -16,7 +16,7 @@
                                 </a>
                             </div>
                             <div class="banner-item-two__thumb position-absolute bottom-0 wow bounceInUp" data-wow-duration="1s" data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="5000" data-tilt-scale="1.06">
-                                <img src="frontend/assets/images/thumbs/banner-two-img.png" alt="">
+                                <img src="frontend/assets/images/imgs/music-cover1.png" alt="">
                             </div>
                         </div>
                         <div class="banner-item-two">
@@ -28,7 +28,7 @@
                                 </a>
                             </div>
                             <div class="banner-item-two__thumb position-absolute bottom-0 wow bounceInUp" data-wow-duration="1s" data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="5000" data-tilt-scale="1.06">
-                                <img src="frontend/assets/images/thumbs/banner-two-img2.png" alt="">
+                                <img src="frontend/assets/images/imgs/music-cover1.jpg" alt="">
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                                 </a>
                             </div>
                             <div class="pe-xxl-4">
-                                <img src="frontend/assets/images/thumbs/promo-img1.png" alt="">
+                                <img src="frontend/assets/images/imgs/phone.png" alt="" style="width: 130px;">
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                                 </a>
                             </div>
                             <div class="pe-xxl-4">
-                                <img src="frontend/assets/images/thumbs/promo-img2.png" alt="">
+                                <img src="frontend/assets/images/imgs/category-3.png" alt="" style="width: 100px;">
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                                 </a>
                             </div>
                             <div class="pe-xxl-4">
-                                <img src="frontend/assets/images/thumbs/promo-img3.png" alt="">
+                                <img src="frontend/assets/images/imgs/headphones.png" alt="" style="width: 90px;">
                             </div>
                         </div>
                     </div>
@@ -185,7 +185,7 @@
                 <div class="popular-products-box rounded-16 overflow-hidden flex-between position-relative z-1 mb-24">
                     <img src="frontend/assets/images/bg/expensive-offer-bg.png" alt="" class="position-absolute inset-block-start-0 inset-block-start-0 w-100 h-100 z-n1">
                     <div class="d-lg-block d-none ps-32" data-aos="zoom-in" data-aos-duration="800">
-                        <img src="frontend/assets/images/thumbs/expensive-offer1.png" alt="">
+                        <img src="frontend/assets/images/imgs/img.png" alt="" style="width:250px;">
                     </div>
                     <div class="popular-products-box__content px-sm-4 d-block w-100 text-center py-20">
                         <div class="flex-align gap-16 justify-content-center" data-aos="zoom-in" data-aos-duration="800">
@@ -210,7 +210,7 @@
                         </div>
                     </div>
                     <div class="d-lg-block d-none" data-aos="zoom-in" data-aos-duration="800">
-                        <img src="frontend/assets/images/thumbs/expensive-offer2.png" alt="">
+                    <img src="frontend/assets/images/imgs/img2.png" alt="" style="width:300px;">
                     </div>
                 </div>
 
@@ -289,13 +289,13 @@
 
                 <div class="deal-week-box rounded-16 overflow-hidden flex-between position-relative z-1 mb-24">
                     <img src="frontend/assets/images/bg/week-deal-bg.png" alt="" class="position-absolute inset-block-start-0 inset-block-start-0 w-100 h-100 z-n1 object-fit-cover">
-                    <div class="d-lg-block d-none ps-32 flex-shrink-0" data-aos="zoom-in">
-                        <img src="frontend/assets/images/thumbs/week-deal-img1.png" alt="">
+                    <div class="d-lg-block d-none ps-22 flex-shrink-0" data-aos="zoom-in">
+                        <img src="frontend/assets/images/imgs/deals2.png" alt="" style="width: 350px">
                     </div>
-                    <div class="deal-week-box__content px-sm-4 d-block w-100 text-center">
+                    <div class="deal-week-box__content px-sm-4 d-block w-100">
                         <h6 class="mb-20 wow bounceIn">Apple AirPods Max, Over Ear Headphones</h6>
                         <div class="countdown mt-20" id="countdown4">
-                            <ul class="countdown-list style-four flex-center flex-wrap">
+                            <ul class="countdown-list style-four flex-left flex-wrap">
                                 <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600">
                                     <span class="days"></span>Days
                                 </li>
@@ -311,11 +311,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="d-lg-block d-none flex-shrink-0 pe-xl-5" data-aos="zoom-in">
-                        <div class="me-xxl-5">
-                            <img src="frontend/assets/images/thumbs/week-deal-img2.png" alt="">
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <div class="deals-week-slider arrow-style-two">
@@ -367,7 +363,7 @@
     <!-- ========================= Deals Week End ================================ -->
 
 
-    <!-- ========================= Top Selling Products Start ================================ -->
+    <!-- ========================= Top Selling Products Start ================================ 
     <section class="top-selling-products pt-80 overflow-hidden">
         <div class="container container-lg">
             <div class="border border-gray-100 p-24 rounded-16">
@@ -596,10 +592,10 @@
             </div>
         </div>
     </section>
-    <!-- ========================= Top Selling Products End ================================ -->
+    ========================= Top Selling Products End ================================ -->
 
 
-    <!-- ========================= Trending Products Start ================================ -->
+    <!-- ========================= Trending Products Start ================================ 
     <section class="trending-productss pt-80 overflow-hidden">
         <div class="container container-lg">
             <div class="border border-gray-100 p-24 rounded-16">
@@ -2063,10 +2059,10 @@
             </div>
         </div>
     </section>
-    <!-- ========================= Trending Products End ================================ -->
+    ========================= Trending Products End ================================ -->
 
 
-    <!-- =============================== Discount Start ============================ -->
+    <!-- =============================== Discount Start ============================ 
     <section class="discount py-80">
         <div class="container container-lg">
             <div class="row gy-4">
@@ -2103,9 +2099,9 @@
             </div>
         </div>
     </section>
-    <!-- =============================== Discount End ============================ -->
+     =============================== Discount End ============================ -->
 
-    <section class="featured-products overflow-hidden">
+   <!--  <section class="featured-products overflow-hidden">
         <div class="container container-lg">
             <div class="row g-4 flex-wrap-reverse">
                 <div class="col-xxl-8">
@@ -2344,10 +2340,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
 
 
-    <!-- ========================= Big Deal Section Start =============================== -->
+    <!-- ========================= Big Deal Section Start =============================== 
     <div class="big-deal rounded-16 overflow-hidden flex-between position-relative mb-24 py-80">
         <div class="container container-lg">
             <div class="big-deal-box position-relative z-1 rounded-16 py-40 overflow-hidden">
@@ -2368,10 +2364,10 @@
             </div>
         </div>
     </div>
-    <!-- ========================= Big Deal Section End =============================== -->
+     ========================= Big Deal Section End =============================== -->
 
 
-    <!-- ========================= Top Selling Products Start ================================ -->
+    <!-- ========================= Top Selling Products Start ================================ 
     <section class="recommended overflow-hidden">
         <div class="container container-lg">
             <div class="row g-12">
@@ -2581,13 +2577,13 @@
             </div>
         </div>
     </section>
-    <!-- ========================= Top Selling Products End ================================ -->
+     ========================= Top Selling Products End ================================ -->
 
 
     
 
 
-    <!-- =========================== Top Vendor Section Start ========================== -->
+    <!-- =========================== Top Vendor Section Start ========================== 
     <section class="top-vendor py-80 overflow-hidden">
         <div class="container container-lg">
             <div class="border border-gray-100 p-24 rounded-16">
@@ -2803,10 +2799,10 @@
             </div>
         </div>
     </section>
-    <!-- =========================== Top Vendor Section End ========================== -->
+     =========================== Top Vendor Section End ========================== -->
 
 
-    <!-- ================================== Day Sale Section Start =================================== -->
+    <!-- ================================== Day Sale Section Start =================================== 
     <section class="day-sale">
         <div class="container container-lg">
             <div class="day-sale-box rounded-16 overflow-hidden flex-between position-relative mb-24 z-1">
@@ -2829,12 +2825,12 @@
             </div>
         </div>
     </section>
-    <!-- ================================== Day Sale Section End =================================== -->
+     ================================== Day Sale Section End =================================== -->
 
     
 
 
-    <!-- ============================== Top Brand Section Start ==================================== -->
+    <!-- ============================== Top Brand Section Start ==================================== 
     <div class="top-brand py-80">
         <div class="container container-lg">
             <div class="border border-gray-100 p-24 rounded-16">
@@ -2903,52 +2899,9 @@
             </div>
         </div>
     </div>
-    <!-- ============================== Top Brand Section End ==================================== -->
-
-    <!-- ========================== Shipping Section Start ============================ -->
-    <section class="shipping mb-80" id="shipping">
-        <div class="container container-lg">
-            <div class="row gy-4">
-                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-car-profile"></i></span>
-                        <div class="">
-                            <h6 class="mb-0">Free Shipping</h6>
-                            <span class="text-sm text-heading">Free shipping all over the US</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-hand-heart"></i></span>
-                        <div class="">
-                            <h6 class="mb-0"> 100% Satisfaction</h6>
-                            <span class="text-sm text-heading">Free shipping all over the US</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-credit-card"></i></span>
-                        <div class="">
-                            <h6 class="mb-0"> Secure Payments</h6>
-                            <span class="text-sm text-heading">Free shipping all over the US</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-chats"></i></span>
-                        <div class="">
-                            <h6 class="mb-0"> 24/7 Support</h6>
-                            <span class="text-sm text-heading">Free shipping all over the US</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ========================== Shipping Section End ============================ -->
+     ============================== Top Brand Section End ==================================== -->
+    
+    
 
     <!-- =============================== Newsletter-two Section Start ============================ -->
     <div class="newsletter-two bg-neutral-600 py-32 overflow-hidden" data-aos="fade-up" data-aos-duration="600">

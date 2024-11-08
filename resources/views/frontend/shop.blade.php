@@ -1,9 +1,18 @@
+
+
 @extends ('frontend.master')
 
 @section('content')
+<style>
+    .product-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;  /* Limits to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;  /* Adds ellipsis (...) at the end if the text is truncated */
+}
 
-
-
+</style>
    <!-- ========================= Breadcrumb Start =============================== -->
    <div class="breadcrumb mb-0 py-26 bg-main-two-50">
     <div class="container container-lg">
@@ -237,7 +246,7 @@
 
                             <div class="product-card__content mt-16">
                                 <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                    <a href="" class="link text-line-2" tabindex="0">{{ $product->product_name }}</a>
+                                    <a href="{{ url('/product-details/' . $product->product_id) }}" class="link text-line-2" tabindex="0">{{ $product->product_name }}</a>
                                 </h6>
                                 <div class="flex-align mb-20 mt-16 gap-6">
                                     <span class="text-xs fw-medium text-gray-500">4.8</span>
@@ -245,22 +254,159 @@
                                     <span class="text-xs fw-medium text-gray-500">(17k)</span>
                                 </div>
                                 <div class="mt-8">
-                                    <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                    @php
+                                        // Calculate the percentage sold
+                                        $percentageSold = $product->total_quantity > 0 
+                                            ? ($product->sold_quantity / $product->total_quantity) * 100 
+                                            : 0;
+                                    @endphp
+
+                                    <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="{{ $percentageSold }}" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-main-two-600 rounded-pill" style="width: {{ $percentageSold }}%;"></div>
                                     </div>
-                                    <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                                    <span class="text-gray-900 text-xs fw-medium mt-8">
+                                        Sold: {{ $product->sold_quantity }}/{{ $product->total_quantity }}
+                                    </span>
                                 </div>
+
                                 <div class="product-card__price my-20">
                                     <span class="text-heading text-md fw-semibold ">Rs {{ number_format($product->normal_price, 2) }} <span class="text-gray-500 fw-normal">/Qty</span></span>
                                 </div>
-                                <a href="" style="width:230px" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                <a href="#" 
+                                style="width:230px" 
+                                class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium add-to-cart-btn" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#cartModal_{{ $product->product_id }}" 
+                                data-product-id="{{ $product->product_id }}">
                                     Add To Cart <i class="ph ph-shopping-cart"></i> 
                                 </a>
                             </div>
                         </div>
+
+            
+                        <!-- Cart Modal -->
+                        <div class="modal fade" id="cartModal_{{ $product->product_id }}" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content p-6" style="border-radius: 0;">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row gx-5">
+                                            <aside class="col-lg-5">
+                                                <div class="rounded-4 mb-3 d-flex justify-content-center">
+                                                    <a class="rounded-4 main-image-link" href="{{ asset('storage/' . $product->images->first()->image_path) }}">
+                                                        <img id="mainImage" class="rounded-4 fit" src="{{ asset('storage/' . $product->images->first()->image_path) }}" style="width:250px" />
+                                                    </a>
+                                                </div>
+                                                <div class="d-flex justify-content-center mb-3">
+                                                    @foreach($product->images as $image)
+                                                        <a class="mx-1 rounded-2 thumbnail-image" data-image="{{ asset('storage/' . $image->image_path) }}" href="javascript:void(0);">
+                                                            <img class="thumbnail rounded-2" src="{{ asset('storage/' . $image->image_path) }}" style="width:80px" />
+                                                        </a>
+                                                    @endforeach
+                                                </div>
+                                            </aside>
+
+                                            <main class="col-lg-7">
+                                                <h6>{{ $product->product_name }}</h6>
+                                                <p class="product-description">{{ $product->product_description }}</p>
+                                                <div class="flex-align flex-wrap gap-12 mt-12">
+                                                    <div class="flex-align gap-12 flex-wrap">
+                                                        <div class="flex-align gap-8">
+                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                                        </div>
+                                                        <span class="text-sm fw-medium text-neutral-600">4.7 Star Rating</span>
+                                                        <span class="text-sm fw-medium text-gray-500">(21,671)</span>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                
+                                                <div class="product-availability mt-3 mb-1">
+                                                    <span>Availability :</span>
+                                                    @if($product->quantity > 1)
+                                                        <span class="ms-1" style="color:#4caf50;">In stock</span>
+                                                    @else
+                                                        <span class="ms-1" style="color:red;">Out of stock</span>
+                                                    @endif
+                                                </div>
+
+                                                 <!-- Sizes Section -->
+                                                @if ($product->variations->pluck('value')->filter()->unique()->isNotEmpty())
+                                                    <div class="flex-between align-items-start flex-wrap gap-16">
+                                                        <div class="d-flex align-items-center mb-5">
+                                                            <span class="text-gray-900 me-3">Size:</span>
+                                                            @foreach ($product->variations->pluck('value')->filter()->unique() as $size)
+                                                                <button type="button" 
+                                                                        class="size_button ms-5 border border-2 border-gray-300 d-flex align-items-center justify-content-center"
+                                                                        data-size="{{ $size }}">
+                                                                    {{ $size }}
+                                                                </button>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                            
+                                                <!-- Colors Section -->
+                                                @if ($product->variations->pluck('hex_value')->filter()->unique()->isNotEmpty())
+                                                    <div class="flex-between align-items-center flex-wrap gap-16 mt-4">
+                                                        <div class="d-flex align-items-center mb-4">
+                                                            <span class="text-gray-900 me-3">Color:</span>
+                                                            @foreach ($product->variations->pluck('hex_value')->filter()->unique() as $color)
+                                                                <button type="button" 
+                                                                        class="color-list__button w-24 h-24 border border-2 border-gray-50 rounded-circle me-2"
+                                                                        style="background-color: {{ $color }};" 
+                                                                        data-color="{{ $color }}"> 
+                                                                </button>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                                <div class="product-price mb-3 mt-3 d-flex align-items-center">
+                                                    <span class="" style="margin-right: 10px;">                                                   
+                                                    <h6 class="mb-0">Rs {{ $product->normal_price }}</h6>
+                                                    </span>
+                                                </div>
+
+                                                @auth
+                                                    <!-- Add To Cart Form -->
+                                                    <form action="{{ route('cart.add') }}" method="POST" id="addToCartForm">
+                                                        @csrf
+                                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                        <input type="hidden" name="size" id="selectedSize">
+                                                        <input type="hidden" name="color" id="selectedColor">
+                                                        <input type="hidden" name="quantity" id="hiddenQuantity" value="1">
+                                                        <input type="hidden" name="price" id="hiddenPrice" value="{{ $product->normal_price }}">
+
+                                                        <!-- Add To Cart Button -->
+                                                        <button type="submit" class="btn btn-main w-95 mt-5" 
+                                                                @if ($product->quantity == 0) disabled @endif>
+                                                            Add To Cart
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <p class="text-danger mb-5">Please <a href="{{ route('login') }}">log in</a> to add items to the cart.</p>
+                                                @endauth
+                                                <a href="{{ route('showProductDetails', $product->product_id ) }}" style="text-decoration: none; font-size:14px; color: #297aa5; margin-top:15px">
+                                                    View Full Details<i class="fa-solid fa-circle-right"></i>
+                                                </a>
+                                            </main>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     @endforeach
                 </div>
-
 
                 <!-- Pagination Start -->
                 <ul class="pagination flex-center flex-wrap gap-16">
@@ -283,58 +429,14 @@
                 <!-- Pagination End -->
             </div>
             <!-- Content End -->
-
-
         </div>
     </div>
  </section>
+
 <!-- =============================== Shop Section End ======================================== -->
 
 
-    <!-- ========================== Shipping Section Start ============================ -->
- <section class="shipping mb-24" id="shipping">
-    <div class="container container-lg">
-        <div class="row gy-4">
-            <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
-                <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                    <span class="w-56 h-56 flex-center rounded-circle bg-main-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-car-profile"></i></span>
-                    <div class="">
-                        <h6 class="mb-0">Free Shipping</h6>
-                        <span class="text-sm text-heading">Free shipping all over the US</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
-                <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                    <span class="w-56 h-56 flex-center rounded-circle bg-main-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-hand-heart"></i></span>
-                    <div class="">
-                        <h6 class="mb-0"> 100% Satisfaction</h6>
-                        <span class="text-sm text-heading">Free shipping all over the US</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
-                <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                    <span class="w-56 h-56 flex-center rounded-circle bg-main-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-credit-card"></i></span>
-                    <div class="">
-                        <h6 class="mb-0"> Secure Payments</h6>
-                        <span class="text-sm text-heading">Free shipping all over the US</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
-                <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                    <span class="w-56 h-56 flex-center rounded-circle bg-main-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-chats"></i></span>
-                    <div class="">
-                        <h6 class="mb-0"> 24/7 Support</h6>
-                        <span class="text-sm text-heading">Free shipping all over the US</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
- </section>
-<!-- ========================== Shipping Section End ============================ -->
+
     <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -362,6 +464,16 @@
     </script>
 
     <script>
+            // image thumbnails
+            $(document).ready(function() {
+            // When a thumbnail is clicked
+            $('.thumbnail-image').click(function() {
+                var newImageSrc = $(this).data('image');  // Get the image URL from the data attribute
+                $('#mainImage').attr('src', newImageSrc);  // Update the main image's src
+            });
+        });
+
+
     // Change the box shadow of the selected color
         const colorInputs = document.querySelectorAll('input[name="color"]');
         colorInputs.forEach(input => {
@@ -392,8 +504,66 @@
 
         window.location.href = url.pathname + '?' + params.toString();
     }
+
+
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const productId = this.getAttribute('data-product-id');
+        console.log('Product ID:', productId);
+    });
+});
+
     </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Track the selected size and color
+    let selectedSize = null;
+    let selectedColor = null;
+    const productHasSize = document.querySelectorAll('.size_button').length > 0;
+    const productHasColor = document.querySelectorAll('.color-list__button').length > 0;
+
+    // Add event listener for size buttons
+    document.querySelectorAll('.size_button').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.size_button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            selectedSize = button.getAttribute('data-size'); 
+            document.getElementById('selectedSize').value = selectedSize; 
+        });
+    });
+
+    // Add event listener for color buttons
+    document.querySelectorAll('.color-list__button').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.color-list__button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            selectedColor = button.getAttribute('data-color'); 
+            document.getElementById('selectedColor').value = selectedColor; 
+        });
+    });
+
+    // Handle Add to Cart form submission
+    document.getElementById('addToCartForm').addEventListener('submit', function(e) {
+        // Check if size/color are required and selected
+        if ((productHasSize && !selectedSize) || (productHasColor && !selectedColor)) {
+            e.preventDefault(); 
+            Swal.fire({
+                title: 'Warning!',
+                text: 'Please select both a size and a color to proceed.',
+                icon: 'warning',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        }
+    });
+
+   
+}); 
+</script>
 @endsection
 
 

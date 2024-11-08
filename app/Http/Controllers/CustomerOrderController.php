@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\CustomerOrder;
 use App\Models\CustomerOrderItems;
 use Illuminate\Http\Request;
@@ -73,6 +74,13 @@ class CustomerOrderController extends Controller
                 if (!isset($item->product_id, $item->quantity, $item->price)) {
                     continue; 
                 }
+                // Reduce the quantity of the product
+                $product = \App\Models\Product::find($item->product_id);
+                if ($product) {
+                    $product->quantity = max(0, $product->quantity - $item->quantity); 
+                    $product->save();
+                }
+
     
                     CustomerOrderItems::create([
                         'order_code' => $orderCode,
@@ -89,7 +97,7 @@ class CustomerOrderController extends Controller
             // Clear the cart items from the database after the order is placed
             \App\Models\CartItem::where('user_id', $user->id)->delete();
     
-            return redirect()->route('checkout')->with('success', 'Order placed successfully!');
+            return redirect()->route('payment', ['order_code' => $orderCode])->with('success', 'Order placed successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred while placing the order. Please try again.');
         }
@@ -97,5 +105,71 @@ class CustomerOrderController extends Controller
     
     
 
+
+    public function buynow_placeOrder(Request $request)
+    {
+        $userId = Auth::id();
+        $orderCode = 'ORD-' . strtoupper(Str::random(8));
+        $deliveryFee = 300;
+        $subtotal = 0;
+
+        // Calculate subtotal based on the products in the request
+        if ($request->has('products') && is_array($request->products)) {
+            foreach ($request->products as $product) {
+                $itemSubtotal = $product['cost'] * $product['quantity'];
+                $subtotal += $itemSubtotal;
+            }
+        } else {
+            return redirect()->back()->with('error', 'No products selected');
+        }
+
+    $total = $subtotal + $deliveryFee;
     
+        $order = CustomerOrder::create([
+            'order_code' => $orderCode,
+            'user_id' => $userId,
+            'customer_name' => $request->first_name . ' ' . $request->last_name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'house_no' => $request->house_no,
+            'apartment' => $request->apartment,
+            'city' => $request->city,
+            'postal_code' => $request->postal_code,
+            'date' => Carbon::now(),
+            'total_cost' => $total,
+            'status' => 'Confirmed',
+            'payment_method' => $request->input('payment_method', null),
+            'payment_status' => 'Pending',
+        ]);
+    
+        if ($request->has('products') && is_array($request->products)) {
+            foreach ($request->products as $product) {
+                $itemSubtotal = $product['cost'] * $product['quantity'];
+    
+                CustomerOrderItems::create([
+                    'order_code' => $orderCode,
+                    'product_id' => $product['product_id'],
+                    'quantity' => $product['quantity'],
+                    'size' => $product['size'],
+                    'color' => $product['color'],
+                    'cost' => $itemSubtotal,
+                    'date' => Carbon::now(),
+                ]);
+            }
+        } else {
+            return redirect()->back()->with('error', 'No products selected');
+        }
+    
+        foreach ($request->products as $product) {
+            $productRecord = Product::find($product['product_id']);
+            $productRecord->decrement('quantity', $product['quantity']);
+        }
+    
+        return redirect()->route('payment', ['order_code' => $orderCode])->with('success', 'Order placed successfully!');
+
+    }
+    
+
+
+
 }

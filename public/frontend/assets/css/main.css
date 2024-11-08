@@ -4432,6 +4432,12 @@ input:focus-visible {
     align-items: center;
 }
 
+.flex-left {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+
 .flex-between {
     display: flex;
     justify-content: space-between;
@@ -10330,3 +10336,23 @@ input:focus-visible {
 
 /* ============================== Vendor Two Details Css End =============================== */
 /*# sourceMappingURL=main.css.map */
+
+
+.size_button {
+    padding: 5px;;
+    font-size: 13px;
+    border-radius: 5px;
+    border-color: #ccc; 
+    width: 30px;
+    height: 30px;
+}
+.size_button.active, .color-list__button.active {
+    border-color: #007bff; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+a.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
