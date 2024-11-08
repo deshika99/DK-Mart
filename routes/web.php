@@ -200,7 +200,6 @@ Route::get('/register', function () {
     return view('frontend.register');
 })->name('register');
 
-Route::get('/register', [RegisterController::class, 'show'])->name('register');
 
 
 
