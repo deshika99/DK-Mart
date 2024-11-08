@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="color-two font-exo">
 <head>
@@ -106,6 +107,7 @@
     }
     
     .story-section {
+
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px;
@@ -160,10 +162,7 @@
     width: 100%;
     height: auto;
 }
-.container {
-    margin:  auto;
-    padding: 20px;
-}
+
 .values-section {
     text-align: center;
     padding: 40px;
@@ -331,11 +330,14 @@
         .hero-section h1 { font-size: 28px; }
         .hero-section p { font-size: 18px; }
     }
+
 </style>
+
 
 <section class="hero-section">
     <h1>Delivering happiness on the go!</h1>
     <p>Happy Shopping</p>
+
 </section>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -345,6 +347,7 @@
         }, 4000);
     });
 </script>
+
 
 <section class="story-section">
         <h2 class="story-title">Our Story</h2>
@@ -482,6 +485,7 @@
         </div>
     </section>
 
+
     @include('includes.footer')     
     <!-- Jquery js -->
     <script src="frontend/assets/js/jquery-3.7.1.min.js"></script>
@@ -512,3 +516,14 @@
 
 </body>
 </html>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const heroText = document.querySelector(".hero-section p");
+        setTimeout(() => {
+            heroText.style.opacity = "1";
+        }, 4000); 
+    });
+</script>
+@endsection
+
