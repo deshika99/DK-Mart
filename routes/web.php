@@ -8,8 +8,10 @@ use App\Http\Controllers\AffiliateTemplateController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController; 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CompanySettingsController;
 use App\Http\Controllers\ShopPageController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerOrderController;
 
@@ -71,8 +73,15 @@ Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
 Route::put('/cart/update/{cartItem}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/remove/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
 
-Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::get('/buy-now-checkout/{product_id}', [CartController::class, 'buyNowCheckout'])->name('buyNow.checkout');
 
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::get('/payment/{order_code}', [PaymentController::class, 'showPaymentPage'])->name('payment');
+
+Route::post('/confirm-cod-order/{order_code}', [PaymentController::class, 'confirmCODOrder'])->name('confirm.cod.order');
+Route::get('/order/order_received/{order_code}', [PaymentController::class, 'getOrderDetails'])->name('order.thankyou');
+
+Route::post('/buy_now_place-order', [CustomerOrderController::class, 'buynow_placeOrder'])->name('buynow_placeOrder');
 Route::post('/place-order', [CustomerOrderController::class, 'placeOrder'])->name('placeOrder');
 
 Route::post('/test-order', function() {
@@ -101,8 +110,10 @@ Route::get('/admin/categories/{category}/edit', [CategoryController::class, 'edi
 Route::put('/admin/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/admin/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-Route::view('/admin/customers', 'AdminDashboard.customer')->name('customers');
-Route::view('/admin/customer-details', 'AdminDashboard.customer-details')->name('customer-details');
+
+Route::get('/admin/customers', [CustomerController::class, 'show'])->name('customers');
+Route::get('/admin/customer-details/{user_id}', [CustomerController::class, 'showCustomerDetails'])->name('customer-details');
+
 
 Route::view('/admin/orders', 'AdminDashboard.orders')->name('orders');
 Route::view('/admin/order-details', 'AdminDashboard.order-details')->name('order-details');
