@@ -5,55 +5,6 @@
     
 
 
-<!--==================== Overlay Start ====================-->
-<div class="overlay"></div>
-<!--==================== Overlay End ====================-->
-
-<!--==================== Sidebar Overlay End ====================-->
-<div class="side-overlay"></div>
-<!--==================== Sidebar Overlay End ====================-->
-
-<!-- ==================== Scroll to Top End Here ==================== -->
-<div class="progress-wrap">
-  <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-      <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
-  </svg>
-</div>
-<!-- ==================== Scroll to Top End Here ==================== -->
-
-<!-- ==================== Search Box Start Here ==================== -->
- <form action="#" class="search-box">
-  <button type="button" class="search-box__close position-absolute inset-block-start-0 inset-inline-end-0 m-16 w-48 h-48 border border-gray-100 rounded-circle flex-center text-white hover-text-gray-800 hover-bg-white text-2xl transition-1">
-    <i class="ph ph-x"></i>
-  </button>
-  <div class="container">
-    <div class="position-relative">
-      <input type="text" class="form-control py-16 px-24 text-xl rounded-pill pe-64" placeholder="Search for a product or brand">
-      <button type="submit" class="w-48 h-48 bg-main-600 rounded-circle flex-center text-xl text-white position-absolute top-50 translate-middle-y inset-inline-end-0 me-8">
-        <i class="ph ph-magnifying-glass"></i>
-      </button>
-    </div>
-  </div>
- </form>
-<!-- ==================== Search Box End Here ==================== -->
-
-<!-- ==================== Mobile Menu Start Here ==================== -->
-<div class="mobile-menu scroll-sm d-lg-none d-block">
-    <button type="button" class="close-button"> <i class="ph ph-x"></i> </button>
-    <div class="mobile-menu__inner">
-        <a href="index.html" class="mobile-menu__logo">
-            <img src="frontend/assets/images/logo/logo.png" alt="Logo">
-        </a>
-        <div class="mobile-menu__menu">
-            <!-- Nav Menu Start -->
-
-    
-<!-- Nav Menu End -->
-        </div>
-    </div>
-</div>
-<!-- ==================== Mobile Menu End Here ==================== -->
-
 
 
     <!-- ========================= Breadcrumb Start =============================== -->
@@ -190,6 +141,7 @@
     </div>
  </section>
 <!-- ========================== Shipping Section End ============================ -->
+
 
       
  

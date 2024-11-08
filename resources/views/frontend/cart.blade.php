@@ -1,3 +1,4 @@
+
 @extends ('frontend.master')
 
 @section('content')
@@ -24,6 +25,7 @@
 }
 
 </style>
+
     <!-- ========================= Breadcrumb Start =============================== -->
 <div class="breadcrumb mb-0 py-26 bg-main-two-50">
     <div class="container container-lg">
@@ -47,6 +49,7 @@
 <!-- ========================= Breadcrumb End =============================== -->
 
     <!-- ================================ Cart Section Start ================================ -->
+
     <section class="cart py-80">
     <div class="container container-lg">
         <div class="row gy-4">
@@ -144,10 +147,12 @@
 
                 <div class="col-xl-3 col-lg-4">
                     <div class="cart-sidebar border border-gray-100 rounded-8 px-24 py-40">
+
                     <h6 class="text-xl mb-32">Cart Totals</h6>
                     <div class="bg-color-three rounded-8 p-24">
                         <div class="mb-32 flex-between gap-8">
                             <span class="text-gray-900 font-heading-two">Subtotal</span>
+
                             <span class="text-gray-900 fw-semibold">Rs {{ number_format($cartItems->sum('subtotal'), 2) }}</span>
                         </div>
                         <div class="mb-0 flex-between gap-8">
@@ -168,6 +173,7 @@
         </div>
     </div>
 </section>
+
 
 
 
@@ -220,6 +226,7 @@
 
 
 <!-- ========================== Shipping Section End ============================ -->
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
@@ -253,3 +260,4 @@ $(document).ready(function () {
 
 </script>
 @endsection
+

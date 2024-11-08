@@ -1,66 +1,118 @@
-@extends ('frontend.master')
 
-@section('content')
+<!DOCTYPE html>
+<html lang="en" class="color-two font-exo">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title> MarketPro - E-commerce HTML Template</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="frontend/assets/images/logo/favicon.png">
 
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="frontend/assets/css/bootstrap.min.css">
+    <!-- select 2 -->
+    <link rel="stylesheet" href="frontend/assets/css/select2.min.css">
+    <!-- Slick -->
+    <link rel="stylesheet" href="frontend/assets/css/slick.css">
+    <!-- Jquery Ui -->
+    <link rel="stylesheet" href="frontend/assets/css/jquery-ui.css">
+    <!-- animate -->
+    <link rel="stylesheet" href="frontend/assets/css/animate.css">
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="frontend/assets/css/aos.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="frontend/assets/css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head> 
+<body>
+<header>
+@include('includes.navbar-2')
+</header>
+    
+<!-- ========================= Breadcrumb Start =============================== -->
+<div class="breadcrumb mb-0 py-26 bg-main-two-50">
+    <div class="container container-lg">
+        <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
+            <h6 class="mb-0">About Us</h6>
+            <ul class="flex-align gap-8 flex-wrap">
+                <li class="text-sm">
+                    <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
+                        <i class="ph ph-house"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="flex-align">
+                    <i class="ph ph-caret-right"></i>
+                </li>
+                <li class="text-sm text-main-600"> About Us </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- ========================= Breadcrumb End =============================== -->
 
-    <style>
-  
-        .hero-section {
-    background-image: url('images/aboutus1.jpg');
-    background-size: cover;
-    color: white;
-    background-position: center;
-    background-repeat: no-repeat;
-    text-align: center;
-    padding: 100px 20px;
-    height: 100vh;
-    position: relative; /* Ensure relative positioning */
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-}
+<style>
+    .hero-section {
+        background-image: url('images/aboutus1.jpg');
+        background-size: cover;
+        color: white;
+        background-position: center;
+        background-repeat: no-repeat;
+        text-align: center;
+        padding: 100px 20px;
+        height: 120vh;
+        position: relative;
+    }
+    .hero-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+    }
+    .hero-section h1 {
+        font-size: 54px;
+        color: white;
+        position: relative;
+        z-index: 2;
+        font-family: 'Noteworthy';
+        position: absolute;
+        bottom: 170px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 2px solid white;
+        animation: typing 4s steps(30, end), blink 0.75s step-end infinite;
+    }
+    .hero-section p {
+        font-size: 40px;
+        color: white;
+        position: relative;
+        z-index: 2;
+        font-family: Noteworthy;
+        font-weight: bold;
+        opacity: 0;
+        position: absolute;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: fadeIn 2s forwards 2s;
+    }
+    
+    .story-section {
 
-.hero-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); 
-    z-index: 1000; /* This stays the same */
-}
-
-.hero-section h1 {
-    font-size: 54px;
-    color: white;
-    z-index: 2; /* Adjust z-index for layering */
-    font-family: 'Noteworthy';
-    font-weight: bold;
-    white-space: nowrap; 
-    overflow: hidden; 
-    border-right: 2px solid white;
-    animation: typing 4s steps(30, end), blink 0.75s step-end infinite; 
-    text-align: center; /* Center the text */
-}
-
-.hero-section p {
-    font-size: 40px;
-    color: white;
-    z-index: 2; /* Adjust z-index for layering */
-    font-family: 'Noteworthy';
-    font-weight: bold;
-    opacity: 0;
-    animation: fadeIn 2s forwards 2s; /* Keep the animation */
-    text-align: center; /* Center the text */
-}
-
-.story-section {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px;
     text-align: center;
+    background-color: white;
 }
 .story-title {
     font-size: 28px;
@@ -266,112 +318,35 @@
             margin-bottom: 10px;
         }
 
-
-       
-@media (max-width: 1024px) {
-   
-    .hero-section h1 {
-        font-size: 36px; 
-    }
     
-    .hero-section p {
-        font-size: 24px; 
+
+    @media (max-width: 1024px) {
+        .hero-section h1 { font-size: 36px; }
+        .hero-section p { font-size: 24px; }
+        
+    }
+    @media (max-width: 768px) {
+        .hero-section { padding: 80px 10px; }
+        .hero-section h1 { font-size: 28px; }
+        .hero-section p { font-size: 18px; }
     }
 
-   
-    .values-container {
-        flex-direction: column;
-    }
-
-    .values-right {
-        width: 100%; 
-    }
-
-    .values-right img {
-        width: 100%; 
-        height: auto; 
-    }
-    
-    .values-item h3 {
-        font-size: 14px; 
-    }
-
-    .values-item p {
-        font-size: 12px; 
-    }
-
-   
-    .promise-content {
-        flex-direction: column; 
-    }
-
-    .promise-text {
-        padding: 10px; 
-        font-size: 14px; 
-    }
-
-    
-    .features-section {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .feature-item i {
-        font-size: 20px;
-    }
-
-    .feature-item p {
-        font-size: 14px;
-    }
-}
+</style>
 
 
-@media (max-width: 768px) {
-    .hero-section {
-        padding: 80px 10px;
-    }
-
-    .hero-section h1 {
-        font-size: 28px;
-    }
-
-    .hero-section p {
-        font-size: 18px;
-    }
-
-    .values-item img {
-        width: 32px;
-        height: 32px;
-    }
-
-    
-    .story-title,
-    .values-section h2,
-    .promise-section h2,
-    .empowering-section h2 {
-        font-size: 24px;
-    }
-
-    .values-item p {
-        font-size: 12px;
-    }
-
-    .promise-text {
-        font-size: 12px;
-    }
-
-    .feature-item p {
-        font-size: 12px;
-    }
-}
-    </style>
-
-
-
-<div class="hero-section">
+<section class="hero-section">
     <h1>Delivering happiness on the go!</h1>
     <p>Happy Shopping</p>
-</div>
+
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const heroText = document.querySelector(".hero-section p");
+        setTimeout(() => {
+            heroText.style.opacity = "1";
+        }, 4000);
+    });
+</script>
 
 
 <section class="story-section">
@@ -436,7 +411,8 @@
 
 <section class="promise-section">
         <h2>Our Promise</h2>
-        <div class="underline-curve"></div>
+        <div class="underline-curve">
+        </div>
         <div class="promise-content">
             <img src="images/twg.jpg" alt="images">
             <div class="promise-text">
@@ -477,7 +453,7 @@
                 </div>
             </div>
         </div>
-    </section>
+</section>
 
     
     <section class="empowering-section">
@@ -494,8 +470,6 @@
             look forward to welcoming many more!</p>
     </section>
 
-
-    
     <section class="features-section">
         <div class="feature-item">
             <i>✅</i>
@@ -511,6 +485,38 @@
         </div>
     </section>
 
+
+    @include('includes.footer')     
+    <!-- Jquery js -->
+    <script src="frontend/assets/js/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap Bundle Js -->
+    <script src="frontend/assets/js/boostrap.bundle.min.js"></script>
+    <!-- Bootstrap Bundle Js -->
+    <script src="frontend/assets/js/phosphor-icon.js"></script>
+    <!-- Select 2 -->
+    <script src="frontend/assets/js/select2.min.js"></script>
+    <!-- Slick js -->
+    <script src="frontend/assets/js/slick.min.js"></script>
+    <!-- Slick js -->
+    <script src="frontend/assets/js/count-down.js"></script>
+    <!-- jquery UI js -->
+    <script src="frontend/assets/js/jquery-ui.js"></script>
+    <!-- wow js -->
+    <script src="frontend/assets/js/wow.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="frontend/assets/js/aos.js"></script>
+    <!-- marque -->
+    <script src="frontend/assets/js/marque.min.js"></script>
+    <!-- marque -->
+    <script src="frontend/assets/js/vanilla-tilt.min.js"></script>
+    <!-- Counter -->
+    <script src="frontend/assets/js/counter.min.js"></script>
+    <!-- main js -->
+    <script src="frontend/assets/js/main.js"></script>
+
+</body>
+</html>
+
     <script>
     document.addEventListener("DOMContentLoaded", function () {
         const heroText = document.querySelector(".hero-section p");
@@ -520,3 +526,4 @@
     });
 </script>
 @endsection
+

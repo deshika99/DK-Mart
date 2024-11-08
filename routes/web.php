@@ -13,6 +13,7 @@ use App\Http\Controllers\ShopPageController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerOrderController;
 
+
 //Affiliate_Dashboard Links
 use App\Http\Controllers\AffiliateProductController;
 use App\Http\Controllers\AffiliateCustomerController;
@@ -39,7 +40,14 @@ Route::get('/contact', function () {
     return view('frontend.contact');
 })->name('contact');
 
+
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+Route::get('/cart', function () {
+    return view('frontend.cart');
+})->name('cart');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -183,6 +191,19 @@ Route::post('/affiliate/dashboard/payment/realtime_tracking', [AffiliateReportCo
 
 require __DIR__.'/auth.php';
 
+
+
+
+
+Route::get('/register', function () {
+    return view('frontend.register');
+})->name('register');
+
+
+
+Route::get('/login', function () {
+    return view('frontend.login');
+})->name('login');
 
 
 
