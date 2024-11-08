@@ -29,4 +29,10 @@ class CustomerOrder extends Model
         'payment_status',
     ];
 
+    public function items()
+    {
+        return $this->hasMany(CustomerOrderItems::class, 'order_code', 'order_code');
+    }
+
+
 }
