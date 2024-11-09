@@ -20,6 +20,9 @@ use App\Http\Controllers\AffiliateLinkController;
 use App\Http\Controllers\AffiliateRulesController;
 use App\Http\Controllers\AffiliateDashboardController;
 
+use App\Http\Controllers\AffiliateUserController;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -103,6 +106,15 @@ Route::delete('/admin/edit_users/{id}', [UserController::class, 'destroy'])->nam
 
 
 //AffiliateDashBoard Links
+
+
+
+Route::view('/affiliate_register', 'AffiliateDashBoard.affRegister')->name('affiliate_register');
+Route::post('/affiliate/user_register', [AffiliateUserController::class, 'store'])->name('affiliate.register');
+
+
+
+
 Route::view('/home/affiliate/affiliate_home', 'aff_home')->name('aff_home');
 Route::post('/home/affiliate/register', [AffiliateCustomerController::class, 'register'])->name('aff_reg');
 Route::view('/home/affiliate/register/', 'aff_reg')->name('register_form');
