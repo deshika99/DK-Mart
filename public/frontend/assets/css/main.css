@@ -363,6 +363,10 @@
         font-size: 0.875rem;
     }
 }
+.common-input {
+    box-shadow: none !important;
+}
+
 
 .btn-sm {
     padding: 10px 16px !important;
@@ -1546,7 +1550,18 @@ input[type=number] {
 }
 
 .custom--range__prices {
-    width: 58px;
+    width: 150px;
+}
+.color-filter-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; 
+}
+
+.color-item {
+    width: calc(22% - 16px); 
+    flex: 0 1 auto;
+    text-align: center;
 }
 
 .custom--range input {
@@ -4415,6 +4430,12 @@ input:focus-visible {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.flex-left {
+    display: flex;
+    justify-content: left;
+    align-items: left;
 }
 
 .flex-between {
@@ -8319,18 +8340,18 @@ input:focus-visible {
     gap: clamp(0.75rem, -8.243rem + 12vw, 4.5rem);
 }
 
-/* Wrapper styles */
+
 .submenus-submenu-wrapper {
     overflow: unset;
 }
 
-/* Main Submenu Styling */
+
 .submenus-submenu {
     position: absolute;
     z-index: 10;
     background: hsl(var(--white));
     width: 300px;
-    inset-inline-start: 100%; /* Aligns next to parent category */
+    inset-inline-start: 100%; 
     inset-block-start: 0;
     border-radius: 6px;
     visibility: hidden;
@@ -8346,7 +8367,7 @@ input:focus-visible {
     opacity: 1;
 }
 
-/* Submenu list items */
+
 .submenus-submenu__list li a {
     padding: 10px 16px;
     padding-inline-start: 32px;
@@ -8355,7 +8376,6 @@ input:focus-visible {
     position: relative;
 }
 
-/* Bullet point for list items */
 .submenus-submenu__list li a::before {
     position: absolute;
     content: "";
@@ -8369,7 +8389,6 @@ input:focus-visible {
     transition: 0.2s linear;
 }
 
-/* Styling on hover */
 .submenus-submenu__list li a:hover {
     background-color: var(--gray-50);
     color: var(--gray-800);
@@ -8380,34 +8399,29 @@ input:focus-visible {
     background: var(--gray-600);
 }
 
-/* Sub-Submenu Styling */
+
 .sub-submenu-column {
     position: absolute;
     z-index: 1000 !important;
     background: hsl(var(--white));
     width: 300px;
-    left: 100%; /* Aligns next to subcategory */
+    left: 100%; 
     top: 0; 
     visibility: hidden;
     opacity: 0;
     overflow: hidden;
     transition: opacity 0.2s ease, visibility 0.2s ease;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    inset-inline-start: 100%; /* Aligns next to parent category */
-    inset-block-start: 0;
 }
 
 
-/* Show sub-submenu on hover */
-.has-sub-submenu:hover > .sub-submenu-column1 {
+.has-sub-submenu:hover > .sub-submenu-column {
     visibility: visible !important;
     opacity: 1 !important;
-    display: block; /* Add this line */
+    display: block; 
 }
 
 
-
-/* Sub-submenu list items */
 .sub-submenu li a {
     display: block;
     color: var(--gray-500);
@@ -8421,16 +8435,14 @@ input:focus-visible {
     font-weight: 600;
 }
 
-/* Ensure submenu and sub-submenu spacing is correct */
 .submenus-submenu__list, .sub-submenu {
     max-height: 300px;
     overflow-y: auto;
 }
 
 
-/* Base styling */
 .category-dropdown {
-    position: relative; /* Ensures dropdown aligns relative to this container */
+    position: relative; 
 }
 
 
@@ -8467,7 +8479,7 @@ input:focus-visible {
     background-color: #f0f0f0;
 }
 
-/* Submenu styling */
+
 .submenu {
     position: absolute;
     left: 100%;
@@ -8483,7 +8495,6 @@ input:focus-visible {
     display: block;
 }
 
-/* Subcategory list */
 .subcategory-list > li {
     position: relative;
 }
@@ -8499,7 +8510,6 @@ input:focus-visible {
     background-color: #f0f0f0;
 }
 
-/* Sub-submenu styling */
 .sub-submenu {
     position: absolute;
     left: 100%;
@@ -8515,7 +8525,7 @@ input:focus-visible {
     display: block;
 }
 
-/* Sub-subcategory list */
+
 .sub-subcategory-link {
     padding: 10px 16px;
     display: block;
@@ -8527,6 +8537,51 @@ input:focus-visible {
     background-color: #f0f0f0;
 }
 
+
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-initial {
+    background-color: #6c757d; /* Grey background */
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.profile-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+    color: #333;
+}
 
 
 
@@ -8865,17 +8920,21 @@ input:focus-visible {
     margin-block-start: auto;
 }
 
-.footer-item-wrapper {
-    gap: clamp(2rem, 0.715rem + 1.714vw, 2.75rem);
-}
-
 .footer-item-two-wrapper {
+    display: flex;
+    flex-wrap: wrap;
     gap: clamp(2rem, -4.209rem + 8.286vw, 5.625rem);
 }
 
-.footer-item__logo {
-    margin-block-end: 20px;
+.footer-item {
+    flex: 1 1 180px; /* Base size for all items, but can grow */
+    max-width: 100%;
 }
+
+.footer-item:first-child {
+    flex: 2 1 300px; /* First item takes up more space */
+}
+
 
 .footer-item__logo a img {
     width: 100%;
@@ -9420,11 +9479,24 @@ input:focus-visible {
     flex-direction: column;
     justify-content: space-between;
     align-items: start;
+    overflow: hidden; /* Ensure that the contents don't overflow */
+    position: relative; /* This is important for positioning the scaling effect */
+}
+
+.product-card__thumb {
+    overflow: hidden; /* Hide overflow from the image scaling */
+}
+
+.product-card__thumb img {
+    transition: transform 0.3s ease; /* Add a smooth transition */
+    width: 100%; /* Make sure the image takes the full width of the container */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .product-card:hover .product-card__thumb img {
-    transform: scale(1.2);
+    transform: scale(1.2); /* Scale effect on hover */
 }
+
 
 @media screen and (max-width: 1499px) {
     .product-card__cart {
@@ -9437,6 +9509,12 @@ input:focus-visible {
     border-radius: 16px 0 16px 0;
 }
 
+.product-image {
+    width: 200px;
+    height: 200px; 
+    object-fit: cover; 
+}
+
 .product-card__thumb {
     height: 232px;
     width: 100%;
@@ -9444,8 +9522,6 @@ input:focus-visible {
 }
 
 .product-card__thumb img {
-    max-width: 160px;
-    width: 100%;
     transition: 0.2s linear;
 }
 
@@ -10018,9 +10094,21 @@ input:focus-visible {
 }
 /* ================================= Testimonials Section Css End ==================================== */
 /* ============================ Product Details Css Start ============================= */
-.product-details__thumb-slider {
-    padding: clamp(3rem, -2.173rem + 10.777vw, 7.25rem);
+
+.img-responsive {
+    width: 100%;  
+    height: auto; 
+    border-radius: 15px; 
+    object-fit: cover; 
 }
+
+.product-details__thumb-slider .product-details__thumb,
+.product-details__images-slider .border {
+    border-radius: 15px; 
+    overflow: hidden; 
+}
+
+
 
 .product-details .slick-initialized.slick-slider .slick-slide > div > div {
     height: 100%;
@@ -10106,15 +10194,15 @@ input:focus-visible {
 /* ================================ Shop Page css End =============================== */
 /* ========================== Cart Page Css Start ============================ */
 .table-product__thumb {
-    max-width: 150px;
-    max-height: 150px;
-    width: 100%;
+    max-width: 50px;
+    max-height: 50px;
+    width: 80%;
     height: 100%;
     aspect-ratio: 1;
 }
 
 .table-product__thumb img {
-    max-width: 75px;
+    max-width: 55px;
 }
 
 /* ========================== Cart Page Css End ============================ */
@@ -10248,3 +10336,23 @@ input:focus-visible {
 
 /* ============================== Vendor Two Details Css End =============================== */
 /*# sourceMappingURL=main.css.map */
+
+
+.size_button {
+    padding: 5px;;
+    font-size: 13px;
+    border-radius: 5px;
+    border-color: #ccc; 
+    width: 30px;
+    height: 30px;
+}
+.size_button.active, .color-list__button.active {
+    border-color: #007bff; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+a.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+    cursor: not-allowed;
+}

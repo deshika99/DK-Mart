@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Title -->
-    <title> MarketPro - E-commerce HTML Template</title>
+    <title> DK-Mart</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="frontend/assets/images/logo/favicon.png">
 
@@ -60,90 +60,91 @@
    <!-- =============================== Account Section Start =========================== -->
 <section class="account d-flex justify-content-center align-items-center py-80" style="min-height: 100vh;">
     <div class="container container-lg">
-        <form action="#">
-            <div class="row gy-4 justify-content-center">
-                <!-- Register Card Start -->
-                <div class="col-xl-6 col-lg-8 col-md-10">
-                    <div class="border border-gray-100 hover-border-main-600 transition-1 rounded-16 px-24 py-40">
-                        <h6 class="text-xl mb-32 text-center">Register</h6>
-                        <div class="mb-24">
-                            <label for="usernameTwo" class="text-neutral-900 text-lg mb-8 fw-medium">Username <span class="text-danger">*</span></label>
-                            <input type="text" class="common-input w-100" id="usernameTwo" placeholder="Write a username">
+        <form method="POST" action="{{ route('register') }}">
+        @csrf
+
+        <div class="row gy-4 justify-content-center">
+            <!-- Register Card Start -->
+            <div class="col-xl-6 col-lg-8 col-md-10">
+                <div class="border border-gray-100 hover-border-main-600 transition-1 rounded-16 px-24 py-40">
+                    <h6 class="text-xl mb-32 text-center">Register</h6>
+
+                    <!-- Name -->
+                    <div class="mb-24">
+                        <x-input-label class="fw-bold" for="name" :value="__('Name')" />
+                        <span class="text-danger">*</span>
+                        <x-text-input id="name" class="common-input w-100" type="text" name="name" :value="old('name')" placeholder="Enter the name" required autofocus autocomplete="name" />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    </div>
+
+                    <!-- Address -->
+                    <div class="mb-24">
+                        <x-input-label class="fw-bold" for="address" :value="__('Address')" />
+                        <span class="text-danger">*</span>
+                        <x-text-input id="address" class="common-input w-100" type="text" name="address" :value="old('address')" placeholder="Enter Address" required autocomplete="address" />
+                        <x-input-error :messages="$errors->get('address')" class="mt-2" />
+                    </div>
+
+                    <!-- Date of Birth -->
+                    <div class="mb-24">
+                        <x-input-label class="fw-bold" for="dob" :value="__('Date of Birth')" />
+                        <span class="text-danger">*</span>
+                        <x-text-input id="dob" class="common-input w-100" type="date" name="dob" :value="old('dob')" placeholder="Enter Date of Birth" required autocomplete="bday" />
+                        <x-input-error :messages="$errors->get('dob')" class="mt-2" />
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="mb-24">
+                        <x-input-label class="fw-bold" for="phone" :value="__('Phone Number')" />
+                        <span class="text-danger">*</span>
+                        <x-text-input id="phone" class="common-input w-100" type="tel" name="phone" :value="old('phone')" placeholder="Enter Phone Number" required autocomplete="tel" />
+                        <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="mb-24">
+                        <x-input-label class="fw-bold" for="email" :value="__('Email address')" />
+                        <span class="text-danger">*</span>
+                        <x-text-input id="email" class="common-input w-100" type="email" name="email" :value="old('email')" placeholder="Enter Email Address" required autocomplete="username" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-24">
+                        <x-input-label class="fw-bold" for="password" :value="__('Password')" />
+                        <span class="text-danger">*</span>
+                        <div class="position-relative">
+                            <x-text-input id="password" class="common-input w-100" type="password" name="password" placeholder="Enter Password" required autocomplete="new-password" />
+                            <span class="toggle-password position-absolute top-50 inset-inline-end-0 me-16 translate-middle-y cursor-pointer ph ph-eye-slash" id="toggle-password"></span>
                         </div>
-                        <div class="mb-24">
-                            <label for="emailTwo" class="text-neutral-900 text-lg mb-8 fw-medium">Email address <span class="text-danger">*</span></label>
-                            <input type="email" class="common-input w-100" id="emailTwo" placeholder="Enter Email Address">
-                        </div>
-                        <div class="mb-24">
-                            <label for="enter-password" class="text-neutral-900 text-lg mb-8 fw-medium">Password <span class="text-danger">*</span></label>
-                            <div class="position-relative">
-                                <input type="password" class="common-input w-100" id="enter-password" placeholder="Enter Password">
-                                <span class="toggle-password position-absolute top-50 inset-inline-end-0 me-16 translate-middle-y cursor-pointer ph ph-eye-slash" id="#enter-password"></span>
-                            </div>
-                        </div>
-                        <div class="my-48">
-                            <p class="text-gray-500 text-center">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our 
-                                <a href="#" class="text-main-600 text-decoration-underline">privacy policy</a>.
-                            </p>
-                        </div>
-                        <div class="mt-48 text-center">
-                            <button type="submit" class="btn btn-main py-18 px-40">Register</button>
-                        </div>
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    </div>
+
+                    <!-- Privacy Policy -->
+                    <div class="my-48 text-center">
+                        <p class="text-gray-500">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our 
+                            <a href="#" class="text-main-600 text-decoration-underline">privacy policy</a>.
+                        </p>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="mt-48 text-center">
+                        <x-primary-button type="submit" class="btn py-18 px-40">
+                            {{ __('Register') }}
+                        </x-primary-button>
                     </div>
                 </div>
-                <!-- Register Card End -->
             </div>
-        </form>
+            <!-- Register Card End -->
+        </div>
+    </form>
+
     </div>
 </section>
 <!-- =============================== Account Section End =========================== -->
 
 
-    <!-- ========================== Shipping Section Start ============================ -->
- <section class="shipping mb-24" id="shipping">
-    <div class="container container-lg">
-        <div class="row gy-4">
-            <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
-                <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                    <span class="w-56 h-56 flex-center rounded-circle bg-main-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-car-profile"></i></span>
-                    <div class="">
-                        <h6 class="mb-0">Free Shipping</h6>
-                        <span class="text-sm text-heading">Free shipping all over the US</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
-                <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                    <span class="w-56 h-56 flex-center rounded-circle bg-main-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-hand-heart"></i></span>
-                    <div class="">
-                        <h6 class="mb-0"> 100% Satisfaction</h6>
-                        <span class="text-sm text-heading">Free shipping all over the US</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
-                <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                    <span class="w-56 h-56 flex-center rounded-circle bg-main-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-credit-card"></i></span>
-                    <div class="">
-                        <h6 class="mb-0"> Secure Payments</h6>
-                        <span class="text-sm text-heading">Free shipping all over the US</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
-                <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                    <span class="w-56 h-56 flex-center rounded-circle bg-main-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-chats"></i></span>
-                    <div class="">
-                        <h6 class="mb-0"> 24/7 Support</h6>
-                        <span class="text-sm text-heading">Free shipping all over the US</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
- </section>
-<!-- ========================== Shipping Section End ============================ -->
-    
+ 
     
 @include('includes.footer')
   
@@ -176,6 +177,24 @@
     <!-- main js -->
     <script src="frontend/assets/js/main.js"></script>
 
+<!-- JavaScript for Password Toggle -->
+<script>
+    document.getElementById('toggle-password').addEventListener('click', function () {
+        const passwordInput = document.getElementById('password');
+        const toggleIcon = document.getElementById('toggle-password');
+
+        // Toggle the input type
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.classList.remove('ph-eye-slash');
+            toggleIcon.classList.add('ph-eye');
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.classList.remove('ph-eye');
+            toggleIcon.classList.add('ph-eye-slash');
+        }
+    });
+</script>
 
 
     </body>

@@ -944,26 +944,8 @@
   // ========================= Product Details Thumbs Slider Js End ===================
 
   
-  // ========================= Increment & Decrement Js Start ===================
-  var minus = $('.quantity__minus');
-  var plus = $('.quantity__plus');
 
-  $(plus).on('click', function () {
-    var input = $(this).siblings('.quantity__input');
-    var value = input.val(); 
-    value++;
-    input.val(value); 
-  }); 
 
-  $(minus).on('click', function () {
-    var input = $(this).siblings('.quantity__input');
-    var value = input.val(); 
-    if(value > 1) {
-      value--;
-    }
-    input.val(value); 
-  }); 
-  // ========================= Increment & Decrement Js End ===================
 
   
   // ========================= Color List Js Start ===================
@@ -981,19 +963,7 @@
   // ========================= Color List Js End ===================
 
   // ========================== Range Slider Js Start =====================
-  $(function() {
-    $( "#slider-range" ).slider({
-        range: true,
-        min: 0,
-        max: 25,
-        values: [ 0, 25 ],
-        slide: function( event, ui ) {
-            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-        }
-    });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-    " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-  });
+ 
   // ========================== Range Slider Js End =====================
 
   
