@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="color-two font-exo">
 <head>
@@ -111,6 +112,7 @@
         }
 
     .story-section {
+
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px;
@@ -166,10 +168,7 @@
     width: 100%;
     height: auto;
 }
-.container {
-    margin:  auto;
-    padding: 20px;
-}
+
 .values-section {
     text-align: center;
     padding: 40px;
@@ -342,39 +341,13 @@
         .hero-section h1 { font-size: 28px; }
         .hero-section p { font-size: 18px; }
     }
+
 </style>
-</head> 
-<body>
-<header>
-@include('includes.navbar-2')
-</header>
-    
-<!-- ========================= Breadcrumb Start =============================== -->
-<div class="breadcrumb mb-0 py-26 bg-main-two-50">
-    <div class="container container-lg">
-        <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
-            <h6 class="mb-0">About Us</h6>
-            <ul class="flex-align gap-8 flex-wrap">
-                <li class="text-sm">
-                    <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
-                        <i class="ph ph-house"></i>
-                        Home
-                    </a>
-                </li>
-                <li class="flex-align">
-                    <i class="ph ph-caret-right"></i>
-                </li>
-                <li class="text-sm text-main-600"> About Us </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- ========================= Breadcrumb End =============================== -->
 
-
-<!--<section class="hero-section">
+<section class="hero-section">
     <h1>Delivering happiness on the go!</h1>
     <p>Happy Shopping</p>
+
 </section>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -383,41 +356,7 @@
             heroText.style.opacity = "1";
         }, 4000);
     });
-</script> -->
-
-<section class="hero-section">
-        <div class="hero-left">
-            <h1>Delivering happiness on the go!</h1>
-            <h4>Happy Shopping</h4>
-        </div>
-        <div class="hero-right">
-            <p><strong>
-                Welcome to DK-Mart, your trusted e-commerce platform where quality, convenience, and affordability
-                 meet. We believe that shopping should be a straightforward, enjoyable experience, so we’ve crafted 
-                 DK-Mart to bring you a world of products from diverse categories like electronics, fashion, home essentials, 
-                 and more, all at your fingertips.
-            </strong></p>
-            <p>
-                Founded with the customer in mind, DK-Mart aims to be more than just an online store. Our mission 
-                is to redefine the shopping experience by offering a curated selection of high-quality items from 
-                top brands and reliable suppliers. Every product in our catalog is carefully chosen to ensure that 
-                it meets our high standards for quality, durability, and value.
-            </p>
-            <p style="color:#771d1d;">Thank you for choosing DK-Mart. We’re excited to be your partner in fulfilling your shopping needs,
-                 and we look forward to delivering an exceptional online experience every time you visit!</p>
-        </div>
-    </section>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const heroText = document.querySelectorAll(".hero-right p");
-            heroText.forEach((p, index) => {
-                setTimeout(() => {
-                    p.style.opacity = "1";
-                }, index * 1000);
-            });
-        });
-    </script>
+</script>
 
 
 <section class="story-section">
@@ -586,6 +525,7 @@
         </div>
     </section>
 
+
     @include('includes.footer')     
     <!-- Jquery js -->
     <script src="frontend/assets/js/jquery-3.7.1.min.js"></script>
@@ -616,3 +556,14 @@
 
 </body>
 </html>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const heroText = document.querySelector(".hero-section p");
+        setTimeout(() => {
+            heroText.style.opacity = "1";
+        }, 4000); 
+    });
+</script>
+@endsection
+
