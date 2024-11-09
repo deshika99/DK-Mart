@@ -343,20 +343,39 @@
     }
 
 </style>
+</head>
+<body>
+<header>
+@include('includes.navbar-2')
+</header>
 
 <section class="hero-section">
-    <h1>Delivering happiness on the go!</h1>
-    <p>Happy Shopping</p>
+        <div class="hero-left">
+            <h1>Delivering happiness on the go!</h1>
+            <h4>Happy Shopping</h4>
+        </div>
+        <div class="hero-right">
+            <p><strong>
+                Welcome to DK-Mart, your trusted e-commerce platform where quality, convenience, and affordability meet. We believe that shopping should be a straightforward, enjoyable experience, so we’ve crafted DK-Mart to bring you a world of products from diverse categories like electronics, fashion, home essentials, and more, all at your fingertips.
+            </strong></p>
+            <p>
+                Founded with the customer in mind, DK-Mart aims to be more than just an online store. Our mission is to redefine the shopping experience by offering a curated selection of high-quality items from top brands and reliable suppliers. Every product in our catalog is carefully chosen to ensure that it meets our high standards for quality, durability, and value.
+            </p>
+           
+            <p style="color: #771d1d;">Thank you for choosing DK-Mart. We’re excited to be your partner in fulfilling your shopping needs, and we look forward to delivering an exceptional online experience every time you visit!</p>
+        </div>
+    </section>
 
-</section>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const heroText = document.querySelector(".hero-section p");
-        setTimeout(() => {
-            heroText.style.opacity = "1";
-        }, 4000);
-    });
-</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const heroText = document.querySelectorAll(".hero-right p");
+            heroText.forEach((p, index) => {
+                setTimeout(() => {
+                    p.style.opacity = "1";
+                }, index * 1000);
+            });
+        });
+    </script>
 
 
 <section class="story-section">
@@ -524,8 +543,7 @@
             <p>Free & Easy Return</p>
         </div>
     </section>
-
-
+    
     @include('includes.footer')     
     <!-- Jquery js -->
     <script src="frontend/assets/js/jquery-3.7.1.min.js"></script>
@@ -556,14 +574,3 @@
 
 </body>
 </html>
-
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const heroText = document.querySelector(".hero-section p");
-        setTimeout(() => {
-            heroText.style.opacity = "1";
-        }, 4000); 
-    });
-</script>
-@endsection
-
