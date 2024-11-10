@@ -2,21 +2,63 @@
     .footer-item-two-wrapper {
         gap: 10px;
     }
-
-    .footer-item {
-        margin-right: 35px;
-        
-    }
 </style>
+<!-- ========================== Shipping Section Start ============================ -->
+    <section class="shipping mb-80 mt-80" id="shipping">
+        <div class="container container-lg">
+            <div class="row gy-4">
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
+                        <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-car-profile"></i></span>
+                        <div class="">
+                            <h6 class="mb-0">Free Shipping</h6>
+                            <span class="text-sm text-heading">Free shipping all over the US</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
+                        <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-hand-heart"></i></span>
+                        <div class="">
+                            <h6 class="mb-0"> 100% Satisfaction</h6>
+                            <span class="text-sm text-heading">Free shipping all over the US</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
+                        <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-credit-card"></i></span>
+                        <div class="">
+                            <h6 class="mb-0"> Secure Payments</h6>
+                            <span class="text-sm text-heading">Free shipping all over the US</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
+                        <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-chats"></i></span>
+                        <div class="">
+                            <h6 class="mb-0"> 24/7 Support</h6>
+                            <span class="text-sm text-heading">Free shipping all over the US</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================== Shipping Section End ============================ -->
+
 <!-- ==================== Footer Two Start Here ==================== -->
 <footer class="footer py-40 overflow-hidden" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border: 1px solid #e0e0e0;">
 
     <div class="container container-lg" style="margin-right: 20px; margin-left:20px;">
 
         <div class="footer-item-two-wrapper d-flex align-items-start flex-wrap">
-            <div class="footer-item max-w-275" data-aos="fade-up" data-aos-duration="200"style="margin-bottom: 0;margin-bottom: 0; ">
-                <div class="footer-item__logo"style="margin-left: 100px; margin-bottom: 0;margin-bottom: 0;">
-                    <a href="index.html"> <img src="frontend/assets/images/logo/logo-two-black.png" alt=""style="width: 90px; height:90px; max-height: 90px; min-height: 90px;"></a>
+
+            <div class="footer-item max-w-275" data-aos="fade-up" data-aos-duration="200">
+                <div class="footer-item__logo">
+                    <a href="index.html"> <img src="{{ asset('frontend/assets/images/logo/logo-two-black.png')}} " alt=""></a>
+
                 </div>
                 <p class="mb-24">DK Mart  become the largest computer parts, gaming pc parts, and other IT related products.</p>
                 <div class="flex-align gap-16 mb-16">

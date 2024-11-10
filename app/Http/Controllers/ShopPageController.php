@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product; 
 use App\Models\Category;
+use App\Models\CustomerOrderItems;
+
 
 class ShopPageController extends Controller
 {
@@ -44,7 +46,14 @@ class ShopPageController extends Controller
         // Filter by price
         $products = $query->whereBetween('normal_price', [$minPrice, $maxPrice])->paginate(20);
         $categories = Category::withCount('products')->get(); 
-    
+
+        // Get the quantity ordered 
+        foreach ($products as $product) {
+            $orderedQuantity = CustomerOrderItems::where('product_id', $product->id)->sum('quantity');
+            $product->sold_quantity = $orderedQuantity;
+            $product->total_quantity = $orderedQuantity + $product->quantity;
+        }
+        
         return view('frontend.shop', compact('products', 'categories', 'minPrice', 'maxPrice', 'categoryId', 'subcategoryId', 'subsubcategoryId', 'color'));
     }
     
@@ -61,7 +70,7 @@ class ShopPageController extends Controller
         $similarProducts = Product::where('category_id', $product->category_id)
                                   ->where('product_id', '!=', $product_id)
                                   ->with(['images', 'variations'])
-                                  ->take(10) // Limit the number of similar products
+                                  ->take(10) 
                                   ->get();
     
         return view('frontend.product-details', compact('product', 'similarProducts'));

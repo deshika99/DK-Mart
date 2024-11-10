@@ -1,3 +1,7 @@
+@extends ('frontend.master')
+
+@section('content')
+
 
 <!DOCTYPE html>
 <html lang="en" class="color-two font-exo">
@@ -110,6 +114,7 @@
             text-align: justify;
             line-height: 1.6;
         }
+
 
     .story-section {
 
@@ -574,3 +579,17 @@
 
 </body>
 </html>
+
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const heroText = document.querySelector(".hero-section p");
+        setTimeout(() => {
+            heroText.style.opacity = "1";
+        }, 4000); 
+    });
+</script>
+
+@endsection
+
+
