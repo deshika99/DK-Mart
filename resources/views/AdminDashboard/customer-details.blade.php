@@ -145,7 +145,6 @@
                                         <th scope="col">Order ID</th>
                                         <th scope="col">Date</th> 
                                         <th scope="col">Items</th>
-                                        <th scope="col">Quantity</th>
                                         <th scope="col">Amount</th>
                                         <th scope="col">Status</th>
                                     </tr>
@@ -189,12 +188,12 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>{{ $order->quantity }}</td>
                                             <td>Rs {{ $order->total_cost }}</td>
                                             <td>
-                                                <span class="status {{ strtolower(str_replace(' ', '-', $order->status)) }} fw-bold">
+                                                <span class="status {{ strtolower(str_replace(' ', '-', $order->status)) }}">
                                                     {{ $order->status }}
                                                 </span>
+
                                             </td>
                                         </tr>
                                     @endforeach
