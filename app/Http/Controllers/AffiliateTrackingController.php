@@ -12,15 +12,23 @@ class AffiliateTrackingController extends Controller
 {
     public function index()
     {
-        $raffleTickets = RaffleTicket::with('user')->get();
+        // Retrieve the affiliate user ID from the session
+        $AffiliateId = session('affiliate_user_id');
+
+        // Fetch raffle tickets related to this affiliate user, if needed
+        $raffleTickets = RaffleTicket::with('user')
+                        ->where('user_id', $AffiliateId) // assuming RaffleTicket has an affiliate_id column
+                        ->get();
+
+        // Pass data to the view
         return view('AffiliateDashBoard.trackingid', compact('raffleTickets'));
     }
+
 
     // Store a new raffle ticket
     public function store(Request $request)
     {
-        $customerId = Session::get('customer_id');
-        
+        $AffiliateId = Session::get('affiliate_user_id');
         
         // Define custom messages
         $messages = [
@@ -38,7 +46,7 @@ class AffiliateTrackingController extends Controller
 
         // Create and save the raffle ticket
         $raffleTicket = RaffleTicket::create([
-            'user_id' => 1,
+            'user_id' => $AffiliateId,
             'token' => $request->tracking_id,
             'status' => 'Pending', // Set a default status
         ]);

@@ -5,29 +5,20 @@
 <html lang="en">
 <body>
 
-    @if (session('success'))
+<!-- Display Flash Messages -->
+<div class="container pt-4 px-4">
+    @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    @endif
-
-    @if (session('error'))
+    @elseif(session('error'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             {{ session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul class="mb-0">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+</div>
 
     <section class="content-main">
         <div class="content-header">
@@ -62,9 +53,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>User Name</th>
                                         <th>Token</th>
-                                        <th>Status</th>
                                         <th>Created At</th>
                                         <th class="text-end">Actions</th>
                                     </tr>
@@ -73,9 +62,7 @@
                                     @foreach ($raffleTickets as $ticket)
                                         <tr>
                                             <td>{{ $ticket->id }}</td>
-                                            <td>{{ $ticket->user->name }}</td>
                                             <td>{{ $ticket->token }}</td>
-                                            <td>{{ $ticket->status }}</td>
                                             <td>{{ $ticket->created_at->format('Y-m-d') }}</td>
                                             <td class="text-end">
                                                 

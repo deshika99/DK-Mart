@@ -89,9 +89,10 @@
                         <!-- Promo Link Section -->
                         <div class="mb-3">
                             <label class="form-label">Product Link:</label>
-                            <input type="text" value="{{ url('product/' . $product->product_id) }}" class="form-control" readonly>
-                            <button type="button" class="btn btn-secondary mt-2" onclick="copyLink('{{ url('product/' . $product->product_id) }}')">Copy Link</button>
+                            <input type="text" value="{{ url('product-details/' . $product->product_id) }}" class="form-control" readonly>
+                            <button type="button" class="btn btn-secondary mt-2" onclick="copyLink('{{ url('product-details/' . $product->product_id) }}')">Copy Link</button>
                         </div>
+
 
                         <!-- Promo Materials Section -->
                         <div class="mb-3">

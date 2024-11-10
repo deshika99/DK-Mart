@@ -21,4 +21,16 @@ class RaffleTicket extends Model
     {
         return $this->belongsTo(AffiliateUser::class);
     }
+
+    public function affiliateLinks()
+    {
+        return $this->hasMany(AffiliateLink::class);
+    }
+
+    public function affiliateReferrals()
+    {
+        return $this->hasMany(AffiliateReferral::class, 'raffle_ticket_id');
+    }
+
+
 }

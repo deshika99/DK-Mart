@@ -49,4 +49,16 @@ class AffiliateUser extends Model
     {
         $this->attributes['password'] = Hash::make($value);
     }
+
+    public function affiliateLinks()
+    {
+        return $this->hasMany(AffiliateLink::class, 'user_id');
+    }
+    
+    public function affiliateReferrals()
+    {
+        return $this->hasMany(AffiliateReferral::class, 'user_id');
+    }
+
+
 }

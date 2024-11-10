@@ -11,6 +11,56 @@ class AffiliateUserController extends Controller
 {
     
 
+    // Show all affiliate users
+    public function showAffiliates()
+    {
+        $affiliates = AffiliateUser::all();
+        return view('AdminDashboard.affiliate_customers', compact('affiliates'));
+    }
+
+    // Update affiliate user status
+    public function updateStatus($id, $status)
+    {
+        $affiliate = AffiliateUser::findOrFail($id);
+        $affiliate->status = $status;
+        $affiliate->save();
+
+        return redirect()->route('affiliate_customers')->with('status', 'Affiliate status updated successfully!');
+    }
+
+    // Handle the login logic
+    public function login(Request $request)
+    {
+        // Validate the incoming request
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
+
+        // Attempt to retrieve the user with the provided email
+        $user = AffiliateUser::where('email', $request->email)->first();
+
+        // Check if the user exists, is approved, and the password matches
+        if ($user && $user->status === 'approved' && Hash::check($request->password, $user->password)) {
+            // Login the user by saving their ID in the session
+            session(['affiliate_user_id' => $user->id]);
+            
+            return redirect()->route('affiliate')->with('status', 'Logging Success...!,Welcome to your dashboard!');
+        }
+
+        // If authentication fails, return with an error
+        return back()->withErrors(['error' => 'Invalid login credentials or account not approved.']);
+    }
+
+    // Optional: Method for logging out
+    public function logout()
+    {
+        session()->forget('affiliate_user_id');
+        return redirect()->route('affiliate_login')->with('status', 'Logged out successfully.');
+    }
+    
+    
+
     public function store(Request $request)
     {
         $request->merge([
