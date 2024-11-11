@@ -118,6 +118,17 @@ Route::delete('/admin/orders/{order}', [OrderController::class, 'destroy'])->nam
 Route::get('/admin/order-details/{orderCode}', [OrderController::class, 'showOrderDetails'])->name('order-details');
 
 
+Route::patch('/order/update-status/{order_code}', [OrderController::class, 'updateStatus'])->name('order.updateStatus');
+
+Route::view('/admin/affiliate_customers', 'AdminDashboard.affiliate_customers')->name('affiliate_customers');
+
+Route::get('/admin/affiliate_rules', [AffiliateRulesController::class, 'index'])->name('affiliate_rules');
+Route::post('/admin/affiliate_rules', [AffiliateRulesController::class, 'store'])->name('admin_rules.store');
+Route::delete('/admin/affiliate_rules/{id}', [AffiliateRulesController::class, 'destroy'])->name('affiliate_rules.destroy');
+Route::put('/admin/affiliate_rules/{id}', [AffiliateRulesController::class, 'update'])->name('admin_users.update');
+
+Route::view('/admin/affiliate_withdrawals', 'AdminDashboard.affiliate_withdrawals')->name('affiliate_withdrawals');
+
 Route::view('/admin/Affiliatecustomer-details', 'AdminDashboard.Affiliatecustomer-details')->name('Affiliatecustomer-details');
 Route::get('/admin/affiliate_customers', [AffiliateUserController::class, 'showAffiliates'])->name('affiliate_customers');
 Route::post('/admin/affiliates/{id}/status/{status}', [AffiliateUserController::class, 'updateStatus'])->name('admin.affiliates.updateStatus');
@@ -135,7 +146,6 @@ Route::view('/admin/role_list', 'AdminDashboard.role_list')->name('role_list');
 
 Route::get('/admin/manage_company', [CompanySettingsController::class, 'index'])->name('manage_company');
 Route::post('/admin/manage_company', [CompanySettingsController::class, 'store'])->name('manage_company.store');
-
 
 Route::resource('system_users', UserController::class);
 Route::get('/admin/users', [UserController::class, 'show'])->name('users');
@@ -224,7 +234,6 @@ require __DIR__.'/auth.php';
 Route::get('/register', function () {
     return view('frontend.register');
 })->name('register');
-
 
 
 
