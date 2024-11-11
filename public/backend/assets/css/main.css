@@ -3944,3 +3944,44 @@ footer.main-footer {
     display: none;
   }
 }/*# sourceMappingURL=main.css.map */
+
+
+.status {
+  padding: 3px 7px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 400;
+}
+
+/* Define specific colors for each status */
+.status.confirmed {
+  background-color: #dab851; /* Green for confirmed */
+}
+
+.status.pending {
+  background-color: #ffc107; /* Yellow for pending */
+}
+
+.status.paid {
+  background-color: #17a2b8; /* Teal for paid */
+}
+
+.status.in-progress {
+  background-color: #007bff; /* Blue for in-progress */
+}
+
+.status.shipped {
+  background-color: #6c757d; /* Gray for shipped */
+}
+
+.status.delivered {
+  background-color: #4caf50; /* Dark green for delivered */
+}
+
+.status.cancelled {
+  background-color: #dc3545; /* Red for cancelled */
+}
+
+.status.returned {
+  background-color: #ff5722; /* Orange for returned */
+}

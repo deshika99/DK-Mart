@@ -14,7 +14,7 @@ use App\Http\Controllers\ShopPageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerOrderController;
-
+use App\Http\Controllers\OrderController;
 
 //Affiliate_Dashboard Links
 use App\Http\Controllers\AffiliateProductController;
@@ -113,9 +113,10 @@ Route::delete('/admin/categories/{category}', [CategoryController::class, 'destr
 Route::get('/admin/customers', [CustomerController::class, 'show'])->name('customers');
 Route::get('/admin/customer-details/{user_id}', [CustomerController::class, 'showCustomerDetails'])->name('customer-details');
 
+Route::get('/admin/orders', [OrderController::class, 'index'])->name('orders');
+Route::delete('/admin/orders/{order}', [OrderController::class, 'destroy'])->name('order.delete');
+Route::get('/admin/order-details/{orderCode}', [OrderController::class, 'showOrderDetails'])->name('order-details');
 
-Route::view('/admin/orders', 'AdminDashboard.orders')->name('orders');
-Route::view('/admin/order-details', 'AdminDashboard.order-details')->name('order-details');
 
 Route::view('/admin/Affiliatecustomer-details', 'AdminDashboard.Affiliatecustomer-details')->name('Affiliatecustomer-details');
 Route::get('/admin/affiliate_customers', [AffiliateUserController::class, 'showAffiliates'])->name('affiliate_customers');
