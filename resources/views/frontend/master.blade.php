@@ -9,7 +9,7 @@
     <!-- Title -->
     <title> DK-Mart</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('frontend/assets/images/logo/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('frontend/assets/images/web-app-manifest-192x192.png') }}">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">

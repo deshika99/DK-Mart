@@ -30,11 +30,6 @@ use App\Http\Controllers\AffiliateUserController;
 
 
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -64,7 +59,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin',[AdminTemplateController::class,'index'])->name('admin.index');
 Route::get('/affiliate',[AffiliateTemplateController::class,'index'])->name('affiliate');
-Route::get('/home',[HomeTemplateController::class,'index'])->name('home');
+Route::get('/',[HomeTemplateController::class,'index'])->name('home');
 
 Route::get('/shop', [ShopPageController::class, 'index'])->name('shop.index');
 Route::get('/shop/category/{category}', [ShopPageController::class, 'filterByCategory'])->name('shop.filterByCategory');
@@ -158,7 +153,7 @@ Route::view('/affiliate_register', 'AffiliateDashBoard.affRegister')->name('affi
 Route::post('/affiliate/user_register', [AffiliateUserController::class, 'store'])->name('affiliate.register');
 Route::view('/affiliate_login', 'AffiliateDashBoard.affLogin')->name('affiliate_login');
 Route::post('/affiliate/login', [AffiliateUserController::class, 'login'])->name('affiliate.login.submit');
-
+Route::view('/affiliate_home', 'AffiliateDashBoard.affiliate_home')->name('affiliate_home');
 
 
 
