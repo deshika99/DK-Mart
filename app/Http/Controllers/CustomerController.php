@@ -10,10 +10,11 @@ class CustomerController extends Controller
 
     public function show()
     {
-        $customers = User::withCount('customerOrders')->get();
+       
+        $customers = User::withCount('customerOrders')->paginate(10); 
         return view('AdminDashboard.customer', compact('customers'));
-    
     }
+    
 
 
     public function showCustomerDetails($user_id)

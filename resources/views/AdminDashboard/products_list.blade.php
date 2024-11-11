@@ -73,10 +73,10 @@
                                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm me-2">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;">
+                                            <form id="deleteForm{{ $product->id }}" action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?');">
+                                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('deleteForm{{ $product->id }}', 'Are you sure you want to delete this product?')">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>

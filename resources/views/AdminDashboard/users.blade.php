@@ -72,6 +72,7 @@
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
+                                             
                                             </div>
                                         </td>
                                     </tr>

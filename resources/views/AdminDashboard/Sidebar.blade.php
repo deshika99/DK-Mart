@@ -39,11 +39,23 @@
                             <span class="text">Customers</span>
                         </a>
                     </li>
-                    <li class="menu-item {{ request()->routeIs('affiliate_customers') ? 'active' : '' }}">
-                        <a class="menu-link" href="{{ route('affiliate_customers') }}">
-                        <i class="icon material-icons md-groups"></i>
-                            <span class="text">Affiliate Customers</span>
+
+                    <li class="menu-item has-submenu {{ request()->is('admin/affiliate*') || request()->is('admin/affiliate_rules*') || request()->is('admin/affiliate_withdrawals*') ? 'active' : '' }}">
+                        <a class="menu-link" href="#">
+                            <i class="icon material-icons md-share"></i>
+                            <span class="text">Affiliate</span>
                         </a>
+                        <div class="submenu {{ request()->is('admin/affiliate*') || request()->is('admin/affiliate_rules*') || request()->is('admin/affiliate_withdrawals*') ? 'show' : '' }}">
+                            <a href="{{ route('affiliate_customers') }}" class="{{ request()->is('admin/affiliate_customers') ? 'active' : '' }}">
+                            Affiliate Customers
+                            </a>
+                            <a href="{{ route('affiliate_rules') }}" class="{{ request()->is('admin/affiliate_rules') ? 'active' : '' }}">
+                            Affiliate Rules
+                            </a>
+                            <a href="{{ route('affiliate_withdrawals') }}" class="{{ request()->is('admin/affiliate_withdrawals') ? 'active' : '' }}">
+                            Affiliate Withdrawals
+                            </a>
+                        </div>
                     </li>
                     <li class="menu-item {{ request()->routeIs('orders') ? 'active' : '' }}">
                         <a class="menu-link" href="{{ route('orders') }}">
