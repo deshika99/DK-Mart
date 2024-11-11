@@ -1,62 +1,10 @@
+
 @extends ('frontend.master')
 
 
-<!DOCTYPE html>
-<html lang="en" class="color-two font-exo">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title -->
-    <title> MarketPro - E-commerce HTML Template</title>
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="frontend/assets/images/logo/favicon.png">
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="frontend/assets/css/bootstrap.min.css">
-    <!-- select 2 -->
-    <link rel="stylesheet" href="frontend/assets/css/select2.min.css">
-    <!-- Slick -->
-    <link rel="stylesheet" href="frontend/assets/css/slick.css">
-    <!-- Jquery Ui -->
-    <link rel="stylesheet" href="frontend/assets/css/jquery-ui.css">
-    <!-- animate -->
-    <link rel="stylesheet" href="frontend/assets/css/animate.css">
-    <!-- AOS Animation -->
-    <link rel="stylesheet" href="frontend/assets/css/aos.css">
-    <!-- Main css -->
-    <link rel="stylesheet" href="frontend/assets/css/main.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head> 
-<body>
-<header>
-@include('includes.navbar-2')
-</header>
-    
-<!-- ========================= Breadcrumb Start =============================== -->
-<div class="mb-0 breadcrumb py-26 bg-main-two-50">
-    <div class="container container-lg">
-        <div class="flex-wrap gap-16 breadcrumb-wrapper flex-between">
-            <h6 class="mb-0">About Us</h6>
-            <ul class="flex-wrap gap-8 flex-align">
-                <li class="text-sm">
-                    <a href="index.html" class="gap-8 text-gray-900 flex-align hover-text-main-600">
-                        <i class="ph ph-house"></i>
-                        Home
-                    </a>
-                </li>
-                <li class="flex-align">
-                    <i class="ph ph-caret-right"></i>
-                </li>
-                <li class="text-sm text-main-600"> About Us </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- ========================= Breadcrumb End =============================== -->
+    <style>
 
-
-<style>
           .hero-section {
             display: flex;
             align-items: center;
@@ -372,7 +320,30 @@
         .hero-section p { font-size: 18px; }
     }
 
-</style>
+    </style>
+
+    <!-- ========================= Breadcrumb Start =============================== -->
+<div class="breadcrumb mb-0 py-26 bg-main-two-50">
+    <div class="container container-lg">
+        <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
+            <h6 class="mb-0">Contact</h6>
+            <ul class="flex-align gap-8 flex-wrap">
+                <li class="text-sm">
+                    <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
+                        <i class="ph ph-house"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="flex-align">
+                    <i class="ph ph-caret-right"></i>
+                </li>
+                <li class="text-sm text-main-600"> About Us </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- ========================= Breadcrumb End =============================== -->
+
 
 <section class="hero-section">
         <div class="hero-left">
@@ -568,49 +539,8 @@
             <p>Free & Easy Return</p>
         </div>
     </section>
-      
-    <!-- Jquery js -->
-    <script src="frontend/assets/js/jquery-3.7.1.min.js"></script>
-    <!-- Bootstrap Bundle Js -->
-    <script src="frontend/assets/js/boostrap.bundle.min.js"></script>
-    <!-- Bootstrap Bundle Js -->
-    <script src="frontend/assets/js/phosphor-icon.js"></script>
-    <!-- Select 2 -->
-    <script src="frontend/assets/js/select2.min.js"></script>
-    <!-- Slick js -->
-    <script src="frontend/assets/js/slick.min.js"></script>
-    <!-- Slick js -->
-    <script src="frontend/assets/js/count-down.js"></script>
-    <!-- jquery UI js -->
-    <script src="frontend/assets/js/jquery-ui.js"></script>
-    <!-- wow js -->
-    <script src="frontend/assets/js/wow.min.js"></script>
-    <!-- AOS Animation -->
-    <script src="frontend/assets/js/aos.js"></script>
-    <!-- marque -->
-    <script src="frontend/assets/js/marque.min.js"></script>
-    <!-- marque -->
-    <script src="frontend/assets/js/vanilla-tilt.min.js"></script>
-    <!-- Counter -->
-    <script src="frontend/assets/js/counter.min.js"></script>
-    <!-- main js -->
-    <script src="frontend/assets/js/main.js"></script>
 
-</body>
-</html>
-
-
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const heroText = document.querySelector(".hero-section p");
-        setTimeout(() => {
-            heroText.style.opacity = "1";
-        }, 4000); 
-    });
-</script>
-
-
-@endsection
-
-
+    
+    
+    @endsection
 
