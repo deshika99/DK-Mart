@@ -346,7 +346,7 @@
 </head>
 <body>
 <header>
-@include('includes.navbar-2')
+
 </header>
 
 <section class="hero-section">
@@ -544,7 +544,7 @@
         </div>
     </section>
     
-    @include('includes.footer')     
+     
     <!-- Jquery js -->
     <script src="frontend/assets/js/jquery-3.7.1.min.js"></script>
     <!-- Bootstrap Bundle Js -->
