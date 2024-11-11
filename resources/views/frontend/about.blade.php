@@ -1,7 +1,7 @@
+
 @extends ('frontend.master')
 
 @section('content')
-
 
 
     <style>
@@ -87,6 +87,7 @@
             text-align: justify;
             line-height: 1.6;
         }
+
 
     .story-section {
 
@@ -537,5 +538,5 @@
         </div>
     </section>
     
-     
+    
     @endsection
