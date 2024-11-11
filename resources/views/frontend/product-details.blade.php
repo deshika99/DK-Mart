@@ -153,6 +153,7 @@ a.disabled {
                                 </div>
                             @endif
 
+                        
                             <!-- Colors Section -->
                             @if ($product->variations->pluck('hex_value')->filter()->unique()->isNotEmpty())
                                 <div class="flex-between align-items-center flex-wrap gap-16 mt-4">
@@ -161,13 +162,14 @@ a.disabled {
                                         @foreach ($product->variations->pluck('hex_value')->filter()->unique() as $color)
                                             <button type="button" 
                                                     class="color-list__button w-24 h-24 border border-2 border-gray-50 rounded-circle me-2"
-                                                    style="background-color: {{ $color }};"
+                                                    style="background-color: {{ $color }};" 
                                                     data-color="{{ $color }}">
                                             </button>
                                         @endforeach
                                     </div>
                                 </div>
                             @endif
+
                             </div>
                             
                             <span class="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block"></span>
@@ -225,10 +227,14 @@ a.disabled {
                             </button>
                         </form>
 
+
                     <!-- Buy Now Button -->
-                    <a href="#" id="buyNowBtn" class="btn btn-outline-main rounded-8 fw-normal mt-16 w-100 @if ($product->quantity == 0) disabled @endif">
-                        Buy Now
+                    <a href="{{ route('buyNow.checkout', ['product_id' => $product->id]) }}" 
+                    id="buyNowBtn" 
+                    class="btn btn-outline-main rounded-8 fw-normal mt-16 w-100 @if ($product->quantity == 0) disabled @endif">
+                    Buy Now
                     </a>
+
 
                     @else
                         <p class="text-danger">Please <a href="{{ route('login') }}">log in</a> to add items to the cart.</p>
@@ -533,50 +539,7 @@ a.disabled {
 
 <!-- ========================== Similar Product End ============================= -->
     
-    <!-- ========================== Shipping Section Start ============================ -->
- <section class="shipping mb-24" id="shipping">
-    <div class="container container-lg">
-        <div class="row gy-4">
-            <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
-                <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                    <span class="w-56 h-56 flex-center rounded-circle bg-main-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-car-profile"></i></span>
-                    <div class="">
-                        <h6 class="mb-0">Free Shipping</h6>
-                        <span class="text-sm text-heading">Free shipping all over the US</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
-                <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                    <span class="w-56 h-56 flex-center rounded-circle bg-main-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-hand-heart"></i></span>
-                    <div class="">
-                        <h6 class="mb-0"> 100% Satisfaction</h6>
-                        <span class="text-sm text-heading">Free shipping all over the US</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
-                <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                    <span class="w-56 h-56 flex-center rounded-circle bg-main-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-credit-card"></i></span>
-                    <div class="">
-                        <h6 class="mb-0"> Secure Payments</h6>
-                        <span class="text-sm text-heading">Free shipping all over the US</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
-                <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                    <span class="w-56 h-56 flex-center rounded-circle bg-main-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-chats"></i></span>
-                    <div class="">
-                        <h6 class="mb-0"> 24/7 Support</h6>
-                        <span class="text-sm text-heading">Free shipping all over the US</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
- </section>
-<!-- ========================== Shipping Section End ============================ -->
+ 
 
     <!-- =============================== Newsletter Section Start ============================ -->
 <div class="newsletter">
@@ -709,38 +672,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Handle Buy Now button click
-    document.getElementById('buyNowBtn').addEventListener('click', function(e) {
-    e.preventDefault(); 
+   
+}); 
+</script>
 
-    // Check if product has size/color and if they're selected
-    if ((productHasSize && !selectedSize) || (productHasColor && !selectedColor)) {
-        Swal.fire({
-            title: 'Warning!',
-            text: 'Please select both a size and a color to proceed.',
-            icon: 'warning',
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    let selectedSize = null;
+    let selectedColor = null;
+
+    const productHasSize = document.querySelectorAll('.size_button').length > 0;
+    const productHasColor = document.querySelectorAll('.color-list__button').length > 0;
+
+    // Size selection event listener
+    document.querySelectorAll('.size_button').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.size_button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            selectedSize = button.getAttribute('data-size');
         });
-    } else {
-        if ({{ $product->quantity }} > 0) {
-            // Prevent multiple submissions by disabling the button
-            document.getElementById('buyNowBtn').disabled = true;
+    });
 
-            // Submit the form
-            document.getElementById('addToCartForm').submit();
+    // Color selection event listener
+    document.querySelectorAll('.color-list__button').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.color-list__button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            selectedColor = button.getAttribute('data-color').replace('#', ''); 
+        });
+    });
 
-            // Add a small delay to ensure form submission is processed
-            setTimeout(function() {
-                window.location.href = '{{ route('cart') }}';
-            }, 500);
-        } else {
+    // Handle "Buy Now" button click
+    document.getElementById('buyNowBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const quantity = document.getElementById('quantityInput').value || 1;
+
+        if ((productHasSize && !selectedSize) || (productHasColor && !selectedColor)) {
             Swal.fire({
-                title: 'Out of Stock',
-                text: 'This product is currently out of stock.',
+                title: 'Warning!',
+                text: 'Please select both a size and a color to proceed.',
                 icon: 'warning',
                 toast: true,
                 position: 'top-end',
@@ -748,20 +720,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 timer: 3000,
                 timerProgressBar: true
             });
+        } else {
+            const url = new URL("{{ url('/buy-now-checkout/' . $product->id) }}");
+            url.searchParams.append('selectedSize', selectedSize || '');
+            url.searchParams.append('selectedColor', selectedColor || ''); 
+            url.searchParams.append('quantity', quantity);
+            window.location.href = url;
         }
-    }
+    });
 });
 
-    // Disable Buy Now button if product is out of stock
-    if ({{ $product->quantity }} === 0) {
-        const buyNowBtn = document.getElementById('buyNowBtn');
-        buyNowBtn.classList.add('disabled');
-        buyNowBtn.addEventListener('click', function(e) {
-            e.preventDefault(); 
-        });
-    }
-}); 
-</script>
 
-
+</script> 
 @endsection

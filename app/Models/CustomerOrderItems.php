@@ -21,4 +21,9 @@ class CustomerOrderItems extends Model
         return $this->belongsTo(CustomerOrder::class, 'order_code', 'order_code');
     }
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id'); 
+    }
+
 }

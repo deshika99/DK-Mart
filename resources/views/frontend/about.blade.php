@@ -1,3 +1,5 @@
+@extends ('frontend.master')
+
 
 <!DOCTYPE html>
 <html lang="en" class="color-two font-exo">
@@ -53,90 +55,124 @@
 </div>
 <!-- ========================= Breadcrumb End =============================== -->
 
+
 <style>
-    .hero-section {
-        background-image: url('images/aboutus1.jpg');
-        background-size: cover;
-        color: white;
-        background-position: center;
-        background-repeat: no-repeat;
-        text-align: center;
-        padding: 100px 20px;
-        height: 120vh;
-        position: relative;
-    }
-    .hero-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.4);
-        z-index: 1;
-    }
-    .hero-section h1 {
-        font-size: 54px;
-        color: white;
-        position: relative;
-        z-index: 2;
-        font-family: 'Noteworthy';
-        position: absolute;
-        bottom: 170px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-weight: bold;
-        white-space: nowrap;
-        overflow: hidden;
-        border-right: 2px solid white;
-        animation: typing 4s steps(30, end), blink 0.75s step-end infinite;
-    }
-    .hero-section p {
-        font-size: 40px;
-        color: white;
-        position: relative;
-        z-index: 2;
-        font-family: Noteworthy;
-        font-weight: bold;
-        opacity: 0;
-        position: absolute;
-        bottom: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        animation: fadeIn 2s forwards 2s;
-    }
-    
+          .hero-section {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 40px;
+            margin-top: 40px;
+        }
+        .hero-left {
+            flex: 1;
+            padding: 10px;
+            text-align: left;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .hero-left h1, .hero-left h4 {
+            margin: 0;
+            color: #333;
+            animation: slideIn 2s ease-out;
+        }
+        .hero-left h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #bd0f0f;
+            font-family: georgia;
+        }
+        .hero-left h4 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: orange;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .hero-right {
+            flex: 2;
+            padding: 20px;
+            text-align: justify;
+            background-color: #f9fafb;
+        }
+        .hero-right p {
+            opacity: 0;
+
+        }
+
+        .mission-vision-section {
+            display: flex;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            margin-top: 50px;
+            text-align: center;
+        }
+        .box {
+            flex: 1;
+            padding: 20px;
+            background-color: #fdf2f2; 
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .box h2 {
+            margin-top: 0;
+            color:  #bd0f0f;
+            align: center;
+            margin-bottom: 20px;
+            position: relative;
+            font-size: 1.5rem;
+            font-family: georgia
+        }
+        .box p {
+            color: #555;
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+
     .story-section {
 
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px;
     text-align: center;
-    background-color: white;
+    background-color: #fdfdea;
+
 }
 .story-title {
-    font-size: 28px;
+    font-size: 14px;
     color: #333;
     margin-bottom: 20px;
     font-weight: bold;
     position: relative;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family: georgia;
 }
 .underline-curve {
-    width: 60px;
+    width: 80px;
     height: 4px;
     background-color: #bd0f0f;
-    margin: 5px auto 20px;
+    margin: 5px auto 10px;
     border-radius: 10px;
     position: relative;
 }
 .underline-curve::before{
     content: '';
     position: absolute;
-    top: -6px;
+    top: -3px;
     left: -10px;
-    width: 80px;
+    width: 100px;
     height: 10px;
     background-color:  #bd0f0f;
     border-radius: 20px;
@@ -167,6 +203,7 @@
     text-align: center;
     padding: 40px;
     max-width: 1400px;
+    height: auto;
     margin: 0 auto;   
 }
 .values-section h2 {
@@ -175,7 +212,7 @@
     margin-bottom: 20px;
     font-weight: bold;
     position: relative;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family: georgia;
 }
 .values-container {
@@ -192,29 +229,33 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
+    
+    
 }
 .values-item {
     display: flex;
     align-items: center;
     align-items: flex-start;
     text-align: justify;
+    margin-bottom: 15px;
 }
 .values-item img {
     width: 40px;
     height: 40px;
     margin-right: 15px;
-}..
+}
 .values-item h3 {
-    color: #FF6F00;
-    
-    margin-bottom: 10px;
+    color: #c27803;
+    font-size: 1.0rem;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 .values-item p {
     margin-top: 0;
-   
+    margin-bottom: 0;
     color: white;
     text-align: justify;
+    font-size: 0.8rem;
 }
 .values-right {
     flex: 1;
@@ -249,7 +290,7 @@
             margin-bottom: 20px;
             font-weight: bold;
             position: relative;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-family: georgia;
         }
        .promise-content img {
@@ -295,7 +336,7 @@
            margin-bottom: 20px;
            font-weight: bold;
            position: relative;
-           font-size: 2rem;
+           font-size: 1.5rem;
            font-family: georgia;
 }
 
@@ -333,39 +374,58 @@
 
 </style>
 
-
 <section class="hero-section">
-    <h1>Delivering happiness on the go!</h1>
-    <p>Happy Shopping</p>
+        <div class="hero-left">
+            <h1>Delivering happiness on the go!</h1>
+            <h4>Happy Shopping</h4>
+        </div>
+        <div class="hero-right">
+            <p><strong>
+                Welcome to DK-Mart, your trusted e-commerce platform where quality, convenience, and affordability meet. We believe that shopping should be a straightforward, enjoyable experience, so we’ve crafted DK-Mart to bring you a world of products from diverse categories like electronics, fashion, home essentials, and more, all at your fingertips.
+            </strong></p>
+            <p>
+                Founded with the customer in mind, DK-Mart aims to be more than just an online store. Our mission is to redefine the shopping experience by offering a curated selection of high-quality items from top brands and reliable suppliers. Every product in our catalog is carefully chosen to ensure that it meets our high standards for quality, durability, and value.
+            </p>
+           
+            <p style="color: #771d1d;">Thank you for choosing DK-Mart. We’re excited to be your partner in fulfilling your shopping needs, and we look forward to delivering an exceptional online experience every time you visit!</p>
+        </div>
+    </section>
 
-</section>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const heroText = document.querySelector(".hero-section p");
-        setTimeout(() => {
-            heroText.style.opacity = "1";
-        }, 4000);
-    });
-</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const heroText = document.querySelectorAll(".hero-right p");
+            heroText.forEach((p, index) => {
+                setTimeout(() => {
+                    p.style.opacity = "1";
+                }, index * 1000);
+            });
+        });
+    </script>
 
 
 <section class="story-section">
         <h2 class="story-title">Our Story</h2>
-        <div class="underline-curve"></div>
+        
         <div class="story-content">
             <div class="story-text">
-                <p>Launched in 2012, Daraz is South Asias premier online shopping marketplace with an active presence in Pakistan, Bangladesh, Sri Lanka, Myanmar and Nepal.</p>
-                <p>Supported by a wide range of tailored marketing, data, and service solutions, Daraz has 30,000 sellers and 500 brands and serves 5 million consumers across the region.</p>
-                <p>Daraz has more than 2.5 million products to offer, growing at a very fast pace. Daraz offers a diverse assortment in categories ranging from consumer electronics to household goods, beauty, fashion, sports equipment, and groceries.</p>
-                <p>Daraz is focused on providing an excellent customer experience, ease-of-purchase, comprehensive customer care and a hassle-free shopping and returns experience.</p>
+                <p>Launched in 2012, Daraz is South Asias premier online shopping marketplace with an active presence in Pakistan,
+                     Bangladesh, Sri Lanka, Myanmar and Nepal.</p>
+                <p>Supported by a wide range of tailored marketing, data, and service solutions, Daraz has 30,000 sellers and 500
+                     brands and serves 5 million consumers across the region.</p>
+                <p>Daraz has more than 2.5 million products to offer, growing at a very fast pace. Daraz offers a diverse
+                     assortment in categories ranging from consumer electronics to household goods, beauty, fashion, sports
+                      equipment, and groceries.</p>
+                <p>Daraz is focused on providing an excellent customer experience, ease-of-purchase, comprehensive customer
+                     care and a hassle-free shopping and returns experience.</p>
                 <p>Daraz was acquired by Alibaba Group in May 2018.</p>
             </div>
         </div>
     </section>
 
+
 <div class="container values-section">
     <h2>Our Values</h2>
-    <div class="underline-curve"></div>
+    
     <div class="values-container">
         <div class="values-left">
             <div class="values-item">
@@ -407,14 +467,35 @@
     </div>
 </div>
 
+<section class="mission-vision-section">
+        <div class="box">
+            <h2>Our Mission</h2>
+            
+            <p>At DK-Mart, our mission is to empower our customers by providing an exceptional online shopping 
+                experience through high-quality, affordable products and outstanding service. We are committed 
+                to building a trusted platform where convenience, quality, and customer satisfaction come first,
+                 ensuring that our customers can find everything they need in one place. We aim to foster
+                 long-lasting relationships with our customers by continually improving our offerings and 
+                 upholding our commitment to excellence.</p>
+        </div>
+        <div class="box">
 
+            <h2>Our Vision</h2> 
+            <p>Our vision is to become a leader in e-commerce by setting new standards in quality, affordability,
+                 and customer experience. We aspire to be recognized not only for our wide range of products but 
+                 also for our integrity, reliability, and innovation. Through continuous growth, expansion, and 
+                 the adoption of cutting-edge technology, we aim to transform DK-Mart into a global destination 
+                 for all online shopping needs, helping customers simplify their lives and make informed, 
+                 satisfying choices.</p>
+        </div>
+    </section>
 
 <section class="promise-section">
         <h2>Our Promise</h2>
-        <div class="underline-curve">
+        
         </div>
         <div class="promise-content">
-            <img src="images/twg.jpg" alt="images">
+            <img src="images/aboutus1.jpg" alt="images">
             <div class="promise-text">
                 <div class="promise-item">
                     <i class="icon">📱</i>
@@ -458,15 +539,18 @@
     
     <section class="empowering-section">
         <h2>Empowering Sellers on DK-Mart</h2>
-        <div class="underline-curve"></div>
+        
         <p>Daraz puts utmost focus on empowering It's sellers, they form the backbone of our market place. 
             With our new and cutting edge systems we provide incredible 
-            levels of control and ownership to our sellers so they can manage their shops effectirely and efficiently
+            levels of control and ownership to our sellers so they can manage their shops effectirely and
+             efficiently
 
-        <p>From promotional and sales maximisation tools to order tracking, performance reports, real-time analytics and
+        <p>From promotional and sales maximisation tools to order tracking, performance reports, real-time
+             analytics and
             industry benchmarking, their growth is only limited by the effort and dedication they commit</p>
 
-        <p>We are incredibly proud of the success stories that have emerged from our marketplace in the past and actively 
+        <p>We are incredibly proud of the success stories that have emerged from our marketplace in the 
+            past and actively 
             look forward to welcoming many more!</p>
     </section>
 
@@ -484,9 +568,7 @@
             <p>Free & Easy Return</p>
         </div>
     </section>
-
-
-    @include('includes.footer')     
+      
     <!-- Jquery js -->
     <script src="frontend/assets/js/jquery-3.7.1.min.js"></script>
     <!-- Bootstrap Bundle Js -->
@@ -517,6 +599,7 @@
 </body>
 </html>
 
+
     <script>
     document.addEventListener("DOMContentLoaded", function () {
         const heroText = document.querySelector(".hero-section p");
@@ -525,5 +608,9 @@
         }, 4000); 
     });
 </script>
+
+
+@endsection
+
 
 

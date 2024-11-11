@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\CustomerOrder;
 use App\Models\CustomerOrderItems;
 use Illuminate\Http\Request;
@@ -11,12 +12,43 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use App\Models\RaffleTicket;
+use App\Models\AffiliateReferral;
+
 
 class CustomerOrderController extends Controller
 {
 
+    public function trackReferral($tracking_id, $product_id)
+    {
+        // Find the raffle ticket by the tracking ID
+        $raffleTicket = RaffleTicket::where('token', $tracking_id)->first();
+
+        if ($raffleTicket) {
+            // Find the specific referral record by raffle_ticket_id and product_id
+            $referral = AffiliateReferral::where('raffle_ticket_id', $raffleTicket->id)
+                                        ->where('product_url', 'like', '%' . $product_id . '%')
+                                        ->first();
+
+            if ($referral) {
+                // Retrieve the product details to get the affiliate price
+                $product = Product::where('product_id', $product_id)->first();
+
+                if ($product && $product->affiliate_price) {
+                    // Increment the referral count
+                    $referral->increment('referral_count');
+
+                    // Calculate and add the affiliate commission based on affiliate price
+                    $referral->total_affiliate_price += $referral->affiliate_commission;
+                    $referral->save(); // Save the updated referral with the new commission
+                }
+            }
+        }
+    }
+
     public function placeOrder(Request $request)
     {
+        dd($request);
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -66,13 +98,29 @@ class CustomerOrderController extends Controller
                 'payment_method' => $request->input('payment_method', null),
                 'payment_status' => 'Pending',
             ]);
-    
+            
+            $tracking_id = session('tracking_id'); // Retrieve the tracking ID from session
+            $this->trackReferral($tracking_id, $item['product_id']);
+
+            dd($tracking_id);
+
             // Save each item to the customer_order_items table
             foreach ($cartItems as $item) {
 
                 if (!isset($item->product_id, $item->quantity, $item->price)) {
                     continue; 
                 }
+
+                // Reduce the quantity of the product
+                $product = \App\Models\Product::find($item->product_id);
+                if ($product) {
+                    $product->quantity = max(0, $product->quantity - $item->quantity); 
+                    $product->save();
+                }
+
+               
+                
+
     
                     CustomerOrderItems::create([
                         'order_code' => $orderCode,
@@ -89,7 +137,7 @@ class CustomerOrderController extends Controller
             // Clear the cart items from the database after the order is placed
             \App\Models\CartItem::where('user_id', $user->id)->delete();
     
-            return redirect()->route('checkout')->with('success', 'Order placed successfully!');
+            return redirect()->route('payment', ['order_code' => $orderCode])->with('success', 'Order placed successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred while placing the order. Please try again.');
         }
@@ -97,5 +145,71 @@ class CustomerOrderController extends Controller
     
     
 
+
+    public function buynow_placeOrder(Request $request)
+    {
+        $userId = Auth::id();
+        $orderCode = 'ORD-' . strtoupper(Str::random(8));
+        $deliveryFee = 300;
+        $subtotal = 0;
+
+        // Calculate subtotal based on the products in the request
+        if ($request->has('products') && is_array($request->products)) {
+            foreach ($request->products as $product) {
+                $itemSubtotal = $product['cost'] * $product['quantity'];
+                $subtotal += $itemSubtotal;
+            }
+        } else {
+            return redirect()->back()->with('error', 'No products selected');
+        }
+
+    $total = $subtotal + $deliveryFee;
     
+        $order = CustomerOrder::create([
+            'order_code' => $orderCode,
+            'user_id' => $userId,
+            'customer_name' => $request->first_name . ' ' . $request->last_name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'house_no' => $request->house_no,
+            'apartment' => $request->apartment,
+            'city' => $request->city,
+            'postal_code' => $request->postal_code,
+            'date' => Carbon::now(),
+            'total_cost' => $total,
+            'status' => 'Confirmed',
+            'payment_method' => $request->input('payment_method', null),
+            'payment_status' => 'Pending',
+        ]);
+    
+        if ($request->has('products') && is_array($request->products)) {
+            foreach ($request->products as $product) {
+                $itemSubtotal = $product['cost'] * $product['quantity'];
+    
+                CustomerOrderItems::create([
+                    'order_code' => $orderCode,
+                    'product_id' => $product['product_id'],
+                    'quantity' => $product['quantity'],
+                    'size' => $product['size'],
+                    'color' => $product['color'],
+                    'cost' => $itemSubtotal,
+                    'date' => Carbon::now(),
+                ]);
+            }
+        } else {
+            return redirect()->back()->with('error', 'No products selected');
+        }
+    
+        foreach ($request->products as $product) {
+            $productRecord = Product::find($product['product_id']);
+            $productRecord->decrement('quantity', $product['quantity']);
+        }
+    
+        return redirect()->route('payment', ['order_code' => $orderCode])->with('success', 'Order placed successfully!');
+
+    }
+    
+
+
+
 }
