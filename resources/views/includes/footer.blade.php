@@ -129,7 +129,7 @@
                         <a href="shop.html" class="text-gray-600 hover-text-main-600">Become a Vendor</a>
                     </li>
                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Affiliate Program</a>
+                        <a href="{{ route('affiliate_home') }}" class="text-gray-600 hover-text-main-600">Affiliate Program</a>
                     </li>
                     <li class="mb-16">
                         <a href="shop.html" class="text-gray-600 hover-text-main-600">Privacy Policy</a>

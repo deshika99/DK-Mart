@@ -127,6 +127,6 @@ class AffiliateUserController extends Controller
         $customer->save();
 
         // Redirect to a success page with a session message
-        return redirect()->route('affiliate_register')->with('status', 'Affiliate account created successfully!');
+        return redirect()->route('affiliate_login')->with('status', 'Affiliate account created successfully!');
     }
 }

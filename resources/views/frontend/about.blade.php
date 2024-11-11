@@ -1,10 +1,10 @@
 
 @extends ('frontend.master')
 
-@section('content')
 
 
     <style>
+
           .hero-section {
             display: flex;
             align-items: center;
@@ -319,6 +319,7 @@
         .hero-section h1 { font-size: 28px; }
         .hero-section p { font-size: 18px; }
     }
+
     </style>
 
     <!-- ========================= Breadcrumb Start =============================== -->
@@ -342,6 +343,7 @@
     </div>
 </div>
 <!-- ========================= Breadcrumb End =============================== -->
+
 
 <section class="hero-section">
         <div class="hero-left">
@@ -537,6 +539,8 @@
             <p>Free & Easy Return</p>
         </div>
     </section>
+
     
     
     @endsection
+
