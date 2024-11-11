@@ -2,36 +2,7 @@
 
 @section('content')
 
-
-<!DOCTYPE html>
-<html lang="en" class="color-two font-exo">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title -->
-    <title> MarketPro - E-commerce HTML Template</title>
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="frontend/assets/images/logo/favicon.png">
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="frontend/assets/css/bootstrap.min.css">
-    <!-- select 2 -->
-    <link rel="stylesheet" href="frontend/assets/css/select2.min.css">
-    <!-- Slick -->
-    <link rel="stylesheet" href="frontend/assets/css/slick.css">
-    <!-- Jquery Ui -->
-    <link rel="stylesheet" href="frontend/assets/css/jquery-ui.css">
-    <!-- animate -->
-    <link rel="stylesheet" href="frontend/assets/css/animate.css">
-    <!-- AOS Animation -->
-    <link rel="stylesheet" href="frontend/assets/css/aos.css">
-    <!-- Main css -->
-    <link rel="stylesheet" href="frontend/assets/css/main.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-
-    <style>
+<style>
           .hero-section {
             display: flex;
             align-items: center;
@@ -348,11 +319,6 @@
     }
 
 </style>
-</head>
-<body>
-<header>
-@include('includes.navbar-2')
-</header>
 
 <section class="hero-section">
         <div class="hero-left">
@@ -548,8 +514,7 @@
             <p>Free & Easy Return</p>
         </div>
     </section>
-    
-    @include('includes.footer')     
+      
     <!-- Jquery js -->
     <script src="frontend/assets/js/jquery-3.7.1.min.js"></script>
     <!-- Bootstrap Bundle Js -->

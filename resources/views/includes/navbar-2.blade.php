@@ -295,7 +295,7 @@
 <div class="header-menu d-lg-block d-none">
     <ul class="nav-menu flex-align ">
         <li class="nav-menu__item">
-            <a href="/home" class="nav-menu__link">Home</a>
+            <a href="/" class="nav-menu__link">Home</a>
         </li>
         <li class="nav-menu__item">
             <a href="/shop" class="nav-menu__link">Shop</a>
