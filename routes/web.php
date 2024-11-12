@@ -241,6 +241,10 @@ Route::post('/affiliate/dashboard/payment/realtime_tracking', [AffiliateReportCo
 
 require __DIR__.'/auth.php';
 
+//user dashboard
+Route::get('home/My-Account', function () {
+    return view('user_dashboard.dashboard');
+})->name('dashboard');
 
 
 
