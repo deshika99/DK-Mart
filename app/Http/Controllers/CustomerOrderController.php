@@ -137,7 +137,7 @@ class CustomerOrderController extends Controller
             // Clear the cart items from the database after the order is placed
             \App\Models\CartItem::where('user_id', $user->id)->delete();
     
-            return redirect()->route('payment', ['order_code' => $orderCode])->with('success', 'Order placed successfully!');
+            return redirect()->route('payment', ['order_code' => $orderCode]);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred while placing the order. Please try again.');
         }
@@ -205,7 +205,7 @@ class CustomerOrderController extends Controller
             $productRecord->decrement('quantity', $product['quantity']);
         }
     
-        return redirect()->route('payment', ['order_code' => $orderCode])->with('success', 'Order placed successfully!');
+        return redirect()->route('payment', ['order_code' => $orderCode]);
 
     }
     

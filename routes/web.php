@@ -116,7 +116,7 @@ Route::get('/admin/customer-details/{user_id}', [CustomerController::class, 'sho
 Route::get('/admin/orders', [OrderController::class, 'index'])->name('orders');
 Route::delete('/admin/orders/{order}', [OrderController::class, 'destroy'])->name('order.delete');
 Route::get('/admin/order-details/{orderCode}', [OrderController::class, 'showOrderDetails'])->name('order-details');
-
+Route::patch('/order/update-status/{order_code}', [OrderController::class, 'updateStatus'])->name('order.updateStatus');
 
 Route::patch('/order/update-status/{order_code}', [OrderController::class, 'updateStatus'])->name('order.updateStatus');
 
@@ -231,6 +231,7 @@ require __DIR__.'/auth.php';
 Route::get('home/My-Account', function () {
     return view('user_dashboard.dashboard');
 })->name('dashboard');
+
 
 
 

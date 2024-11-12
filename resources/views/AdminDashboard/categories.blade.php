@@ -61,16 +61,15 @@
                                         <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm me-2">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="#" class="btn btn-danger btn-sm" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $category->id }}').submit();">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                        <form id="delete-form-{{ $category->id }}" action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: none;">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
+                                         <form id="deleteForm{{ $category->id }}" action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('deleteForm{{ $category->id }}', 'Are you sure you want to delete this category?')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
                                     </div>
-                                </td>
-
+                                    </td>
                                     </td>
                                 </tr>
                             @endforeach
@@ -196,7 +195,7 @@
 
     document.getElementById('saveCategoryBtn').addEventListener('click', function() {
     const formData = new FormData(document.getElementById('createCategoryForm'));
-    
+
     // Prepare subcategories
     const subcategories = [];
     const subcategoryWrappers = document.querySelectorAll('.subcategory-wrapper');
@@ -215,15 +214,12 @@
         subcategories.push(subcategory);
     });
 
-
     subcategories.forEach((subcat, index) => {
         formData.append(`subcategories[${index}][name]`, subcat.name);
         subcat.sub_subcategories.forEach((subSubcat, subSubIndex) => {
             formData.append(`subcategories[${index}][sub_subcategories][${subSubIndex}][name]`, subSubcat.name);
         });
     });
-
-    console.log("Form Data to be sent:", Object.fromEntries(formData));
 
     fetch('{{ route('categories.store') }}', {
         method: 'POST',
@@ -232,17 +228,22 @@
             'X-CSRF-TOKEN': '{{ csrf_token() }}',
         }
     })
-    .then(response => response.json())
+    .then(response => response.text())
     .then(data => {
-        if (data.success) {
-            alert(data.success);
-            location.reload();
-        }
+
+        var modal = bootstrap.Modal.getInstance(document.getElementById('createCategoryModal'));
+        modal.hide();
+
+        Swal.fire('Success', 'Category created successfully!', 'success').then(() => {
+            location.reload(); 
+        });
     })
     .catch(error => {
         console.error('Error:', error);
+        Swal.fire('Error', 'There was an issue saving the category.', 'error');
     });
 });
+
 
 
 </script>

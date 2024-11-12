@@ -47,7 +47,9 @@ class CategoryController extends Controller
                 }
             }
         }
-        return response()->json(['success' => 'Category created successfully!']);
+        
+    session()->flash('success', 'Category created successfully!');
+    return redirect()->back();
     }
     
 

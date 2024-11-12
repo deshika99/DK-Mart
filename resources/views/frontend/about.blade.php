@@ -1,94 +1,31 @@
-
 @extends ('frontend.master')
 
+@section('content')
 
 
-    <style>
-
-          .hero-section {
-            display: flex;
-            align-items: center;
-            background-color: white;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            margin-bottom: 40px;
-            margin-top: 40px;
-        }
-        .hero-left {
-            flex: 1;
-            padding: 10px;
-            text-align: left;
-            animation: fadeIn 2s ease-in-out;
-        }
-        .hero-left h1, .hero-left h4 {
-            margin: 0;
-            color: #333;
-            animation: slideIn 2s ease-out;
-        }
-        .hero-left h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-            color: #bd0f0f;
-            font-family: georgia;
-        }
-        .hero-left h4 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: orange;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideIn {
-            from { transform: translateX(-50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        .hero-right {
-            flex: 2;
-            padding: 20px;
-            text-align: justify;
-            background-color: #f9fafb;
-        }
-        .hero-right p {
-            opacity: 0;
-
-        }
-
-        .mission-vision-section {
-            display: flex;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            justify-content: space-between;
-            margin-bottom: 50px;
-            margin-top: 50px;
-            text-align: center;
-        }
-        .box {
-            flex: 1;
-            padding: 20px;
-            background-color: #fdf2f2; 
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .box h2 {
-            margin-top: 0;
-            color:  #bd0f0f;
-            align: center;
-            margin-bottom: 20px;
-            position: relative;
-            font-size: 1.5rem;
-            font-family: georgia
-        }
-        .box p {
-            color: #555;
-            text-align: justify;
-            line-height: 1.6;
-        }
-
-
+    
+<!-- ========================= Breadcrumb Start =============================== -->
+<div class="breadcrumb mb-0 py-26 bg-main-two-50">
+    <div class="container container-lg">
+        <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
+            <h6 class="mb-0">About Us</h6>
+            <ul class="flex-align gap-8 flex-wrap">
+                <li class="text-sm">
+                    <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
+                        <i class="ph ph-house"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="flex-align">
+                    <i class="ph ph-caret-right"></i>
+                </li>
+                <li class="text-sm text-main-600"> About Us </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- ========================= Breadcrumb End =============================== -->
+<style>
     .story-section {
 
     max-width: 1200px;
@@ -362,17 +299,7 @@
         </div>
     </section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const heroText = document.querySelectorAll(".hero-right p");
-            heroText.forEach((p, index) => {
-                setTimeout(() => {
-                    p.style.opacity = "1";
-                }, index * 1000);
-            });
-        });
-    </script>
-
+</section>
 
 <section class="story-section">
         <h2 class="story-title">Our Story</h2>
@@ -540,7 +467,15 @@
         </div>
     </section>
 
-    
-    
-    @endsection
+
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const heroText = document.querySelector(".hero-section p");
+        setTimeout(() => {
+            heroText.style.opacity = "1";
+        }, 4000); 
+    });
+</script>
+@endsection
 
