@@ -201,13 +201,14 @@
     </div>
 
 
-    <a href="wishlist.html" class="flex-align flex-column gap-8 item-hover-two">
+    <a href="{{ route('wishlist') }}" class="flex-align flex-column gap-8 item-hover-two">
         <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
             <i class="ph ph-heart"></i>
-            <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>
+            <span id="wishlist-count" class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">0</span>
         </span>
         <span class="text-md text-white item-hover__text d-none d-lg-flex">Wishlist</span>
     </a>
+
 
     
     <a href="{{ route ('cart') }}" class="flex-align flex-column gap-8 item-hover-two ml-10" style="margin-right:30px;">

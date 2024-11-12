@@ -18,6 +18,22 @@ class AffiliateUserController extends Controller
         return view('AdminDashboard.affiliate_customers', compact('affiliates'));
     }
 
+    
+  
+
+    public function showDetails($id)
+    {
+        $affiliate = AffiliateUser::findOrFail($id);
+    
+        // Decode the promotion_method if it's a JSON string
+        if ($affiliate && is_string($affiliate->promotion_method)) {
+            $affiliate->promotion_method = json_decode($affiliate->promotion_method, true);
+        }
+    
+        return view('AdminDashboard.Affiliatecustomer-details', compact('affiliate'));
+
+    }
+
     // Update affiliate user status
     public function updateStatus($id, $status)
     {
@@ -25,7 +41,7 @@ class AffiliateUserController extends Controller
         $affiliate->status = $status;
         $affiliate->save();
 
-        return redirect()->route('affiliate_customers')->with('status', 'Affiliate status updated successfully!');
+        return redirect()->route('affiliate_customers')->with('success', 'Affiliate status updated successfully!');
     }
 
     // Handle the login logic
@@ -129,4 +145,7 @@ class AffiliateUserController extends Controller
         // Redirect to a success page with a session message
         return redirect()->route('affiliate_login')->with('status', 'Affiliate account created successfully!');
     }
+
+
+
 }

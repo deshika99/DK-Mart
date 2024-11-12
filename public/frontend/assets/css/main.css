@@ -10343,7 +10343,7 @@ input:focus-visible {
     font-size: 13px;
     border-radius: 5px;
     border-color: #ccc; 
-    width: 30px;
+    width: 35px;
     height: 30px;
 }
 .size_button.active, .color-list__button.active {
@@ -10355,4 +10355,42 @@ a.disabled {
     pointer-events: none;
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+.cart-empty-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%; 
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 48px 40px; 
+}
+
+.wishlist .container {
+    max-width: 1200px; /* Or your desired width */
+}
+
+
+.heart-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.heart-icon .fa-heart {
+    color: black;
+    transition: color 0.3s, transform 0.2s ease-in-out;
+}
+
+.heart-icon.active .fa-heart {
+    color: red; 
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.heart-icon.active i {
+    class: "fa-solid fa-heart"; 
 }

@@ -147,8 +147,17 @@
                                             <span class="text-xs fw-medium text-gray-500">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by DK Mart</span>
-
+                                        <div class="flex-align mb-20 mt-16 gap-6">
+                                            <div class="rating-info d-flex gap-2">
+                                                <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by DK Mart</span>
+                                            </div>
+                                            <!-- Heart Icon -->
+                                            <button type="button" class="heart-icon ms-auto" 
+                                                    id="wishlist-icon-{{ $product->product_id }}" 
+                                                    onclick="toggleWishlist(this, '{{ $product->product_id }}')">
+                                                <i class="fa-regular fa-heart" style="font-size: 15px;"></i>
+                                            </button>
+                                        </div>
                                         <div class="product-card__price mt-16 mb-30">
                                             @if($product->normal_price > $product->total_price)
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through">${{ $product->normal_price }}</span>
@@ -325,10 +334,20 @@
                                     <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" alt="{{ $product->product_name }}" class="w-auto max-w-unset" style="width: 200px; height: 200px; object-fit: cover;">
                                 </a>
                                 <div class="product-card__content mt-16">
-                                    <div class="flex-align gap-6">
-                                        <span class="text-xs fw-medium text-gray-500">{{ $product->rating ?? '4.8' }}</span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-xs fw-medium text-gray-500">({{ $product->review_count ?? '17k' }})</span>
+                                    <div class="flex-align mb-20 mt-16 gap-6">
+                                        <div class="rating-info d-flex gap-2">
+                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                            <span class="text-15 fw-medium text-warning-600 d-flex">
+                                                <i class="ph-fill ph-star"></i>
+                                            </span>
+                                            <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                        </div>
+                                        <!-- Heart Icon -->
+                                        <button type="button" class="heart-icon ms-auto" 
+                                                id="wishlist-icon-{{ $product->product_id }}" 
+                                                onclick="toggleWishlist(this, '{{ $product->product_id }}')">
+                                            <i class="fa-regular fa-heart" style="font-size: 15px;"></i>
+                                        </button>
                                     </div>
                                     <h6 class="title text-lg fw-semibold mt-12 mb-8">
                                         <a href="{{ route('showProductDetails', $product->product_id) }}" class="link text-line-2" tabindex="0">{{ $product->product_name }}</a>
@@ -2924,5 +2943,67 @@
         </div>
     </div>
     <!-- =============================== Newsletter-two Section End ============================ -->
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const productIds = [...document.querySelectorAll('.heart-icon')].map(button => button.id.replace('wishlist-icon-', ''));
 
+    // Fetch wishlist status for all products on the page
+    fetch('/wishlist/check-multiple', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ product_ids: productIds })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Loop through each product and update the icon if it's in the wishlist
+        data.wishlist.forEach(productId => {
+            const heartIcon = document.querySelector(`#wishlist-icon-${productId}`);
+            if (heartIcon) {
+                heartIcon.classList.add('active');
+                const icon = heartIcon.querySelector('i');
+                icon.classList.replace('fa-regular', 'fa-solid');
+                icon.style.color = 'red';
+            }
+        });
+    })
+    .catch(error => console.error('Error:', error));
+});
+
+function toggleWishlist(button, productId) {
+    // Toggle active state
+    button.classList.toggle('active');
+    const icon = button.querySelector('i');
+
+    if (button.classList.contains('active')) {
+        icon.classList.replace('fa-regular', 'fa-solid');
+        icon.style.color = 'red';
+    } else {
+        icon.classList.replace('fa-solid', 'fa-regular');
+        icon.style.color = '#ccc';
+    }
+
+    // Send AJAX request to toggle wishlist status
+    fetch('/wishlist/toggle', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ product_id: productId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error); // If not logged in or another error
+        } else {
+            alert(data.message); // Display success message
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+</script>
 @endsection
