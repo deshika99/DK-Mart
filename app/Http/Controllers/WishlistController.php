@@ -46,7 +46,9 @@ class WishlistController extends Controller
         }
     
         return response()->json(['wishlist' => []]);
+
     }
+    
     
 
     public function showWishlist()
@@ -57,13 +59,13 @@ class WishlistController extends Controller
             $wishlistItems = Wishlist::where('user_id', $userId)
                 ->with('product')
                 ->get();
-    
-            return view('frontend.wishlist', compact('wishlistItems'));
+        } else {
+            $wishlistItems = collect(); 
         }
     
-        return view('frontend.wishlist', ['message' => 'Your wishlist is empty.']);
+        return view('frontend.wishlist', compact('wishlistItems'));
     }
-
+    
 
     public function destroy($productId)
     {
