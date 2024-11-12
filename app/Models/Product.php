@@ -50,6 +50,12 @@ class Product extends Model
         return $this->hasMany(Variations::class, 'product_id', 'product_id');
     }
 
+    public function affiliateProducts()
+    {
+        return $this->hasMany(AffiliateProduct::class, 'product_id');
+    }
+
+
     
 }
 

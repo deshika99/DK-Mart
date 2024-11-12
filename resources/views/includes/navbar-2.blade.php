@@ -1,47 +1,49 @@
 <style>
     /* Dropdown styles */
-.profile-dropdown {
-    position: relative;
-}
+    .profile-dropdown {
+        position: relative;
+    }
 
-.profile-toggle {
-    cursor: pointer;
-}
+    .profile-toggle {
+        cursor: pointer;
+    }
 
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    z-index: 10;
-    min-width: 60px;
-}
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        z-index: 10;
+        min-width: 60px;
+    }
 
-.dropdown-item {
-    color: hsl(0, 2%, 66%);
-    padding: 8px 12px;
-    text-decoration: none;
-    display: block;
-}
+    .dropdown-item {
+        color: hsl(0, 2%, 66%);
+        padding: 8px 12px;
+        text-decoration: none;
+        display: block;
+    }
 
-.dropdown-item:hover {
-    background-color: #f2f2f2;
-    color: rgb(238, 82, 10);
-}
+    .dropdown-item:hover {
+        background-color: #f2f2f2;
+        color: rgb(238, 82, 10);
+    }
 
-.profile-dropdown:hover .dropdown-menu {
-    display: block;
-}
+    .profile-dropdown:hover .dropdown-menu {
+        display: block;
+    }
 
 </style>
+
+
 <!--==================== Preloader Start ====================-->
 <div class="preloader">
     <img src="assets/images/icon/preloader.gif" alt="">
-  </div>
+</div>
 <!--==================== Preloader End ====================-->
 
 <!--==================== Overlay Start ====================-->
@@ -85,43 +87,42 @@
         </a>
         <div class="mobile-menu__menu">
             <!-- Nav Menu Start -->
-<ul class="nav-menu flex-align nav-menu--mobile">
-    <li class="nav-menu__item">
-        <a href="javascript:void(0)" class="nav-menu__link">Home</a>
-       
-    </li>
-    <li class="nav-menu__item">
-        <a href="javascript:void(0)" class="nav-menu__link">Shop</a>
-        
-    </li>
-    <li class="nav-menu__item">
-       
-        <a href="{{ route('about') }}" class="nav-menu__link">About Us</a>
-      
-    </li>
-    <li class="nav-menu__item">
-       
-        <a href="{{ route('contact') }}" class="nav-menu__link">Contact Us</a>
-       
-    </li>
-   
-    <li class="nav-menu__item">
-        <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
-    </li>
-</ul>
-<!-- Nav Menu End -->
+            <ul class="nav-menu flex-align nav-menu--mobile">
+                <li class="nav-menu__item">
+                    <a href="javascript:void(0)" class="nav-menu__link">Home</a>
+                
+                </li>
+                <li class="nav-menu__item">
+                    <a href="javascript:void(0)" class="nav-menu__link">Shop</a>
+                    
+                </li>
+                <li class="nav-menu__item">
+                
+                    <a href="{{ route('about') }}" class="nav-menu__link">About Us</a>
+                
+                </li>
+                <li class="nav-menu__item">
+                
+                    <a href="{{ route('contact') }}" class="nav-menu__link">Contact Us</a>
+                
+                </li>
+            
+                <li class="nav-menu__item">
+                    <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
+                </li>
+            </ul>
+            <!-- Nav Menu End -->
         </div>
     </div>
 </div>
 <!-- ==================== Mobile Menu End Here ==================== -->
 
-
-    <!-- ======================= Middle Header Two Start ========================= -->
+<!-- ======================= Middle Header Two Start ========================= -->
 <header class="header-middle style-two bg-color-neutral">
     <div class="container container-lg">
         <nav class="header-inner flex-between">
             <!-- Logo Start -->
-            <div class="logo"style="margin-left: 120px;  margin-top: 0; margin-bottom: 0;">
+            <div class="logo"style="margin-left: 80px;  margin-top: 0; margin-bottom: 0;">
                 <a href="index.html" class="link">
 
                     <img src="{{ asset('frontend/assets/images/logo/logo-two.png') }}" alt="Logo" style="width:110px;height:110px; margin-top: 0; margin-bottom: 0; ">
@@ -134,91 +135,8 @@
             <div class="flex-align gap-16">
                 <div class="select-dropdown-for-home-two d-lg-none d-block">
                     <!-- Dropdown Select Start -->
-<ul class="header-top__right style-two flex-align flex-wrap">
-    <li class="on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white">
-        <a href="javascript:void(0)" class="selected-text text-heading text-sm py-8">Eng</a>
-        <ul class="selectable-text-list on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag1.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    English
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag2.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    Japan
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag3.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    French
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag4.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    Germany
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag6.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    Bangladesh
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag5.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    South Korea
-                </a>
-            </li>
-        </ul>
-    </li>
-    <li class="on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white">
-        <a href="javascript:void(0)" class="selected-text text-heading text-sm py-8">USD</a>
-       <ul class="selectable-text-list on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag1.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    USD
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag2.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    Yen
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag3.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    Franc 
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag4.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    EURO
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag6.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    BDT
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag5.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    WON
-                </a>
-            </li>
-        </ul>
-    </li>
-</ul>
-<!-- Dropdown Select End -->
+
+                    <!-- Dropdown Select End -->
                 </div>
                 <form action="#" class="flex-align flex-wrap form-location-wrapper">
                     <div class="search-category style-two d-flex h-48 search-form d-sm-flex d-none">
@@ -248,39 +166,39 @@
     </button>
 
 
-<!-- Profile Dropdown -->
-<div class="profile-dropdown">
-    @auth
-        <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
-            <span class="profile-initial d-flex justify-content-center align-items-center">
-                {{ auth()->user()->name[0] }}
-            </span>
-        </a>
+    <!-- Profile Dropdown -->
+    <div class="profile-dropdown">
+        @auth
+            <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
+                <span class="profile-initial d-flex justify-content-center align-items-center">
+                    {{ auth()->user()->name[0] }}
+                </span>
+            </a>
 
-        <!-- Dropdown Menu for Logged-In User -->
-        <div class="dropdown-menu" style="width: 170px">
-            <a href="" class="dropdown-item">Profile</a>
-            <form method="POST" action="{{ route('logout') }}" class="dropdown-item p-0">
-                @csrf
-                <button type="submit" class="dropdown-item w-100">Logout</button>
-            </form>
-        </div>
-    @else
-        <!-- Default Profile Icon and Links for Guests -->
-        <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
-            <span class="text-2xl text-white d-flex position-relative item-hover__text">
-                <i class="ph ph-user"></i>
-            </span>
-            <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
-        </a>
+            <!-- Dropdown Menu for Logged-In User -->
+            <div class="dropdown-menu" style="width: 170px">
+                <a href="" class="dropdown-item">Profile</a>
+                <form method="POST" action="{{ route('logout') }}" class="dropdown-item p-0">
+                    @csrf
+                    <button type="submit" class="dropdown-item w-100">Logout</button>
+                </form>
+            </div>
+        @else
+            <!-- Default Profile Icon and Links for Guests -->
+            <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
+                <span class="text-2xl text-white d-flex position-relative item-hover__text">
+                    <i class="ph ph-user"></i>
+                </span>
+                <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
+            </a>
 
-        <!-- Dropdown Menu for Guests -->
-        <div class="dropdown-menu" style="width: 170px">
-            <a href="{{ route('login') }}" class="dropdown-item">Login</a>
-            <a href="{{ route('register') }}" class="dropdown-item">Sign Up</a>
-        </div>
-    @endauth
-</div>
+            <!-- Dropdown Menu for Guests -->
+            <div class="dropdown-menu" style="width: 170px">
+                <a href="{{ route('login') }}" class="dropdown-item">Login</a>
+                <a href="{{ route('register') }}" class="dropdown-item">Sign Up</a>
+            </div>
+        @endauth
+    </div>
 
 
     <a href="wishlist.html" class="flex-align flex-column gap-8 item-hover-two">
@@ -290,29 +208,22 @@
         </span>
         <span class="text-md text-white item-hover__text d-none d-lg-flex">Wishlist</span>
     </a>
-    <a href="cart.html" class="flex-align flex-column gap-8 item-hover-two">
-        <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
-            <i class="ph-fill ph-shuffle"></i>
-            <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>
-        </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Compare</span>
-    </a>
 
     
-    <a href="{{ route ('cart') }}" class="flex-align flex-column gap-8 item-hover-two">
-    <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
-        <i class="ph ph-shopping-cart-simple"></i>
-        <!-- Display the cart count dynamically -->
-        <span id="cart-count" class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
-           0
+    <a href="{{ route ('cart') }}" class="flex-align flex-column gap-8 item-hover-two ml-10" style="margin-right:30px;">
+        <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
+            <i class="ph ph-shopping-cart-simple"></i>
+            <!-- Display the cart count dynamically -->
+            <span id="cart-count" class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
+            0
 
+            </span>
         </span>
-    </span>
-    <span class="text-md text-white item-hover__text d-none d-lg-flex">Cart</span>
-</a>
+        <span class="text-md text-white item-hover__text d-none d-lg-flex">Cart</span>
+    </a>
 
 
-</div>
+                </div>
             </div>
             <!-- Header Middle Right End  -->
         </nav>
@@ -384,7 +295,7 @@
 <div class="header-menu d-lg-block d-none">
     <ul class="nav-menu flex-align ">
         <li class="nav-menu__item">
-            <a href="/home" class="nav-menu__link">Home</a>
+            <a href="/" class="nav-menu__link">Home</a>
         </li>
         <li class="nav-menu__item">
             <a href="/shop" class="nav-menu__link">Shop</a>
@@ -415,88 +326,8 @@
                 <div class="select-dropdown-for-home-two d-lg-block d-none">
                     <!-- Dropdown Select Start -->
 <ul class="header-top__right style-two flex-align flex-wrap">
-    <li class="on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white">
-        <a href="javascript:void(0)" class="selected-text text-heading text-sm py-8">Eng</a>
-        <ul class="selectable-text-list on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag1.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    English
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag2.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    Japan
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag3.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    French
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag4.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    Germany
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag6.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    Bangladesh
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag5.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    South Korea
-                </a>
-            </li>
-        </ul>
-    </li>
-    <li class="on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white">
-        <a href="javascript:void(0)" class="selected-text text-heading text-sm py-8">USD</a>
-       <ul class="selectable-text-list on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag1.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    USD
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag2.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    Yen
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag3.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    Franc 
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag4.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    EURO
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag6.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    BDT
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"> 
-                    <img src="assets/images/thumbs/flag5.png" alt="" class="w-16 h-12 rounded-4 border border-gray-100">
-                    WON
-                </a>
-            </li>
-        </ul>
-    </li>
+    
+    
 </ul>
 <!-- Dropdown Select End -->
                  </div>
@@ -553,14 +384,8 @@
         </span>
         <span class="text-md text-white item-hover__text d-none d-lg-flex">Wishlist</span>
     </a>
-    <a href="cart.html" class="flex-align flex-column gap-8 item-hover-two">
-        <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
-            <i class="ph-fill ph-shuffle"></i>
-            <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>
-        </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Compare</span>
-    </a>
-    <a href="{{ route ('cart') }}" class="flex-align flex-column gap-8 item-hover-two">
+
+    <a href="{{ route ('cart') }}" class="flex-align flex-column gap-8 item-hover-two ml-10" style="margin-right:30px;">
     <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
         <i class="ph ph-shopping-cart-simple"></i>
         <!-- Display the cart count dynamically -->

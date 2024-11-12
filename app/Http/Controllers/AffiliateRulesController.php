@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\AffiliateRules;
+use App\Models\AffiliateRule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -10,7 +10,8 @@ class AffiliateRulesController extends Controller
 {
     public function showrules() 
     {
-        return view('AffiliateDashBoard.affiliateRules');
+        $rules = AffiliateRule::all(); 
+        return view('AffiliateDashBoard.affiliateRules', compact('rules'));
     }
 
 
@@ -56,6 +57,9 @@ class AffiliateRulesController extends Controller
         return redirect()->route('affiliate_rules')->with('success', 'Rule deleted successfully.');
     }
 
+
+
+      
 
 
 }

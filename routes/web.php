@@ -24,12 +24,11 @@ use App\Http\Controllers\AffiliateReportController;
 use App\Http\Controllers\AffiliateLinkController;
 use App\Http\Controllers\AffiliateRulesController;
 use App\Http\Controllers\AffiliateDashboardController;
+use App\Http\Controllers\AffiliatePaymentController;
+
+use App\Http\Controllers\AffiliateUserController;
 
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -60,7 +59,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin',[AdminTemplateController::class,'index'])->name('admin.index');
 Route::get('/affiliate',[AffiliateTemplateController::class,'index'])->name('affiliate');
-Route::get('/home',[HomeTemplateController::class,'index'])->name('home');
+Route::get('/',[HomeTemplateController::class,'index'])->name('home');
 
 Route::get('/shop', [ShopPageController::class, 'index'])->name('shop.index');
 Route::get('/shop/category/{category}', [ShopPageController::class, 'filterByCategory'])->name('shop.filterByCategory');
@@ -119,6 +118,8 @@ Route::delete('/admin/orders/{order}', [OrderController::class, 'destroy'])->nam
 Route::get('/admin/order-details/{orderCode}', [OrderController::class, 'showOrderDetails'])->name('order-details');
 Route::patch('/order/update-status/{order_code}', [OrderController::class, 'updateStatus'])->name('order.updateStatus');
 
+Route::patch('/order/update-status/{order_code}', [OrderController::class, 'updateStatus'])->name('order.updateStatus');
+
 Route::view('/admin/affiliate_customers', 'AdminDashboard.affiliate_customers')->name('affiliate_customers');
 
 Route::get('/admin/affiliate_rules', [AffiliateRulesController::class, 'index'])->name('affiliate_rules');
@@ -127,7 +128,11 @@ Route::delete('/admin/affiliate_rules/{id}', [AffiliateRulesController::class, '
 Route::put('/admin/affiliate_rules/{id}', [AffiliateRulesController::class, 'update'])->name('admin_users.update');
 
 Route::view('/admin/affiliate_withdrawals', 'AdminDashboard.affiliate_withdrawals')->name('affiliate_withdrawals');
+
 Route::view('/admin/Affiliatecustomer-details', 'AdminDashboard.Affiliatecustomer-details')->name('Affiliatecustomer-details');
+Route::get('/admin/affiliate_customers', [AffiliateUserController::class, 'showAffiliates'])->name('affiliate_customers');
+Route::post('/admin/affiliates/{id}/status/{status}', [AffiliateUserController::class, 'updateStatus'])->name('admin.affiliates.updateStatus');
+Route::get('/admin/affiliates/{id}', [AffiliateUserController::class, 'show'])->name('admin.affiliates.show');
 
 Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
 Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inquiries');
@@ -152,12 +157,24 @@ Route::delete('/admin/edit_users/{id}', [UserController::class, 'destroy'])->nam
 
 
 //AffiliateDashBoard Links
+
+
+
+Route::view('/affiliate_register', 'AffiliateDashBoard.affRegister')->name('affiliate_register');
+Route::post('/affiliate/user_register', [AffiliateUserController::class, 'store'])->name('affiliate.register');
+Route::view('/affiliate_login', 'AffiliateDashBoard.affLogin')->name('affiliate_login');
+Route::post('/affiliate/login', [AffiliateUserController::class, 'login'])->name('affiliate.login.submit');
+Route::view('/affiliate_home', 'AffiliateDashBoard.affiliate_home')->name('affiliate_home');
+
+
+
+
 Route::view('/home/affiliate/affiliate_home', 'aff_home')->name('aff_home');
 Route::post('/home/affiliate/register', [AffiliateCustomerController::class, 'register'])->name('aff_reg');
 Route::view('/home/affiliate/register/', 'aff_reg')->name('register_form');
 Route::post('/home/affiliate/login', [AffiliateCustomerController::class, 'login'])->name('aff_login');
 Route::get('/affiliate/dashboard', [AffiliateCustomerController::class, 'index'])->name('index');
-Route::post('/affiliate/logout', [AffiliateCustomerController::class, 'logout'])->name('aff_logout');
+Route::post('/affiliate/logout', [AffiliateUserController::class, 'logout'])->name('aff.logout');
 
 
 Route::get('/affiliate/dashboard/ad_center', [AffiliateProductController::class, 'showAdCenter'])->name('ad_center');
@@ -185,9 +202,9 @@ Route::get('/affiliate/dashboard/code_center', [AffiliateLinkController::class, 
 
 
 Route::view('/affiliate/dashboard/payment/account_balance', 'affiliate_dashboard.account_balance')->name('account_balance');
-Route::get('/affiliate/dashboard/payment/bank_acc', [PaymentController::class, 'bank_acc'])->name('bank_acc');
-Route::post('/affiliate/dashboard/payment/updatebank', [PaymentController::class, 'updatebank'])->name('updatebank');
-Route::post('/affiliate/dashboard/payment/paymentrequest', [PaymentController::class, 'paymentrequest'])->name('paymentrequest');
+Route::get('/affiliate/dashboard/payment/bank_acc', [AffiliatePaymentController::class, 'bank_acc'])->name('bank_acc');
+Route::post('/affiliate/dashboard/payment/updatebank', [AffiliatePaymentController::class, 'updatebank'])->name('updatebank');
+Route::post('/affiliate/dashboard/payment/paymentrequest', [AffiliatePaymentController::class, 'paymentrequest'])->name('paymentrequest');
 Route::view('/affiliate/dashboard/payment/commission_rules', 'affiliate_dashboard.commission_rules')->name('commission_rules');
 Route::get('/affiliate/dashboard/payment/affiliate_rules', [AffiliateRulesController::class, 'showrules'])->name('show_affiliate_rules');
 Route::post('/affiliate/update-site-info', [AffiliateDashboardController::class, 'updateSiteInfo'])->name('affiliate.updateSiteInfo');
@@ -209,7 +226,6 @@ Route::post('/affiliate/dashboard/payment/realtime_tracking', [AffiliateReportCo
 
 
 require __DIR__.'/auth.php';
-
 
 
 
