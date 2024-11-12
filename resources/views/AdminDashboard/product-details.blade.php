@@ -22,6 +22,35 @@
                             <p><strong>Commission %:</strong> {{ $product->commission_percentage }}%</p>
                             <p><strong>Total Affiliate Price:</strong> Rs. {{ $product->total_price }}</p>
                         @endif
+
+                        <!-- Sizes Section -->
+                        @if ($product->variations->pluck('value')->filter()->unique()->isNotEmpty())
+                            <div class="flex-between align-items-start flex-wrap gap-16">
+                                <div class="d-flex align-items-center mb-5">
+                                    <span class="text-gray-900 me-3">Size:</span>
+                                    @foreach ($product->variations->pluck('value')->filter()->unique() as $index => $size)
+                                        <span>{{ $size }}{{ $index < $product->variations->pluck('value')->filter()->unique()->count() - 1 ? ',' : '' }}</span>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+
+                        <!-- Colors Section -->
+                        @if ($product->variations->pluck('hex_value')->filter()->unique()->isNotEmpty())
+                            <div class="flex-between align-items-center flex-wrap gap-16">
+                                <div class="d-flex align-items-center mb-4">
+                                    <span class="text-gray-900 me-3">Color:</span>
+                                    @foreach ($product->variations->pluck('hex_value')->filter()->unique() as $color)
+                                        <span 
+                                            class="color-list__button border border-2 border-gray-50 rounded-circle me-2"
+                                            style="background-color: {{ $color }}; width: 20px; height: 20px;" 
+                                            data-color="{{ $color }}"> 
+                                        </span>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
 

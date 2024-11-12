@@ -15,6 +15,10 @@ class CustomerController extends Controller
         return view('AdminDashboard.customer', compact('customers'));
     }
     
+        $customers = User::withCount('customerOrders')->get();
+        return view('AdminDashboard.customer', compact('customers'));
+    
+    }
 
 
     public function showCustomerDetails($user_id)

@@ -26,23 +26,17 @@ class CartController extends Controller
     
     public function showCart()
     {
-        // Check if the user is authenticated
         if (!auth()->check()) {
-            return view('frontend.cart')->with('message', 'Please sign in to view your cart and start shopping.')->with('cartItems', collect([])); // Use a collection for an empty cart
+            return view('frontend.cart')->with('message', 'Please sign in to view your cart and start shopping.')->with('cartItems', collect([])); 
         }
-    
-        // Get the user's ID
         $userId = auth()->user()->id;
     
-        // Retrieve cart items from the database as a collection
         $cartItems = CartItem::where('user_id', $userId)->get();
     
-        // If cart is empty, show a message
         if ($cartItems->isEmpty()) {
-            return view('frontend.cart')->with('message', 'Your cart is empty. Start shopping!')->with('cartItems', collect([])); // Use a collection for an empty cart
+            return view('frontend.cart')->with('message', 'Your cart is empty. Start shopping!')->with('cartItems', collect([])); 
         }
     
-        // Add product details to each cart item
         foreach ($cartItems as $item) {
             $product = Product::find($item->product_id);
             $productImage = $product->images()->first();
@@ -52,7 +46,6 @@ class CartController extends Controller
             $item->subtotal = $item->price * $item->quantity;
         }
     
-        // Pass cart items to the view
         return view('frontend.cart', compact('cartItems'));
     }
     
@@ -77,7 +70,7 @@ class CartController extends Controller
     public function remove(CartItem $cartItem)
     {
         $cartItem->delete();
-        return redirect()->route('cart')->with('success', 'Item removed from cart');
+        return redirect()->route('cart');
     }
 
     
@@ -171,6 +164,28 @@ class CartController extends Controller
     }
     
 
+    public function buyNowCheckout($productId, Request $request)
+    {
+        $userId = Auth::id();
+        $product = Product::findOrFail($productId);
+
+        $products = [$product]; 
     
+        if ($product->quantity <= 0) {
+            return redirect()->back()->with('error', 'This product is out of stock.');
+        }
+    
+        $selectedSize = $request->get('selectedSize');
+        $selectedColor = $request->get('selectedColor');
+        $quantity = (int)$request->get('quantity', 1); 
+    
+        $subtotal = $product->normal_price * $quantity; 
+        $total = $subtotal + 300; 
+    
+        return view('frontend.buy_now_checkout', compact('products', 'quantity', 'subtotal', 'total', 'selectedSize', 'selectedColor'));
+    }
+    
+
+
 
 }

@@ -37,20 +37,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($customers as $index => $customer)
                             <tr>
-                                <td></td> 
-                                <td></td> 
-                                <td></td> 
-                                <td></td> 
-                                <td></td> 
-                                <td></td> 
+                                <td>{{ $index + 1 }}</td> 
+                                <td>{{ $customer->name }}</td> 
+                                <td>{{ $customer->email }}</td> 
+                                <td>{{ $customer->phone }}</td> 
+                                <td>{{ $customer->created_at->format('Y-m-d') }}</td> 
+                                <td>{{ $customer->customer_orders_count }}</td> 
                                 <td class="text-end">
-                                    <a href="{{ route ('customer-details') }}" class="btn btn-view btn-sm me-2">
+                                    <a href="{{ route('customer-details', $customer->id) }}" class="btn btn-view btn-sm me-2">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </td>                                  
                             </tr>
-                          
+                         @endforeach
                         </tbody>
                     </table>
                 </div>
