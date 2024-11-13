@@ -37,6 +37,13 @@
             margin-bottom: 20px;
             color: orange;
         }
+        .persistent-gif {
+            display: block; /* Make the video a block element to align properly */
+            margin: 10px auto 0; /* Add space above the video and center it */
+            width: 250px;  /* Set the size of the video */
+            height: auto; /* Maintain the aspect ratio */
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -86,6 +93,7 @@
             color: #555;
             text-align: justify;
             line-height: 1.6;
+            font-size: 0.9rem;
         }
 
 
@@ -137,7 +145,7 @@
     column-width: 200px;
     column-count: 2;
     column-gap: 40px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1.6;
     color: #333;
     text-align: justify;
@@ -325,7 +333,7 @@
 <div class="breadcrumb mb-0 py-26 bg-main-two-50">
     <div class="container container-lg">
         <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
-            <h6 class="mb-0">Contact</h6>
+            <h6 class="mb-0">About Us</h6>
             <ul class="flex-align gap-8 flex-wrap">
                 <li class="text-sm">
                     <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
@@ -347,16 +355,28 @@
         <div class="hero-left">
             <h1>Delivering happiness on the go!</h1>
             <h4>Happy Shopping</h4>
+            <video autoplay loop muted class="persistent-gif">
+                <source src="images/aboutgif.mp4" type="video/mp4" style="width:200px; height:auto;">
+            </video>
         </div>
+       
         <div class="hero-right">
             <p><strong>
-                Welcome to DK-Mart, your trusted e-commerce platform where quality, convenience, and affordability meet. We believe that shopping should be a straightforward, enjoyable experience, so we’ve crafted DK-Mart to bring you a world of products from diverse categories like electronics, fashion, home essentials, and more, all at your fingertips.
+                Welcome to DK-Mart, your trusted e-commerce platform where quality, convenience, and affordability meet.
+                 We believe that shopping should be a straightforward, enjoyable experience, so we’ve crafted DK-Mart to 
+                 bring you a world of products from diverse categories like electronics, fashion, home essentials, and 
+                 more, all at your fingertips.
             </strong></p>
-            <p>
-                Founded with the customer in mind, DK-Mart aims to be more than just an online store. Our mission is to redefine the shopping experience by offering a curated selection of high-quality items from top brands and reliable suppliers. Every product in our catalog is carefully chosen to ensure that it meets our high standards for quality, durability, and value.
+            <p><br>
+                Founded with the customer in mind, DK-Mart aims to be more than just an online store. Our mission is to 
+                redefine the shopping experience by offering a curated selection of high-quality items from top brands 
+                and reliable suppliers. Every product in our catalog is carefully chosen to ensure that it meets our
+                high standards for quality, durability, and value.
             </p>
            
-            <p style="color: #771d1d;">Thank you for choosing DK-Mart. We’re excited to be your partner in fulfilling your shopping needs, and we look forward to delivering an exceptional online experience every time you visit!</p>
+            <p style="color: #771d1d;"><br>Thank you for choosing DK-Mart. We’re excited to be your partner in fulfilling 
+            your shopping needs, and we look forward to delivering an exceptional online experience every 
+            time you visit!<br></p>
         </div>
     </section>
 
@@ -374,19 +394,26 @@
 
 <section class="story-section">
         <h2 class="story-title">Our Story</h2>
-        
         <div class="story-content">
             <div class="story-text">
-                <p>Launched in 2012, Daraz is South Asias premier online shopping marketplace with an active presence in Pakistan,
-                     Bangladesh, Sri Lanka, Myanmar and Nepal.</p>
-                <p>Supported by a wide range of tailored marketing, data, and service solutions, Daraz has 30,000 sellers and 500
-                     brands and serves 5 million consumers across the region.</p>
-                <p>Daraz has more than 2.5 million products to offer, growing at a very fast pace. Daraz offers a diverse
-                     assortment in categories ranging from consumer electronics to household goods, beauty, fashion, sports
-                      equipment, and groceries.</p>
-                <p>Daraz is focused on providing an excellent customer experience, ease-of-purchase, comprehensive customer
-                     care and a hassle-free shopping and returns experience.</p>
-                <p>Daraz was acquired by Alibaba Group in May 2018.</p>
+                <p>At DK-Mart, we began with a simple vision: to create a marketplace where quality meets convenience.
+                     Over the years, we have grown from a small, local store to a renowned online shopping platform, 
+                     offering a wide range of products that cater to the diverse needs of our customers.</p><br>
+
+                <p>Our commitment to delivering exceptional products at affordable prices is at the heart of everything we do.
+                     </p><br>
+
+                <p>We believe in making shopping a hassle-free experience. With a user-friendly website, secure payment
+                     options, and fast delivery, we ensure our customers enjoy a seamless shopping experience every time. 
+                     </p><br>
+
+                <p>Whether it's fashion, electronics, home appliances, or everyday essentials, DK-Mart provides a
+                     one-stop shop for all your needs.
+                     <br></p><br>
+
+                <p>As we continue to expand, we remain focused on our mission of providing high-quality products and 
+                    outstanding customer service. Our story is one of growth, passion, and dedication to our customers,
+                     and we are excited for the future ahead. Thank you for being a part of our journey!</p>
             </div>
         </div>
     </section>
@@ -507,20 +534,19 @@
 
     
     <section class="empowering-section">
-        <h2>Empowering Sellers on DK-Mart</h2>
+        <h2>Supporting Sellers at DK-Mart</h2>
         
-        <p>Daraz puts utmost focus on empowering It's sellers, they form the backbone of our market place. 
-            With our new and cutting edge systems we provide incredible 
-            levels of control and ownership to our sellers so they can manage their shops effectirely and
-             efficiently
+        <p>At DK-Mart, we are dedicated to helping sellers grow their businesses with ease. Our platform offers a
+            range of tools and services that make selling online simple and efficient. We provide seamless product
+             management, secure payment options, and valuable customer support, ensuring our sellers succeed every 
+             step of the way.</p>
 
-        <p>From promotional and sales maximisation tools to order tracking, performance reports, real-time
-             analytics and
-            industry benchmarking, their growth is only limited by the effort and dedication they commit</p>
+        <p>We empower our sellers with advanced features like inventory tracking, promotional tools, and performance 
+            insights, helping them reach more customers and boost sales. </p>
 
-        <p>We are incredibly proud of the success stories that have emerged from our marketplace in the 
-            past and actively 
-            look forward to welcoming many more!</p>
+        <p>With a commitment to fast shipping and secure transactions, DK-Mart offers a reliable marketplace for both 
+            new and experienced sellers to thrive. Join us at DK-Mart, where your business can flourish and achieve 
+            lasting success.</p>
     </section>
 
     <section class="features-section">
