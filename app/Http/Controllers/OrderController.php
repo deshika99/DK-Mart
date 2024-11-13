@@ -1,25 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use App\Models\CustomerOrder;
+use App\Models\CustomerOrderItems;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-
     public function show()
     {
-       
         $customers = User::withCount('customerOrders')->paginate(10); 
         return view('AdminDashboard.customer', compact('customers'));
     }
-    
-
 
     public function showCustomerDetails($user_id)
     {
-
         $customer = User::findOrFail($user_id);
         
         $orders = CustomerOrder::where('user_id', $user_id)
@@ -31,20 +28,13 @@ class OrderController extends Controller
         $totalProducts = $orders->sum(function ($order) {
             return $order->items->sum('quantity');
         });
-        
 
         return view('AdminDashboard.customer-details', compact('customer', 'orders', 'totalCost', 'totalOrders', 'totalProducts'));
+    }
 
-use Illuminate\Http\Request;
-use App\Models\CustomerOrder;
-use App\Models\CustomerOrderItems;
-
-class OrderController extends Controller
-{
     public function index()
     {
         $orders = CustomerOrder::with('items')->paginate(10); 
-
         return view('AdminDashboard.orders', compact('orders'));
     }
 
@@ -56,14 +46,9 @@ class OrderController extends Controller
         return redirect()->route('orders')->with('success', 'Order deleted successfully.');
     }
 
-
-
     public function showOrderDetails($orderCode)
     {
-        // Retrieve the order with its items using the relationship
         $order = CustomerOrder::with('items.product')->where('order_code', $orderCode)->first();
-
-        // Pass the order data to the view
         return view('AdminDashboard.order-details', compact('order'));
     }
 }
