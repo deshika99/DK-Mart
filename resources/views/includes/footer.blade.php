@@ -12,7 +12,7 @@
                         <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-car-profile"></i></span>
                         <div class="">
                             <h6 class="mb-0">Free Shipping</h6>
-                            <span class="text-sm text-heading">Free shipping all over the US</span>
+                            <span class="text-sm text-heading">Enjoy free shipping across the country</span>
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                         <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-hand-heart"></i></span>
                         <div class="">
                             <h6 class="mb-0"> 100% Satisfaction</h6>
-                            <span class="text-sm text-heading">Free shipping all over the US</span>
+                            <span class="text-sm text-heading">Guaranteed satisfaction with every purchase</span>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-credit-card"></i></span>
                         <div class="">
                             <h6 class="mb-0"> Secure Payments</h6>
-                            <span class="text-sm text-heading">Free shipping all over the US</span>
+                            <span class="text-sm text-heading">Make secure payments with confidence</span>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                         <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-chats"></i></span>
                         <div class="">
                             <h6 class="mb-0"> 24/7 Support</h6>
-                            <span class="text-sm text-heading">Free shipping all over the US</span>
+                            <span class="text-sm text-heading">Get support anytime, day or night</span>
                         </div>
                     </div>
                 </div>

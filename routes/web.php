@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/admin',[AdminTemplateController::class,'index'])->name('admin.index');
+
 Route::get('/affiliate',[AffiliateTemplateController::class,'index'])->name('affiliate');
 Route::get('/',[HomeTemplateController::class,'index'])->name('home');
 
@@ -103,6 +103,24 @@ Route::post('/test-order', function() {
 
 
 //admin dashboard
+use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\AdminProfileController;
+use App\Http\Middleware\AdminAuth;
+
+
+Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login.post');
+Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+
+Route::middleware([App\Http\Middleware\AdminAuth::class])->group(function () {
+    Route::get('/admin',[AdminTemplateController::class,'index'])->name('admin.index');
+    // other routes
+});
+
+Route::get('/admin/profile', [AdminProfileController::class, 'showProfile'])->name('profile');
+Route::post('/admin/profile/update', [AdminProfileController::class, 'updateProfile'])->name('admin.profile.update');
+Route::post('/admin/profile/password', [AdminProfileController::class, 'updatePassword'])->name('admin.profile.password.update');
+
 
 Route::get('/admin/products_list', [ProductController::class, 'showproducts'])->name('products_list');
 
@@ -150,8 +168,6 @@ Route::get('/admin/Affiliatecustomer-details/{id}', [AffiliateUserController::cl
 
 Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
 Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inquiries');
-
-Route::view('/admin/profile', 'AdminDashboard.profile')->name('profile');
 
 Route::view('/admin/sellers', 'AdminDashboard.sellers')->name('sellers');
 Route::view('/admin/seller-details', 'AdminDashboard.seller-details')->name('seller_details');

@@ -42,7 +42,8 @@
     <!-- ============================ Banner Section start =============================== -->
     @yield('content')
     <div class="preloader">
-    <img src="{{ asset('frontend/assets/images/icon/preloader.gif') }}" alt=""></div>
+        <img src="{{ asset('frontend/assets/images/logo/logo-two.png') }}" alt="" style="width: 150px;">
+    </div>
 
     <script>
                 document.addEventListener('DOMContentLoaded', function() {
