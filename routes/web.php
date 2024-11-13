@@ -56,6 +56,10 @@ Route::get('/cart', function () {
 
 
 
+Route::get('/search', [ProductController::class, 'searchView'])->name('product.search');
+Route::get('/searchview', [ProductController::class, 'searchView'])->name('searchview');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
