@@ -1,6 +1,9 @@
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('frontend/assets/images/web-app-manifest-192x192.png') }}">
     <!-- Template CSS -->
     <link rel="stylesheet" href="backend/assets1/css/main.css?v=6.0" />
     <style>
@@ -14,7 +17,7 @@
             height:4em;
         }
     </style>
-</head>
+
 <body>
     <main class="main pages">
         <div class="page-header breadcrumb-wrap">
