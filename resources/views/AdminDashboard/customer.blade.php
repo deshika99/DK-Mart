@@ -1,4 +1,4 @@
-@extends ('AdminDashboard.master')
+@extends('AdminDashboard.master')
 
 @section('content')
 
@@ -15,9 +15,7 @@
 <div class="card mb-4">
     <header class="card-header">
         <div class="row align-items-center">
-            <div class="col-md-2 col-6">
-                <input type="date" value="02.05.2021" class="form-control" />
-            </div>
+            <!-- Removed the date filter form -->
         </div>
     </header>
     <div class="card-body">
@@ -39,7 +37,7 @@
                     <tbody>
                         @foreach ($customers as $index => $customer)
                             <tr>
-                                <td>{{ $index + 1 }}</td> 
+                                <td>{{ $customers->firstItem() + $index }}</td> <!-- Display correct customer number -->
                                 <td>{{ $customer->name }}</td> 
                                 <td>{{ $customer->email }}</td> 
                                 <td>{{ $customer->phone }}</td> 
@@ -52,7 +50,7 @@
                                 </td>                                  
                             </tr>
                          @endforeach
-                        </tbody>
+                    </tbody>
                     </table>
                 </div>
             </div>
@@ -60,17 +58,17 @@
         </div>
         <!-- .row // -->
     </div>
-
     <!-- card-body end// -->
 </div>
 <!-- card end// -->
+
+<!-- Pagination Area -->
 <div class="pagination-area mt-30 mb-50">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-start">
-           
+            {{ $customers->links() }}  
         </ul>
     </nav>
 </div>
-
 
 @endsection

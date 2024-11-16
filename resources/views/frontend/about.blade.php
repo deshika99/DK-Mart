@@ -1,46 +1,17 @@
 @extends ('frontend.master')
 
+@section('content')
 
-<!DOCTYPE html>
-<html lang="en" class="color-two font-exo">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title -->
-    <title> MarketPro - E-commerce HTML Template</title>
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="frontend/assets/images/logo/favicon.png">
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="frontend/assets/css/bootstrap.min.css">
-    <!-- select 2 -->
-    <link rel="stylesheet" href="frontend/assets/css/select2.min.css">
-    <!-- Slick -->
-    <link rel="stylesheet" href="frontend/assets/css/slick.css">
-    <!-- Jquery Ui -->
-    <link rel="stylesheet" href="frontend/assets/css/jquery-ui.css">
-    <!-- animate -->
-    <link rel="stylesheet" href="frontend/assets/css/animate.css">
-    <!-- AOS Animation -->
-    <link rel="stylesheet" href="frontend/assets/css/aos.css">
-    <!-- Main css -->
-    <link rel="stylesheet" href="frontend/assets/css/main.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head> 
-<body>
-<header>
-@include('includes.navbar-2')
-</header>
     
 <!-- ========================= Breadcrumb Start =============================== -->
-<div class="mb-0 breadcrumb py-26 bg-main-two-50">
+<div class="breadcrumb mb-0 py-26 bg-main-two-50">
     <div class="container container-lg">
-        <div class="flex-wrap gap-16 breadcrumb-wrapper flex-between">
+        <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
             <h6 class="mb-0">About Us</h6>
-            <ul class="flex-wrap gap-8 flex-align">
+            <ul class="flex-align gap-8 flex-wrap">
                 <li class="text-sm">
-                    <a href="index.html" class="gap-8 text-gray-900 flex-align hover-text-main-600">
+                    <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
                         <i class="ph ph-house"></i>
                         Home
                     </a>
@@ -54,93 +25,7 @@
     </div>
 </div>
 <!-- ========================= Breadcrumb End =============================== -->
-
-
 <style>
-          .hero-section {
-            display: flex;
-            align-items: center;
-            background-color: white;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            margin-bottom: 40px;
-            margin-top: 40px;
-        }
-        .hero-left {
-            flex: 1;
-            padding: 10px;
-            text-align: left;
-            animation: fadeIn 2s ease-in-out;
-        }
-        .hero-left h1, .hero-left h4 {
-            margin: 0;
-            color: #333;
-            animation: slideIn 2s ease-out;
-        }
-        .hero-left h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-            color: #bd0f0f;
-            font-family: georgia;
-        }
-        .hero-left h4 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: orange;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideIn {
-            from { transform: translateX(-50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        .hero-right {
-            flex: 2;
-            padding: 20px;
-            text-align: justify;
-            background-color: #f9fafb;
-        }
-        .hero-right p {
-            opacity: 0;
-
-        }
-
-        .mission-vision-section {
-            display: flex;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            justify-content: space-between;
-            margin-bottom: 50px;
-            margin-top: 50px;
-            text-align: center;
-        }
-        .box {
-            flex: 1;
-            padding: 20px;
-            background-color: #fdf2f2; 
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .box h2 {
-            margin-top: 0;
-            color:  #bd0f0f;
-            align: center;
-            margin-bottom: 20px;
-            position: relative;
-            font-size: 1.5rem;
-            font-family: georgia
-        }
-        .box p {
-            color: #555;
-            text-align: justify;
-            line-height: 1.6;
-        }
-
-
     .story-section {
 
     max-width: 1200px;
@@ -372,7 +257,30 @@
         .hero-section p { font-size: 18px; }
     }
 
-</style>
+    </style>
+
+    <!-- ========================= Breadcrumb Start =============================== -->
+<div class="breadcrumb mb-0 py-26 bg-main-two-50">
+    <div class="container container-lg">
+        <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
+            <h6 class="mb-0">Contact</h6>
+            <ul class="flex-align gap-8 flex-wrap">
+                <li class="text-sm">
+                    <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
+                        <i class="ph ph-house"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="flex-align">
+                    <i class="ph ph-caret-right"></i>
+                </li>
+                <li class="text-sm text-main-600"> About Us </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- ========================= Breadcrumb End =============================== -->
+
 
 <section class="hero-section">
         <div class="hero-left">
@@ -391,17 +299,7 @@
         </div>
     </section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const heroText = document.querySelectorAll(".hero-right p");
-            heroText.forEach((p, index) => {
-                setTimeout(() => {
-                    p.style.opacity = "1";
-                }, index * 1000);
-            });
-        });
-    </script>
-
+</section>
 
 <section class="story-section">
         <h2 class="story-title">Our Story</h2>
@@ -568,36 +466,7 @@
             <p>Free & Easy Return</p>
         </div>
     </section>
-      
-    <!-- Jquery js -->
-    <script src="frontend/assets/js/jquery-3.7.1.min.js"></script>
-    <!-- Bootstrap Bundle Js -->
-    <script src="frontend/assets/js/boostrap.bundle.min.js"></script>
-    <!-- Bootstrap Bundle Js -->
-    <script src="frontend/assets/js/phosphor-icon.js"></script>
-    <!-- Select 2 -->
-    <script src="frontend/assets/js/select2.min.js"></script>
-    <!-- Slick js -->
-    <script src="frontend/assets/js/slick.min.js"></script>
-    <!-- Slick js -->
-    <script src="frontend/assets/js/count-down.js"></script>
-    <!-- jquery UI js -->
-    <script src="frontend/assets/js/jquery-ui.js"></script>
-    <!-- wow js -->
-    <script src="frontend/assets/js/wow.min.js"></script>
-    <!-- AOS Animation -->
-    <script src="frontend/assets/js/aos.js"></script>
-    <!-- marque -->
-    <script src="frontend/assets/js/marque.min.js"></script>
-    <!-- marque -->
-    <script src="frontend/assets/js/vanilla-tilt.min.js"></script>
-    <!-- Counter -->
-    <script src="frontend/assets/js/counter.min.js"></script>
-    <!-- main js -->
-    <script src="frontend/assets/js/main.js"></script>
 
-</body>
-</html>
 
 
     <script>
@@ -608,9 +477,5 @@
         }, 4000); 
     });
 </script>
-
-
 @endsection
-
-
 

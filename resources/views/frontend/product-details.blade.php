@@ -524,9 +524,6 @@ a.disabled {
                             <span class="text-15 fw-bold text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                             <span class="text-xs fw-bold text-gray-600">(17k)</span>
                         </div>
-                        <a href="cart.html" class="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-pill flex-align gap-8 mt-24 w-100 justify-content-center">
-                            Add To Cart <i class="ph ph-shopping-cart"></i> 
-                        </a>
                     </div>
                 </div>
             </div>
@@ -536,6 +533,8 @@ a.disabled {
 
     </div>
 </section>
+
+
 
 <!-- ========================== Similar Product End ============================= -->
     
@@ -732,4 +731,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 </script> 
+
+
 @endsection

@@ -4,8 +4,7 @@
 
 <div class="content-header">
     <div>
-        <h2 class="content-title card-title">Order Detail</h2>
-        <p>Details for Order ID: {{ $order->order_code }}</p>
+        <h2 class="content-title card-title">Order Details</h2>
     </div>
 </div>
 
@@ -13,20 +12,24 @@
     <header class="card-header">
         <div class="row align-items-center">
             <div class="col-lg-6 col-md-6 mb-lg-0 mb-15">
-                <span> <i class="material-icons md-calendar_today"></i> <b>{{ \Carbon\Carbon::parse($order->date)->format('D, M d, Y, h:i A') }}</b> </span> <br />
-                <small class="text-muted">Order ID: {{ $order->order_code }}</small>
+                <span> <i class="material-icons md-calendar_today"></i> <b>{{ \Carbon\Carbon::parse($order->created_at)->format('D, M d, Y, h:i A') }}</b> </span> <br />
+                <a href="#" class="fw-bold">Order ID: #{{ $order->order_code }}</a>
             </div>
             <div class="col-lg-6 col-md-6 ms-auto text-md-end">
-                <select class="form-select d-inline-block mb-lg-0 mr-5 mw-200">
-                    <option>{{ $order->status }}</option>
-                    <option>Awaiting payment</option>
-                    <option>Confirmed</option>
-                    <option>Shipped</option>
-                    <option>Delivered</option>
-                </select>
-                <a class="btn btn-primary p-2" href="#">Update</a>
+                <form action="{{ route('order.updateStatus', $order->order_code) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('PATCH')
+                    <select name="status" class="form-select d-inline-block mb-lg-0 mr-5 mw-200">
+                        <option selected>{{ $order->status }}</option>
+                        <option value="In-Progress">In-Progress</option>
+                        <option value="Shipped">Shipped</option>
+                        <option value="Delivered">Delivered</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary p-2">Update</button>
+                </form>
                 <a class="btn btn-secondary print ms-2" href="#"><i class="icon material-icons md-print"></i></a>
             </div>
+
         </div>
     </header>
     <div class="card-body">
@@ -54,7 +57,7 @@
                     <div class="text">
                         <h6 class="mb-1">Shipping Details</h6>
                         <p class="mb-1">
-                            Address: {{ $order->shipping_method }} <br />
+                            Address: {{ $order->house_no }}, {{ $order->apartment }}<br />
                             City: {{ $order->city }} <br />
                             Postal code: {{ $order->postal_code }} <br />
                         </p>
@@ -71,7 +74,7 @@
                         <p class="mb-1">
                         Pay method: {{ $order->payment_method }} <br />
                         Amount charged: Rs {{ $order->total_cost }} <br />
-                        Status: {{ $order->payment_status }}
+                        Payment Status: {{ $order->payment_status }}
                         </p>
                     </div>
                 </article>
@@ -94,12 +97,17 @@
                             @foreach($order->items as $item)
                                 <tr>
                                     <td>
-                                        <a class="itemside" href="#">
-                                            <div class="left">
-                                            <img src="{{ asset('storage/' . $item->product->image_path) }}" width="40" height="40" class="img-xs" alt="Item" />
-                                            </div>
-                                            <div>{{ $item->product->product_name }}</div>
-                                        </a>
+                                    <a class="itemside" href="#">
+                                        <div class="left">
+                                            @if($item->product->images->isNotEmpty())
+                                                <img src="{{ asset('storage/' . $item->product->images->first()->image_path) }}" width="40" height="40" class="img-xs" alt="Item" />
+                                            @else
+                                                <img src="{{ asset('path/to/default-image.jpg') }}" width="40" height="40" class="img-xs" alt="Default Image" />
+                                            @endif
+                                        </div>
+                                        <div>{{ $item->product->product_name }}</div>
+                                    </a>
+
                                     </td>
                                     <td>Rs {{ $item->cost }}</td>
                                     <td>{{ $item->quantity }}</td>
@@ -118,8 +126,8 @@
                         <h6 class="mb-3">Order Summary</h6>
                         <dl class="dlist">
                             <dt>Subtotal:</dt>
-                            <dd>Rs {{ $order->total_cost - 300 }}</dd>
-                        </dl>
+                            <dd>Rs {{ number_format($order->total_cost - 300, 2) }}</dd>
+                        </dl> 
                         <dl class="dlist">
                             <dt>Delivery Fee:</dt>
                             <dd>Rs 300.00</dd>
