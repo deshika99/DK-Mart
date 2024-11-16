@@ -17,41 +17,34 @@
             <div class="col-lg-9">
                 <section class="content-body p-xl-4">
                     <!-- General Section -->
-                    <form id="generalSection">
+                    <form id="generalSection" action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="row gx-3">
-                                    <div class="col-6 mb-3">
-                                        <label class="form-label">First name</label>
-                                        <input class="form-control" type="text" placeholder="Type here" />
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label class="form-label">Last name</label>
-                                        <input class="form-control" type="text" placeholder="Type here" />
-                                    </div>
-                                    <div class="col-lg-6 mb-3">
-                                        <label class="form-label">Email</label>
-                                        <input class="form-control" type="email" placeholder="example@mail.com" />
-                                    </div>
-                                    <div class="col-lg-6 mb-3">
-                                        <label class="form-label">Phone</label>
-                                        <input class="form-control" type="tel" placeholder="+1234567890" />
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">Name</label>
+                                        <input class="form-control" type="text" id="name" name="name" value="{{ $admin->name }}" required placeholder="Type here" />
                                     </div>
                                     <div class="col-lg-12 mb-3">
-                                        <label class="form-label">Address</label>
-                                        <input class="form-control" type="text" placeholder="Type here" />
+                                        <label class="form-label">Email</label>
+                                        <input class="form-control" type="email" id="email" name="email" value="{{ $admin->email }}" required placeholder="example@mail.com" />
                                     </div>
-                                    <div class="col-lg-6 mb-3">
-                                        <label class="form-label">Birthday</label>
-                                        <input class="form-control" type="date" />
+                                    <div class="col-lg-12 mb-3">
+                                        <label class="form-label">Phone</label>
+                                        <input class="form-control" type="tel" id="contact" name="contact" value="{{ $admin->contact }}" required placeholder="+1234567890" />
                                     </div>
                                 </div>
                             </div>
                             <aside class="col-lg-4">
                                 <figure class="text-lg-center">
-                                    <img class="img-lg mb-3 img-avatar" src="{{ asset('/backend/assets/imgs/people/avatar-1.png') }}" alt="User Photo" />
+                                    <img id="profileImage" src="{{ asset('storage/user_images/' . session('image', 'default-user.png')) }}" alt="Profile Image" class="img-lg mb-3 img-avatar">
                                     <figcaption>
-                                        <a class="btn btn-light rounded font-md" href="#"> <i class="icons material-icons md-backup font-md"></i> Upload </a>
+                                        <!-- Hidden file input -->
+                                        <input type="file" id="profileImageInput" name="image" accept="image/*" style="display: none;" onchange="previewImage(event)">
+                                        <a class="btn btn-light rounded font-md" href="javascript:void(0);" onclick="document.getElementById('profileImageInput').click();">
+                                            <i class="icons material-icons md-backup font-md"></i> Upload
+                                        </a>
                                     </figcaption>
                                 </figure>
                             </aside>
@@ -60,14 +53,31 @@
                     </form>
 
                     <!-- Password Section -->
-                    <form id="passwordSection" style="display: none;">
+                    <form action="{{ route('admin.profile.password.update') }}" method="POST" id="passwordSection" style="display: none;">
+                    @csrf
                         <div class="row">
+                        @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
                             <div class="col-lg-8">
                                 <div class="mb-3">
                                     <label class="form-label">Current Password</label>
                                     <div class="input-group">
-                                        <input type="password" class="form-control" id="currentPassword" placeholder="Enter current password" />
-                                        <span class="input-group-text" onclick="togglePasswordVisibility('currentPassword', this)">
+                                        <input type="password" class="form-control" id="current_password" name="current_password" placeholder="Enter current password" />
+                                        <span class="input-group-text" onclick="togglePasswordVisibility('current_password', this)">
                                             <i class="fas fa-eye"></i>
                                         </span>
                                     </div>
@@ -75,8 +85,8 @@
                                 <div class="mb-3">
                                     <label class="form-label">New Password</label>
                                     <div class="input-group">
-                                        <input type="password" class="form-control" id="newPassword" placeholder="Enter new password" />
-                                        <span class="input-group-text" onclick="togglePasswordVisibility('newPassword', this)">
+                                        <input type="password" class="form-control" id="new_password" name="new_password" placeholder="Enter new password" />
+                                        <span class="input-group-text" onclick="togglePasswordVisibility('new_password', this)">
                                             <i class="fas fa-eye"></i>
                                         </span>
                                     </div>
@@ -84,8 +94,8 @@
                                 <div class="mb-3">
                                     <label class="form-label">Confirm New Password</label>
                                     <div class="input-group">
-                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password" />
-                                        <span class="input-group-text" onclick="togglePasswordVisibility('confirmPassword', this)">
+                                        <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" placeholder="Confirm new password" />
+                                        <span class="input-group-text" onclick="togglePasswordVisibility('new_password_confirmation', this)">
                                             <i class="fas fa-eye"></i>
                                         </span>
                                     </div>
@@ -94,17 +104,7 @@
                             </div>
                         </div>
                     </form>
-
                     <hr class="my-5" />
-                    <div class="row" style="max-width: 920px">
-                        <div class="col-md">
-                            <article class="box mb-3 bg-light">
-                                <a class="btn float-end btn-light rounded btn-sm font-md" href="#">Deactivate</a>
-                                <h6>Remove account</h6>
-                                <small class="text-muted d-block" style="width: 70%">Once you delete your account, there is no going back.</small>
-                            </article>
-                        </div>
-                    </div>
                 </section>
             </div>
         </div>
@@ -138,6 +138,20 @@
         } else {
             input.type = "password";
             icon.classList.replace("fa-eye-slash", "fa-eye");
+        }
+    }
+</script>
+
+<script>
+    // JavaScript function to preview the selected image
+    function previewImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profileImage').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
         }
     }
 </script>

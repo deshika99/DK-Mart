@@ -15,6 +15,9 @@ class CustomerController extends Controller
 
         return view('AdminDashboard.customer', compact('customers'));
     }
+    
+    
+
 
     public function showCustomerDetails($user_id)
     {

@@ -16,6 +16,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\OrderController;
 
+
+
 //Affiliate_Dashboard Links
 use App\Http\Controllers\AffiliateProductController;
 use App\Http\Controllers\AffiliateCustomerController;
@@ -25,9 +27,9 @@ use App\Http\Controllers\AffiliateLinkController;
 use App\Http\Controllers\AffiliateRulesController;
 use App\Http\Controllers\AffiliateDashboardController;
 use App\Http\Controllers\AffiliatePaymentController;
-
+use App\Http\Controllers\AffiliateWithdrawalsController;
 use App\Http\Controllers\AffiliateUserController;
-
+use App\Http\Controllers\WishlistController;
 
 
 Route::get('/dashboard', function () {
@@ -49,6 +51,14 @@ Route::get('/cart', function () {
     return view('frontend.cart');
 })->name('cart');
 
+Route::get('/wishlist', [WishlistController::class, 'showWishlist'])->name('wishlist');
+Route::delete('/wishlist/remove/{productId}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
+Route::get('/wishlist/count', [WishlistController::class, 'getWishlistCount'])->name('wishlist.count');
+Route::post('/wishlist/toggle', [WishlistController::class, 'toggleWishlist'])->name('wishlist.toggle');
+Route::post('/wishlist/check-multiple', [WishlistController::class, 'checkMultipleWishlist'])->name('wishlist.checkMultiple');
+
+
+
 
 
 Route::middleware('auth')->group(function () {
@@ -57,7 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/admin',[AdminTemplateController::class,'index'])->name('admin.index');
+
 Route::get('/affiliate',[AffiliateTemplateController::class,'index'])->name('affiliate');
 Route::get('/',[HomeTemplateController::class,'index'])->name('home');
 
@@ -88,7 +98,29 @@ Route::post('/test-order', function() {
     return 'Test order placed';
 });
 
+
+
+
+
 //admin dashboard
+use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\AdminProfileController;
+use App\Http\Middleware\AdminAuth;
+
+
+Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login.post');
+Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+
+Route::middleware([App\Http\Middleware\AdminAuth::class])->group(function () {
+    Route::get('/admin',[AdminTemplateController::class,'index'])->name('admin.index');
+    // other routes
+});
+
+Route::get('/admin/profile', [AdminProfileController::class, 'showProfile'])->name('profile');
+Route::post('/admin/profile/update', [AdminProfileController::class, 'updateProfile'])->name('admin.profile.update');
+Route::post('/admin/profile/password', [AdminProfileController::class, 'updatePassword'])->name('admin.profile.password.update');
+
 
 Route::get('/admin/products_list', [ProductController::class, 'showproducts'])->name('products_list');
 
@@ -127,17 +159,15 @@ Route::post('/admin/affiliate_rules', [AffiliateRulesController::class, 'store']
 Route::delete('/admin/affiliate_rules/{id}', [AffiliateRulesController::class, 'destroy'])->name('affiliate_rules.destroy');
 Route::put('/admin/affiliate_rules/{id}', [AffiliateRulesController::class, 'update'])->name('admin_users.update');
 
-Route::view('/admin/affiliate_withdrawals', 'AdminDashboard.affiliate_withdrawals')->name('affiliate_withdrawals');
+Route::get('/admin/affiliate_withdrawals', [AffiliateWithdrawalsController::class, 'index'])->name('affiliate_withdrawals');
+Route::post('/admin/affiliate_withdrawals/update/{id}', [AffiliateWithdrawalsController::class, 'updatePaymentStatus'])->name('affiliate.updatePaymentStatus');
 
-Route::view('/admin/Affiliatecustomer-details', 'AdminDashboard.Affiliatecustomer-details')->name('Affiliatecustomer-details');
 Route::get('/admin/affiliate_customers', [AffiliateUserController::class, 'showAffiliates'])->name('affiliate_customers');
 Route::post('/admin/affiliates/{id}/status/{status}', [AffiliateUserController::class, 'updateStatus'])->name('admin.affiliates.updateStatus');
-Route::get('/admin/affiliates/{id}', [AffiliateUserController::class, 'show'])->name('admin.affiliates.show');
+Route::get('/admin/Affiliatecustomer-details/{id}', [AffiliateUserController::class, 'showDetails'])->name('admin.affiliates.show');
 
 Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
 Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inquiries');
-
-Route::view('/admin/profile', 'AdminDashboard.profile')->name('profile');
 
 Route::view('/admin/sellers', 'AdminDashboard.sellers')->name('sellers');
 Route::view('/admin/seller-details', 'AdminDashboard.seller-details')->name('seller_details');

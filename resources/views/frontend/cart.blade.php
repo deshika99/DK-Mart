@@ -3,16 +3,6 @@
 
 @section('content')
 <style>
- .cart-empty-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%; 
-    max-width: 800px; 
-    margin: 0 auto; 
-    padding: 48px 40px; 
-}
 
 .color-circle {
     display: inline-block;

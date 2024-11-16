@@ -376,48 +376,53 @@
     transform: scale(1.01);
 }
 
+/* Main Button */
 .btn-main {
-    background-color: hsl(var(--main)) !important;
-    border-color: hsl(var(--main)) !important;
+    background-color: #ce1616 !important; /* Red color */
+    border-color: #ce1616 !important; /* Red border */
 }
 
 .btn-main:hover {
-    background-color: var(--main-800) !important;
-    border-color: var(--main-800) !important;
+    background-color: #801111 !important; /* Darker red for hover */
+    border-color: #801111 !important; /* Darker red border */
 }
 
+/* Main Outline Button */
 .btn-outline-main {
     background-color: transparent !important;
-    border-color: hsl(var(--main)) !important;
-    color: hsl(var(--main)) !important;
+    border-color: #ce1616 !important; /* Red border */
+    color: #ce1616 !important; /* Red text */
 }
 
 .btn-outline-main:hover {
-    background-color: hsl(var(--main)/0.15) !important;
-    border-color: hsl(var(--main)/0.4) !important;
+    background-color: rgba(206, 22, 22, 0.15) !important; /* Light red background on hover */
+    border-color: rgba(206, 22, 22, 0.4) !important; /* Light red border on hover */
 }
 
+/* Main Two Button */
 .btn-main-two {
-    background-color: hsl(var(--main-two)) !important;
-    border-color: hsl(var(--main-two)) !important;
-    color: hsl(var(--white)) !important;
+    background-color: #bd0f0f !important; /* Darker red */
+    border-color: #bd0f0f !important; /* Darker red border */
+    color: #ffffff !important; /* White text */
 }
 
 .btn-main-two:hover {
-    background-color: var(--main-two-800) !important;
-    border-color: var(--main-two-800) !important;
+    background-color: #801111 !important; /* Darker red for hover */
+    border-color: #801111 !important; /* Darker red border */
 }
 
+/* Main Two Outline Button */
 .btn-outline-main-two {
     background-color: transparent !important;
-    border-color: hsl(var(--main-two)) !important;
-    color: hsl(var(--main-two)) !important;
+    border-color: #bd0f0f !important; /* Darker red border */
+    color: #bd0f0f !important; /* Darker red text */
 }
 
 .btn-outline-main-two:hover {
-    background-color: hsl(var(--main-two)/0.15) !important;
-    border-color: hsl(var(--main-two)/0.4) !important;
+    background-color: rgba(189, 15, 15, 0.15) !important; /* Light red background on hover */
+    border-color: rgba(189, 15, 15, 0.4) !important; /* Light red border on hover */
 }
+
 
 .btn-white {
     background-color: hsl(var(--white)) !important;
@@ -945,21 +950,27 @@ input[type=number] {
     }
 }
 
+/* Active Pagination Link */
 .pagination .page-item.active .page-link {
-    background-color: var(--main-600) !important;
-    border-color: var(--main-600) !important;
-    color: hsl(var(--white)) !important;
+    background-color: #801111 !important; /* Darker red for active */
+    border-color: #801111 !important; /* Darker red border */
+    color: #ffffff !important; /* White text */
 }
 
+/* Default Pagination Link */
 .pagination .page-item .page-link {
     box-shadow: none !important;
 }
 
-.pagination .page-item .page-link:hover, .pagination .page-item .page-link:active, .pagination .page-item .page-link:focus {
-    color: var(--main-600) !important;
-    background-color: var(--main-100) !important;
-    border-color: var(--main-300) !important;
+/* Hover, Active, and Focus Pagination Link */
+.pagination .page-item .page-link:hover, 
+.pagination .page-item .page-link:active, 
+.pagination .page-item .page-link:focus {
+    color: #801111 !important; /* Darker red text */
+    background-color: #f5d1d1 !important; /* Lighter red background */
+    border-color: #b34c4c !important; /* Slightly darker red border */
 }
+
 
 /* ================================= Pagination Css End =========================== */
 /* ================================= Tab Css Start =========================== */
@@ -994,12 +1005,12 @@ input[type=number] {
 
 .common-tab .nav-item .nav-link.active {
     color: hsl(var(--white)) !important;
-    border-color: var(--main-600) !important;
-    background-color: var(--main-600) !important;
+    border-color: #ce1616 !important;  /* Updated border color */
+    background-color: #ce1616 !important;  /* Updated background color */
 }
 
 .common-tab .nav-item .nav-link:hover {
-    color: var(--main-600);
+    color: #ce1616;  /* Updated hover color */
 }
 
 .common-tab.style-two .nav-link {
@@ -1009,13 +1020,14 @@ input[type=number] {
 
 .common-tab.style-two .nav-link.active {
     color: hsl(var(--white)) !important;
-    border-color: var(--main-two-600) !important;
-    background-color: var(--main-two-600) !important;
+    border-color: #ce1616 !important;  /* Updated border color */
+    background-color: #ce1616 !important;  /* Updated background color */
 }
 
 .common-tab.style-two .nav-link:hover {
-    color: var(--main-two-600);
+    color: #ce1616;  /* Updated hover color */
 }
+
 
 /* ================================= Tab Css End =========================== */
 /* ======================= Common Table Css Start ======================= */
@@ -1306,17 +1318,17 @@ input[type=number] {
 }
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
-    background-color: var(--main-600) !important;
+    background-color: #ce1616 !important;
     color: white !important;
 }
 
 .select2-results__option.select2-results__option--selectable:hover {
-    background-color: var(--main-100) !important;
-    color: var(--main-600) !important;
+    background-color: #ce1616 !important;
+    color: white !important;
 }
 
 .select2-container--default .select2-results__option--selected, .select2-container--default .select2-results__option--selected:hover {
-    background-color: var(--main-600) !important;
+    background-color: #ce1616  !important;
     color: #fff !important;
 }
 
@@ -1342,11 +1354,11 @@ input[type=number] {
 }
 
 .select2-container--open.select2-container--default .select2-selection--single .select2-selection__rendered {
-    color: var(--main-600) !important;
+    color: #ce1616 !important;
 }
 
 .select2-container--open.select2-container--default .select2-selection--single .select2-selection__arrow b::before {
-    color: var(--main-600) !important;
+    color: #ce1616  !important;
 }
 
 /* Location Box Css  */
@@ -1520,10 +1532,11 @@ input[type=number] {
     margin: 8px;
 }
 
+/* Slider Handle */
 .custom--range #slider-range .ui-slider-handle {
     width: 16px !important;
     height: 16px !important;
-    background-color: var(--main-600) !important;
+    background-color: #b61a1a !important; /* Darker red for the slider handle */
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
@@ -1532,22 +1545,29 @@ input[type=number] {
     transition: 0.2s linear;
 }
 
-.custom--range #slider-range .ui-slider-handle:hover, .custom--range #slider-range .ui-slider-handle.ui-state-active {
-    transform: translateY(-50%) scale(1.3);
-}
-
+/* Slider Handle Hover and Active States */
+.custom--range #slider-range .ui-slider-handle:hover, 
 .custom--range #slider-range .ui-slider-handle.ui-state-active {
-    box-shadow: 0px 0px 12px 4px #95959541 !important;
+    transform: translateY(-50%) scale(1.3);
+    background-color: #c61c1c !important; /* Lighter red for hover/active */
 }
 
+/* Active Slider Handle Shadow */
+.custom--range #slider-range .ui-slider-handle.ui-state-active {
+    box-shadow: 0px 0px 12px 4px rgba(149, 89, 89, 0.25) !important; /* Softer shadow */
+}
+
+/* Slider Track (Background) */
 .custom--range #slider-range .ui-widget-header {
-    background-color: var(--main-600);
+    background-color: #aa1d1d; /* Darker red for track background */
     transition: 0.2s linear;
 }
 
+/* Focused Slider Span */
 .custom--range #slider-range span:focus {
-    background-color: var(--main-600);
+    background-color: #a21313; /* Lighter red on focus */
 }
+
 
 .custom--range__prices {
     width: 150px;
@@ -4865,85 +4885,86 @@ input:focus-visible {
 .end-n4 {
     inset-inline-end: -6px;
 }
-
+/* Text colors for text-main shades */
 .text-main-50 {
-    color: var(--main-50) !important;
+    color: #ffe5e5 !important; /* Very light pink */
 }
 
 .text-main-100 {
-    color: var(--main-100) !important;
+    color: #ffcccc !important; /* Light pink */
 }
 
 .text-main-200 {
-    color: var(--main-200) !important;
+    color: #ffb2b2 !important; /* Soft pink */
 }
 
 .text-main-300 {
-    color: var(--main-300) !important;
+    color: #ff9999 !important; /* Warm pink */
 }
 
 .text-main-400 {
-    color: var(--main-400) !important;
+    color: #ff6666 !important; /* Medium pink-red */
 }
 
 .text-main-500 {
-    color: var(--main-500) !important;
+    color: #ff3333 !important; /* Slightly lighter red */
 }
 
 .text-main-600 {
-    color: var(--main-600) !important;
+    color: #ce1616 !important; /* Original color */
 }
 
 .text-main-700 {
-    color: var(--main-700) !important;
+    color: #a11414 !important; /* Darker red */
 }
 
 .text-main-800 {
-    color: var(--main-800) !important;
+    color: #801111 !important; /* Deep red */
 }
 
 .text-main-900 {
-    color: var(--main-900) !important;
+    color: #4d0a0a !important; /* Darkest red/maroon */
 }
 
+/* Text colors for text-main-two shades */
 .text-main-two-50 {
-    color: var(--main-two-50) !important;
+    color: #ffe5e5 !important; /* Very light pink */
 }
 
 .text-main-two-100 {
-    color: var(--main-two-100) !important;
+    color: #ffcccc !important; /* Light pink */
 }
 
 .text-main-two-200 {
-    color: var(--main-two-200) !important;
+    color: #ffb2b2 !important; /* Soft pink */
 }
 
 .text-main-two-300 {
-    color: var(--main-two-300) !important;
+    color: #ff9999 !important; /* Warm pink */
 }
 
 .text-main-two-400 {
-    color: var(--main-two-400) !important;
+    color: #ff6666 !important; /* Medium pink-red */
 }
 
 .text-main-two-500 {
-    color: var(--main-two-500) !important;
+    color: #ff3333 !important; /* Slightly lighter red */
 }
 
 .text-main-two-600 {
-    color: var(--main-two-600) !important;
+    color: #bd0f0f !important; /* Darker shade of original color */
 }
 
 .text-main-two-700 {
-    color: var(--main-two-700) !important;
+    color: #a11414 !important; /* Darker red */
 }
 
 .text-main-two-800 {
-    color: var(--main-two-800) !important;
+    color: #801111 !important; /* Deep red */
 }
 
 .text-main-two-900 {
-    color: var(--main-two-900) !important;
+    color: #4d0a0a !important; /* Darkest red/maroon */
 }
 
 .text-neutral-50 {
@@ -5266,88 +5287,86 @@ input:focus-visible {
     color: hsl(var(--body-color)) !important;
 }
 
-.text-main {
-    color: hsl(var(--main)) !important;
-}
-
+/* Text color for hover-text-main shades */
 .hover-text-main-50:hover {
-    color: var(--main-50) !important;
+    color: #ffe5e5 !important; /* Very light pink */
 }
 
 .hover-text-main-100:hover {
-    color: var(--main-100) !important;
+    color: #ffcccc !important; /* Light pink */
 }
 
 .hover-text-main-200:hover {
-    color: var(--main-200) !important;
+    color: #ffb2b2 !important; /* Soft pink */
 }
 
 .hover-text-main-300:hover {
-    color: var(--main-300) !important;
+    color: #ff9999 !important; /* Warm pink */
 }
 
 .hover-text-main-400:hover {
-    color: var(--main-400) !important;
+    color: #ff6666 !important; /* Medium pink-red */
 }
 
 .hover-text-main-500:hover {
-    color: var(--main-500) !important;
+    color: #ff3333 !important; /* Slightly lighter red */
 }
 
 .hover-text-main-600:hover {
-    color: var(--main-600) !important;
+    color: #ce1616 !important; /* Original color */
 }
 
 .hover-text-main-700:hover {
-    color: var(--main-700) !important;
+    color: #a11414 !important; /* Darker red */
 }
 
 .hover-text-main-800:hover {
-    color: var(--main-800) !important;
+    color: #801111 !important; /* Deep red */
 }
 
 .hover-text-main-900:hover {
-    color: var(--main-900) !important;
+    color: #4d0a0a !important; /* Darkest red/maroon */
 }
 
+/* Text color for hover-text-main-two shades */
 .hover-text-main-two-50:hover {
-    color: var(--main-two-50) !important;
+    color: #ffe5e5 !important; /* Very light pink */
 }
 
 .hover-text-main-two-100:hover {
-    color: var(--main-two-100) !important;
+    color: #ffcccc !important; /* Light pink */
 }
 
 .hover-text-main-two-200:hover {
-    color: var(--main-two-200) !important;
+    color: #ffb2b2 !important; /* Soft pink */
 }
 
 .hover-text-main-two-300:hover {
-    color: var(--main-two-300) !important;
+    color: #ff9999 !important; /* Warm pink */
 }
 
 .hover-text-main-two-400:hover {
-    color: var(--main-two-400) !important;
+    color: #ff6666 !important; /* Medium pink-red */
 }
 
 .hover-text-main-two-500:hover {
-    color: var(--main-two-500) !important;
+    color: #ff3333 !important; /* Slightly lighter red */
 }
 
 .hover-text-main-two-600:hover {
-    color: var(--main-two-600) !important;
+    color: #bd0f0f !important; /* Darker shade of original color */
 }
 
 .hover-text-main-two-700:hover {
-    color: var(--main-two-700) !important;
+    color: #a11414 !important; /* Darker red */
 }
 
 .hover-text-main-two-800:hover {
-    color: var(--main-two-800) !important;
+    color: #801111 !important; /* Deep red */
 }
 
 .hover-text-main-two-900:hover {
-    color: var(--main-two-900) !important;
+    color: #4d0a0a !important; /* Darkest red/maroon */
 }
 
 .hover-text-neutral-50:hover {
@@ -6071,85 +6090,88 @@ input:focus-visible {
     border-color: var(--tertiary-600) !important;
 }
 
+/* Hover border colors for hover-border-main shades */
 .hover-border-main-50:hover {
-    border-color: var(--main-50) !important;
+    border-color: #ffe5e5 !important; /* Very light pink */
 }
 
 .hover-border-main-100:hover {
-    border-color: var(--main-100) !important;
+    border-color: #ffcccc !important; /* Light pink */
 }
 
 .hover-border-main-200:hover {
-    border-color: var(--main-200) !important;
+    border-color: #ffb2b2 !important; /* Soft pink */
 }
 
 .hover-border-main-300:hover {
-    border-color: var(--main-300) !important;
+    border-color: #ff9999 !important; /* Warm pink */
 }
 
 .hover-border-main-400:hover {
-    border-color: var(--main-400) !important;
+    border-color: #ff6666 !important; /* Medium pink-red */
 }
 
 .hover-border-main-500:hover {
-    border-color: var(--main-500) !important;
+    border-color: #ff3333 !important; /* Slightly lighter red */
 }
 
 .hover-border-main-600:hover {
-    border-color: var(--main-600) !important;
+    border-color: #ce1616 !important; /* Original color */
 }
 
 .hover-border-main-700:hover {
-    border-color: var(--main-700) !important;
+    border-color: #a11414 !important; /* Darker red */
 }
 
 .hover-border-main-800:hover {
-    border-color: var(--main-800) !important;
+    border-color: #801111 !important; /* Deep red */
 }
 
 .hover-border-main-900:hover {
-    border-color: var(--main-900) !important;
+    border-color: #4d0a0a !important; /* Darkest red/maroon */
 }
 
+/* Hover border colors for hover-border-main-two shades */
 .hover-border-main-two-50:hover {
-    border-color: var(--main-two-50) !important;
+    border-color: #ffe5e5 !important; /* Very light pink */
 }
 
 .hover-border-main-two-100:hover {
-    border-color: var(--main-two-100) !important;
+    border-color: #ffcccc !important; /* Light pink */
 }
 
 .hover-border-main-two-200:hover {
-    border-color: var(--main-two-200) !important;
+    border-color: #ffb2b2 !important; /* Soft pink */
 }
 
 .hover-border-main-two-300:hover {
-    border-color: var(--main-two-300) !important;
+    border-color: #ff9999 !important; /* Warm pink */
 }
 
 .hover-border-main-two-400:hover {
-    border-color: var(--main-two-400) !important;
+    border-color: #ff6666 !important; /* Medium pink-red */
 }
 
 .hover-border-main-two-500:hover {
-    border-color: var(--main-two-500) !important;
+    border-color: #ff3333 !important; /* Slightly lighter red */
 }
 
 .hover-border-main-two-600:hover {
-    border-color: var(--main-two-600) !important;
+    border-color: #bd0f0f !important; /* Darker shade of original color */
 }
 
 .hover-border-main-two-700:hover {
-    border-color: var(--main-two-700) !important;
+    border-color: #a11414 !important; /* Darker red */
 }
 
 .hover-border-main-two-800:hover {
-    border-color: var(--main-two-800) !important;
+    border-color: #801111 !important; /* Deep red */
 }
 
 .hover-border-main-two-900:hover {
-    border-color: var(--main-two-900) !important;
+    border-color: #4d0a0a !important; /* Darkest red/maroon */
 }
+
 
 .hover-border-neutral-50:hover {
     border-color: var(--neutral-50) !important;
@@ -6471,84 +6493,87 @@ input:focus-visible {
     border-style: dotted !important;
 }
 
+/* Lighter shades */
 .bg-main-50 {
-    background-color: var(--main-50) !important;
+    background-color: #ffe5e5 !important; /* Lightest pink */
 }
 
 .bg-main-100 {
-    background-color: var(--main-100) !important;
+    background-color: #ffcccc !important;
 }
 
 .bg-main-200 {
-    background-color: var(--main-200) !important;
+    background-color: #ff9999 !important;
 }
 
 .bg-main-300 {
-    background-color: var(--main-300) !important;
+    background-color: #ff6666 !important;
 }
 
 .bg-main-400 {
-    background-color: var(--main-400) !important;
+    background-color: #ff3333 !important;
 }
 
+/* Base color */
 .bg-main-500 {
-    background-color: var(--main-500) !important;
+    background-color: #ff1a1a !important; 
 }
 
 .bg-main-600 {
-    background-color: var(--main-600) !important;
+    background-color: #ce1616 !important; 
 }
 
+/* Darker shades */
 .bg-main-700 {
-    background-color: var(--main-700) !important;
+    background-color: #a11414 !important;
 }
 
 .bg-main-800 {
-    background-color: var(--main-800) !important;
+    background-color: #801111 !important;
 }
 
 .bg-main-900 {
-    background-color: var(--main-900) !important;
+    background-color: #4d0a0a !important; 
 }
 
 .bg-main-two-50 {
-    background-color: var(--main-two-50) !important;
+    background-color: #ffe5e5 !important; /* Very light pink */
 }
 
 .bg-main-two-100 {
-    background-color: var(--main-two-100) !important;
+    background-color: #ffcccc !important; /* Light pink */
 }
 
 .bg-main-two-200 {
-    background-color: var(--main-two-200) !important;
+    background-color: #ffb2b2 !important; /* Soft pink */
 }
 
 .bg-main-two-300 {
-    background-color: var(--main-two-300) !important;
+    background-color: #ff9999 !important; /* Warm pink */
 }
 
 .bg-main-two-400 {
-    background-color: var(--main-two-400) !important;
+    background-color: #ff6666 !important; /* Medium pink-red */
 }
 
 .bg-main-two-500 {
-    background-color: var(--main-two-500) !important;
+    background-color: #ff3333 !important; /* Slightly lighter red */
 }
 
 .bg-main-two-600 {
-    background-color: var(--main-two-600) !important;
+    background-color: #ce1616 !important; /* Original color */
 }
 
 .bg-main-two-700 {
-    background-color: var(--main-two-700) !important;
+    background-color: #a11414 !important; /* Darker red */
 }
 
 .bg-main-two-800 {
-    background-color: var(--main-two-800) !important;
+    background-color: #801111 !important; 
 }
 
 .bg-main-two-900 {
-    background-color: var(--main-two-900) !important;
+    background-color: #4d0a0a !important; 
 }
 
 .bg-neutral-50 {
@@ -6863,85 +6888,88 @@ input:focus-visible {
     background-color: var(--tertiary-600) !important;
 }
 
+/* Hover colors for bg-main shades */
 .hover-bg-main-50:hover {
-    background-color: var(--main-50) !important;
+    background-color: #ffe5e5 !important; /* Very light pink */
 }
 
 .hover-bg-main-100:hover {
-    background-color: var(--main-100) !important;
+    background-color: #ffcccc !important; /* Light pink */
 }
 
 .hover-bg-main-200:hover {
-    background-color: var(--main-200) !important;
+    background-color: #ffb2b2 !important; /* Soft pink */
 }
 
 .hover-bg-main-300:hover {
-    background-color: var(--main-300) !important;
+    background-color: #ff9999 !important; /* Warm pink */
 }
 
 .hover-bg-main-400:hover {
-    background-color: var(--main-400) !important;
+    background-color: #ff6666 !important; /* Medium pink-red */
 }
 
 .hover-bg-main-500:hover {
-    background-color: var(--main-500) !important;
+    background-color: #ff3333 !important; /* Slightly lighter red */
 }
 
 .hover-bg-main-600:hover {
-    background-color: var(--main-600) !important;
+    background-color: #ce1616 !important; /* Original color */
 }
 
 .hover-bg-main-700:hover {
-    background-color: var(--main-700) !important;
+    background-color: #a11414 !important; /* Darker red */
 }
 
 .hover-bg-main-800:hover {
-    background-color: var(--main-800) !important;
+    background-color: #801111 !important; /* Deep red */
 }
 
 .hover-bg-main-900:hover {
-    background-color: var(--main-900) !important;
+    background-color: #4d0a0a !important; /* Darkest red/maroon */
 }
 
+/* Hover colors for bg-main-two shades */
 .hover-bg-main-two-50:hover {
-    background-color: var(--main-two-50) !important;
+    background-color: #ffe5e5 !important; /* Very light pink */
 }
 
 .hover-bg-main-two-100:hover {
-    background-color: var(--main-two-100) !important;
+    background-color: #ffcccc !important; /* Light pink */
 }
 
 .hover-bg-main-two-200:hover {
-    background-color: var(--main-two-200) !important;
+    background-color: #ffb2b2 !important; /* Soft pink */
 }
 
 .hover-bg-main-two-300:hover {
-    background-color: var(--main-two-300) !important;
+    background-color: #ff9999 !important; /* Warm pink */
 }
 
 .hover-bg-main-two-400:hover {
-    background-color: var(--main-two-400) !important;
+    background-color: #ff6666 !important; /* Medium pink-red */
 }
 
 .hover-bg-main-two-500:hover {
-    background-color: var(--main-two-500) !important;
+    background-color: #ff3333 !important; /* Slightly lighter red */
 }
 
 .hover-bg-main-two-600:hover {
-    background-color: var(--main-two-600) !important;
+    background-color: #bd0f0f !important; /* Darker shade of original color */
 }
 
 .hover-bg-main-two-700:hover {
-    background-color: var(--main-two-700) !important;
+    background-color: #a11414 !important; /* Darker red */
 }
 
 .hover-bg-main-two-800:hover {
-    background-color: var(--main-two-800) !important;
+    background-color: #801111 !important; /* Deep red */
 }
 
 .hover-bg-main-two-900:hover {
-    background-color: var(--main-two-900) !important;
+    background-color: #4d0a0a !important; /* Darkest red/maroon */
 }
+
 
 .hover-bg-neutral-50:hover {
     background-color: var(--neutral-50) !important;
@@ -7954,11 +7982,11 @@ input:focus-visible {
 
 /* Hover Classes Start */
 .item-hover:hover .item-hover__text {
-    color: var(--main-600) !important;
+    color: #e14949 !important;
 }
 
 .item-hover-two:hover .item-hover__text {
-    color: var(--main-two-600) !important;
+    color: #e14949 !important;
 }
 
 .on-hover-dropdown {
@@ -8190,20 +8218,20 @@ input:focus-visible {
 }
 
 .nav-menu__item.activePage > a {
-    color: hsl(var(--main));
+    color: #ce1616;  /* Updated active page color */
 }
 
 .nav-menu__item.activePage > a::before {
-    color: hsl(var(--main));
+    color: #ce1616;  /* Updated active page before pseudo-element color */
 }
 
 .nav-menu__item:hover > a {
-    color: var(--gray-400);
+    color: var(--gray-400);  /* Keeping hover color as is */
 }
 
 @media (min-width: 992px) {
     .nav-menu__item:hover > a {
-        color: hsl(var(--main));
+        color: #ce1616;  /* Updated hover color for larger screens */
     }
 }
 
@@ -10343,7 +10371,7 @@ input:focus-visible {
     font-size: 13px;
     border-radius: 5px;
     border-color: #ccc; 
-    width: 30px;
+    width: 35px;
     height: 30px;
 }
 .size_button.active, .color-list__button.active {
@@ -10355,4 +10383,42 @@ a.disabled {
     pointer-events: none;
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+.cart-empty-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%; 
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 48px 40px; 
+}
+
+.wishlist .container {
+    max-width: 1200px; /* Or your desired width */
+}
+
+
+.heart-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.heart-icon .fa-heart {
+    color: black;
+    transition: color 0.3s, transform 0.2s ease-in-out;
+}
+
+.heart-icon.active .fa-heart {
+    color: red; 
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.heart-icon.active i {
+    class: "fa-solid fa-heart"; 
 }

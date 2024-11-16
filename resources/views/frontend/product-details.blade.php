@@ -2,18 +2,7 @@
 
 @section('content')
 <style>
-    .size_button {
-    padding: 5px;;
-    font-size: 13px;
-    border-radius: 5px;
-    border-color: #ccc; 
-    width: 30px;
-    height: 30px;
-}
-.size_button.active, .color-list__button.active {
-    border-color: #007bff; 
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
+
 
 a.disabled {
     pointer-events: none;
@@ -515,15 +504,22 @@ a.disabled {
                         <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
                     </div>
 
-                    <div class="product-card__content mt-12">
-                        <div class="product-card__price mb-8">
-                            <span class="text-heading text-md fw-semibold ">Rs {{ number_format($similarProduct->normal_price, 2) }}<span class="text-gray-500 fw-normal">/Qty</span> </span>
+                    <div class="flex-align mb-20 mt-16 gap-6">
+                        <div class="rating-info d-flex gap-2">
+                            <span class="text-xs fw-medium text-gray-500">4.8</span>
+                            <span class="text-15 fw-medium text-warning-600 d-flex">
+                                <i class="ph-fill ph-star"></i>
+                            </span>
+                            <span class="text-xs fw-medium text-gray-500">(17k)</span>
                         </div>
-                        <div class="flex-align gap-6">
-                            <span class="text-xs fw-bold text-gray-600">4.8</span>
-                            <span class="text-15 fw-bold text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                            <span class="text-xs fw-bold text-gray-600">(17k)</span>
-                        </div>
+                        <!-- Heart Icon -->
+                        <button type="button" class="heart-icon ms-auto" 
+                                id="wishlist-icon-{{ $similarProduct->product_id }}" 
+                                data-product-id="{{ $similarProduct->product_id }}" 
+                                onclick="toggleWishlist(this, '{{ $similarProduct->product_id }}')">
+                            <i class="fa-regular fa-heart" style="font-size: 15px;"></i>
+                        </button>
+
                     </div>
                 </div>
             </div>
@@ -731,6 +727,68 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 </script> 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Get all product IDs in the similar products section
+    const productIds = Array.from(document.querySelectorAll('.heart-icon')).map(icon => icon.getAttribute('data-product-id'));
 
+    // Check if each product is in the wishlist
+    productIds.forEach(productId => {
+        fetch(`/wishlist/check/${productId}`, {
+            method: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.in_wishlist) {
+                // If product is in wishlist, mark the heart icon as active
+                const heartIcon = document.querySelector(`#wishlist-icon-${productId}`);
+                if (heartIcon) {
+                    heartIcon.classList.add('active');
+                    heartIcon.querySelector('i').classList.replace('fa-regular', 'fa-solid');
+                    heartIcon.querySelector('i').style.color = 'red';
+                }
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+
+// Function to toggle wishlist
+function toggleWishlist(button, productId) {
+    // Toggle active state for heart icon
+    button.classList.toggle('active');
+
+    if (button.classList.contains('active')) {
+        button.querySelector('i').classList.replace('fa-regular', 'fa-solid');
+        button.querySelector('i').style.color = 'red';
+    } else {
+        button.querySelector('i').classList.replace('fa-solid', 'fa-regular');
+        button.querySelector('i').style.color = '#ccc';
+    }
+
+    // Send request to toggle wishlist
+    fetch('/wishlist/toggle', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+        },
+        body: JSON.stringify({ product_id: productId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+</script>
 
 @endsection

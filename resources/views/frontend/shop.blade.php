@@ -3,13 +3,15 @@
 @extends ('frontend.master')
 
 @section('content')
+
+
 <style>
     .product-description {
     display: -webkit-box;
-    -webkit-line-clamp: 3;  /* Limits to 3 lines */
+    -webkit-line-clamp: 3; 
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;  /* Adds ellipsis (...) at the end if the text is truncated */
+    text-overflow: ellipsis;  
 }
 
 </style>
@@ -103,8 +105,8 @@
                                         <li class="mb-16 color-item">
                                             <div class="form-check common-check common-radio checked-black">
                                                 <input class="form-check-input" type="radio" name="color" id="color{{ $variation->id }}" value="{{ $variation->hex_value }}" style="display: none;" onclick="filterByColor('{{ $variation->hex_value }}')">
-                                                <label class="form-check-label color-swatch" for="color{{ $variation->id }}" 
-                                                    style="background-color: {{ $variation->hex_value }}; display: inline-block; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; transition: box-shadow 0.3s;"
+                                                <label class="form-check-label border-gray-100 color-swatch" for="color{{ $variation->id }}" 
+                                                    style="background-color: {{ $variation->hex_value }}; display: inline-block; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; transition: box-shadow 0.3s; border: 1px solid gray;"
                                                     onmouseover="this.style.boxShadow='0 0 5px rgba(0,0,0,0.5)';" 
                                                     onmouseout="if (!this.classList.contains('selected')) this.style.boxShadow='none';"></label>
                                             </div>
@@ -117,6 +119,7 @@
                             @endforeach
                         </ul>
                     </div>
+
                     
                     <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
                         <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24">Filter by Rating</h6>
@@ -242,6 +245,7 @@
                                     alt="{{ $product->product_name }}" 
                                     class="product-image">
                                 <span class="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Sale</span>
+                              
                             </a>
 
                             <div class="product-card__content mt-16">
@@ -249,10 +253,21 @@
                                     <a href="{{ url('/product-details/' . $product->product_id) }}" class="link text-line-2" tabindex="0">{{ $product->product_name }}</a>
                                 </h6>
                                 <div class="flex-align mb-20 mt-16 gap-6">
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                    <div class="rating-info d-flex gap-2">
+                                        <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                        <span class="text-15 fw-medium text-warning-600 d-flex">
+                                            <i class="ph-fill ph-star"></i>
+                                        </span>
+                                        <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                    </div>
+                                    <!-- Heart Icon -->
+                                    <button type="button" class="heart-icon ms-auto" 
+                                            id="wishlist-icon-{{ $product->product_id }}" 
+                                            onclick="toggleWishlist(this, '{{ $product->product_id }}')">
+                                        <i class="fa-regular fa-heart" style="font-size: 15px;"></i>
+                                    </button>
                                 </div>
+
                                 <div class="mt-8">
                                     @php
                                         // Calculate the percentage sold
@@ -272,6 +287,8 @@
                                 <div class="product-card__price my-20">
                                     <span class="text-heading text-md fw-semibold ">Rs {{ number_format($product->normal_price, 2) }} <span class="text-gray-500 fw-normal">/Qty</span></span>
                                 </div>
+                               
+                              
                                 <a href="#" 
                                 style="width:230px" 
                                 class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium add-to-cart-btn" 
@@ -283,7 +300,6 @@
                             </div>
                         </div>
 
-            
                         <!-- Cart Modal -->
                         <div class="modal fade" id="cartModal_{{ $product->product_id }}" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -326,7 +342,7 @@
                                                 </div>
                                                 <hr />
                                                 
-                                                <div class="product-availability mt-3 mb-1">
+                                                <div class="product-availability mt-3 mb-12">
                                                     <span>Availability :</span>
                                                     @if($product->quantity > 1)
                                                         <span class="ms-1" style="color:#4caf50;">In stock</span>
@@ -337,7 +353,7 @@
 
                                                  <!-- Sizes Section -->
                                                 @if ($product->variations->pluck('value')->filter()->unique()->isNotEmpty())
-                                                    <div class="flex-between align-items-start flex-wrap gap-16">
+                                                    <div class="flex-between align-items-start flex-wrap gap-16 mb-8">
                                                         <div class="d-flex align-items-center mb-5">
                                                             <span class="text-gray-900 me-3">Size:</span>
                                                             @foreach ($product->variations->pluck('value')->filter()->unique() as $size)
@@ -368,7 +384,7 @@
                                                     </div>
                                                 @endif
 
-                                                <div class="product-price mb-3 mt-3 d-flex align-items-center">
+                                                <div class="product-price mb-3 mt-8 d-flex align-items-center">
                                                     <span class="" style="margin-right: 10px;">                                                   
                                                     <h6 class="mb-0">Rs {{ $product->normal_price }}</h6>
                                                     </span>
@@ -563,7 +579,75 @@ document.addEventListener('DOMContentLoaded', function() {
 
    
 }); 
+
 </script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const productIds = [...document.querySelectorAll('.heart-icon')].map(button => button.id.replace('wishlist-icon-', ''));
+
+    // Fetch wishlist status for all products on the page
+    fetch('/wishlist/check-multiple', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ product_ids: productIds })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Loop through each product and update the icon if it's in the wishlist
+        data.wishlist.forEach(productId => {
+            const heartIcon = document.querySelector(`#wishlist-icon-${productId}`);
+            if (heartIcon) {
+                heartIcon.classList.add('active');
+                const icon = heartIcon.querySelector('i');
+                icon.classList.replace('fa-regular', 'fa-solid');
+                icon.style.color = 'red';
+            }
+        });
+    })
+    .catch(error => console.error('Error:', error));
+});
+
+function toggleWishlist(button, productId) {
+    // Toggle active state
+    button.classList.toggle('active');
+    const icon = button.querySelector('i');
+
+    if (button.classList.contains('active')) {
+        icon.classList.replace('fa-regular', 'fa-solid');
+        icon.style.color = 'red';
+    } else {
+        icon.classList.replace('fa-solid', 'fa-regular');
+        icon.style.color = '#ccc';
+    }
+
+    // Send AJAX request to toggle wishlist status
+    fetch('/wishlist/toggle', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ product_id: productId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error); // If not logged in or another error
+        } else {
+            alert(data.message); // Display success message
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+</script>
+
+
 @endsection
 
 

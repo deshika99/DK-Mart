@@ -17,7 +17,7 @@ class AffiliateRulesController extends Controller
 
     public function index()
     {
-        $rules = AffiliateRules::all(); 
+        $rules = AffiliateRule::all(); 
         return view('AdminDashboard.affiliate_rules', compact('rules'));
     }
 
@@ -30,7 +30,7 @@ class AffiliateRulesController extends Controller
                 'rule' => 'required|string|max:255',
             ]);
         
-            AffiliateRules::create([
+            AffiliateRule::create([
                 'rule' => $request->rule,
             ]);
         
@@ -40,7 +40,7 @@ class AffiliateRulesController extends Controller
     
     public function update(Request $request, $id)
     {
-            $affiliateRule = AffiliateRules::findOrFail($id);
+            $affiliateRule = AffiliateRule::findOrFail($id);
             $affiliateRule->rule = $request->rule;
             $affiliateRule->save();
     
@@ -51,7 +51,7 @@ class AffiliateRulesController extends Controller
 
     public function destroy($id)
     {
-        $rule = AffiliateRules::findOrFail($id);
+        $rule = AffiliateRule::findOrFail($id);
         $rule->delete();
 
         return redirect()->route('affiliate_rules')->with('success', 'Rule deleted successfully.');
