@@ -13,25 +13,28 @@ use Illuminate\Validation\ValidationException;
 
 class ProductController extends Controller
 {
+  //navbar search box
+    public function searchView(Request $request)
+{
+    $query = $request->input('query');
+    $categoryId = $request->input('category');
+     $products = Product::query();
 
-    public function displayCategories()
-    {
-        $categories = Category::with('subcategories.subSubcategories')->get();
-        return view('AdminDashboard.add_products', compact('categories'));
+    if ($query) {
+        $products = $products->where('product_name', 'LIKE', "%$query%")
+                             ->orWhere('product_description', 'LIKE', "%$query%");
     }
 
-
-
-    public function getSubcategories($categoryId)
-    {
-        return Subcategory::where('category_id', $categoryId)->get();
-    }
-    
-    public function getSubSubcategories($subcategoryId)
-    {
-        return SubSubcategory::where('subcategory_id', $subcategoryId)->get();
+    if ($categoryId) {
+        $products = $products->where('category_id', $categoryId);
     }
 
+    $products = $products->get();
+
+    $categories = Category::all();
+
+    return view('frontend.searchView', compact('products', 'categories'));
+}
 
 
     public function showproducts()
@@ -43,17 +46,13 @@ class ProductController extends Controller
     }
 
     
-
-
     public function view_details($id)
     {
         $product = Product::with(['category', 'images'])->findOrFail($id); 
         return view('AdminDashboard.product-details', compact('product'));
     }
 
-    
-
-    public function store(Request $request)
+      public function store(Request $request)
     {
 
         $request->merge([
