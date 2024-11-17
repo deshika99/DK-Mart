@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use App\Models\CustomerOrder;
 use Illuminate\Http\Request;
@@ -10,22 +11,16 @@ class CustomerController extends Controller
 
     public function show()
     {
-       
         $customers = User::withCount('customerOrders')->paginate(10); 
 
         return view('AdminDashboard.customer', compact('customers'));
     }
     
-        $customers = User::withCount('customerOrders')->get();
-
-        return view('AdminDashboard.customer', compact('customers'));
-    }
     
 
 
     public function showCustomerDetails($user_id)
     {
-
         $customer = User::findOrFail($user_id);
         
         $orders = CustomerOrder::where('user_id', $user_id)
@@ -37,7 +32,6 @@ class CustomerController extends Controller
         $totalProducts = $orders->sum(function ($order) {
             return $order->items->sum('quantity');
         });
-        
 
         return view('AdminDashboard.customer-details', compact('customer', 'orders', 'totalCost', 'totalOrders', 'totalProducts'));
     }

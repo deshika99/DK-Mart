@@ -30,7 +30,7 @@
 
     .dropdown-item:hover {
         background-color: #f2f2f2;
-        color: rgb(238, 82, 10);
+        color: #ce1616;
     }
 
     .profile-dropdown:hover .dropdown-menu {
@@ -40,11 +40,7 @@
 </style>
 
 
-<!--==================== Preloader Start ====================-->
-<div class="preloader">
-    <img src="assets/images/icon/preloader.gif" alt="">
-</div>
-<!--==================== Preloader End ====================-->
+
 
 <!--==================== Overlay Start ====================-->
 <div class="overlay"></div>
@@ -150,7 +146,7 @@
                         <div class="search-form__wrapper position-relative">
                             <input type="text" class="search-form__input common-input py-13 ps-16 pe-18 rounded-0 border-0" placeholder="Search for a product or brand">
                         </div>
-                        <button type="submit" class="bg-main-two-600 flex-center text-xl text-white flex-shrink-0 w-48 hover-bg-main-two-700 d-lg-flex d-none"><i class="ph ph-magnifying-glass"></i></button>
+                        <button type="submit" class="bg-main-two-600 flex-center text-xl text-white flex-shrink-0 w-48 hover-bg-main-two-600 d-lg-flex d-none"><i class="ph ph-magnifying-glass"></i></button>
                     </div>
                 </form>
             </div>
@@ -201,13 +197,14 @@
     </div>
 
 
-    <a href="wishlist.html" class="flex-align flex-column gap-8 item-hover-two">
+    <a href="{{ route('wishlist') }}" class="flex-align flex-column gap-8 item-hover-two">
         <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
             <i class="ph ph-heart"></i>
-            <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>
+            <span id="wishlist-count" class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">0</span>
         </span>
         <span class="text-md text-white item-hover__text d-none d-lg-flex">Wishlist</span>
     </a>
+
 
     
     <a href="{{ route ('cart') }}" class="flex-align flex-column gap-8 item-hover-two ml-10" style="margin-right:30px;">
@@ -232,7 +229,7 @@
 <!-- ======================= Middle Header Two End ========================= -->
 
     <!-- ==================== Header Two Start Here ==================== -->
-<header class="header bg-white border-bottom border-gray-100">
+<header class="header  border-bottom border-gray-100">
     <div class="container container-lg">
         <nav class="header-inner d-flex justify-content-between gap-8">
         <div class="flex-align menu-category-wrapper">
@@ -377,7 +374,7 @@
 
 
 
-    <a href="wishlist.html" class="flex-align flex-column gap-8 item-hover-two">
+    <a href="{{ route('wishlist') }}" class="flex-align flex-column gap-8 item-hover-two">
         <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
             <i class="ph ph-heart"></i>
             <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>

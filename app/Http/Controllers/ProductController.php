@@ -55,16 +55,18 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
         $request->merge([
             'is_affiliate' => $request->has('is_affiliate') ? true : false,
         ]);
         
+        // Validate the request
         $validatedData = $request->validate([
             'product_name' => 'required|string|max:255',
             'product_description' => 'nullable|string',
             'category_id' => 'required',
-            'subcategory_id' => 'nullable',
-            'sub_subcategory_id' => 'nullable',
+            'subcategory_id' => 'nullable',  
+            'sub_subcategory_id' => 'nullable',  
             'quantity' => 'required|integer',
             'tags' => 'nullable|string',
             'normal_price' => 'required|numeric',
@@ -80,14 +82,18 @@ class ProductController extends Controller
             'variations.*.hex_value' => 'nullable|string',
             'variations.*.quantity' => 'nullable|integer',
         ]);
-    
+
+        // Ensure the 'sub_subcategory_id' is safely handled if it doesn't exist in the request
+        $subSubcategoryId = $request->has('sub_subcategory_id') ? $request->input('sub_subcategory_id') : null;
+
+
         $product = Product::create([
             'product_id' => 'P-' . strtoupper(substr(uniqid(), -6)),
             'product_name' => $validatedData['product_name'],
             'product_description' => $validatedData['product_description'],
             'category_id' => $validatedData['category_id'],
-            'subcategory_id' => $validatedData['subcategory_id'],
-            'sub_subcategory_id' => $validatedData['sub_subcategory_id'],
+            'subcategory_id' => $validatedData['subcategory_id'],  
+            'sub_subcategory_id' => $subSubcategoryId,  
             'quantity' => $validatedData['quantity'],
             'tags' => $validatedData['tags'],
             'normal_price' => $validatedData['normal_price'],
@@ -96,19 +102,21 @@ class ProductController extends Controller
             'commission_percentage' => $validatedData['commission_percentage'],
             'total_price' => $validatedData['total_price'],
         ]);
-    
+
+        // Handle product images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $imageName = time() . '_' . $image->getClientOriginalName();
                 $imagePath = $image->storeAs('product_images', $imageName, 'public');
-    
+
                 ProductImage::create([
                     'product_id' => $product->product_id,
                     'image_path' => $imagePath,
                 ]);
             }
         }
-    
+
+        // Handle product variations
         if (isset($validatedData['variations'])) {
             foreach ($validatedData['variations'] as $variation) {
                 Variations::create([
@@ -120,10 +128,10 @@ class ProductController extends Controller
                 ]);
             }
         }
-    
+
         return redirect()->route('products_list')->with('success', 'Product added successfully.');
     }
-    
+
 
 
     public function destroy($productId)

@@ -36,7 +36,6 @@
     </div>
     <div>
         <a href="#" class="btn btn-light rounded font-md">Export</a>
-        <a href="#" class="btn btn-light rounded font-md">Import</a>
     </div>
 </div>
 

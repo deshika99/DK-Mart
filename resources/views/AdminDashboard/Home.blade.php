@@ -12,7 +12,7 @@
                             <article class="icontext">
                                 <span class="icon icon-sm rounded-circle bg-primary-light"><i class="text-primary material-icons md-monetization_on"></i></span>
                                 <div class="text">
-                                    <h6 class="mb-1 card-title">Revenue</h6>
+                                    <h6 class="mb-1 card-title">Today Revenue</h6>
                                     <span>Rs {{ $totalCostToday }}</span>
                                 </div>
                             </article>

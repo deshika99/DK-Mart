@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
 
 </head>
 
@@ -40,7 +42,8 @@
     <!-- ============================ Banner Section start =============================== -->
     @yield('content')
     <div class="preloader">
-    <img src="{{ asset('frontend/assets/images/icon/preloader.gif') }}" alt=""></div>
+        <img src="{{ asset('frontend/assets/images/logo/logo-two.png') }}" alt="" style="width: 150px;">
+    </div>
 
     <script>
                 document.addEventListener('DOMContentLoaded', function() {
@@ -137,6 +140,15 @@
             }
         });
 
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $.get("{{ route('wishlist.count') }}", function(data) {
+            if (data.wishlist_count !== undefined) {
+                $('#wishlist-count').text(data.wishlist_count);
+            }
+        });
     });
 </script>
 

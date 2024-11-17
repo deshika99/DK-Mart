@@ -18,9 +18,9 @@
 /* sidebar*/
 .dashboard-container {
     padding-top: 30px;
-    margin-right: 50px;
-    margin-left: 50px;
-    margin-bottom:50px ;
+    margin-right: 55px;
+    margin-left: 55px;
+    margin-bottom:55px ;
 
 }
 
@@ -100,30 +100,30 @@
             <div class="position-sticky">
                 <ul class="nav flex-column">
                     <li class="mt-2 nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="">Dashboard</a>
+                        <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('edit-profile') ? 'active' : '' }}" href="">Edit Profile</a>
+                        <a class="nav-link {{ request()->routeIs('edit-profile') ? 'active' : '' }}" href="{{ route('edit-profile') }}">Edit Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('myorders') ? 'active' : '' }}" href="">My Orders</a>
+                        <a class="nav-link {{ request()->routeIs('my-orders') ? 'active' : '' }}" href="{{ route('my-orders') }}">My Orders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('myreviews') ? 'active' : '' }}" href="">My Reviews</a>
+                        <a class="nav-link {{ request()->routeIs('My-Reviews') ? 'active' : '' }}" href="{{ route('My-Reviews') }}">My Reviews</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('myinquiries') ? 'active' : '' }}" href="">Inquiries</a>
+                        <a class="nav-link {{ request()->routeIs('inquiries') ? 'active' : '' }}" href="{{ route('inquiries') }}">Inquiries</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('addresses') ? 'active' : '' }}" href="">Address Book</a>
+                        <a class="nav-link {{ request()->routeIs('address-book') ? 'active' : '' }}" href="{{ route('address-book') }}">Address Book</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('change-password') ? 'active' : '' }}" href="">Password</a>
+                        <a class="nav-link {{ request()->routeIs('edit-password') ? 'active' : '' }}" href="{{ route('edit-password') }}">Password</a>
                     </li>
 
                      <!-- new "Returns" button  -->
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('returns') ? 'active' : '' }}" href="">Returns</a>
+                        <a class="nav-link {{ request()->routeIs('returns') ? 'active' : '' }}" href="{{ route('returns') }}">Returns</a>
                     </li>
 
                     <li class="nav-item">

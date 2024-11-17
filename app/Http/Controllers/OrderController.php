@@ -1,43 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use App\Models\CustomerOrder;
-use Illuminate\Http\Request;
-
-class OrderController extends Controller
-{
-
-    public function show()
-    {
-       
-        $customers = User::withCount('customerOrders')->paginate(10); 
-        return view('AdminDashboard.customer', compact('customers'));
-    }
-    
-
-
-    public function showCustomerDetails($user_id)
-    {
-
-        $customer = User::findOrFail($user_id);
-        
-        $orders = CustomerOrder::where('user_id', $user_id)
-            ->with('items.product')
-            ->get();
-        
-        $totalCost = $orders->sum('total_cost');
-        $totalOrders = $orders->count();
-        $totalProducts = $orders->sum(function ($order) {
-            return $order->items->sum('quantity');
-        });
-        
-
-        return view('AdminDashboard.customer-details', compact('customer', 'orders', 'totalCost', 'totalOrders', 'totalProducts'));
-
-use Illuminate\Http\Request;
-use App\Models\CustomerOrder;
 use App\Models\CustomerOrderItems;
+use Illuminate\Http\Request;
+use App\Models\CustomerOrderItems;
+
 
 class OrderController extends Controller
 {
@@ -63,10 +33,9 @@ class OrderController extends Controller
         return redirect()->route('orders')->with('success', 'Order deleted successfully.');
     }
 
-
-
     public function showOrderDetails($orderCode)
     {
+        $order = CustomerOrder::with('items.product')->where('order_code', $orderCode)->first();
         $order = CustomerOrder::with('items.product.images')->where('order_code', $orderCode)->first();
         return view('AdminDashboard.order-details', compact('order'));
     }
