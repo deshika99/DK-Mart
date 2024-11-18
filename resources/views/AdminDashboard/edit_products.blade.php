@@ -37,31 +37,33 @@
                     <input name="is_affiliate" id="affiliate_checkbox" class="form-check-input" type="checkbox" {{ $product->is_affiliate ? 'checked' : '' }} />
                     <span class="form-check-label">Affiliate the Product</span>
                 </label>
-
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="mb-4">
                             <label class="form-label">Normal price <i class="text-danger">*</i></label>
                             <input name="normal_price" id="normal_price" value="{{ old('normal_price', $product->normal_price) }}" placeholder="Rs" type="number" class="form-control" />
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="mb-4">
                             <label class="form-label">Affiliate price</label>
                             <input name="affiliate_price" id="affiliate_price" value="{{ old('affiliate_price', $product->affiliate_price) }}" placeholder="Rs" type="number" class="form-control" readonly />
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
                         <div class="mb-4">
-                            <label class="form-label">Commission</label>
+                            <label class="form-label">Commission percentage %</label>
                             <input name="commission_percentage" id="commission" value="{{ old('commission_percentage', $product->commission_percentage) }}" type="number" placeholder="%" class="form-control" readonly />
                         </div>
                     </div>
-                </div>
-
-                <div class="mb-4">
-                    <label class="form-label">Total price</label>
-                    <input name="total_price" id="total_price" value="{{ old('total_price', $product->total_price) }}" placeholder="Rs" type="number" class="form-control" readonly />
+                    <div class="col-lg-6">
+                        <div class="mb-4">
+                            <label class="form-label">Commission price</label>
+                            <input name="com_price" id="com_price" value="{{ old('commission_price', $product->commission_price) }}" placeholder="Rs" type="number" class="form-control" readonly />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -177,41 +179,58 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const affiliateCheckbox = document.getElementById('affiliate_checkbox');
-        const normalPriceInput = document.getElementById('normal_price');
-        const affiliatePriceInput = document.getElementById('affiliate_price');
-        const commissionInput = document.getElementById('commission');
-        const totalPriceInput = document.getElementById('total_price');
+     document.addEventListener('DOMContentLoaded', function () {
+    const affiliateCheckbox = document.getElementById('affiliate_checkbox');
+    const normalPriceInput = document.getElementById('normal_price');
+    const affiliatePriceInput = document.getElementById('affiliate_price');
+    const commissionInput = document.getElementById('commission');
+    const comPriceInput = document.getElementById('com_price');
 
-        affiliatePriceInput.readOnly = true;
-        commissionInput.readOnly = true;
+    // Set initial state for inputs
+    affiliatePriceInput.readOnly = true;
+    commissionInput.readOnly = true;
+    commissionInput.value = 10; // Commission rate is fixed at 10%
 
-        affiliateCheckbox.addEventListener('change', function () {
-            const isChecked = affiliateCheckbox.checked;
-            affiliatePriceInput.readOnly = !isChecked;
-            commissionInput.readOnly = !isChecked;
+    affiliateCheckbox.addEventListener('change', function () {
+        if (affiliateCheckbox.checked) {
+            // When affiliate checkbox is checked
+            affiliatePriceInput.value = normalPriceInput.value || 0; // Set affiliate price equal to normal price
+            affiliatePriceInput.readOnly = true;
 
-            calculateTotalPrice();
-        });
+            commissionInput.value = 10; // Set commission rate to 10%
+            commissionInput.readOnly = true;
 
-        [normalPriceInput, affiliatePriceInput, commissionInput].forEach(input => {
-            input.addEventListener('input', calculateTotalPrice);
-        });
-
-        function calculateTotalPrice() {
-            const normalPrice = parseFloat(normalPriceInput.value) || 0;
-            let totalPrice = normalPrice;
-
-            if (affiliateCheckbox.checked) {
-                const affiliatePrice = parseFloat(affiliatePriceInput.value) || 0;
-                const commission = parseFloat(commissionInput.value) || 0;
-                totalPrice = affiliatePrice + (affiliatePrice * (commission / 100));
-            }
-
-            totalPriceInput.value = totalPrice.toFixed(2);
+            calculateCommissionPrice();
+        } else {
+            // When affiliate checkbox is unchecked
+            affiliatePriceInput.value = '';
+            commissionInput.value = '';
+            comPriceInput.value = '';
         }
     });
+
+    normalPriceInput.addEventListener('input', function () {
+        if (affiliateCheckbox.checked) {
+            // Update affiliate price when normal price changes
+            affiliatePriceInput.value = normalPriceInput.value || 0;
+        }
+        calculateCommissionPrice();
+    });
+
+    function calculateCommissionPrice() {
+        const normalPrice = parseFloat(normalPriceInput.value) || 0;
+        let affiliatePrice = normalPrice;
+
+        if (affiliateCheckbox.checked) {
+            const commissionRate = 10; 
+            const commissionPrice = affiliatePrice * (commissionRate / 100); 
+
+            comPriceInput.value = commissionPrice.toFixed(2); 
+        } else {
+            comPriceInput.value = '';
+        }
+    }
+});
 
  
 
