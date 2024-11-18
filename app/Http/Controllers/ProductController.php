@@ -36,6 +36,12 @@ class ProductController extends Controller
     return view('frontend.searchView', compact('products', 'categories'));
 }
 
+// search box
+
+
+//
+
+
 
     public function showproducts()
     {
