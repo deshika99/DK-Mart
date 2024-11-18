@@ -38,10 +38,10 @@
             color: orange;
         }
         .persistent-gif {
-            display: block; /* Make the video a block element to align properly */
-            margin: 10px auto 0; /* Add space above the video and center it */
-            width: 250px;  /* Set the size of the video */
-            height: auto; /* Maintain the aspect ratio */
+            display: block; 
+            margin: 10px auto 0; 
+            width: 250px;  
+            height: auto;
         }
 
         @keyframes fadeIn {
