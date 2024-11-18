@@ -32,6 +32,12 @@ use App\Http\Controllers\AffiliateUserController;
 use App\Http\Controllers\WishlistController;
 
 
+//Vendor_Dashboard Links
+use App\Http\Controllers\VendorProductController;
+use App\Http\Controllers\VendorOrderController;
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -150,7 +156,7 @@ Route::delete('/admin/orders/{order}', [OrderController::class, 'destroy'])->nam
 Route::get('/admin/order-details/{orderCode}', [OrderController::class, 'showOrderDetails'])->name('order-details');
 Route::patch('/order/update-status/{order_code}', [OrderController::class, 'updateStatus'])->name('order.updateStatus');
 
-Route::patch('/order/update-status/{order_code}', [OrderController::class, 'updateStatus'])->name('order.updateStatus');
+
 
 Route::view('/admin/affiliate_customers', 'AdminDashboard.affiliate_customers')->name('affiliate_customers');
 
@@ -188,15 +194,11 @@ Route::delete('/admin/edit_users/{id}', [UserController::class, 'destroy'])->nam
 
 //AffiliateDashBoard Links
 
-
-
 Route::view('/affiliate_register', 'AffiliateDashBoard.affRegister')->name('affiliate_register');
 Route::post('/affiliate/user_register', [AffiliateUserController::class, 'store'])->name('affiliate.register');
 Route::view('/affiliate_login', 'AffiliateDashBoard.affLogin')->name('affiliate_login');
 Route::post('/affiliate/login', [AffiliateUserController::class, 'login'])->name('affiliate.login.submit');
 Route::view('/affiliate_home', 'AffiliateDashBoard.affiliate_home')->name('affiliate_home');
-
-
 
 
 Route::view('/home/affiliate/affiliate_home', 'aff_home')->name('aff_home');
@@ -264,6 +266,18 @@ Route::get('home/My-Account', function () {
 
 
 
+//Vendor dashboard
+Route::view('/vendor_dashboard', 'VendorDashboard.vendorhome')->name('vendorhome');
 
+Route::get('/vendor_dashboard/products', [VendorProductController::class, 'showproducts'])->name('vendor.products');
+Route::view('/vendor_dashboard/add_products', 'VendorDashboard.add_products')->name('vendor.products.add');
+Route::post('/vendor_dashboard/products', [VendorProductController::class, 'store'])->name('vendor.products.store');
+Route::get('/vendor_dashboard/products/{product}/view', [VendorProductController::class, 'view_details'])->name('vendor.products.view');
+Route::get('/vendor_dashboard/products/{product}/edit', [VendorProductController::class, 'edit'])->name('vendor.products.edit');
+Route::put('/vendor_dashboard/products/{product}', [VendorProductController::class, 'update'])->name('vendor.products.update');
+Route::delete('/vendor_dashboard/products/{product}', [VendorProductController::class, 'destroy'])->name('vendor.products.destroy');
 
-
+Route::get('/vendor_dashboard/orders', [VendorOrderController::class, 'index'])->name('vendor.orders');
+Route::delete('/vendor_dashboard/orders/{order}', [VendorOrderController::class, 'destroy'])->name('vendor.order.delete');
+Route::get('/vendor_dashboard/order-details/{orderCode}', [VendorOrderController::class, 'showOrderDetails'])->name('vendor.order-details');
+Route::patch('/vendor_dashboard/order/update-status/{order_code}', [VendorOrderController::class, 'updateStatus'])->name('vendor.order.updateStatus');

@@ -1,7 +1,7 @@
-@extends ('AdminDashboard.master')
+@extends ('VendorDashboard.Vendormaster')
 
 @section('content')
-<form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('vendor.products.store') }}" enctype="multipart/form-data">
 @csrf
 <div class="row">
     <div class="col-12">
@@ -18,7 +18,7 @@
                 <h4>Basic</h4>
             </div>
             <div class="card-body">
-                <!-- The same form continues here -->
+
                 <div class="mb-4">
                     <label for="product_name" class="form-label">Product title <i class="text-danger">*</i></label>
                     <input type="text" name="product_name" placeholder="Type here" class="form-control" id="product_name" />
@@ -63,6 +63,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
  
@@ -213,6 +214,7 @@
         }
     }
 });
+
 
  
 

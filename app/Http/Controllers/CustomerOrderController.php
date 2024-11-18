@@ -94,7 +94,7 @@ class CustomerOrderController extends Controller
                 'postal_code' => $request->input('postal_code'),
                 'date' => Carbon::now()->format('Y-m-d'),
                 'total_cost' => $totalCost,
-                'status' => 'Confirmed',
+                'status' => 'Pending',
                 'payment_method' => $request->input('payment_method', null),
                 'payment_status' => 'Pending',
             ]);
@@ -177,7 +177,7 @@ class CustomerOrderController extends Controller
             'postal_code' => $request->postal_code,
             'date' => Carbon::now(),
             'total_cost' => $total,
-            'status' => 'Confirmed',
+            'status' => 'Pending',
             'payment_method' => $request->input('payment_method', null),
             'payment_status' => 'Pending',
         ]);

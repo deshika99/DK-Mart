@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CustomerOrderItems;
 
 
-class OrderController extends Controller
+class VendorOrderController extends Controller
 {
     public function index(Request $request)
     {
@@ -20,7 +20,7 @@ class OrderController extends Controller
         }
         $orders = $query->latest()->paginate(10);
 
-        return view('AdminDashboard.orders', compact('orders'));
+        return view('VendorDashboard.orders', compact('orders'));
 }
 
     public function destroy($id)
@@ -28,7 +28,7 @@ class OrderController extends Controller
         $order = CustomerOrder::findOrFail($id);
         $order->delete();
 
-        return redirect()->route('orders')->with('success', 'Order deleted successfully.');
+        return redirect()->route('vendor.orders')->with('success', 'Order deleted successfully.');
     }
 
 
@@ -36,7 +36,7 @@ class OrderController extends Controller
     public function showOrderDetails($orderCode)
     {
         $order = CustomerOrder::with('items.product.images')->where('order_code', $orderCode)->first();
-        return view('AdminDashboard.order-details', compact('order'));
+        return view('VendorDashboard.order-details', compact('order'));
     }
 
 
