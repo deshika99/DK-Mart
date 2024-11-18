@@ -60,13 +60,13 @@
 
 <!-- ==================== Search Box Start Here ==================== -->
  <form action="#" class="search-box">
-  <button type="button" class="search-box__close position-absolute inset-block-start-0 inset-inline-end-0 m-16 w-48 h-48 border border-gray-100 rounded-circle flex-center text-white hover-text-gray-800 hover-bg-white text-2xl transition-1">
+  <button type="button" class="w-48 h-48 m-16 text-2xl text-white border border-gray-100 search-box__close position-absolute inset-block-start-0 inset-inline-end-0 rounded-circle flex-center hover-text-gray-800 hover-bg-white transition-1">
     <i class="ph ph-x"></i>
   </button>
   <div class="container">
     <div class="position-relative">
-      <input type="text" class="form-control py-16 px-24 text-xl rounded-pill pe-64" placeholder="Search for a product or brand">
-      <button type="submit" class="w-48 h-48 bg-main-600 rounded-circle flex-center text-xl text-white position-absolute top-50 translate-middle-y inset-inline-end-0 me-8">
+      <input type="text" class="px-24 py-16 text-xl form-control rounded-pill pe-64" placeholder="Search for a product or brand">
+      <button type="submit" class="w-48 h-48 text-xl text-white bg-main-600 rounded-circle flex-center position-absolute top-50 translate-middle-y inset-inline-end-0 me-8">
         <i class="ph ph-magnifying-glass"></i>
       </button>
     </div>
@@ -128,15 +128,15 @@
             <!-- Logo End  -->
 
             <!-- form Category Start -->
-            <div class="flex-align gap-16">
+            <div class="gap-16 flex-align">
                 <div class="select-dropdown-for-home-two d-lg-none d-block">
                     <!-- Dropdown Select Start -->
 
                     <!-- Dropdown Select End -->
                 </div>
-                <form action="#" class="flex-align flex-wrap form-location-wrapper">
-                    <div class="search-category style-two d-flex h-48 search-form d-sm-flex d-none">
-                    <select class="js-example-basic-single border border-gray-200 border-end-0 rounded-0 border-0" name="category">
+                <form action="#" class="flex-wrap flex-align form-location-wrapper">
+                    <div class="h-48 search-category style-two d-flex search-form d-sm-flex d-none">
+                    <select class="border border-0 border-gray-200 js-example-basic-single border-end-0 rounded-0" name="category">
                         <option value="" selected disabled>All Categories</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -144,9 +144,9 @@
                     </select>
 
                         <div class="search-form__wrapper position-relative">
-                            <input type="text" class="search-form__input common-input py-13 ps-16 pe-18 rounded-0 border-0" placeholder="Search for a product or brand">
+                            <input type="text" class="border-0 search-form__input common-input py-13 ps-16 pe-18 rounded-0" placeholder="Search for a product or brand">
                         </div>
-                        <button type="submit" class="bg-main-two-600 flex-center text-xl text-white flex-shrink-0 w-48 hover-bg-main-two-600 d-lg-flex d-none"><i class="ph ph-magnifying-glass"></i></button>
+                        <button type="submit" class="flex-shrink-0 w-48 text-xl text-white bg-main-two-600 flex-center hover-bg-main-two-600 d-lg-flex d-none"><i class="ph ph-magnifying-glass"></i></button>
                     </div>
                 </form>
             </div>
@@ -154,8 +154,8 @@
              
             <!-- Header Middle Right start -->
             <div class="header-right flex-align d-lg-block d-none">
-                <div class="header-two-activities flex-align flex-wrap gap-32">
-    <button type="button" class="flex-align search-icon d-lg-none d-flex gap-4 item-hover-two">
+                <div class="flex-wrap gap-32 header-two-activities flex-align">
+    <button type="button" class="gap-4 flex-align search-icon d-lg-none d-flex item-hover-two">
         <span class="text-2xl text-white d-flex position-relative item-hover__text">
             <i class="ph ph-magnifying-glass"></i>
         </span>
@@ -165,7 +165,7 @@
     <!-- Profile Dropdown -->
     <div class="profile-dropdown">
         @auth
-            <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
+            <a href="#" class="gap-8 flex-align flex-column item-hover-two profile-toggle">
                 <span class="profile-initial d-flex justify-content-center align-items-center">
                     {{ auth()->user()->name[0] }}
                 </span>
@@ -173,19 +173,19 @@
 
             <!-- Dropdown Menu for Logged-In User -->
             <div class="dropdown-menu" style="width: 170px">
-                <a href="" class="dropdown-item">Profile</a>
-                <form method="POST" action="{{ route('logout') }}" class="dropdown-item p-0">
+                <a href="{{ route('dashboard') }}" class="dropdown-item">Profile</a>
+                <form method="POST" action="{{ route('logout') }}" class="p-0 dropdown-item">
                     @csrf
                     <button type="submit" class="dropdown-item w-100">Logout</button>
                 </form>
             </div>
         @else
             <!-- Default Profile Icon and Links for Guests -->
-            <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
+            <a href="#" class="gap-8 flex-align flex-column item-hover-two profile-toggle">
                 <span class="text-2xl text-white d-flex position-relative item-hover__text">
                     <i class="ph ph-user"></i>
                 </span>
-                <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
+                <span class="text-white text-md item-hover__text d-none d-lg-flex">Profile</span>
             </a>
 
             <!-- Dropdown Menu for Guests -->
@@ -197,26 +197,26 @@
     </div>
 
 
-    <a href="{{ route('wishlist') }}" class="flex-align flex-column gap-8 item-hover-two">
-        <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
+    <a href="{{ route('wishlist') }}" class="gap-8 flex-align flex-column item-hover-two">
+        <span class="mt-6 text-2xl text-white d-flex position-relative me-6 item-hover__text">
             <i class="ph ph-heart"></i>
-            <span id="wishlist-count" class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">0</span>
+            <span id="wishlist-count" class="w-16 h-16 text-xs text-white flex-center rounded-circle bg-main-two-600 position-absolute top-n6 end-n4">0</span>
         </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Wishlist</span>
+        <span class="text-white text-md item-hover__text d-none d-lg-flex">Wishlist</span>
     </a>
 
 
     
-    <a href="{{ route ('cart') }}" class="flex-align flex-column gap-8 item-hover-two ml-10" style="margin-right:30px;">
-        <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
+    <a href="{{ route ('cart') }}" class="gap-8 ml-10 flex-align flex-column item-hover-two" style="margin-right:30px;">
+        <span class="mt-6 text-2xl text-white d-flex position-relative me-6 item-hover__text">
             <i class="ph ph-shopping-cart-simple"></i>
             <!-- Display the cart count dynamically -->
-            <span id="cart-count" class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
+            <span id="cart-count" class="w-16 h-16 text-xs text-white flex-center rounded-circle bg-main-two-600 position-absolute top-n6 end-n4">
             0
 
             </span>
         </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Cart</span>
+        <span class="text-white text-md item-hover__text d-none d-lg-flex">Cart</span>
     </a>
 
 
@@ -229,37 +229,37 @@
 <!-- ======================= Middle Header Two End ========================= -->
 
     <!-- ==================== Header Two Start Here ==================== -->
-<header class="header  border-bottom border-gray-100">
+<header class="border-gray-100 header border-bottom">
     <div class="container container-lg">
-        <nav class="header-inner d-flex justify-content-between gap-8">
+        <nav class="gap-8 header-inner d-flex justify-content-between">
         <div class="flex-align menu-category-wrapper">
 
 <!-- Category Dropdown Start -->
-<div class="category d-block on-hover-item bg-main-600 text-white">
-    <button type="button" class="category__button flex-align gap-8 fw-medium p-16 border-end border-start border-gray-100 text-white">
-        <span class="icon text-2xl d-xs-flex d-none"><i class="ph ph-dots-nine"></i></span>
+<div class="text-white category d-block on-hover-item bg-main-600">
+    <button type="button" class="gap-8 p-16 text-white border-gray-100 category__button flex-align fw-medium border-end border-start">
+        <span class="text-2xl icon d-xs-flex d-none"><i class="ph ph-dots-nine"></i></span>
         <span class="d-sm-flex d-none">All</span> Categories
-        <span class="arrow-icon text-xl d-flex"><i class="ph ph-caret-down"></i></span>
+        <span class="text-xl arrow-icon d-flex"><i class="ph ph-caret-down"></i></span>
     </button>
 
-    <div class="responsive-dropdown on-hover-dropdown common-dropdown nav-submenu p-0 submenus-submenu-wrapper">
-        <button type="button" class="close-responsive-dropdown rounded-circle text-xl position-absolute inset-inline-end-0 inset-block-start-0 mt-4 me-8 d-lg-none d-flex"> 
+    <div class="p-0 responsive-dropdown on-hover-dropdown common-dropdown nav-submenu submenus-submenu-wrapper">
+        <button type="button" class="mt-4 text-xl close-responsive-dropdown rounded-circle position-absolute inset-inline-end-0 inset-block-start-0 me-8 d-lg-none d-flex"> 
             <i class="ph ph-x"></i> 
         </button>
 
-        <ul class="responsive-dropdown__list scroll-sm p-0 py-8 overflow-y-auto max-h-400">
+        <ul class="p-0 py-8 overflow-y-auto responsive-dropdown__list scroll-sm max-h-400">
             @foreach ($categories as $category)
                 <li class="has-submenus-submenu" style="width: 240px;">
-                    <a href="{{ url('/shop?category_id=' . $category->id) }}" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                    <a href="{{ url('/shop?category_id=' . $category->id) }}" class="gap-8 px-16 py-12 text-gray-500 text-15 flex-align rounded-0">
                         <span>{{ $category->name }}</span>
                         <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
                     </a>
 
                     <!-- Subcategories Column -->
                     @if ($category->subcategories->isNotEmpty())
-                        <div class="submenus-submenu py-16">
-                            <h6 class="text-lg px-16 submenus-submenu__title">{{ $category->name }}</h6>
-                            <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                        <div class="py-16 submenus-submenu">
+                            <h6 class="px-16 text-lg submenus-submenu__title">{{ $category->name }}</h6>
+                            <ul class="overflow-y-auto submenus-submenu__list max-h-300 scroll-sm">
                                 @foreach ($category->subcategories as $subcategory)
                                     <li class="has-sub-submenu">
                                         <a href="{{ url('/shop?subcategory_id=' . $subcategory->id) }}">{{ $subcategory->name }}</a>
@@ -267,7 +267,7 @@
                                         <!-- Sub-Subcategories Column -->
                                         @if ($subcategory->subSubcategories->isNotEmpty())
                                             <div class="sub-submenu-column">
-                                                <ul class="sub-submenu max-h-300 overflow-y-auto scroll-sm">
+                                                <ul class="overflow-y-auto sub-submenu max-h-300 scroll-sm">
                                                     @foreach ($subcategory->subSubcategories as $subSubcategory)
                                                         <li>
                                                             <a href="{{ url('/shop?subsubcategory_id=' . $subSubcategory->id) }}">{{ $subSubcategory->name }}</a>
@@ -322,7 +322,7 @@
 
                 <div class="select-dropdown-for-home-two d-lg-block d-none">
                     <!-- Dropdown Select Start -->
-<ul class="header-top__right style-two flex-align flex-wrap">
+<ul class="flex-wrap header-top__right style-two flex-align">
     
     
 </ul>
@@ -330,8 +330,8 @@
                  </div>
                 
                 <div class="me-8 d-lg-none d-block">
-                    <div class="header-two-activities flex-align flex-wrap gap-32">
-    <button type="button" class="flex-align search-icon d-lg-none d-flex gap-4 item-hover-two">
+                    <div class="flex-wrap gap-32 header-two-activities flex-align">
+    <button type="button" class="gap-4 flex-align search-icon d-lg-none d-flex item-hover-two">
         <span class="text-2xl text-white d-flex position-relative item-hover__text">
             <i class="ph ph-magnifying-glass"></i>
         </span>
@@ -341,7 +341,7 @@
    <!-- Profile Dropdown -->
    <div class="profile-dropdown">
     @auth
-        <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
+        <a href="#" class="gap-8 flex-align flex-column item-hover-two profile-toggle">
             <span class="profile-initial d-flex justify-content-center align-items-center">
                 {{ auth()->user()->name[0] }}
             </span>
@@ -350,18 +350,18 @@
         <!-- Dropdown Menu for Logged-In User -->
         <div class="dropdown-menu" style="width: 170px">
             <a href="" class="dropdown-item">Profile</a>
-            <form method="POST" action="{{ route('logout') }}" class="dropdown-item p-0">
+            <form method="POST" action="{{ route('logout') }}" class="p-0 dropdown-item">
                 @csrf
                 <button type="submit" class="dropdown-item w-100">Logout</button>
             </form>
         </div>
     @else
         <!-- Default Profile Icon and Links for Guests -->
-        <a href="#" class="flex-align flex-column gap-8 item-hover-two profile-toggle">
+        <a href="#" class="gap-8 flex-align flex-column item-hover-two profile-toggle">
             <span class="text-2xl text-white d-flex position-relative item-hover__text">
                 <i class="ph ph-user"></i>
             </span>
-            <span class="text-md text-white item-hover__text d-none d-lg-flex">Profile</span>
+            <span class="text-white text-md item-hover__text d-none d-lg-flex">Profile</span>
         </a>
 
         <!-- Dropdown Menu for Guests -->
@@ -374,29 +374,29 @@
 
 
 
-    <a href="{{ route('wishlist') }}" class="flex-align flex-column gap-8 item-hover-two">
-        <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
+    <a href="{{ route('wishlist') }}" class="gap-8 flex-align flex-column item-hover-two">
+        <span class="mt-6 text-2xl text-white d-flex position-relative me-6 item-hover__text">
             <i class="ph ph-heart"></i>
-            <span class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">2</span>
+            <span class="w-16 h-16 text-xs text-white flex-center rounded-circle bg-main-two-600 position-absolute top-n6 end-n4">2</span>
         </span>
-        <span class="text-md text-white item-hover__text d-none d-lg-flex">Wishlist</span>
+        <span class="text-white text-md item-hover__text d-none d-lg-flex">Wishlist</span>
     </a>
 
-    <a href="{{ route ('cart') }}" class="flex-align flex-column gap-8 item-hover-two ml-10" style="margin-right:30px;">
-    <span class="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
+    <a href="{{ route ('cart') }}" class="gap-8 ml-10 flex-align flex-column item-hover-two" style="margin-right:30px;">
+    <span class="mt-6 text-2xl text-white d-flex position-relative me-6 item-hover__text">
         <i class="ph ph-shopping-cart-simple"></i>
         <!-- Display the cart count dynamically -->
-        <span id="cart-count" class="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
+        <span id="cart-count" class="w-16 h-16 text-xs text-white flex-center rounded-circle bg-main-two-600 position-absolute top-n6 end-n4">
            0
         </span>
     </span>
-    <span class="text-md text-white item-hover__text d-none d-lg-flex">Cart</span>
+    <span class="text-white text-md item-hover__text d-none d-lg-flex">Cart</span>
 </a>
 
     
 </div>
                 </div>
-                <button type="button" class="toggle-mobileMenu d-lg-none ms-3n text-gray-800 text-4xl d-flex"> <i class="ph ph-list"></i> </button>
+                <button type="button" class="text-4xl text-gray-800 toggle-mobileMenu d-lg-none ms-3n d-flex"> <i class="ph ph-list"></i> </button>
             </div>
             <!-- Header Right End  -->
         </nav>
