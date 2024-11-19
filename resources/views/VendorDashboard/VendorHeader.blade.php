@@ -31,7 +31,7 @@
             <li class="dropdown nav-item" style="position: relative;">
                 <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false">
                     <img class="img-xs rounded-circle" 
-                        src="" 
+                        src="\backend\assets\images\default-user.png" 
                         alt="User" />
                 </a>
                 <div class="dropdown-menu" style="left: -100px;" aria-labelledby="dropdownAccount">
@@ -39,9 +39,14 @@
                         <i class="material-icons md-perm_identity"></i> Edit Profile
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="#" onclick="event.preventDefault(); document.getElementById('admin-logout-form').submit();">
-                        <i class="material-icons md-exit_to_app"></i> Logout
+                    <a class="dropdown-item text-danger" href="#" onclick="event.preventDefault(); document.getElementById('vendor-logout-form').submit();">
+                        <i class="material-icons md-exit_to_app"></i> 
+                        Logout
                     </a>
+                    <form id="vendor-logout-form" action="{{ route('vendor.logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+
                     <!-- Hidden logout form -->
                     <form id="admin-logout-form" action="" method="POST" style="display: none;">
                         @csrf

@@ -110,9 +110,9 @@
                                     </a>
 
                                     </td>
-                                    <td>Rs {{ $item->cost }}</td>
+                                    <td>Rs {{ $item->product->normal_price }}</td>
                                     <td>{{ $item->quantity }}</td>
-                                    <td class="text-end">Rs {{ $item->cost * $item->quantity }}</td>
+                                    <td class="text-end">Rs {{ $item->product->normal_price * $item->quantity }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

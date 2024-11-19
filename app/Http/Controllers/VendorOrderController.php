@@ -9,19 +9,35 @@ use App\Models\CustomerOrderItems;
 
 class VendorOrderController extends Controller
 {
+
+
     public function index(Request $request)
     {
+        $vendor_id = session('vendor_id');
         $query = CustomerOrder::query();
+
         if ($request->filled('order_code')) {
             $query->where('order_code', 'like', '%' . $request->order_code . '%');
         }
+
         if ($request->filled('status') && $request->status != 'All') {
             $query->where('status', $request->status);
         }
-        $orders = $query->latest()->paginate(10);
+
+        $orders = $query->whereHas('items.product', function ($query) use ($vendor_id) {
+            $query->where('shop_id', function ($query) use ($vendor_id) {
+                $query->select('shop_id')
+                    ->from('shops')
+                    ->where('vendor_id', $vendor_id)
+                    ->limit(1);
+            });
+        })
+        ->latest()
+        ->paginate(10);
 
         return view('VendorDashboard.orders', compact('orders'));
-}
+    }
+
 
     public function destroy($id)
     {
