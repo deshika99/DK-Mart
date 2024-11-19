@@ -1,4 +1,4 @@
-@extends ('AdminDashboard.master')
+@extends ('VendorDashboard.Vendormaster')
 
 @section('content')
 
@@ -67,13 +67,13 @@
                                     <td>Rs. {{ $product->normal_price }}</td>
                                     <td class="text-end">
                                         <div>
-                                            <a href="{{ route('products.view', $product->id) }}" class="btn btn-view btn-sm me-2">
+                                            <a href="{{ route('vendor.products.view', $product->id) }}" class="btn btn-view btn-sm me-2">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm me-2">
+                                            <a href="{{ route('vendor.products.edit', $product->id) }}" class="btn btn-warning btn-sm me-2">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form id="deleteForm{{ $product->id }}" action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;">
+                                            <form id="deleteForm{{ $product->id }}" action="{{ route('vendor.products.destroy', $product->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('deleteForm{{ $product->id }}', 'Are you sure you want to delete this product?')">

@@ -11,6 +11,7 @@ class Product extends Model
 
     protected $fillable = [
         'product_id',
+        'shop_id',
         'product_name',
         'product_description',
         'category_id',
@@ -22,7 +23,7 @@ class Product extends Model
         'is_affiliate',
         'affiliate_price',
         'commission_percentage',
-        'total_price',
+        'commission_price',
     ];
 
     public function images()

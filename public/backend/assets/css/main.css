@@ -3962,7 +3962,7 @@ footer.main-footer {
   background-color: #ffc107; /* Yellow for pending */
 }
 
-.status.paid {
+.status.accepted {
   background-color: #17a2b8; /* Teal for paid */
 }
 
