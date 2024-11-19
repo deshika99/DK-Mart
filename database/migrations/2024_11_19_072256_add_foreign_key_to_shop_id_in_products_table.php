@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->unsignedBigInteger('shop_id')->nullable()->after('product_id');
-            $table->renameColumn('total_price', 'commission_price');
-            $table->decimal('commission_price', 8, 2)->nullable()->change();
+            // Add foreign key constraint to shop_id
+            $table->foreign('shop_id')
+                  ->references('id')
+                  ->on('shops')
+                  ->onDelete('cascade');
         });
     }
 
@@ -24,8 +26,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('shop_id');
-            $table->renameColumn('commission_price', 'total_price');
+            // Drop the foreign key constraint
+            $table->dropForeign(['shop_id']);
         });
     }
 };

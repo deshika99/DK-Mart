@@ -59,7 +59,22 @@ class ProductController extends Controller
     }
 
 
+    public function displayCategories()
+    {
+        $categories = Category::with('subcategories.subSubcategories')->get();
+        return view('AdminDashboard.add_products', compact('categories'));
+    }
+
+    public function getSubcategories($categoryId)
+    {
+        return Subcategory::where('category_id', $categoryId)->get();
+    }
     
+    public function getSubSubcategories($subcategoryId)
+    {
+        return SubSubcategory::where('subcategory_id', $subcategoryId)->get();
+    }
+
 
 
     public function store(Request $request)
