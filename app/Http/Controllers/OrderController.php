@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use App\Models\CustomerOrder;
+use App\Models\CustomerOrderItems;
 use Illuminate\Http\Request;
 use App\Models\CustomerOrderItems;
 
@@ -31,10 +33,9 @@ class OrderController extends Controller
         return redirect()->route('orders')->with('success', 'Order deleted successfully.');
     }
 
-
-
     public function showOrderDetails($orderCode)
     {
+        $order = CustomerOrder::with('items.product')->where('order_code', $orderCode)->first();
         $order = CustomerOrder::with('items.product.images')->where('order_code', $orderCode)->first();
         return view('AdminDashboard.order-details', compact('order'));
     }

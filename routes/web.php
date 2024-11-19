@@ -67,6 +67,10 @@ Route::post('/wishlist/check-multiple', [WishlistController::class, 'checkMultip
 
 
 
+Route::get('/search', [ProductController::class, 'searchView'])->name('product.search');
+Route::get('/searchview', [ProductController::class, 'searchView'])->name('searchview');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -264,6 +268,29 @@ Route::get('home/My-Account', function () {
     return view('user_dashboard.dashboard');
 })->name('dashboard');
 
+Route::get('home/My-Account/edit-profile', function () {
+    return view('user_dashboard.edit-profile');
+})->name('edit-profile');
+
+Route::get('home/My-Account/my-orders', function () {
+    return view('user_dashboard.my-orders');
+})->name('my-orders');
+
+Route::get('home/My-Account/My-Reviews', function () {
+    return view('user_dashboard.My-Reviews');
+})->name('My-Reviews');
+
+Route::get('home/My-Account/inquiries', function () {
+    return view('user_dashboard.inquiries');
+})->name('inquiries');
+
+Route::get('home/My-Account/address-book', function () {
+    return view('user_dashboard.address-book');
+})->name('address-book');
+
+Route::get('home/My-Account/edit-password', function () {
+    return view('user_dashboard.edit-password');
+})->name('edit-password');
 
 
 //Vendor dashboard
@@ -281,3 +308,18 @@ Route::get('/vendor_dashboard/orders', [VendorOrderController::class, 'index'])-
 Route::delete('/vendor_dashboard/orders/{order}', [VendorOrderController::class, 'destroy'])->name('vendor.order.delete');
 Route::get('/vendor_dashboard/order-details/{orderCode}', [VendorOrderController::class, 'showOrderDetails'])->name('vendor.order-details');
 Route::patch('/vendor_dashboard/order/update-status/{order_code}', [VendorOrderController::class, 'updateStatus'])->name('vendor.order.updateStatus');
+
+
+Route::get('home/My-Account/returns', function () {
+    return view('user_dashboard.returns');
+})->name('returns');
+
+Route::get('home/My-Account/returns-details', function () {
+    return view('user_dashboard.returns-details');
+})->name('returns.details');
+
+Route::get('home/My-Account/Write-Reviews', function () {
+    return view('user_dashboard.Write-Reviews');
+})->name('Write-Reviews');
+
+

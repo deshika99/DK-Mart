@@ -712,7 +712,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 3000,7
                 timerProgressBar: true
             });
         } else {
