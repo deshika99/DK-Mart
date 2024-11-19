@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="backend/assets1/css/main.css?v=6.0" />
     <style>
         
-
         /* Styling for the select dropdown to match input fields */
         select {
             border: 0.5px solid #ced4da;
