@@ -15,6 +15,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\OrderController;
+use Illuminate\Support\Facades\Log;
 
 
 
@@ -70,6 +71,11 @@ Route::post('/wishlist/check-multiple', [WishlistController::class, 'checkMultip
 Route::get('/search', [ProductController::class, 'searchView'])->name('product.search');
 Route::get('/searchview', [ProductController::class, 'searchView'])->name('searchview');
 
+
+/*search box
+Route::get('/search', [ProductController::class, 'searchProducts'])->name('search.products');
+
+*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
