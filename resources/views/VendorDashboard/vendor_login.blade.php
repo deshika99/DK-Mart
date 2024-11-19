@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+    <title>Vendor Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -31,18 +31,25 @@
 </head>
 <body>
     <div class="login-container">
-        <h4 class="text-center">Admin Login</h4>
+        <h4 class="text-center">Vendor Login</h4>
+
         @if ($errors->any())
             <div class="alert alert-danger">
-                {{ $errors->first() }}
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
         @endif
-        <form action="{{ route('admin.login.post') }}" method="POST">
+        
+        <form action="{{ route('vendor.login') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
+
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="input-group">
@@ -54,9 +61,12 @@
                     </div>
                 </div>
             </div>
+
             <button type="submit" class="btn btn-primary btn-block">Login</button>
         </form>
     </div>
+
+
 
     <script>
         function togglePasswordVisibility() {
