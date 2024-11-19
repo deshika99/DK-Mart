@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Vendor;
+use App\Models\Product;
+use App\Models\Shop;
+use App\Models\CustomerOrderItems;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -67,4 +70,44 @@ class VendorAccountController extends Controller
 
         return back()->withErrors(['error' => 'Invalid login credentials or account not approved.']);
     }
+
+
+    public function logout(Request $request)
+    {
+        $request->session()->forget('vendor_id');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('vendor_login')->with('success', 'You have been logged out successfully.');
+    }
+
+
+
+    public function showVendorDetails($vendorId)
+    {
+        $vendor = Vendor::with('shop')->findOrFail($vendorId);
+        $shop = $vendor->shop;
+    
+        if (!$shop) {
+            return redirect()->route('vendors')->with('error', 'Shop not found for this vendor.');
+        }
+    
+        $products = Product::where('shop_id', $shop->id)
+                            ->with(['images', 'category', 'subcategory', 'subsubcategory'])
+                            ->paginate(10);
+    
+        // Calculate total sales and revenue
+        $totalSales = CustomerOrderItems::join('products', 'customer_order_items.product_id', '=', 'products.id')
+                                        ->where('products.shop_id', $shop->id)
+                                        ->sum('customer_order_items.quantity');
+    
+        $revenue = CustomerOrderItems::join('products', 'customer_order_items.product_id', '=', 'products.id')
+                                     ->where('products.shop_id', $shop->id)
+                                     ->sum('customer_order_items.cost');
+    
+        return view('AdminDashboard.vendor-details', compact('vendor', 'shop', 'products', 'totalSales', 'revenue'));
+    }
+    
+
+
 }

@@ -185,7 +185,8 @@ Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inqu
 
 Route::get('/admin/vendors', [VendorAccountController::class, 'show'])->name('vendors');
 Route::post('/admin/vendors/{id}/status/{status}', [VendorAccountController::class, 'updateStatus'])->name('admin.vendors.updateStatus');
-Route::view('/admin/seller-details', 'AdminDashboard.seller-details')->name('seller_details');
+Route::get('/admin/vendor-details/{vendorId}', [VendorAccountController::class, 'showVendorDetails'])->name('vendor-details');
+
 
 Route::view('/admin/role_list', 'AdminDashboard.role_list')->name('role_list');
 
@@ -320,6 +321,7 @@ Route::view('/vendor_login', 'VendorDashboard.vendor_login')->name('vendor_login
 Route::post('/vendor_login', [VendorAccountController::class, 'login'])->name('vendor.login');
 Route::view('/vendor_register', 'VendorDashboard.vendor_register')->name('vendor_register');
 Route::post('/vendor_register', [VendorAccountController::class, 'store'])->name('vendor_register.store');
+Route::post('/vendor/logout', [VendorAccountController::class, 'logout'])->name('vendor.logout');
 
 
 Route::get('/vendor/shop', [VendorShopController::class, 'index'])->name('vendor.shop');

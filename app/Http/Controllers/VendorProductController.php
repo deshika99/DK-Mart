@@ -67,15 +67,15 @@ class VendorProductController extends Controller
     {
         $vendorId = session('vendor_id');
         $shop = Shop::where('vendor_id', $vendorId)->first();
-
+    
         if (!$shop) {
             return redirect()->back()->with('error', 'Shop not found for the vendor.');
         }
-
+    
         $request->merge([
             'is_affiliate' => $request->has('is_affiliate') ? true : false,
         ]);
-
+    
         // Validate the request
         $validatedData = $request->validate([
             'product_name' => 'required|string|max:255',
@@ -97,11 +97,12 @@ class VendorProductController extends Controller
             'variations.*.hex_value' => 'nullable|string',
             'variations.*.quantity' => 'nullable|integer',
         ]);
-
-        $commissionPercentage = $validatedData['is_affiliate'] ? 10 : 0; 
+    
+        // Use the commission percentage provided by the user
+        $commissionPercentage = $validatedData['commission_percentage'] ?? 0;
         $affiliatePrice = $validatedData['is_affiliate'] ? ($validatedData['normal_price'] ?? 0) : null;
         $commissionPrice = $affiliatePrice ? ($affiliatePrice * $commissionPercentage / 100) : null;
-
+    
         // Create product
         $product = Product::create([
             'product_id' => 'P-' . strtoupper(substr(uniqid(), -6)),
@@ -119,20 +120,20 @@ class VendorProductController extends Controller
             'commission_price' => $commissionPrice,
             'shop_id' => $shop->id, // Assign the retrieved shop_id
         ]);
-
+    
         // Handle product images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $imageName = time() . '_' . $image->getClientOriginalName();
                 $imagePath = $image->storeAs('product_images', $imageName, 'public');
-
+    
                 ProductImage::create([
                     'product_id' => $product->product_id,
                     'image_path' => $imagePath,
                 ]);
             }
         }
-
+    
         // Handle product variations
         if (isset($validatedData['variations'])) {
             foreach ($validatedData['variations'] as $variation) {
@@ -145,10 +146,10 @@ class VendorProductController extends Controller
                 ]);
             }
         }
-
+    
         return redirect()->route('vendor.products')->with('success', 'Product added successfully.');
     }
-
+    
     
     
 
@@ -170,7 +171,6 @@ class VendorProductController extends Controller
     
 
     
-
 
     public function update(Request $request, $id)
     {
@@ -273,7 +273,7 @@ class VendorProductController extends Controller
             }
         }
     
-        return redirect()->route('vendor.products')->with('success', 'Product updated successfully.');
+        return redirect()->route('vendor.products')->with('success', 'Product updated successfully!');
     }
     
     
