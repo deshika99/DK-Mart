@@ -65,7 +65,7 @@
                                 <td class="text-end">
                                     @if($vendor->status === 'approved')
                                         <!-- More Details Button -->
-                                        <a href="" class="btn btn-info btn-sm me-2 text-white">More Details</a>
+                                        <a href="{{ route('vendor-details', $vendor->id) }}" class="btn btn-info btn-sm me-2 text-white">More Details</a>
                                     @endif
 
                                     @if($vendor->status === 'pending')

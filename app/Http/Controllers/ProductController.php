@@ -106,10 +106,10 @@ class ProductController extends Controller
             'variations.*.quantity' => 'nullable|integer',
         ]);
     
-        // Calculate commission price if product is affiliated
-        $commissionPercentage = $validatedData['is_affiliate'] ? 10 : 0; // Default commission rate = 10%
-        $affiliatePrice = $validatedData['is_affiliate'] ? ($validatedData['normal_price'] ?? 0) : null;
-        $commissionPrice = $affiliatePrice ? ($affiliatePrice * $commissionPercentage / 100) : null;
+         // Use the commission percentage provided by the user
+         $commissionPercentage = $validatedData['commission_percentage'] ?? 0;
+         $affiliatePrice = $validatedData['is_affiliate'] ? ($validatedData['normal_price'] ?? 0) : null;
+         $commissionPrice = $affiliatePrice ? ($affiliatePrice * $commissionPercentage / 100) : null;
     
         // Create product
         $product = Product::create([

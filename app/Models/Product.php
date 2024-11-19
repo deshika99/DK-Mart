@@ -56,7 +56,11 @@ class Product extends Model
         return $this->hasMany(AffiliateProduct::class, 'product_id');
     }
 
-
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class);
+    }
+    
     
 }
 
