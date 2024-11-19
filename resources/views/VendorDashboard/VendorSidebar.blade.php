@@ -1,6 +1,6 @@
 <aside class="navbar-aside shadow-sm" id="offcanvas_aside">
     <div class="aside-top" style="padding:0">
-        <a href="" class="brand-wrap">
+        <a href="{{ route('vendorhome') }}" class="brand-wrap">
             <img src="{{ asset('/backend/assets/DK mart-01.png') }}" class="logo" alt="DK-Mart"/>
         </a>
         <div>
