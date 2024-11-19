@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('postal_code');
             $table->date('date');
             $table->decimal('total_cost', 15, 2);
-            $table->enum('status', ['Confirmed', 'Paid', 'In-Progress', 'Shipped', 'Delivered', 'Cancelled', 'Returned'])->default('Confirmed');
+            $table->enum('status', ['Pending', 'Accepted', 'Shipped', 'Delivered', 'Cancelled', 'Returned'])->default('Pending');
             $table->string('payment_method')->nullable();
             $table->string('payment_status')->nullable();
             $table->timestamps();  

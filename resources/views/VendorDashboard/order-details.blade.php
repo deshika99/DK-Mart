@@ -1,4 +1,4 @@
-@extends('AdminDashboard.master')
+@extends ('VendorDashboard.Vendormaster')
 
 @section('content')
 
@@ -16,7 +16,7 @@
                 <a href="#" class="fw-bold">Order ID: #{{ $order->order_code }}</a>
             </div>
             <div class="col-lg-6 col-md-6 ms-auto text-md-end">
-                <form action="{{ route('order.updateStatus', $order->order_code) }}" method="POST" class="d-inline">
+                <form action="{{ route('vendor.order.updateStatus', $order->order_code) }}" method="POST" class="d-inline">
                     @csrf
                     @method('PATCH')
                     <select name="status" class="form-select d-inline-block mb-lg-0 mr-5 mw-200">

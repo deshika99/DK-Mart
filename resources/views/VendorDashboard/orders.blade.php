@@ -1,4 +1,4 @@
-@extends('AdminDashboard.master')
+@extends ('VendorDashboard.Vendormaster')
 
 @section('content')
 <div class="content-header">
@@ -8,7 +8,7 @@
 </div>
 <div class="card mb-4">
 <header class="card-header">
-    <form action="{{ route('orders') }}" method="GET" id="orderSearchForm">
+    <form action="{{ route('vendor.orders') }}" method="GET" id="orderSearchForm">
         <div class="row gx-3">
             <div class="col-lg-4 col-md-6 me-auto">
                 <input type="text" name="order_code" placeholder="Search order ID" class="form-control" value="{{ request('order_code') }}" oninput="submitForm()"/>
@@ -58,10 +58,10 @@
                             <td>{{ $order->date }}</td>
                             <td class="text-end">
                                 <div>
-                                    <a href="{{ route('order-details', $order->order_code) }}" class="btn btn-view btn-sm me-2">
+                                    <a href="{{ route('vendor.order-details', $order->order_code) }}" class="btn btn-view btn-sm me-2">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <form id="deleteForm{{ $order->id }}" action="{{ route('order.delete', $order->id) }}" method="POST" style="display: inline;">
+                                    <form id="deleteForm{{ $order->id }}" action="{{ route('vendor.order.delete', $order->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('deleteForm{{ $order->id }}', 'Are you sure you want to delete this order?')">
