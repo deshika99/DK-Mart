@@ -1,7 +1,7 @@
 @extends ('VendorDashboard.Vendormaster')
 
 @section('content')
-<form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('vendor.products.update', $product->id) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 <div class="row">

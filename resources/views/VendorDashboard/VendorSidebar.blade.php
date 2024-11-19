@@ -16,6 +16,14 @@
                 </a>
             </li>
 
+            <li class="menu-item {{ request()->routeIs('vendor.shop') ? 'active' : '' }}">
+                <a class="menu-link" href="{{ route('vendor.shop') }}">
+                <i class="icon material-icons md-store"></i>
+                    <span class="text">Shop</span>
+                </a>
+            </li>
+
+
             <!-- Products Menu -->
             <li class="menu-item has-submenu {{ request()->routeIs('vendor.products*') ? 'active' : '' }}">
                 <a class="menu-link" href="#">

@@ -63,10 +63,10 @@
                             <span class="text">Orders</span>
                         </a>
                     </li>
-                    <li class="menu-item {{ request()->routeIs('sellers') ? 'active' : '' }}">
-                        <a class="menu-link" href="{{ route('sellers') }}">
+                    <li class="menu-item {{ request()->routeIs('vendors') ? 'active' : '' }}">
+                        <a class="menu-link" href="{{ route('vendors') }}">
                         <i class="icon material-icons md-store"></i>
-                            <span class="text">Sellers</span>
+                            <span class="text">Vendors</span>
                         </a>
                     </li>
                     <li class="menu-item {{ request()->routeIs('reviews') ? 'active' : '' }}">

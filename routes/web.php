@@ -36,6 +36,9 @@ use App\Http\Controllers\WishlistController;
 //Vendor_Dashboard Links
 use App\Http\Controllers\VendorProductController;
 use App\Http\Controllers\VendorOrderController;
+use App\Http\Controllers\VendorAccountController;
+use App\Http\Controllers\VendorShopController;
+
 
 
 
@@ -185,7 +188,9 @@ Route::get('/admin/Affiliatecustomer-details/{id}', [AffiliateUserController::cl
 Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
 Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inquiries');
 
-Route::view('/admin/sellers', 'AdminDashboard.sellers')->name('sellers');
+
+Route::get('/admin/vendors', [VendorAccountController::class, 'show'])->name('vendors');
+Route::post('/admin/vendors/{id}/status/{status}', [VendorAccountController::class, 'updateStatus'])->name('admin.vendors.updateStatus');
 Route::view('/admin/seller-details', 'AdminDashboard.seller-details')->name('seller_details');
 
 Route::view('/admin/role_list', 'AdminDashboard.role_list')->name('role_list');
@@ -298,9 +303,33 @@ Route::get('home/My-Account/edit-password', function () {
     return view('user_dashboard.edit-password');
 })->name('edit-password');
 
+Route::get('home/My-Account/returns', function () {
+    return view('user_dashboard.returns');
+})->name('returns');
+
+Route::get('home/My-Account/returns-details', function () {
+    return view('user_dashboard.returns-details');
+})->name('returns.details');
+
+Route::get('home/My-Account/Write-Reviews', function () {
+    return view('user_dashboard.Write-Reviews');
+})->name('Write-Reviews');
+
+
+
+
 
 //Vendor dashboard
+
 Route::view('/vendor_dashboard', 'VendorDashboard.vendorhome')->name('vendorhome');
+Route::view('/vendor_login', 'VendorDashboard.vendor_login')->name('vendor_login');
+Route::post('/vendor_login', [VendorAccountController::class, 'login'])->name('vendor.login');
+Route::view('/vendor_register', 'VendorDashboard.vendor_register')->name('vendor_register');
+Route::post('/vendor_register', [VendorAccountController::class, 'store'])->name('vendor_register.store');
+
+
+Route::get('/vendor/shop', [VendorShopController::class, 'index'])->name('vendor.shop');
+Route::post('/vendor/shop/store', [VendorShopController::class, 'store'])->name('vendor.shop.store');
 
 Route::get('/vendor_dashboard/products', [VendorProductController::class, 'showproducts'])->name('vendor.products');
 Route::view('/vendor_dashboard/add_products', 'VendorDashboard.add_products')->name('vendor.products.add');
@@ -314,18 +343,5 @@ Route::get('/vendor_dashboard/orders', [VendorOrderController::class, 'index'])-
 Route::delete('/vendor_dashboard/orders/{order}', [VendorOrderController::class, 'destroy'])->name('vendor.order.delete');
 Route::get('/vendor_dashboard/order-details/{orderCode}', [VendorOrderController::class, 'showOrderDetails'])->name('vendor.order-details');
 Route::patch('/vendor_dashboard/order/update-status/{order_code}', [VendorOrderController::class, 'updateStatus'])->name('vendor.order.updateStatus');
-
-
-Route::get('home/My-Account/returns', function () {
-    return view('user_dashboard.returns');
-})->name('returns');
-
-Route::get('home/My-Account/returns-details', function () {
-    return view('user_dashboard.returns-details');
-})->name('returns.details');
-
-Route::get('home/My-Account/Write-Reviews', function () {
-    return view('user_dashboard.Write-Reviews');
-})->name('Write-Reviews');
 
 
