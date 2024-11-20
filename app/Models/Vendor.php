@@ -21,4 +21,6 @@ class Vendor extends Model
     {
         return $this->hasOne(Shop::class);
     }
+
+    
 }
