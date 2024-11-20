@@ -59,14 +59,18 @@
 <!-- ==================== Scroll to Top End Here ==================== -->
 
 <!-- ==================== Search Box Start Here ==================== -->
+
  <form action="#" class="search-box">
   <button type="button" class="w-48 h-48 m-16 text-2xl text-white border border-gray-100 search-box__close position-absolute inset-block-start-0 inset-inline-end-0 rounded-circle flex-center hover-text-gray-800 hover-bg-white transition-1">
+
     <i class="ph ph-x"></i>
   </button>
   <div class="container">
     <div class="position-relative">
+
       <input type="text" class="px-24 py-16 text-xl form-control rounded-pill pe-64" placeholder="Search for a product or brand">
       <button type="submit" class="w-48 h-48 text-xl text-white bg-main-600 rounded-circle flex-center position-absolute top-50 translate-middle-y inset-inline-end-0 me-8">
+
         <i class="ph ph-magnifying-glass"></i>
       </button>
     </div>
@@ -134,9 +138,11 @@
 
                     <!-- Dropdown Select End -->
                 </div>
+
                 <form action="#" class="flex-wrap flex-align form-location-wrapper">
                     <div class="h-48 search-category style-two d-flex search-form d-sm-flex d-none">
                     <select class="border border-0 border-gray-200 js-example-basic-single border-end-0 rounded-0" name="category">
+
                         <option value="" selected disabled>All Categories</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -144,7 +150,9 @@
                     </select>
 
                         <div class="search-form__wrapper position-relative">
+
                             <input type="text" class="border-0 search-form__input common-input py-13 ps-16 pe-18 rounded-0" placeholder="Search for a product or brand">
+
                         </div>
                         <button type="submit" class="flex-shrink-0 w-48 text-xl text-white bg-main-two-600 flex-center hover-bg-main-two-600 d-lg-flex d-none"><i class="ph ph-magnifying-glass"></i></button>
                     </div>
