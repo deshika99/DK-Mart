@@ -8,8 +8,8 @@
         <div class="container container-lg">
             <div class="row gy-4">
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-car-profile"></i></span>
+                    <div class="gap-16 shipping-item flex-align rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
+                        <span class="flex-shrink-0 w-56 h-56 text-white flex-center rounded-circle bg-main-two-600 text-32"><i class="ph-fill ph-car-profile"></i></span>
                         <div class="">
                             <h6 class="mb-0">Free Shipping</h6>
                             <span class="text-sm text-heading">Enjoy free shipping across the country</span>
@@ -17,8 +17,8 @@
                     </div>
                 </div>
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-hand-heart"></i></span>
+                    <div class="gap-16 shipping-item flex-align rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
+                        <span class="flex-shrink-0 w-56 h-56 text-white flex-center rounded-circle bg-main-two-600 text-32"><i class="ph-fill ph-hand-heart"></i></span>
                         <div class="">
                             <h6 class="mb-0"> 100% Satisfaction</h6>
                             <span class="text-sm text-heading">Guaranteed satisfaction with every purchase</span>
@@ -26,8 +26,8 @@
                     </div>
                 </div>
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-credit-card"></i></span>
+                    <div class="gap-16 shipping-item flex-align rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
+                        <span class="flex-shrink-0 w-56 h-56 text-white flex-center rounded-circle bg-main-two-600 text-32"><i class="ph-fill ph-credit-card"></i></span>
                         <div class="">
                             <h6 class="mb-0"> Secure Payments</h6>
                             <span class="text-sm text-heading">Make secure payments with confidence</span>
@@ -35,8 +35,8 @@
                     </div>
                 </div>
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle bg-main-two-600 text-white text-32 flex-shrink-0"><i class="ph-fill ph-chats"></i></span>
+                    <div class="gap-16 shipping-item flex-align rounded-16 bg-main-two-50 hover-bg-main-100 transition-2">
+                        <span class="flex-shrink-0 w-56 h-56 text-white flex-center rounded-circle bg-main-two-600 text-32"><i class="ph-fill ph-chats"></i></span>
                         <div class="">
                             <h6 class="mb-0"> 24/7 Support</h6>
                             <span class="text-sm text-heading">Get support anytime, day or night</span>
@@ -49,29 +49,29 @@
     <!-- ========================== Shipping Section End ============================ -->
 
 <!-- ==================== Footer Two Start Here ==================== -->
-<footer class="footer py-40 overflow-hidden" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border: 1px solid #e0e0e0;">
+<footer class="py-40 overflow-hidden footer" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border: 1px solid #e0e0e0;">
 
     <div class="container container-lg" style="margin-right: 20px; margin-left:20px;">
 
-        <div class="footer-item-two-wrapper d-flex align-items-start flex-wrap">
+        <div class="flex-wrap footer-item-two-wrapper d-flex align-items-start">
 
             <div class="footer-item max-w-275" data-aos="fade-up" data-aos-duration="200">
                 <div class="footer-item__logo">
                     <a href="index.html"> <img src="{{ asset('frontend/assets/images/logo/logo-two-black.png')}} " alt=""></a>
 
                 </div>
-                <p class="mb-24">DK Mart  become the largest computer parts, gaming pc parts, and other IT related products.</p>
-                <div class="flex-align gap-16 mb-16">
-                    <span class="w-32 h-32 flex-center rounded-circle border border-gray-100 text-main-two-600 text-md flex-shrink-0"><i class="ph-fill ph-phone-call"></i></span>
-                    <a href="tel:+00123456789" class="text-md text-gray-900 hover-text-main-600">+00 123 456 789</a>
+                <p class="mb-24">DK Mart Your trusted online shopping destination in Sri Lanka, offering a wide range of quality products at unbeatable prices. Shop with confidence, convenience, and local expertise!</p>
+                <div class="gap-16 mb-16 flex-align">
+                    <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-phone-call"></i></span>
+                    <a href="tel:+00123456789" class="text-gray-900 text-md hover-text-main-600">+00 123 456 789</a>
                 </div>
-                <div class="flex-align gap-16 mb-16">
-                    <span class="w-32 h-32 flex-center rounded-circle border border-gray-100 text-main-two-600 text-md flex-shrink-0"><i class="ph-fill ph-envelope"></i></span>
-                    <a href="mailto:support24@marketpro.com" class="text-md text-gray-900 hover-text-main-600">support24@marketpro.com</a>
+                <div class="gap-16 mb-16 flex-align">
+                    <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-envelope"></i></span>
+                    <a href="mailto:support24@marketpro.com" class="text-gray-900 text-md hover-text-main-600">support24@marketpro.com</a>
                 </div>
-                <div class="flex-align gap-16 mb-16">
-                    <span class="w-32 h-32 flex-center rounded-circle border border-gray-100 text-main-two-600 text-md flex-shrink-0"><i class="ph-fill ph-map-pin"></i></span>
-                    <span class="text-md text-gray-900 ">789 Inner Lane, California, USA</span>
+                <div class="gap-16 mb-16 flex-align">
+                    <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-map-pin"></i></span>
+                    <span class="text-gray-900 text-md ">789 Inner Lane, California, USA</span>
                 </div>
             </div>
             
@@ -149,24 +149,24 @@
                 <h6 class="">Connect with us</h6>
               
 
-                <ul class="flex-align gap-16">
+                <ul class="gap-16 flex-align">
                     <li>
-                        <a href="https://www.facebook.com" class="w-44 h-44 flex-center bg-main-two-50 text-main-two-600 text-xl rounded-8 hover-bg-main-two-600 hover-text-white">
+                        <a href="https://www.facebook.com" class="text-xl w-44 h-44 flex-center bg-main-two-50 text-main-two-600 rounded-8 hover-bg-main-two-600 hover-text-white">
                             <i class="ph-fill ph-facebook-logo"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.twitter.com" class="w-44 h-44 flex-center bg-main-two-50 text-main-two-600 text-xl rounded-8 hover-bg-main-two-600 hover-text-white">
+                        <a href="https://www.twitter.com" class="text-xl w-44 h-44 flex-center bg-main-two-50 text-main-two-600 rounded-8 hover-bg-main-two-600 hover-text-white">
                             <i class="ph-fill ph-twitter-logo"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.linkedin.com" class="w-44 h-44 flex-center bg-main-two-50 text-main-two-600 text-xl rounded-8 hover-bg-main-two-600 hover-text-white">
+                        <a href="https://www.linkedin.com" class="text-xl w-44 h-44 flex-center bg-main-two-50 text-main-two-600 rounded-8 hover-bg-main-two-600 hover-text-white">
                             <i class="ph-fill ph-instagram-logo"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.pinterest.com" class="w-44 h-44 flex-center bg-main-two-50 text-main-two-600 text-xl rounded-8 hover-bg-main-two-600 hover-text-white">
+                        <a href="https://www.pinterest.com" class="text-xl w-44 h-44 flex-center bg-main-two-50 text-main-two-600 rounded-8 hover-bg-main-two-600 hover-text-white">
                             <i class="ph-fill ph-linkedin-logo"></i>
                         </a>
                     </li>
@@ -178,12 +178,12 @@
 </footer>
 
 <!-- bottom Footer -->
-<div class="bottom-footer bg-color-three py-8">
+<div class="py-8 bottom-footer bg-color-three">
     <div class="container container-lg"style="margin-right: 20px; margin-left:20px;">
-        <div class="bottom-footer__inner flex-between flex-wrap gap-16 py-16">
+        <div class="flex-wrap gap-16 py-16 bottom-footer__inner flex-between">
             <p class="bottom-footer__text wow fadeInLeftBig">DK-Mart eCommerce &copy; 2024. All Rights Reserved </p>
-            <div class="flex-align gap-8 flex-wrap wow fadeInRightBig">
-                <span class="text-heading text-sm">We Are Accepting</span>
+            <div class="flex-wrap gap-8 flex-align wow fadeInRightBig">
+                <span class="text-sm text-heading">We Are Accepting</span>
                 <img src="frontend/assets/images/thumbs/payment-method.jpg" alt=""style="margin-right: 35px; ">
             </div>
         </div>
