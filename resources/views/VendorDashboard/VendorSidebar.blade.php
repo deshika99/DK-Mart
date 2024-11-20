@@ -1,6 +1,6 @@
 <aside class="navbar-aside shadow-sm" id="offcanvas_aside">
     <div class="aside-top" style="padding:0">
-        <a href="" class="brand-wrap">
+        <a href="{{ route('vendorhome') }}" class="brand-wrap">
             <img src="{{ asset('/backend/assets/DK mart-01.png') }}" class="logo" alt="DK-Mart"/>
         </a>
         <div>
@@ -15,6 +15,14 @@
                     <span class="text">Dashboard</span>
                 </a>
             </li>
+
+            <li class="menu-item {{ request()->routeIs('vendor.shop') ? 'active' : '' }}">
+                <a class="menu-link" href="{{ route('vendor.shop') }}">
+                <i class="icon material-icons md-store"></i>
+                    <span class="text">Shop</span>
+                </a>
+            </li>
+
 
             <!-- Products Menu -->
             <li class="menu-item has-submenu {{ request()->routeIs('vendor.products*') ? 'active' : '' }}">

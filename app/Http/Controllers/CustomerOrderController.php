@@ -46,9 +46,9 @@ class CustomerOrderController extends Controller
         }
     }
 
+
     public function placeOrder(Request $request)
-    {
-        dd($request);
+    { 
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -58,11 +58,11 @@ class CustomerOrderController extends Controller
             'city' => 'required|string|max:255',
             'postal_code' => 'required|string|max:10',
         ]);
-    
+        
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-    
+        
         try {
             $user = Auth::user();
             
@@ -70,6 +70,7 @@ class CustomerOrderController extends Controller
     
             // Check if cart is empty
             if ($cartItems->isEmpty()) {
+                Log::warning('Cart is empty for user', ['user_id' => $user->id]);
                 return redirect()->back()->with('error', 'Your cart is empty.');
             }
     
@@ -98,40 +99,34 @@ class CustomerOrderController extends Controller
                 'payment_method' => $request->input('payment_method', null),
                 'payment_status' => 'Pending',
             ]);
-            
+    
             $tracking_id = session('tracking_id'); // Retrieve the tracking ID from session
-            $this->trackReferral($tracking_id, $item['product_id']);
-
-            dd($tracking_id);
-
-            // Save each item to the customer_order_items table
-            foreach ($cartItems as $item) {
-
-                if (!isset($item->product_id, $item->quantity, $item->price)) {
-                    continue; 
+            
+            foreach ($cartItems as $cartItem) {
+                if (!isset($cartItem->product_id, $cartItem->quantity, $cartItem->price)) {
+                    continue;
                 }
-
+            
+                // Tracking the referral for each cart item
+                $this->trackReferral($tracking_id, $cartItem->product_id);  // Corrected to use $cartItem
+            
                 // Reduce the quantity of the product
-                $product = \App\Models\Product::find($item->product_id);
+                $product = \App\Models\Product::find($cartItem->product_id);
                 if ($product) {
-                    $product->quantity = max(0, $product->quantity - $item->quantity); 
+                    $product->quantity = max(0, $product->quantity - $cartItem->quantity);
                     $product->save();
+                   
                 }
-
-               
-                
-
-    
-                    CustomerOrderItems::create([
-                        'order_code' => $orderCode,
-                        'product_id' => $item->product_id,
-                        'date' => Carbon::now()->format('Y-m-d'),
-                        'cost' => $item->subtotal,
-                        'quantity' => $item->quantity,
-                        'size' => $item->size ?? null,
-                        'color' => $item->color ?? null,
-                    ]);
-    
+            
+                CustomerOrderItems::create([
+                    'order_code' => $orderCode,
+                    'product_id' => $cartItem->product_id,
+                    'date' => Carbon::now()->format('Y-m-d'),
+                    'cost' => $cartItem->subtotal,
+                    'quantity' => $cartItem->quantity,
+                    'size' => $cartItem->size ?? null,
+                    'color' => $cartItem->color ?? null,
+                ]);
             }
     
             // Clear the cart items from the database after the order is placed
@@ -142,6 +137,7 @@ class CustomerOrderController extends Controller
             return redirect()->back()->with('error', 'An error occurred while placing the order. Please try again.');
         }
     }
+    
     
     
 

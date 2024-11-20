@@ -126,7 +126,7 @@
                 <h6 class="footer-item__title">Information</h6>
                 <ul class="footer-menu">
                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Become a Vendor</a>
+                        <a href="{{ route('vendor_register') }}" class="text-gray-600 hover-text-main-600">Become a Vendor</a>
                     </li>
                     <li class="mb-16">
                         <a href="{{ route('affiliate_home') }}" class="text-gray-600 hover-text-main-600">Affiliate Program</a>

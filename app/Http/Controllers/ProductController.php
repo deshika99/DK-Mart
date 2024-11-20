@@ -36,6 +36,12 @@ class ProductController extends Controller
     return view('frontend.searchView', compact('products', 'categories'));
 }
 
+// search box
+
+
+//
+
+
 
     public function showproducts()
     {
@@ -53,7 +59,22 @@ class ProductController extends Controller
     }
 
 
+    public function displayCategories()
+    {
+        $categories = Category::with('subcategories.subSubcategories')->get();
+        return view('AdminDashboard.add_products', compact('categories'));
+    }
+
+    public function getSubcategories($categoryId)
+    {
+        return Subcategory::where('category_id', $categoryId)->get();
+    }
     
+    public function getSubSubcategories($subcategoryId)
+    {
+        return SubSubcategory::where('subcategory_id', $subcategoryId)->get();
+    }
+
 
 
     public function store(Request $request)
@@ -85,10 +106,10 @@ class ProductController extends Controller
             'variations.*.quantity' => 'nullable|integer',
         ]);
     
-        // Calculate commission price if product is affiliated
-        $commissionPercentage = $validatedData['is_affiliate'] ? 10 : 0; // Default commission rate = 10%
-        $affiliatePrice = $validatedData['is_affiliate'] ? ($validatedData['normal_price'] ?? 0) : null;
-        $commissionPrice = $affiliatePrice ? ($affiliatePrice * $commissionPercentage / 100) : null;
+         // Use the commission percentage provided by the user
+         $commissionPercentage = $validatedData['commission_percentage'] ?? 0;
+         $affiliatePrice = $validatedData['is_affiliate'] ? ($validatedData['normal_price'] ?? 0) : null;
+         $commissionPrice = $affiliatePrice ? ($affiliatePrice * $commissionPercentage / 100) : null;
     
         // Create product
         $product = Product::create([
