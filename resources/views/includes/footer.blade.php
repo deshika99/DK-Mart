@@ -2,6 +2,8 @@
     .footer-item-two-wrapper {
         gap: 10px;
     }
+   
+
 </style>
 <!-- ========================== Shipping Section Start ============================ -->
     <section class="shipping mb-80 mt-80" id="shipping">
@@ -60,22 +62,22 @@
                     <a href="index.html"> <img src="{{ asset('frontend/assets/images/logo/logo-two-black.png')}} " alt=""></a>
 
                 </div>
-                <p class="mb-24">DK Mart Your trusted online shopping destination in Sri Lanka, offering a wide range of quality products at unbeatable prices. Shop with confidence, convenience, and local expertise!</p>
+                <p class="mb-24" style="text-align: justify;">DK Mart is Your trusted online shopping destination in Sri Lanka, offering a wide range of quality products at unbeatable prices. Shop with confidence, convenience, and local expertise!  </p>
                 <div class="gap-16 mb-16 flex-align">
                     <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-phone-call"></i></span>
-                    <a href="tel:+00123456789" class="text-gray-900 text-md hover-text-main-600">+00 123 456 789</a>
+                    <a href="tel:0787004900" class="text-gray-900 text-md hover-text-main-600">0787004900</a>
                 </div>
                 <div class="gap-16 mb-16 flex-align">
                     <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-envelope"></i></span>
-                    <a href="mailto:support24@marketpro.com" class="text-gray-900 text-md hover-text-main-600">support24@marketpro.com</a>
+                    <a href="mailto:admin@dkmart.lk" class="text-gray-900 text-md hover-text-main-600">admin@dkmart.lk</a>
                 </div>
                 <div class="gap-16 mb-16 flex-align">
                     <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-map-pin"></i></span>
-                    <span class="text-gray-900 text-md ">789 Inner Lane, California, USA</span>
+                    <span class="text-gray-900 text-md ">No.57, Horana Road, Moragahahena.</span>
                 </div>
             </div>
             
-            <div class="footer-item" data-aos="fade-up" data-aos-duration="400">
+            <div class="footer-item" data-aos="fade-up" data-aos-duration="400"style="margin-left: 45px;">
                 <h6 class="footer-item__title">About us</h6>
                 <ul class="footer-menu">
                     <li class="mb-16">
@@ -86,7 +88,7 @@
                     </li>
                    
                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Contact Us</a>
+                        <a href="{{ route('cart') }}" class="text-gray-600 hover-text-main-600">Contact Us</a>
                     </li>
                     <li class="mb-16">
                         <a href="shop.html" class="text-gray-600 hover-text-main-600">Feedback</a>
@@ -103,17 +105,17 @@
                 <h6 class="footer-item__title">My Account</h6>
                 <ul class="footer-menu">
                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">My Account</a>
+                        <a href="{{ route('dashboard') }}" class="text-gray-600 hover-text-main-600">My Account</a>
                     </li>
                     <li class="mb-16">
                         <a href="shop.html" class="text-gray-600 hover-text-main-600">Order History</a>
                     </li>
                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Shoping Cart</a>
+                        <a href="{{ route('cart') }}"  class="text-gray-600 hover-text-main-600">Shoping Cart</a>
                     </li>
                    
                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Wishlist</a>
+                        <a href="{{ route('wishlist') }}"  class="text-gray-600 hover-text-main-600">Wishlist</a>
                     </li>
                     <li class="mb-16">
                         <a href="shop.html" class="text-gray-600 hover-text-main-600">Order History</a>
@@ -132,7 +134,7 @@
                         <a href="{{ route('affiliate_home') }}" class="text-gray-600 hover-text-main-600">Affiliate Program</a>
                     </li>
                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Privacy Policy</a>
+                        <a href= "{{ route('privacy-policy') }}"class="text-gray-600 hover-text-main-600">Privacy Policy</a>
                     </li>
                   
                     <li class="mb-16">
@@ -145,7 +147,7 @@
                 </ul>
             </div>
             
-            <div class="footer-item" data-aos="fade-up" data-aos-duration="1200">
+            <div class="footer-item" data-aos="fade-up" data-aos-duration="1200" style="margin-right: 35px;">
                 <h6 class="">Connect with us</h6>
               
 
@@ -189,7 +191,4 @@
         </div>
     </div>
 </div>
-<!-- ==================== Footer Two End Here ==================== -->
-  
-
-    
+<!-- ==================== Footer Two End Here ==================== -->

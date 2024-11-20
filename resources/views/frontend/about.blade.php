@@ -32,7 +32,6 @@
             font-size: 36px;
             margin-bottom: 10px;
             color: #bd0f0f;
-            font-family: georgia;
         }
         .hero-left h4 {
             font-size: 24px;
@@ -89,7 +88,6 @@
             margin-bottom: 20px;
             position: relative;
             font-size: 1.5rem;
-            font-family: georgia
         }
         .box p {
             color: #555;
@@ -115,7 +113,6 @@
     font-weight: bold;
     position: relative;
     font-size: 1.5rem;
-    font-family: georgia;
 }
 .underline-curve {
     width: 80px;
@@ -171,7 +168,6 @@
     font-weight: bold;
     position: relative;
     font-size: 1.5rem;
-    font-family: georgia;
 }
 .values-container {
     display: flex;
@@ -249,7 +245,7 @@
             font-weight: bold;
             position: relative;
             font-size: 1.5rem;
-            font-family: georgia;
+           
         }
        .promise-content img {
             width: 100%;
@@ -295,7 +291,7 @@
            font-weight: bold;
            position: relative;
            font-size: 1.5rem;
-           font-family: georgia;
+           
 }
 
         
@@ -333,13 +329,13 @@
     </style>
 
     <!-- ========================= Breadcrumb Start =============================== -->
-<div class="breadcrumb mb-0 py-26 bg-main-two-50">
+<div class="mb-0 breadcrumb py-26 bg-main-two-50">
     <div class="container container-lg">
-        <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
+        <div class="flex-wrap gap-16 breadcrumb-wrapper flex-between">
             <h6 class="mb-0">About Us</h6>
-            <ul class="flex-align gap-8 flex-wrap">
+            <ul class="flex-wrap gap-8 flex-align">
                 <li class="text-sm">
-                    <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
+                    <a href="index.html" class="gap-8 text-gray-900 flex-align hover-text-main-600">
                         <i class="ph ph-house"></i>
                         Home
                     </a>
