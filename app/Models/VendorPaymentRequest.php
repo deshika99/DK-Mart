@@ -25,4 +25,9 @@ class VendorPaymentRequest extends Model
     protected $casts = [
         'requested_at' => 'datetime',
     ];
+
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class, 'vendor_id');
+    }
 }

@@ -10,6 +10,38 @@ use App\Models\Vendor;
 class VendorPaymentRequestController extends Controller
 {
 
+
+    public function index()
+    {
+      
+        $pendingRequests = VendorPaymentRequest::where('status', 'Pending')->with('vendor')->get();
+        $pendingCount = $pendingRequests->count();
+        $completedRequests = VendorPaymentRequest::where('status', 'Completed')->with('vendor')->get();
+
+        return view('AdminDashboard.vendor_payments', compact('pendingRequests', 'completedRequests'));
+    }
+
+
+    
+    public function updatePaymentStatus(Request $request, $id)
+    {
+  
+        $request->validate([
+            'processing_fee' => 'required|numeric|min:0',
+            'paid_amount' => 'required|numeric|min:0',
+        ]);
+
+        $paymentRequest = VendorPaymentRequest::findOrFail($id);
+
+        $paymentRequest->processing_fee = $request->processing_fee;
+        $paymentRequest->paid_amount = $request->paid_amount;
+        $paymentRequest->status = 'Completed';
+        $paymentRequest->save();
+
+        return redirect()->route('admin.vendor.payments')->with('success', 'Payment status updated successfully.');
+    }
+
+
     public function showPayments()
     {
         $vendor_id = session('vendor_id');

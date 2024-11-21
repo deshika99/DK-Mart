@@ -183,10 +183,13 @@ Route::post('/admin/affiliates/{id}/status/{status}', [AffiliateUserController::
 Route::get('/admin/Affiliatecustomer-details/{id}', [AffiliateUserController::class, 'showDetails'])->name('admin.affiliates.show');
 
 Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
-Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inquiries');
+Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('admin.customer.inquiries');
 
 
 Route::get('/admin/vendors', [VendorAccountController::class, 'show'])->name('vendors');
+Route::get('/admin/vendors/payments', [VendorPaymentRequestController::class, 'index'])->name('admin.vendor.payments');
+Route::post('/admin/vendors/payments/update/{id}', [VendorPaymentRequestController::class, 'updatePaymentStatus'])->name('vendor.updatePaymentStatus');
+
 Route::post('/admin/vendors/{id}/status/{status}', [VendorAccountController::class, 'updateStatus'])->name('admin.vendors.updateStatus');
 Route::get('/admin/vendor-details/{vendorId}', [VendorAccountController::class, 'showVendorDetails'])->name('vendor-details');
 
