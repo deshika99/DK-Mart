@@ -12,13 +12,13 @@
 
 </style>
    <!-- ========================= Breadcrumb Start =============================== -->
-   <div class="breadcrumb mb-0 py-26 bg-main-two-50">
+   <div class="mb-0 breadcrumb py-26 bg-main-two-50">
     <div class="container container-lg">
-        <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
+        <div class="flex-wrap gap-16 breadcrumb-wrapper flex-between">
             <h6 class="mb-0">Shop</h6>
-            <ul class="flex-align gap-8 flex-wrap">
+            <ul class="flex-wrap gap-8 flex-align">
                 <li class="text-sm">
-                    <a href="/home" class="text-gray-900 flex-align gap-8 hover-text-main-600">
+                    <a href="/home" class="gap-8 text-gray-900 flex-align hover-text-main-600">
                         <i class="ph ph-house"></i>
                         Home
                     </a>
@@ -40,12 +40,12 @@
             <!-- Sidebar Start -->
             <div class="col-lg-3">
                 <div class="shop-sidebar">
-                    <button type="button" class="shop-sidebar__close d-lg-none d-flex w-32 h-32 flex-center border border-gray-100 rounded-circle hover-bg-main-600 position-absolute inset-inline-end-0 me-10 mt-8 hover-text-white hover-border-main-600">
+                    <button type="button" class="w-32 h-32 mt-8 border border-gray-100 shop-sidebar__close d-lg-none d-flex flex-center rounded-circle hover-bg-main-600 position-absolute inset-inline-end-0 me-10 hover-text-white hover-border-main-600">
                         <i class="ph ph-x"></i>
                     </button>
-                    <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
-                        <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24">Product Category</h6>
-                        <ul class="max-h-540 overflow-y-auto scroll-sm">
+                    <div class="p-32 mb-32 border border-gray-100 shop-sidebar__box rounded-8">
+                        <h6 class="pb-24 mb-24 text-xl border-gray-100 border-bottom">Product Category</h6>
+                        <ul class="overflow-y-auto max-h-540 scroll-sm">
                             <li class="mb-24">
                                 <a href="<?php echo e(route('shop.index')); ?>" 
                                 class="text-gray-900 hover-text-main-600 <?php echo e(!isset($categoryId) ? 'font-bold' : ''); ?>">
@@ -69,28 +69,28 @@
                         </ul>
                     </div>
 
-                    <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
-                        <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24">Filter by Price</h6>
+                    <div class="p-32 mb-32 border border-gray-100 shop-sidebar__box rounded-8">
+                        <h6 class="pb-24 mb-24 text-xl border-gray-100 border-bottom">Filter by Price</h6>
                         <div class="custom--range">
                             <div id="slider-range"></div>
-                            <div class="flex-between flex-wrap-reverse gap-8 mt-24 ">
+                            <div class="flex-wrap-reverse gap-8 mt-24 flex-between ">
                             <form method="GET" action="<?php echo e(route('shop.index')); ?>">
                                 <input type="hidden" name="min_price" id="min_price" value="<?php echo e($minPrice ?? 0); ?>">
                                 <input type="hidden" name="max_price" id="max_price" value="<?php echo e($maxPrice ?? 20000); ?>">
-                                <button type="submit" class="btn btn-main h-40 flex-align">Filter </button>
+                                <button type="submit" class="h-40 btn btn-main flex-align">Filter </button>
                             </form>
 
-                                <div class="custom--range__content flex-align gap-8">
-                                    <span class="text-gray-500 text-md flex-shrink-0">Price:</span>
+                                <div class="gap-8 custom--range__content flex-align">
+                                    <span class="flex-shrink-0 text-gray-500 text-md">Price:</span>
                                     <input type="text" class="custom--range__prices text-neutral-600 text-start text-md fw-medium" id="amount" readonly>
                                 </div>
                             </div>
                         </div>
                     </div>
                    
-                    <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
-                        <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24">Filter by Color</h6>
-                        <ul class="color-filter-list max-h-540 overflow-y-auto scroll-sm">
+                    <div class="p-32 mb-32 border border-gray-100 shop-sidebar__box rounded-8">
+                        <h6 class="pb-24 mb-24 text-xl border-gray-100 border-bottom">Filter by Color</h6>
+                        <ul class="overflow-y-auto color-filter-list max-h-540 scroll-sm">
                             <?php
                                 $displayedColors = []; 
                             ?>
@@ -101,7 +101,7 @@
                                         <li class="mb-16 color-item">
                                             <div class="form-check common-check common-radio checked-black">
                                                 <input class="form-check-input" type="radio" name="color" id="color<?php echo e($variation->id); ?>" value="<?php echo e($variation->hex_value); ?>" style="display: none;" onclick="filterByColor('<?php echo e($variation->hex_value); ?>')">
-                                                <label class="form-check-label border-gray-100 color-swatch" for="color<?php echo e($variation->id); ?>" 
+                                                <label class="border-gray-100 form-check-label color-swatch" for="color<?php echo e($variation->id); ?>" 
                                                     style="background-color: <?php echo e($variation->hex_value); ?>; display: inline-block; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; transition: box-shadow 0.3s; border: 1px solid gray;"
                                                     onmouseover="this.style.boxShadow='0 0 5px rgba(0,0,0,0.5)';" 
                                                     onmouseout="if (!this.classList.contains('selected')) this.style.boxShadow='none';"></label>
@@ -117,92 +117,92 @@
                     </div>
 
                     
-                    <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
-                        <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24">Filter by Rating</h6>
-                        <div class="flex-align gap-8 position-relative mb-20">
-                            <label class="position-absolute w-100 h-100 cursor-pointer" for="rating5"> </label>
-                            <div class="common-check common-radio mb-0">
+                    <div class="p-32 mb-32 border border-gray-100 shop-sidebar__box rounded-8">
+                        <h6 class="pb-24 mb-24 text-xl border-gray-100 border-bottom">Filter by Rating</h6>
+                        <div class="gap-8 mb-20 flex-align position-relative">
+                            <label class="cursor-pointer position-absolute w-100 h-100" for="rating5"> </label>
+                            <div class="mb-0 common-check common-radio">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="rating5">
                             </div>
-                            <div class="progress w-100 bg-gray-100 rounded-pill h-8" role="progressbar" aria-label="Basic example" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                            <div class="h-8 bg-gray-100 progress w-100 rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
                                 <div class="progress-bar bg-main-600 rounded-pill" style="width: 70%"></div>
                             </div>
-                            <div class="flex-align gap-4">
+                            <div class="gap-4 flex-align">
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                             </div>
-                            <span class="text-gray-900 flex-shrink-0">124</span>
+                            <span class="flex-shrink-0 text-gray-900">124</span>
                         </div>
-                        <div class="flex-align gap-8 position-relative mb-20">
-                            <label class="position-absolute w-100 h-100 cursor-pointer" for="rating4"> </label>
-                            <div class="common-check common-radio mb-0">
+                        <div class="gap-8 mb-20 flex-align position-relative">
+                            <label class="cursor-pointer position-absolute w-100 h-100" for="rating4"> </label>
+                            <div class="mb-0 common-check common-radio">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="rating4">
                             </div>
-                            <div class="progress w-100 bg-gray-100 rounded-pill h-8" role="progressbar" aria-label="Basic example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                            <div class="h-8 bg-gray-100 progress w-100 rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                                 <div class="progress-bar bg-main-600 rounded-pill" style="width: 50%"></div>
                             </div>
-                            <div class="flex-align gap-4">
+                            <div class="gap-4 flex-align">
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
                             </div>
-                            <span class="text-gray-900 flex-shrink-0">52</span>
+                            <span class="flex-shrink-0 text-gray-900">52</span>
                         </div>
-                        <div class="flex-align gap-8 position-relative mb-20">
-                            <label class="position-absolute w-100 h-100 cursor-pointer" for="rating3"> </label>
-                            <div class="common-check common-radio mb-0">
+                        <div class="gap-8 mb-20 flex-align position-relative">
+                            <label class="cursor-pointer position-absolute w-100 h-100" for="rating3"> </label>
+                            <div class="mb-0 common-check common-radio">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="rating3">
                             </div>
-                            <div class="progress w-100 bg-gray-100 rounded-pill h-8" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                            <div class="h-8 bg-gray-100 progress w-100 rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
                                 <div class="progress-bar bg-main-600 rounded-pill" style="width: 35%"></div>
                             </div>
-                            <div class="flex-align gap-4">
+                            <div class="gap-4 flex-align">
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
                             </div>
-                            <span class="text-gray-900 flex-shrink-0">12</span>
+                            <span class="flex-shrink-0 text-gray-900">12</span>
                         </div>
-                        <div class="flex-align gap-8 position-relative mb-20">
-                            <label class="position-absolute w-100 h-100 cursor-pointer" for="rating2"> </label>
-                            <div class="common-check common-radio mb-0">
+                        <div class="gap-8 mb-20 flex-align position-relative">
+                            <label class="cursor-pointer position-absolute w-100 h-100" for="rating2"> </label>
+                            <div class="mb-0 common-check common-radio">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="rating2">
                             </div>
-                            <div class="progress w-100 bg-gray-100 rounded-pill h-8" role="progressbar" aria-label="Basic example" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                            <div class="h-8 bg-gray-100 progress w-100 rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                                 <div class="progress-bar bg-main-600 rounded-pill" style="width: 20%"></div>
                             </div>
-                            <div class="flex-align gap-4">
+                            <div class="gap-4 flex-align">
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
                             </div>
-                            <span class="text-gray-900 flex-shrink-0">5</span>
+                            <span class="flex-shrink-0 text-gray-900">5</span>
                         </div>
-                        <div class="flex-align gap-8 position-relative mb-0">
-                            <label class="position-absolute w-100 h-100 cursor-pointer" for="rating1"> </label>
-                            <div class="common-check common-radio mb-0">
+                        <div class="gap-8 mb-0 flex-align position-relative">
+                            <label class="cursor-pointer position-absolute w-100 h-100" for="rating1"> </label>
+                            <div class="mb-0 common-check common-radio">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="rating1">
                             </div>
-                            <div class="progress w-100 bg-gray-100 rounded-pill h-8" role="progressbar" aria-label="Basic example" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
+                            <div class="h-8 bg-gray-100 progress w-100 rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
                                 <div class="progress-bar bg-main-600 rounded-pill" style="width: 5%"></div>
                             </div>
-                            <div class="flex-align gap-4">
+                            <div class="gap-4 flex-align">
                                 <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
                             </div>
-                            <span class="text-gray-900 flex-shrink-0">2</span>
+                            <span class="flex-shrink-0 text-gray-900">2</span>
                         </div>
                     </div>
                         
@@ -213,20 +213,20 @@
            <!-- Content Start -->
             <div class="col-lg-9">
                 <!-- Top Start -->
-                <div class="flex-between gap-16 flex-wrap mb-40 ">
+                <div class="flex-wrap gap-16 mb-40 flex-between ">
                     <span class="text-gray-900">
                         Showing <?php echo e($products->firstItem()); ?>-<?php echo e($products->lastItem()); ?> of <?php echo e($products->total()); ?> results
                     </span>
-                    <div class="position-relative flex-align gap-16 flex-wrap">
-                        <div class="list-grid-btns flex-align gap-16">
-                            <button type="button" class="w-44 h-44 flex-center border border-gray-100 rounded-6 text-2xl list-btn">
+                    <div class="flex-wrap gap-16 position-relative flex-align">
+                        <div class="gap-16 list-grid-btns flex-align">
+                            <button type="button" class="text-2xl border border-gray-100 w-44 h-44 flex-center rounded-6 list-btn">
                                 <i class="ph-bold ph-list-dashes"></i>
                             </button>
-                            <button type="button" class="w-44 h-44 flex-center border border-main-600 text-white bg-main-600 rounded-6 text-2xl grid-btn">
+                            <button type="button" class="text-2xl text-white border w-44 h-44 flex-center border-main-600 bg-main-600 rounded-6 grid-btn">
                                 <i class="ph ph-squares-four"></i>
                             </button>
                         </div>  
-                        <button type="button" class="w-44 h-44 d-lg-none d-flex flex-center border border-gray-100 rounded-6 text-2xl sidebar-btn">
+                        <button type="button" class="text-2xl border border-gray-100 w-44 h-44 d-lg-none d-flex flex-center rounded-6 sidebar-btn">
                             <i class="ph-bold ph-funnel"></i>
                         </button>
                     </div>
@@ -235,26 +235,24 @@
 
                 <div class="list-grid-wrapper">
                     <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                             <a href="<?php echo e(url('/product-details/' . $product->product_id)); ?>" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
                                 <img src="<?php echo e(asset('storage/' . $product->images->first()->image_path)); ?>" 
                                     alt="<?php echo e($product->product_name); ?>" 
                                     class="product-image">
-                                <span class="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Sale</span>
-                              
                             </a>
 
-                            <div class="product-card__content mt-16">
-                                <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                            <div class="mt-16 product-card__content">
+                                <h6 class="mt-12 mb-8 text-lg title fw-semibold">
                                     <a href="<?php echo e(url('/product-details/' . $product->product_id)); ?>" class="link text-line-2" tabindex="0"><?php echo e($product->product_name); ?></a>
                                 </h6>
-                                <div class="flex-align mb-20 mt-16 gap-6">
-                                    <div class="rating-info d-flex gap-2">
-                                        <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <div class="gap-6 mt-16 mb-20 flex-align">
+                                    <div class="gap-2 rating-info d-flex">
+                                        <span class="text-xs text-gray-500 fw-medium">4.8</span>
                                         <span class="text-15 fw-medium text-warning-600 d-flex">
                                             <i class="ph-fill ph-star"></i>
                                         </span>
-                                        <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                        <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                     </div>
                                     <!-- Heart Icon -->
                                     <button type="button" class="heart-icon ms-auto" 
@@ -272,23 +270,23 @@
                                             : 0;
                                     ?>
 
-                                    <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="<?php echo e($percentageSold); ?>" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="h-4 progress w-100 bg-color-three rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="<?php echo e($percentageSold); ?>" aria-valuemin="0" aria-valuemax="100">
                                         <div class="progress-bar bg-main-two-600 rounded-pill" style="width: <?php echo e($percentageSold); ?>%;"></div>
                                     </div>
-                                    <span class="text-gray-900 text-xs fw-medium mt-8">
+                                    <span class="mt-8 text-xs text-gray-900 fw-medium">
                                         Sold: <?php echo e($product->sold_quantity); ?>/<?php echo e($product->total_quantity); ?>
 
                                     </span>
                                 </div>
 
-                                <div class="product-card__price my-20">
+                                <div class="my-20 product-card__price">
                                     <span class="text-heading text-md fw-semibold ">Rs <?php echo e(number_format($product->normal_price, 2)); ?> <span class="text-gray-500 fw-normal">/Qty</span></span>
                                 </div>
                                
                               
                                 <a href="#" 
                                 style="width:230px" 
-                                class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium add-to-cart-btn" 
+                                class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium add-to-cart-btn" 
                                 data-bs-toggle="modal" 
                                 data-bs-target="#cartModal_<?php echo e($product->product_id); ?>" 
                                 data-product-id="<?php echo e($product->product_id); ?>">
@@ -300,19 +298,19 @@
                         <!-- Cart Modal -->
                         <div class="modal fade" id="cartModal_<?php echo e($product->product_id); ?>" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content p-6" style="border-radius: 0;">
+                                <div class="p-6 modal-content" style="border-radius: 0;">
                                     <div class="modal-header">
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row gx-5">
                                             <aside class="col-lg-5">
-                                                <div class="rounded-4 mb-3 d-flex justify-content-center">
+                                                <div class="mb-3 rounded-4 d-flex justify-content-center">
                                                     <a class="rounded-4 main-image-link" href="<?php echo e(asset('storage/' . $product->images->first()->image_path)); ?>">
                                                         <img id="mainImage" class="rounded-4 fit" src="<?php echo e(asset('storage/' . $product->images->first()->image_path)); ?>" style="width:250px" />
                                                     </a>
                                                 </div>
-                                                <div class="d-flex justify-content-center mb-3">
+                                                <div class="mb-3 d-flex justify-content-center">
                                                     <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <a class="mx-1 rounded-2 thumbnail-image" data-image="<?php echo e(asset('storage/' . $image->image_path)); ?>" href="javascript:void(0);">
                                                             <img class="thumbnail rounded-2" src="<?php echo e(asset('storage/' . $image->image_path)); ?>" style="width:80px" />
@@ -324,9 +322,9 @@
                                             <main class="col-lg-7">
                                                 <h6><?php echo e($product->product_name); ?></h6>
                                                 <p class="product-description"><?php echo e($product->product_description); ?></p>
-                                                <div class="flex-align flex-wrap gap-12 mt-12">
-                                                    <div class="flex-align gap-12 flex-wrap">
-                                                        <div class="flex-align gap-8">
+                                                <div class="flex-wrap gap-12 mt-12 flex-align">
+                                                    <div class="flex-wrap gap-12 flex-align">
+                                                        <div class="gap-8 flex-align">
                                                             <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                             <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                             <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
@@ -334,12 +332,12 @@
                                                             <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                         </div>
                                                         <span class="text-sm fw-medium text-neutral-600">4.7 Star Rating</span>
-                                                        <span class="text-sm fw-medium text-gray-500">(21,671)</span>
+                                                        <span class="text-sm text-gray-500 fw-medium">(21,671)</span>
                                                     </div>
                                                 </div>
                                                 <hr />
                                                 
-                                                <div class="product-availability mt-3 mb-12">
+                                                <div class="mt-3 mb-12 product-availability">
                                                     <span>Availability :</span>
                                                     <?php if($product->quantity > 1): ?>
                                                         <span class="ms-1" style="color:#4caf50;">In stock</span>
@@ -350,12 +348,12 @@
 
                                                  <!-- Sizes Section -->
                                                 <?php if($product->variations->pluck('value')->filter()->unique()->isNotEmpty()): ?>
-                                                    <div class="flex-between align-items-start flex-wrap gap-16 mb-8">
-                                                        <div class="d-flex align-items-center mb-5">
+                                                    <div class="flex-wrap gap-16 mb-8 flex-between align-items-start">
+                                                        <div class="mb-5 d-flex align-items-center">
                                                             <span class="text-gray-900 me-3">Size:</span>
                                                             <?php $__currentLoopData = $product->variations->pluck('value')->filter()->unique(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                 <button type="button" 
-                                                                        class="size_button ms-5 border border-2 border-gray-300 d-flex align-items-center justify-content-center"
+                                                                        class="border border-2 border-gray-300 size_button ms-5 d-flex align-items-center justify-content-center"
                                                                         data-size="<?php echo e($size); ?>">
                                                                     <?php echo e($size); ?>
 
@@ -368,12 +366,12 @@
                                             
                                                 <!-- Colors Section -->
                                                 <?php if($product->variations->pluck('hex_value')->filter()->unique()->isNotEmpty()): ?>
-                                                    <div class="flex-between align-items-center flex-wrap gap-16 mt-4">
-                                                        <div class="d-flex align-items-center mb-4">
+                                                    <div class="flex-wrap gap-16 mt-4 flex-between align-items-center">
+                                                        <div class="mb-4 d-flex align-items-center">
                                                             <span class="text-gray-900 me-3">Color:</span>
                                                             <?php $__currentLoopData = $product->variations->pluck('hex_value')->filter()->unique(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $color): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                 <button type="button" 
-                                                                        class="color-list__button w-24 h-24 border border-2 border-gray-50 rounded-circle me-2"
+                                                                        class="w-24 h-24 border border-2 color-list__button border-gray-50 rounded-circle me-2"
                                                                         style="background-color: <?php echo e($color); ?>;" 
                                                                         data-color="<?php echo e($color); ?>"> 
                                                                 </button>
@@ -382,7 +380,7 @@
                                                     </div>
                                                 <?php endif; ?>
 
-                                                <div class="product-price mb-3 mt-8 d-flex align-items-center">
+                                                <div class="mt-8 mb-3 product-price d-flex align-items-center">
                                                     <span class="" style="margin-right: 10px;">                                                   
                                                     <h6 class="mb-0">Rs <?php echo e($product->normal_price); ?></h6>
                                                     </span>
@@ -399,13 +397,13 @@
                                                         <input type="hidden" name="price" id="hiddenPrice" value="<?php echo e($product->normal_price); ?>">
 
                                                         <!-- Add To Cart Button -->
-                                                        <button type="submit" class="btn btn-main w-95 mt-5" 
+                                                        <button type="submit" class="mt-5 btn btn-main w-95" 
                                                                 <?php if($product->quantity == 0): ?> disabled <?php endif; ?>>
                                                             Add To Cart
                                                         </button>
                                                     </form>
                                                 <?php else: ?>
-                                                    <p class="text-danger mb-5">Please <a href="<?php echo e(route('login')); ?>">log in</a> to add items to the cart.</p>
+                                                    <p class="mb-5 text-danger">Please <a href="<?php echo e(route('login')); ?>">log in</a> to add items to the cart.</p>
                                                 <?php endif; ?>
                                                 <a href="<?php echo e(route('showProductDetails', $product->product_id )); ?>" style="text-decoration: none; font-size:14px; color: #297aa5; margin-top:15px">
                                                     View Full Details<i class="fa-solid fa-circle-right"></i>
@@ -423,19 +421,19 @@
                 </div>
 
                 <!-- Pagination Start -->
-                <ul class="pagination flex-center flex-wrap gap-16">
+                <ul class="flex-wrap gap-16 pagination flex-center">
                     <li class="page-item">
-                        <a class="page-link flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="<?php echo e($products->previousPageUrl()); ?>">
+                        <a class="border border-gray-100 page-link flex-center text-xxl rounded-8 fw-medium text-neutral-600" href="<?php echo e($products->previousPageUrl()); ?>">
                             <i class="ph-bold ph-arrow-left"></i>
                         </a>
                     </li>
                     <?php for($i = 1; $i <= $products->lastPage(); $i++): ?>
                         <li class="page-item <?php echo e($i == $products->currentPage() ? 'active' : ''); ?>">
-                            <a class="page-link flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="<?php echo e($products->url($i)); ?>"><?php echo e($i); ?></a>
+                            <a class="border border-gray-100 page-link flex-center text-md rounded-8 fw-medium text-neutral-600" href="<?php echo e($products->url($i)); ?>"><?php echo e($i); ?></a>
                         </li>
                     <?php endfor; ?>
                     <li class="page-item">
-                        <a class="page-link flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="<?php echo e($products->nextPageUrl()); ?>">
+                        <a class="border border-gray-100 page-link flex-center text-xxl rounded-8 fw-medium text-neutral-600" href="<?php echo e($products->nextPageUrl()); ?>">
                             <i class="ph-bold ph-arrow-right"></i>
                         </a>
                     </li>
