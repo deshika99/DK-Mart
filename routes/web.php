@@ -38,8 +38,8 @@ use App\Http\Controllers\VendorProductController;
 use App\Http\Controllers\VendorOrderController;
 use App\Http\Controllers\VendorAccountController;
 use App\Http\Controllers\VendorShopController;
-
-
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\VendorWalletController;
 
 
 Route::get('/dashboard', function () {
@@ -71,7 +71,8 @@ Route::get('/wishlist/count', [WishlistController::class, 'getWishlistCount'])->
 Route::post('/wishlist/toggle', [WishlistController::class, 'toggleWishlist'])->name('wishlist.toggle');
 Route::post('/wishlist/check-multiple', [WishlistController::class, 'checkMultipleWishlist'])->name('wishlist.checkMultiple');
 
-
+Route::get('/vendors', [VendorController::class, 'index'])->name('frontend.vendor');
+Route::get('/vendor-details/{vendorId}', [VendorController::class, 'showVendorDetails'])->name('frontend.vendor.details');
 
 
 
@@ -358,4 +359,9 @@ Route::delete('/vendor_dashboard/orders/{order}', [VendorOrderController::class,
 Route::get('/vendor_dashboard/order-details/{orderCode}', [VendorOrderController::class, 'showOrderDetails'])->name('vendor.order-details');
 Route::patch('/vendor_dashboard/order/update-status/{order_code}', [VendorOrderController::class, 'updateStatus'])->name('vendor.order.updateStatus');
 
+Route::view('/vendor_dashboard/payments', 'VendorDashboard.payment_requests')->name('vendor.payments');
+Route::view('/vendor_dashboard/wallet', 'VendorDashboard.wallet')->name('vendor.wallet');
+
+
+Route::get('wallet', [VendorWalletController::class, 'index'])->name('vendor.wallet');
 
