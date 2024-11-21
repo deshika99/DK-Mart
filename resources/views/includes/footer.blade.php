@@ -62,6 +62,7 @@
                     <a href="index.html"> <img src="{{ asset('frontend/assets/images/logo/logo-two-black.png')}} " alt=""></a>
 
                 </div>
+
                 <p class="mb-24" style="text-align: justify;">DK Mart is Your trusted online shopping destination in Sri Lanka, offering a wide range of quality products at unbeatable prices. Shop with confidence, convenience, and local expertise!  </p>
                 <div class="gap-16 mb-16 flex-align">
                     <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-phone-call"></i></span>
@@ -74,6 +75,7 @@
                 <div class="gap-16 mb-16 flex-align">
                     <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-map-pin"></i></span>
                     <span class="text-gray-900 text-md ">No.57, Horana Road, Moragahahena.</span>
+
                 </div>
             </div>
             
