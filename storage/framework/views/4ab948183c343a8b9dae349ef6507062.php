@@ -20,25 +20,27 @@
                  <a class="nav-link btn-icon dropdown-toggle" href="#" id="notificationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="material-icons md-notifications animation-shake"></i>
                           <span class="badge rounded-pill">
-                                {{ count(session('notifications', [])) }}
+                                <?php echo e(count(session('notifications', []))); ?>
+
                           </span>
                  </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
-                      @if(session('notifications') && count(session('notifications')) > 0)
-                         @foreach(session('notifications') as $notification)
+                      <?php if(session('notifications') && count(session('notifications')) > 0): ?>
+                         <?php $__currentLoopData = session('notifications'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                               <li class="dropdown-item">
-                                      {{ $notification }}
+                                      <?php echo e($notification); ?>
+
                                </li>
-                       @endforeach
+                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <li>
-                       <form method="POST" action="{{ route('notifications.clear') }}" class="text-center mt-2">
-                           @csrf
+                       <form method="POST" action="<?php echo e(route('notifications.clear')); ?>" class="text-center mt-2">
+                           <?php echo csrf_field(); ?>
                              <button type="submit" class="btn btn-sm btn-danger">Clear All</button>
                        </form>
                     </li>
-                      @else
+                      <?php else: ?>
                            <li class="dropdown-item text-muted">No notifications</li>
-                     @endif
+                     <?php endif; ?>
                 </ul>
             </li>
             <li class="nav-item">
@@ -62,16 +64,16 @@
                         <i class="material-icons md-exit_to_app"></i> 
                         Logout
                     </a>
-                    <form id="vendor-logout-form" action="{{ route('vendor.logout') }}" method="POST" style="display: none;">
-                        @csrf
+                    <form id="vendor-logout-form" action="<?php echo e(route('vendor.logout')); ?>" method="POST" style="display: none;">
+                        <?php echo csrf_field(); ?>
                     </form>
 
                     <!-- Hidden logout form -->
                     <form id="admin-logout-form" action="" method="POST" style="display: none;">
-                        @csrf
+                        <?php echo csrf_field(); ?>
                     </form>
                 </div>
             </li>
         </ul>
     </div>
-</header>
+</header><?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/VendorDashboard/VendorHeader.blade.php ENDPATH**/ ?>
