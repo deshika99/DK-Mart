@@ -52,7 +52,6 @@ class UserController extends Controller
                 'status' => $request->status,
             ]);
 
-            return redirect()->route('users')->with('success', 'User added successfully.');
     }
 
 
@@ -105,6 +104,4 @@ class UserController extends Controller
         return redirect()->route('users')->with('success', 'User deleted successfully.');
     }
 
-
-    
 }

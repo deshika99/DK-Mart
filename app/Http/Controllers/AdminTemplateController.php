@@ -11,7 +11,6 @@ use Carbon\Carbon;
 class AdminTemplateController extends Controller
 {
 
-
     public function index() {
         $orderCount = CustomerOrder::count();
         $customerCount = User::count();
@@ -26,8 +25,6 @@ class AdminTemplateController extends Controller
             
         return view('AdminDashboard.Home', compact('orderCount', 'customerCount', 'productCount', 'totalCostToday', 'latestOrders'));
     }
-
-
-
-    
 }
+
+
