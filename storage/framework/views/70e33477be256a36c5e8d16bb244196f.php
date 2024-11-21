@@ -1,6 +1,4 @@
-@extends ('frontend.master')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
 
@@ -66,7 +64,7 @@
         .hero-right strong {
     font-weight: normal;
         }
-
+        
         .hero-right p {
             opacity: 0;
 
@@ -382,7 +380,7 @@
                 high standards for quality, durability, and value.
             </p>
            
-            <p><br>Thank you for choosing DK-Mart. We’re excited to be your partner in fulfilling 
+            <p style="color: #771d1d;"><br>Thank you for choosing DK-Mart. We’re excited to be your partner in fulfilling 
             your shopping needs, and we look forward to delivering an exceptional online experience every 
             time you visit!<br></p>
         </div>
@@ -583,7 +581,9 @@
         }, 4000); 
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
     
     
   
+
+<?php echo $__env->make('frontend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\esupport_systems\DK-Mart\resources\views/frontend/about.blade.php ENDPATH**/ ?>
