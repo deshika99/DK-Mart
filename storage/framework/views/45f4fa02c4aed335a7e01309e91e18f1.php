@@ -1,7 +1,7 @@
 <aside class="navbar-aside shadow-sm" id="offcanvas_aside">
     <div class="aside-top" style="padding:0">
-        <a href="{{ route('vendorhome') }}" class="brand-wrap">
-            <img src="{{ asset('/backend/assets/DK mart-01.png') }}" class="logo" alt="DK-Mart" />
+        <a href="<?php echo e(route('vendorhome')); ?>" class="brand-wrap">
+            <img src="<?php echo e(asset('/backend/assets/DK mart-01.png')); ?>" class="logo" alt="DK-Mart" />
         </a>
         <div>
             <button class="btn btn-icon btn-aside-minimize"><i class="text-muted material-icons md-menu_open"></i></button>
@@ -9,15 +9,15 @@
     </div>
     <nav>
         <ul class="menu-aside">
-            <li class="menu-item {{ request()->routeIs('vendorhome') ? 'active' : '' }}">
-                <a class="menu-link" href="{{ route('vendorhome') }}">
+            <li class="menu-item <?php echo e(request()->routeIs('vendorhome') ? 'active' : ''); ?>">
+                <a class="menu-link" href="<?php echo e(route('vendorhome')); ?>">
                     <i class="icon material-icons md-home"></i>
                     <span class="text">Dashboard</span>
                 </a>
             </li>
 
-            <li class="menu-item {{ request()->routeIs('vendor.shop') ? 'active' : '' }}">
-                <a class="menu-link" href="{{ route('vendor.shop') }}">
+            <li class="menu-item <?php echo e(request()->routeIs('vendor.shop') ? 'active' : ''); ?>">
+                <a class="menu-link" href="<?php echo e(route('vendor.shop')); ?>">
                     <i class="icon material-icons md-store"></i>
                     <span class="text">Shop</span>
                 </a>
@@ -25,26 +25,26 @@
 
 
             <!-- Products Menu -->
-            <li class="menu-item has-submenu {{ request()->routeIs('vendor.products*') ? 'active' : '' }}">
+            <li class="menu-item has-submenu <?php echo e(request()->routeIs('vendor.products*') ? 'active' : ''); ?>">
                 <a class="menu-link" href="#">
                     <i class="icon material-icons md-shopping_bag"></i>
                     <span class="text">Products</span>
                 </a>
                 <!-- Add "show" class dynamically for submenu -->
-                <div class="submenu {{ request()->routeIs('vendor.products*') ? 'show' : '' }}">
-                    <a href="{{ route('vendor.products') }}"
-                        class="{{ request()->routeIs('vendor.products') ? 'active' : '' }}">
+                <div class="submenu <?php echo e(request()->routeIs('vendor.products*') ? 'show' : ''); ?>">
+                    <a href="<?php echo e(route('vendor.products')); ?>"
+                        class="<?php echo e(request()->routeIs('vendor.products') ? 'active' : ''); ?>">
                         Product List
                     </a>
-                    <a href="{{ route('vendor.products.add') }}"
-                        class="{{ request()->routeIs('vendor.products.add') ? 'active' : '' }}">
+                    <a href="<?php echo e(route('vendor.products.add')); ?>"
+                        class="<?php echo e(request()->routeIs('vendor.products.add') ? 'active' : ''); ?>">
                         Add Product
                     </a>
                 </div>
             </li>
 
-            <li class="menu-item {{ request()->routeIs('vendor.orders') ? 'active' : '' }}">
-                <a class="menu-link" href="{{ route('vendor.orders') }}">
+            <li class="menu-item <?php echo e(request()->routeIs('vendor.orders') ? 'active' : ''); ?>">
+                <a class="menu-link" href="<?php echo e(route('vendor.orders')); ?>">
                     <i class="icon material-icons md-shopping_cart"></i>
                     <span class="text">Orders</span>
                 </a>
@@ -56,10 +56,10 @@
                 </a>
                 <div class="submenu ">
 
-                    <a href="{{ route('vendorProductReport') }}">
+                    <a href="<?php echo e(route('vendorProductReport')); ?>">
                         Products
                     </a>
-                    <a href="{{ route('vendorOrderReport') }}">
+                    <a href="<?php echo e(route('vendorOrderReport')); ?>">
                         Orders
                     </a>
                 </div>
@@ -72,4 +72,4 @@
         <br />
         <br />
     </nav>
-</aside>
+</aside><?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/VendorDashboard/VendorSidebar.blade.php ENDPATH**/ ?>

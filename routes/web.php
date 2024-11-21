@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminReportController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VendorReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminTemplateController;
 use App\Http\Controllers\HomeTemplateController;
@@ -207,6 +209,16 @@ Route::post('/admin/edit_users/{id}', [UserController::class, 'update'])->name('
 Route::delete('/admin/edit_users/{id}', [UserController::class, 'destroy'])->name('delete_users');
 
 
+// admin_reports
+Route::get('/admin/report/customer_report', [AdminReportController::class, 'customerReport'])->name('customerReport');
+Route::get('/admin/report/affiliate_customer_report', [AdminReportController::class, 'affiliateCustomerReport'])->name('affiliateCustomerReport');
+Route::get('/admin/report/affiliate_bank_data', [AdminReportController::class, 'affiliateCusBankData'])->name('affiliateCusBankData');
+Route::get('/admin/report/vendor_report', [AdminReportController::class, 'vendorReport'])->name('vendorReport');
+Route::get('/admin/report/order_report', [AdminReportController::class, 'orderReport'])->name('orderReport');
+Route::get('/admin/report/product_report', [AdminReportController::class, 'productReport'])->name('productReport');
+
+
+
 
 //AffiliateDashBoard Links
 
@@ -346,4 +358,6 @@ Route::delete('/vendor_dashboard/orders/{order}', [VendorOrderController::class,
 Route::get('/vendor_dashboard/order-details/{orderCode}', [VendorOrderController::class, 'showOrderDetails'])->name('vendor.order-details');
 Route::patch('/vendor_dashboard/order/update-status/{order_code}', [VendorOrderController::class, 'updateStatus'])->name('vendor.order.updateStatus');
 
-
+// vendor_reports
+Route::get('/vendor/report/order_report', [VendorReportController::class, 'orderReport'])->name('vendorOrderReport');
+Route::get('/vendor/report/product_report', [VendorReportController::class, 'productReport'])->name('vendorProductReport');

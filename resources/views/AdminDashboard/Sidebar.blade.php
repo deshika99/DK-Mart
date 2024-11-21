@@ -81,6 +81,32 @@
                             <span class="text">Customer Inquiries</span>
                         </a>
                     </li>
+                    <li class="menu-item has-submenu ">
+                        <a class="menu-link" href="#">
+                            <i class="icon material-icons md-description"></i>
+                            <span class="text">Reports</span>
+                        </a>
+                        <div class="submenu ">
+                            <a href="{{ route('customerReport') }}" >
+                                Customers
+                            </a>
+                            <a href="{{ route('productReport') }}" >
+                                Products 
+                            </a>
+                            <a href="{{ route('affiliateCustomerReport') }}" >
+                                Affiliate Customer 
+                            </a>
+                            <a href="{{ route('affiliateCusBankData') }}" >
+                                Affiliate Bank Details 
+                            </a>
+                            <a href="{{ route('vendorReport') }}" >
+                                Vendors 
+                            </a>
+                            <a href="{{ route('orderReport') }}" >
+                                Orders 
+                            </a>
+                        </div>
+                    </li>
                     <li class="menu-item has-submenu {{ request()->is('admin/manage_company*') || request()->is('admin/users*') || request()->is('admin/role_list*') ? 'active' : '' }}">
                         <a class="menu-link" href="#">
                             <i class="icon material-icons md-settings"></i>
