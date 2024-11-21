@@ -54,6 +54,10 @@ Route::get('/contact', function () {
     return view('frontend.contact');
 })->name('contact');
 
+Route::get('/privacy-policy', function () {
+    return view('frontend.privacy-policy');
+})->name('privacy-policy');
+
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
