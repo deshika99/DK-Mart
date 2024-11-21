@@ -39,6 +39,9 @@ use App\Http\Controllers\VendorAccountController;
 use App\Http\Controllers\VendorShopController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\VendorWalletController;
+use App\Http\Controllers\VendorPaymentRequestController;
+use App\Http\Controllers\VendorDashboardController;
+
 
 
 Route::get('/dashboard', function () {
@@ -68,7 +71,6 @@ Route::post('/wishlist/check-multiple', [WishlistController::class, 'checkMultip
 
 Route::get('/vendors', [VendorController::class, 'index'])->name('frontend.vendor');
 Route::get('/vendor-details/{vendorId}', [VendorController::class, 'showVendorDetails'])->name('frontend.vendor.details');
-
 
 
 Route::get('/search', [ProductController::class, 'searchView'])->name('product.search');
@@ -317,7 +319,7 @@ Route::get('home/My-Account/Write-Reviews', function () {
 
 //Vendor dashboard
 
-Route::view('/vendor_dashboard', 'VendorDashboard.vendorhome')->name('vendorhome');
+Route::get('/vendor_dashboard', [VendorDashboardController::class, 'vendorDashboard'])->name('vendorhome');
 Route::view('/vendor_login', 'VendorDashboard.vendor_login')->name('vendor_login');
 Route::post('/vendor_login', [VendorAccountController::class, 'login'])->name('vendor.login');
 Route::view('/vendor_register', 'VendorDashboard.vendor_register')->name('vendor_register');
@@ -341,9 +343,14 @@ Route::delete('/vendor_dashboard/orders/{order}', [VendorOrderController::class,
 Route::get('/vendor_dashboard/order-details/{orderCode}', [VendorOrderController::class, 'showOrderDetails'])->name('vendor.order-details');
 Route::patch('/vendor_dashboard/order/update-status/{order_code}', [VendorOrderController::class, 'updateStatus'])->name('vendor.order.updateStatus');
 
-Route::view('/vendor_dashboard/payments', 'VendorDashboard.payment_requests')->name('vendor.payments');
+Route::get('/vendor_dashboard/payments', [VendorPaymentRequestController::class, 'showPayments'])->name('vendor.payments');
+Route::post('/vendor/payment-request', [VendorPaymentRequestController::class, 'paymentRequest'])->name('vendor.paymentRequest');
+
 Route::view('/vendor_dashboard/wallet', 'VendorDashboard.wallet')->name('vendor.wallet');
-
-
 Route::get('wallet', [VendorWalletController::class, 'index'])->name('vendor.wallet');
+
+Route::get('/vendor/profile', [VendorAccountController::class, 'showProfile'])->name('vendor.profile');
+Route::post('/vendor/profile/update', [VendorAccountController::class, 'updateProfile'])->name('vendor.updateProfile');
+Route::post('/vendor/password/update', [VendorAccountController::class, 'updatePassword'])->name('vendor.updatePassword');
+Route::post('/vendor/bank/update', [VendorAccountController::class, 'updateBankDetails'])->name('vendor.updateBankDetails');
 

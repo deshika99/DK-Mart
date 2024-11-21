@@ -17,20 +17,23 @@ class VendorController extends Controller
                             return $query->where('address', 'like', '%' . $location . '%');
                         })
                         ->paginate(15);
-
-        return view('frontend.vendor', compact('vendors'));
+    
+        $totalResults = $vendors->total(); 
+    
+        return view('frontend.vendor', compact('vendors', 'totalResults'));
     }
+    
 
 
 
     
     public function showVendorDetails($vendorId)
     {
-        $vendor = Vendor::with('shop')->findOrFail($vendorId);
-        
+        // Fetch vendor and its related shop
+        $vendornew = Vendor::with('shop')->find($vendorId);
         $categoryId = request()->get('category_id');
     
-        $products = Product::where('shop_id', $vendor->shop->id)
+        $products = Product::where('shop_id', $vendornew->shop->id)
                             ->when($categoryId, function ($query) use ($categoryId) {
                                 return $query->where('category_id', $categoryId);
                             })
@@ -38,7 +41,8 @@ class VendorController extends Controller
         
         $categories = Category::all();
         
-        return view('frontend.vendor-details', compact('vendor', 'products', 'categories', 'categoryId'));
+        return view('frontend.vendor-details', compact('vendornew', 'products', 'categories', 'categoryId'));
+
     }
     
     

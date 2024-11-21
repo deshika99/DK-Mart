@@ -1,3 +1,4 @@
+
 <aside class="navbar-aside shadow-sm" id="offcanvas_aside">
     <div class="aside-top" style="padding:0">
         <a href="" class="brand-wrap">
@@ -47,6 +48,20 @@
                 <a class="menu-link" href="{{ route('vendor.orders') }}">
                 <i class="icon material-icons md-shopping_cart"></i>
                     <span class="text">Orders</span>
+                </a>
+            </li>
+
+            <li class="menu-item {{ request()->routeIs('vendor.wallet') ? 'active' : '' }}">
+                <a class="menu-link" href="{{ route('vendor.wallet') }}">
+                <i class="icon fas fa-wallet ms-1" style="font-size:18px;"></i>
+                    <span class="text ms-1">Wallet</span>
+                </a>
+            </li>
+
+            <li class="menu-item {{ request()->routeIs('vendor.payments') ? 'active' : '' }}">
+                <a class="menu-link" href="{{ route('vendor.payments') }}">
+                <i class="icon material-icons md-payment"></i>
+                    <span class="text">Payments</span>
                 </a>
             </li>
 

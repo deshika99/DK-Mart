@@ -40,17 +40,17 @@
                     <div class="bg-neutral-600 rounded-8 p-24">
                         <div class="d-flex align-items-center justify-content-between">
                             <span class="w-80 h-80 flex-center bg-white rounded-8 flex-shrink-0">
-                                @if ($vendor->shop->shop_logo)
-                                    <img src="{{ asset('storage/' . $vendor->shop->shop_logo) }}" alt="" class="cover-img">
+                                @if ($vendornew->shop->shop_logo)
+                                    <img src="{{ asset('storage/' . $vendornew->shop->shop_logo) }}" alt="" class="cover-img rounded-8">
                                 @else
-                                    <img src="assets/images/default-shop-logo.png" alt="Default Logo" class="cover-img">
+                                    <img src="assets/images/default-shop-logo.png" alt="Default Logo" class="cover-img rounded-8">
                                 @endif
                             </span>
                         </div>
                         <div class="mt-32">
-                            <h6 class="text-white fw-semibold mb-12">
-                                <a href="" class="">{{ $vendor->shop->shop_name }}</a>
-                            </h6>
+                        <h6 class="text-white fw-semibold mb-12">
+                            <a href="" class="">{{ $vendornew->shop->shop_name }}</a> 
+                        </h6>
                             <div class="flex-align gap-6">
                                 <div class="flex-align gap-8">
                                     <!-- Dynamic star rating -->
@@ -60,8 +60,8 @@
                                         </span>
                                     @endfor
                                 </div>
-                                <span class="text-xs fw-medium text-white">{{ $vendor->rating }}</span>
-                                <span class="text-xs fw-medium text-white">({{ $vendor->reviews_count }} reviews)</span>
+                                <span class="text-xs fw-medium text-white">{{ $vendornew->rating }}</span>
+                                <span class="text-xs fw-medium text-white">({{ $vendornew->reviews_count }} reviews)</span>
                             </div>
                             <div class="vendors-two-item__content mt-16 flex-grow-1">
                                 <div class="d-flex flex-column gap-14">
@@ -69,19 +69,19 @@
                                         <span class="flex-center text-main-two-600 text-2xl flex-shrink-0">
                                             <i class="ph ph-map-pin-line text-white"></i>
                                         </span>
-                                        <p class="text-md text-white">{{ $vendor->address }}</p>
+                                        <p class="text-md text-white">{{ $vendornew->address }}</p>
                                     </div>
                                     <div class="flex-align gap-8">
                                         <span class="flex-center text-main-two-600 text-2xl flex-shrink-0">
                                             <i class="ph ph-envelope-simple text-white"></i>
                                         </span>
-                                        <a href="mailto:{{ $vendor->email }}" class="text-md text-white hover-text-main-60">{{ $vendor->email }}</a>
+                                        <a href="mailto:{{ $vendornew->email }}" class="text-md text-white hover-text-main-60">{{ $vendornew->email }}</a>
                                     </div>
                                     <div class="flex-align gap-8">
                                         <span class="flex-center text-main-two-600 text-2xl flex-shrink-0">
                                             <i class="ph ph-phone text-white"></i>
                                         </span>
-                                        <a href="tel:{{ $vendor->phone }}" class="text-md text-white hover-text-main-60">{{ $vendor->phone }}</a>
+                                        <a href="tel:{{ $vendornew->phone }}" class="text-md text-white hover-text-main-60">{{ $vendornew->phone }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -208,8 +208,10 @@
                                 </a>
                             </div>
                         </div>
+                        
                     @empty
-                        <p class="text-gray-500 mt-4">No products found in this category.</p>
+                        <p class="text-gray-500 mt-4">No products found.</p>
+                        
                     @endforelse
                 </div>
                 <!-- Products End -->
