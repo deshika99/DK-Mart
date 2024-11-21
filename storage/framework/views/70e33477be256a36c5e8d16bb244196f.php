@@ -56,9 +56,10 @@
             padding: 20px;
             text-align: justify;
             background-color: #f9fafb;
+            font-weight: normal;
         }
         .hero-right p {
-            opacity: 1;
+            opacity: 0;
 
         }
 

@@ -53,6 +53,8 @@
             from { transform: translateX(-50px); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
+
+
         .hero-right {
             flex: 2;
             padding: 20px;
@@ -60,6 +62,11 @@
             background-color: #f9fafb;
             font-weight: normal;
         }
+
+        .hero-right strong {
+    font-weight: normal;
+        }
+        
         .hero-right p {
             opacity: 0;
 
