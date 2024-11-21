@@ -15,6 +15,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Log;
 
 
@@ -140,6 +141,18 @@ Route::middleware([App\Http\Middleware\AdminAuth::class])->group(function () {
     Route::get('/admin',[AdminTemplateController::class,'index'])->name('admin.index');
     // other routes
 });
+
+//notification
+
+
+Route::get('/admin/notifications', [NotificationController::class, 'index'])->name('admin.notifications');
+Route::post('/admin/notifications/add-user/{user}', [NotificationController::class, 'addUserNotification'])->name('notifications.addUser');
+Route::post('/admin/notifications/add-order/{order}', [NotificationController::class, 'addOrderNotification'])->name('notifications.addOrder');
+Route::post('/admin/notifications/clear', [NotificationController::class, 'clearNotifications'])->name('notifications.clear');
+
+
+
+
 
 Route::get('/admin/profile', [AdminProfileController::class, 'showProfile'])->name('profile');
 Route::post('/admin/profile/update', [AdminProfileController::class, 'updateProfile'])->name('admin.profile.update');

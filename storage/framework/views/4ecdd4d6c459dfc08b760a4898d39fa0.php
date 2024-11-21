@@ -20,25 +20,27 @@
                  <a class="nav-link btn-icon dropdown-toggle" href="#" id="notificationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="material-icons md-notifications animation-shake"></i>
                           <span class="badge rounded-pill">
-                                {{ count(session('notifications', [])) }}
+                                <?php echo e(count(session('notifications', []))); ?>
+
                           </span>
                  </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
-                      @if(session('notifications') && count(session('notifications')) > 0)
-                         @foreach(session('notifications') as $notification)
+                      <?php if(session('notifications') && count(session('notifications')) > 0): ?>
+                         <?php $__currentLoopData = session('notifications'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                               <li class="dropdown-item">
-                                      {{ $notification }}
+                                      <?php echo e($notification); ?>
+
                                </li>
-                       @endforeach
+                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <li>
-                       <form method="POST" action="{{ route('notifications.clear') }}" class="text-center mt-2">
-                           @csrf
+                       <form method="POST" action="<?php echo e(route('notifications.clear')); ?>" class="text-center mt-2">
+                           <?php echo csrf_field(); ?>
                              <button type="submit" class="btn btn-sm btn-danger">Clear All</button>
                        </form>
                     </li>
-                      @else
+                      <?php else: ?>
                            <li class="dropdown-item text-muted">No notifications</li>
-                     @endif
+                     <?php endif; ?>
                 </ul>
             </li>
 
@@ -51,11 +53,11 @@
             <li class="dropdown nav-item" style="position: relative;">
                 <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false">
                     <img class="img-xs rounded-circle" 
-                        src="{{ asset('storage/user_images/' . session('image', 'default-user.png')) }}" 
+                        src="<?php echo e(asset('storage/user_images/' . session('image', 'default-user.png'))); ?>" 
                         alt="User" />
                 </a>
                 <div class="dropdown-menu" style="left: -100px;" aria-labelledby="dropdownAccount">
-                    <a class="dropdown-item" href="{{ route('profile') }}">
+                    <a class="dropdown-item" href="<?php echo e(route('profile')); ?>">
                         <i class="material-icons md-perm_identity"></i> Edit Profile
                     </a>
                     <div class="dropdown-divider"></div>
@@ -63,11 +65,12 @@
                         <i class="material-icons md-exit_to_app"></i> Logout
                     </a>
                     <!-- Hidden logout form -->
-                    <form id="admin-logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-                        @csrf
+                    <form id="admin-logout-form" action="<?php echo e(route('admin.logout')); ?>" method="POST" style="display: none;">
+                        <?php echo csrf_field(); ?>
                     </form>
                 </div>
             </li>
         </ul>
     </div>
 </header>
+<?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/AdminDashboard/Header.blade.php ENDPATH**/ ?>
