@@ -320,6 +320,14 @@ Route::get('home/My-Account/Write-Reviews', function () {
 
 
 
+Route::get('home/My-Account/returns-details', function () {
+    return view('user_dashboard.returns-details');
+})->name('returns.details');
+
+Route::get('home/My-Account/Write-Reviews', function () {
+    return view('user_dashboard.Write-Reviews');
+})->name('Write-Reviews');
+
 //Vendor dashboard
 
 Route::view('/vendor_dashboard', 'VendorDashboard.vendorhome')->name('vendorhome');
