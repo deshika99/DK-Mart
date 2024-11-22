@@ -398,7 +398,7 @@ Route::post('/vendor/payment-request', [VendorPaymentRequestController::class, '
 Route::get('/vendor/report/order_report', [VendorReportController::class, 'orderReport'])->name('vendorOrderReport');
 Route::get('/vendor/report/product_report', [VendorReportController::class, 'productReport'])->name('vendorProductReport');
 
-Route::view('/vendor_dashboard/payments', 'VendorDashboard.payment_requests')->name('vendor.payments');
+
 Route::view('/vendor_dashboard/wallet', 'VendorDashboard.wallet')->name('vendor.wallet');
 
 
