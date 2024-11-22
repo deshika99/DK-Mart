@@ -36,13 +36,13 @@
                     
               
     <!-- ========================= Breadcrumb Start =============================== -->
-<div class="breadcrumb mb-0 py-26 bg-main-two-50">
+<div class="mb-0 breadcrumb py-26 bg-main-two-50">
     <div class="container container-lg">
-        <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
+        <div class="flex-wrap gap-16 breadcrumb-wrapper flex-between">
             <h6 class="mb-0">My Account</h6>
-            <ul class="flex-align gap-8 flex-wrap">
+            <ul class="flex-wrap gap-8 flex-align">
                 <li class="text-sm">
-                    <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
+                    <a href="index.html" class="gap-8 text-gray-900 flex-align hover-text-main-600">
                         <i class="ph ph-house"></i>
                         Home
                     </a>
@@ -66,8 +66,8 @@
         <div class="row gy-4 justify-content-center">
             <!-- Register Card Start -->
             <div class="col-xl-6 col-lg-8 col-md-10">
-                <div class="border border-gray-100 hover-border-main-600 transition-1 rounded-16 px-24 py-40">
-                    <h6 class="text-xl mb-32 text-center">Register</h6>
+                <div class="px-24 py-40 border border-gray-100 hover-border-main-600 transition-1 rounded-16">
+                    <h6 class="mb-32 text-xl text-center">Register</h6>
 
                     <!-- Name -->
                     <div class="mb-24">
@@ -438,7 +438,7 @@
 <?php $component = $__componentOriginal18c21970322f9e5c938bc954620c12bb; ?>
 <?php unset($__componentOriginal18c21970322f9e5c938bc954620c12bb); ?>
 <?php endif; ?>
-                            <span class="toggle-password position-absolute top-50 inset-inline-end-0 me-16 translate-middle-y cursor-pointer ph ph-eye-slash" id="toggle-password"></span>
+                            <span class="cursor-pointer toggle-password position-absolute top-50 inset-inline-end-0 me-16 translate-middle-y ph ph-eye-slash" id="toggle-password"></span>
                         </div>
                         <?php if (isset($component)) { $__componentOriginalf94ed9c5393ef72725d159fe01139746 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf94ed9c5393ef72725d159fe01139746 = $attributes; } ?>
@@ -473,14 +473,14 @@
                     <div class="mt-48 text-center">
                         <?php if (isset($component)) { $__componentOriginald411d1792bd6cc877d687758b753742c = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginald411d1792bd6cc877d687758b753742c = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.primary-button','data' => ['type' => 'submit','class' => 'btn py-18 px-40']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.primary-button','data' => ['type' => 'submit','class' => 'px-40 btn py-18']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('primary-button'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['type' => 'submit','class' => 'btn py-18 px-40']); ?>
+<?php $component->withAttributes(['type' => 'submit','class' => 'px-40 btn py-18']); ?>
                             <?php echo e(__('Register')); ?>
 
                          <?php echo $__env->renderComponent(); ?>
@@ -494,6 +494,10 @@
 <?php unset($__componentOriginald411d1792bd6cc877d687758b753742c); ?>
 <?php endif; ?>
                     </div>
+                    <div class="mt-3 text-center">
+                        <p>Already have an account? 
+                            <a href="<?php echo e(route('login')); ?>" class="text-primary">Login</a>
+                        </p>
                 </div>
             </div>
             <!-- Register Card End -->

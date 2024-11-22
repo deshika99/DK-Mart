@@ -30,7 +30,6 @@
             font-size: 36px;
             margin-bottom: 10px;
             color: #bd0f0f;
-            font-family: georgia;
         }
         .hero-left h4 {
             font-size: 24px;
@@ -52,12 +51,20 @@
             from { transform: translateX(-50px); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
+
+
         .hero-right {
             flex: 2;
             padding: 20px;
             text-align: justify;
             background-color: #f9fafb;
+            font-weight: normal;
         }
+
+        .hero-right strong {
+    font-weight: normal;
+        }
+
         .hero-right p {
             opacity: 0;
 
@@ -87,7 +94,6 @@
             margin-bottom: 20px;
             position: relative;
             font-size: 1.5rem;
-            font-family: georgia
         }
         .box p {
             color: #555;
@@ -113,7 +119,6 @@
     font-weight: bold;
     position: relative;
     font-size: 1.5rem;
-    font-family: georgia;
 }
 .underline-curve {
     width: 80px;
@@ -169,7 +174,6 @@
     font-weight: bold;
     position: relative;
     font-size: 1.5rem;
-    font-family: georgia;
 }
 .values-container {
     display: flex;
@@ -247,7 +251,7 @@
             font-weight: bold;
             position: relative;
             font-size: 1.5rem;
-            font-family: georgia;
+           
         }
        .promise-content img {
             width: 100%;
@@ -293,7 +297,7 @@
            font-weight: bold;
            position: relative;
            font-size: 1.5rem;
-           font-family: georgia;
+           
 }
 
         
@@ -331,13 +335,13 @@
     </style>
 
     <!-- ========================= Breadcrumb Start =============================== -->
-<div class="breadcrumb mb-0 py-26 bg-main-two-50">
+<div class="mb-0 breadcrumb py-26 bg-main-two-50">
     <div class="container container-lg">
-        <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
+        <div class="flex-wrap gap-16 breadcrumb-wrapper flex-between">
             <h6 class="mb-0">About Us</h6>
-            <ul class="flex-align gap-8 flex-wrap">
+            <ul class="flex-wrap gap-8 flex-align">
                 <li class="text-sm">
-                    <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
+                    <a href="index.html" class="gap-8 text-gray-900 flex-align hover-text-main-600">
                         <i class="ph ph-house"></i>
                         Home
                     </a>
@@ -376,7 +380,7 @@
                 high standards for quality, durability, and value.
             </p>
            
-            <p style="color: #771d1d;"><br>Thank you for choosing DK-Mart. We’re excited to be your partner in fulfilling 
+            <p><br>Thank you for choosing DK-Mart. We’re excited to be your partner in fulfilling 
             your shopping needs, and we look forward to delivering an exceptional online experience every 
             time you visit!<br></p>
         </div>
@@ -401,20 +405,14 @@
             <div class="story-text">
                 <p>At DK-Mart, we began with a simple vision: to create a marketplace where quality meets convenience.
                      Over the years, we have grown from a small, local store to a renowned online shopping platform, 
-                     offering a wide range of products that cater to the diverse needs of our customers.</p><br>
-
-                <p>Our commitment to delivering exceptional products at affordable prices is at the heart of everything we do.
-                     </p><br>
-
-                <p>We believe in making shopping a hassle-free experience. With a user-friendly website, secure payment
+                     offering a wide range of products that cater to the diverse needs of our customers. 
+                     Our commitment to delivering exceptional products at affordable prices is at the heart of everything we do.We believe in making shopping a hassle-free experience. With a user-friendly website, secure payment
                      options, and fast delivery, we ensure our customers enjoy a seamless shopping experience every time. 
-                     </p><br>
-
-                <p>Whether it's fashion, electronics, home appliances, or everyday essentials, DK-Mart provides a
-                     one-stop shop for all your needs.
-                     <br></p><br>
-
-                <p>As we continue to expand, we remain focused on our mission of providing high-quality products and 
+                     
+                     </p> 
+               
+              <p>Whether it's fashion, electronics, home appliances, or everyday essentials, DK-Mart provides a
+                     one-stop shop for all your needs.As we continue to expand, we remain focused on our mission of providing high-quality products and 
                     outstanding customer service. Our story is one of growth, passion, and dedication to our customers,
                      and we are excited for the future ahead. Thank you for being a part of our journey!</p>
             </div>

@@ -16,13 +16,33 @@
     <div class="col-nav">
         <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"><i class="material-icons md-apps"></i></button>
         <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link btn-icon" href="#">
-                    <i class="material-icons md-notifications animation-shake"></i>
-                    <span class="badge rounded-pill">3</span>
-                </a>
+            <li class="nav-item dropdown"> 
+                 <a class="nav-link btn-icon dropdown-toggle" href="#" id="notificationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="material-icons md-notifications animation-shake"></i>
+                          <span class="badge rounded-pill">
+                                {{ count(session('notifications', [])) }}
+                          </span>
+                 </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
+                      @if(session('notifications') && count(session('notifications')) > 0)
+                         @foreach(session('notifications') as $notification)
+                              <li class="dropdown-item">
+                                      {{ $notification }}
+                               </li>
+                       @endforeach
+                    <li>
+                       <form method="POST" action="{{ route('notifications.clear') }}" class="text-center mt-2">
+                           @csrf
+                             <button type="submit" class="btn btn-sm btn-danger">Clear All</button>
+                       </form>
+                    </li>
+                      @else
+                           <li class="dropdown-item text-muted">No notifications</li>
+                     @endif
+                </ul>
             </li>
-            <li class="nav-item">
+
+           <li class="nav-item">
                 <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
             </li>
             <li class="nav-item">

@@ -29,13 +29,13 @@
     @include('includes.navbar-2')
 
  <!-- ========================= Breadcrumb Start =============================== -->
-<div class="breadcrumb mb-0 py-26 bg-main-two-50">
+<div class="mb-0 breadcrumb py-26 bg-main-two-50">
     <div class="container container-lg">
-        <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
+        <div class="flex-wrap gap-16 breadcrumb-wrapper flex-between">
             <h6 class="mb-0">My Account</h6>
-            <ul class="flex-align gap-8 flex-wrap">
+            <ul class="flex-wrap gap-8 flex-align">
                 <li class="text-sm">
-                    <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
+                    <a href="index.html" class="gap-8 text-gray-900 flex-align hover-text-main-600">
                         <i class="ph ph-house"></i>
                         Home
                     </a>
@@ -61,8 +61,8 @@
         <div class="row gy-4 justify-content-center">
             <!-- Login Card Start -->
             <div class="col-xl-6 col-lg-8 col-md-10">
-                <div class="border border-gray-100 hover-border-main-600 transition-1 rounded-16 px-24 py-40">
-                    <h6 class="text-xl mb-32 text-center">Login</h6>
+                <div class="px-24 py-40 border border-gray-100 hover-border-main-600 transition-1 rounded-16">
+                    <h6 class="mb-32 text-xl text-center">Login</h6>
 
                     <!--  Email Address -->
                     <div class="mb-24">
@@ -78,19 +78,19 @@
                         <span class="text-danger">*</span>
                         <div class="position-relative">
                             <x-text-input id="password" class="common-input w-100" type="password" name="password" placeholder="Enter Password" required autocomplete="current-password" />
-                            <span class="toggle-password position-absolute top-50 inset-inline-end-0 me-16 translate-middle-y cursor-pointer ph ph-eye-slash" id="toggle-password"></span>
+                            <span class="cursor-pointer toggle-password position-absolute top-50 inset-inline-end-0 me-16 translate-middle-y ph ph-eye-slash" id="toggle-password"></span>
                         </div>
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <!-- Remember Me -->
-                    <div class="mb-24 mt-48">
-                        <div class="d-flex gap-3 flex-wrap align-items-center">
-                            <x-primary-button class="btn  py-18 px-40">{{ __('Log in') }}</x-primary-button>
+                    <div class="mt-48 mb-24">
+                        <div class="flex-wrap gap-3 d-flex align-items-center">
+                            <x-primary-button class="px-40 btn py-18">{{ __('Log in') }}</x-primary-button>
                             
                             <label for="remember_me" class="inline-flex items-center">
-                                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+                                <input id="remember_me" type="checkbox" class="text-indigo-600 border-gray-300 rounded shadow-sm dark:bg-gray-900 dark:border-gray-700 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
+                                <span class="text-sm text-gray-600 ms-2 dark:text-gray-400">{{ __('Remember me') }}</span>
                             </label>
                         </div>
                     </div>
@@ -98,11 +98,15 @@
                     <!-- Forgot Password Link -->
                     <div class="mt-48 text-center">
                         @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="text-danger-600 text-sm fw-semibold hover-text-decoration-underline">
+                            <a href="{{ route('password.request') }}" class="text-sm text-danger-600 fw-semibold hover-text-decoration-underline">
                                 {{ __('Forgot your password?') }}
                             </a>
                         @endif
                     </div>
+                    <div class="mt-3 text-center">
+                        <p>Don't have an account? 
+                            <a href="{{ route('register') }}" class="text-primary">Sign up</a>
+                        </p>
                 </form>
                 </div>
                 </div>
