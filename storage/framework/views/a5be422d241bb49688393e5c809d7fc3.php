@@ -1,6 +1,4 @@
-@extends ('frontend.master')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     
 
@@ -102,6 +100,8 @@
 
       
  
- @endsection
+ <?php $__env->stopSection(); ?>
 
 
+
+<?php echo $__env->make('frontend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\esupport_systems\DK-Mart\resources\views/frontend/contact.blade.php ENDPATH**/ ?>

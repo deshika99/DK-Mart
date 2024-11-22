@@ -407,20 +407,14 @@
             <div class="story-text">
                 <p>At DK-Mart, we began with a simple vision: to create a marketplace where quality meets convenience.
                      Over the years, we have grown from a small, local store to a renowned online shopping platform, 
-                     offering a wide range of products that cater to the diverse needs of our customers.</p><br>
-
-                <p>Our commitment to delivering exceptional products at affordable prices is at the heart of everything we do.
-                     </p><br>
-
-                <p>We believe in making shopping a hassle-free experience. With a user-friendly website, secure payment
+                     offering a wide range of products that cater to the diverse needs of our customers. 
+                     Our commitment to delivering exceptional products at affordable prices is at the heart of everything we do.We believe in making shopping a hassle-free experience. With a user-friendly website, secure payment
                      options, and fast delivery, we ensure our customers enjoy a seamless shopping experience every time. 
-                     </p><br>
-
-                <p>Whether it's fashion, electronics, home appliances, or everyday essentials, DK-Mart provides a
-                     one-stop shop for all your needs.
-                     <br></p><br>
-
-                <p>As we continue to expand, we remain focused on our mission of providing high-quality products and 
+                     
+                     </p> 
+               
+              <p>Whether it's fashion, electronics, home appliances, or everyday essentials, DK-Mart provides a
+                     one-stop shop for all your needs.As we continue to expand, we remain focused on our mission of providing high-quality products and 
                     outstanding customer service. Our story is one of growth, passion, and dedication to our customers,
                      and we are excited for the future ahead. Thank you for being a part of our journey!</p>
             </div>
