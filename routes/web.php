@@ -17,7 +17,7 @@ use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Log;
-
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
 //Affiliate_Dashboard Links
@@ -40,6 +40,16 @@ use App\Http\Controllers\VendorOrderController;
 use App\Http\Controllers\VendorAccountController;
 use App\Http\Controllers\VendorShopController;
 
+
+// Login Routes
+/*Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');*/
+
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+
+Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
 
 
 

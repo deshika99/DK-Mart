@@ -64,6 +64,17 @@
                 <div class="border border-gray-100 hover-border-main-600 transition-1 rounded-16 px-24 py-40">
                     <h6 class="text-xl mb-32 text-center">Login</h6>
 
+                    <!-- Show Error Message -->
+        <?php if($errors->any()): ?>
+            <div class="alert alert-danger mb-24">
+                <ul class="mb-0">
+                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li><?php echo e($error); ?></li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
                     <!--  Email Address -->
                     <div class="mb-24">
                         <?php if (isset($component)) { $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $component; } ?>
