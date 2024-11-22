@@ -16,15 +16,6 @@
     <div class="col-nav">
         <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"><i class="material-icons md-apps"></i></button>
         <ul class="nav">
-
-            <li class="nav-item">
-                <a class="nav-link btn-icon" href="#">
-                    <i class="material-icons md-notifications animation-shake"></i>
-                    <span class="badge rounded-pill">3</span>
-                </a>
-            </li>
-            <li class="nav-item">
-
             <li class="nav-item dropdown"> 
                  <a class="nav-link btn-icon dropdown-toggle" href="#" id="notificationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="material-icons md-notifications animation-shake"></i>
@@ -54,11 +45,7 @@
             </li>
 
            <li class="nav-item">
-
                 <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="requestfullscreen nav-link btn-icon"><i class="material-icons md-cast"></i></a>
             </li>
             <li class="dropdown nav-item" style="position: relative;">
                 <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false">
@@ -82,6 +69,5 @@
             </li>
         </ul>
     </div>
-
-</header><?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/AdminDashboard/Header.blade.php ENDPATH**/ ?>
-
+</header>
+<?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/AdminDashboard/Header.blade.php ENDPATH**/ ?>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="utf-8" />
     <title>DK-Mart</title>
@@ -55,14 +54,12 @@
         <?php echo $__env->make('AdminDashboard.Header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <section class="content-main">
-
             <?php echo $__env->yieldContent('content'); ?>
 
 
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     <?php if(session('success')): ?>
-
                     Swal.fire({
                         title: 'Success!',
                         text: "<?php echo e(session('success')); ?>",
@@ -94,7 +91,6 @@
                             toast.addEventListener('mouseleave', Swal.resumeTimer);
                         }
                     });
-
                     <?php endif; ?>
                 });
 
@@ -115,7 +111,6 @@
                     });
                 }
             </script>
-
 
 
         </section>
@@ -154,4 +149,3 @@
 </body>
 
 </html><?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/AdminDashboard/master.blade.php ENDPATH**/ ?>
-

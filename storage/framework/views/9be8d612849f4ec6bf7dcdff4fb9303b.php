@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="utf-8" />
     <title>DK-Mart Vendor</title>
@@ -24,8 +23,14 @@
     <script src="<?php echo e(asset('backend/assets/js/vendors/color-modes.js')); ?>"></script>
     <link rel="stylesheet" href="<?php echo e(asset('backend/assets/css/main.css')); ?>">
 
+        <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+
+
+    </head>
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 
     <!-- DataTables CSS and JS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
@@ -56,14 +61,12 @@
         <?php echo $__env->make('VendorDashboard.VendorHeader', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <section class="content-main">
-
             <?php echo $__env->yieldContent('content'); ?>
 
 
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     <?php if(session('success')): ?>
-
                     Swal.fire({
                         title: 'Success!',
                         text: "<?php echo e(session('success')); ?>",
@@ -95,7 +98,6 @@
                             toast.addEventListener('mouseleave', Swal.resumeTimer);
                         }
                     });
-
                     <?php endif; ?>
                 });
 
@@ -116,7 +118,6 @@
                     });
                 }
             </script>
-
 
 
         </section>
@@ -155,4 +156,3 @@
 </body>
 
 </html><?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/VendorDashboard/Vendormaster.blade.php ENDPATH**/ ?>
-

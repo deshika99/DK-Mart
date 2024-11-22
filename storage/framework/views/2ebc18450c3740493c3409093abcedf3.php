@@ -25,9 +25,6 @@
                             <a href="<?php echo e(route('products_list')); ?>" class="<?php echo e(request()->is('admin/products') ? 'active' : ''); ?>">
                                 Product List
                             </a>
-                            <a href="<?php echo e(route('add_products')); ?>" class="<?php echo e(request()->is('admin/add_products') ? 'active' : ''); ?>">
-                                Add Product
-                            </a>
                             <a href="<?php echo e(route('categories')); ?>" class="<?php echo e(request()->is('admin/categories') ? 'active' : ''); ?>">
                                 Categories
                             </a>
@@ -63,25 +60,34 @@
                             <span class="text">Orders</span>
                         </a>
                     </li>
-                    <li class="menu-item <?php echo e(request()->routeIs('vendors') ? 'active' : ''); ?>">
-                        <a class="menu-link" href="<?php echo e(route('vendors')); ?>">
+
+                    <li class="menu-item has-submenu <?php echo e(request()->is('admin/vendors*') || request()->is('admin/payments*') ? 'active' : ''); ?>">
+                        <a class="menu-link" href="#">
                         <i class="icon material-icons md-store"></i>
                             <span class="text">Vendors</span>
                         </a>
+                        <div class="submenu <?php echo e(request()->is('admin/vendors*') || request()->is('admin/payments*') ? 'show' : ''); ?>">
+                            <a href="<?php echo e(route('vendors')); ?>" class="<?php echo e(request()->is('admin/vendors') ? 'active' : ''); ?>">
+                            Vendors
+                            </a>
+                            <a href="<?php echo e(route('admin.vendor.payments')); ?>" class="<?php echo e(request()->is('admin/payments') ? 'active' : ''); ?>">
+                            Payment Requests
+                            </a>
+                        </div>
                     </li>
+
                     <li class="menu-item <?php echo e(request()->routeIs('reviews') ? 'active' : ''); ?>">
                         <a class="menu-link" href="<?php echo e(route('reviews')); ?>">
                         <i class="icon material-icons md-comment"></i>
                             <span class="text">Reviews</span>
                         </a>
                     </li>
-                    <li class="menu-item <?php echo e(request()->routeIs('inquiries') ? 'active' : ''); ?>">
-                        <a class="menu-link" href="<?php echo e(route('inquiries')); ?>">
+                    <li class="menu-item <?php echo e(request()->routeIs('admin.customer.inquiries') ? 'active' : ''); ?>">
+                        <a class="menu-link" href="<?php echo e(route('admin.customer.inquiries')); ?>">
                         <i class="icon material-icons md-email"></i>
                             <span class="text">Customer Inquiries</span>
                         </a>
                     </li>
-
                     <li class="menu-item has-submenu ">
                         <a class="menu-link" href="#">
                             <i class="icon material-icons md-description"></i>
@@ -108,7 +114,6 @@
                             </a>
                         </div>
                     </li>
-
                     <li class="menu-item has-submenu <?php echo e(request()->is('admin/manage_company*') || request()->is('admin/users*') || request()->is('admin/role_list*') ? 'active' : ''); ?>">
                         <a class="menu-link" href="#">
                             <i class="icon material-icons md-settings"></i>
