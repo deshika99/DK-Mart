@@ -81,6 +81,7 @@
                             <span class="text">Customer Inquiries</span>
                         </a>
                     </li>
+
                     <li class="menu-item has-submenu ">
                         <a class="menu-link" href="#">
                             <i class="icon material-icons md-description"></i>
@@ -107,6 +108,7 @@
                             </a>
                         </div>
                     </li>
+
                     <li class="menu-item has-submenu <?php echo e(request()->is('admin/manage_company*') || request()->is('admin/users*') || request()->is('admin/role_list*') ? 'active' : ''); ?>">
                         <a class="menu-link" href="#">
                             <i class="icon material-icons md-settings"></i>

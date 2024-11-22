@@ -70,15 +70,15 @@
                     <h6 class="mb-48">Get In Touch</h6>
                     <div class="flex-align gap-16 mb-16">
                         <span class="w-40 h-40 flex-center rounded-circle border border-gray-100 text-main-two-600 text-2xl flex-shrink-0"><i class="ph-fill ph-phone-call"></i></span>
-                        <a href="tel:+00123456789" class="text-md text-gray-900 hover-text-main-600">+00 123 456 789</a>
+                        <a href="tel:+00123456789" class="text-md text-gray-900 hover-text-main-600">+94 787004900</a>
                     </div>
                     <div class="flex-align gap-16 mb-16">
                         <span class="w-40 h-40 flex-center rounded-circle border border-gray-100 text-main-two-600 text-2xl flex-shrink-0"><i class="ph-fill ph-envelope"></i></span>
-                        <a href="mailto:support24@marketpro.com" class="text-md text-gray-900 hover-text-main-600">support24@marketpro.com</a>
+                        <a href="mailto:support24@marketpro.com" class="text-md text-gray-900 hover-text-main-600">admin@dkmart.lk</a>
                     </div>
                     <div class="flex-align gap-16 mb-0">
                         <span class="w-40 h-40 flex-center rounded-circle border border-gray-100 text-main-two-600 text-2xl flex-shrink-0"><i class="ph-fill ph-map-pin"></i></span>
-                        <span class="text-md text-gray-900 ">789 Inner Lane, California, USA</span>
+                        <span class="text-md text-gray-900 ">No.57, Horana Road, Moragahahena</span>
                     </div>
                 </div>
                 <div class="mt-24 flex-align flex-wrap gap-16">

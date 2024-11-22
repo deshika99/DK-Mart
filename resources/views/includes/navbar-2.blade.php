@@ -108,7 +108,7 @@
                 </li>
             
                 <li class="nav-menu__item">
-                    <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
+                    <a href="{{ route('frontend.vendor') }}" class="nav-menu__link">Vendors</a>
                 </li>
             </ul>
             <!-- Nav Menu End -->
@@ -314,7 +314,7 @@
         <li class="nav-menu__item">
 
     
-            <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
+            <a href="{{ route('frontend.vendor') }}" class="nav-menu__link">Vendors</a>
         </li>
     </ul>
 </div>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="banner-two">
     <div class="container container-lg">
-        <div class="banner-two-wrapper d-flex align-items-start">
+        <div class="banner-two-wrapper d-flex align-items-start">          
             <div class="banner-item-two-wrapper rounded-24 overflow-hidden position-relative arrow-center flex-grow-1 mb-0">
                 <img src="{{ asset('frontend/assets/images/bg/banner-two-bg.png') }}" alt="" class="banner-img position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 z-n1 object-fit-cover rounded-24">
                 <div class="banner-item-two__slider">
@@ -180,6 +180,87 @@
                 <p>No products available at the moment.</p>
                 @endif
             </div>
+
+            <div class="mb-24 overflow-hidden deal-week-box rounded-16 flex-between position-relative z-1">
+                <img src="frontend/assets/images/bg/week-deal-bg.png" alt="" class="position-absolute inset-block-start-0 w-100 h-100 z-n1 object-fit-cover">
+                <div class="flex-shrink-0 d-lg-block d-none ps-22" data-aos="zoom-in">
+                    <img src="frontend/assets/images/imgs/deals2.png" alt="" style="width: 350px">
+                </div>
+                <div class="deal-week-box__content px-sm-4 d-block w-100">
+                    <h6 class="mb-20 wow bounceIn">Apple AirPods Max, Over Ear Headphones</h6>
+                    <div class="mt-20 countdown" id="countdown4">
+                        <ul class="flex-wrap countdown-list style-four flex-left">
+                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
+                                <span class="days"></span>Days
+                            </li>
+                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
+                                <span class="hours"></span>Hour
+                            </li>
+                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
+                                <span class="minutes"></span>Min
+                            </li>
+                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
+                                <span class="seconds"></span>Sec
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="deals-week-slider arrow-style-two">
+                @foreach ($products->slice(0, 10) as $product)
+                    <div data-aos="fade-up" data-aos-duration="200">
+                        <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                            <a href="{{ route('showProductDetails', $product->product_id) }}" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                                @if($product->quantity == 0)
+                                    <span class="px-8 py-4 text-sm text-white product-card__badge bg-main-600 position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
+                                @endif
+                                <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" alt="{{ $product->product_name }}" class="w-auto max-w-unset" style="width: 200px; height: 200px; object-fit: cover;">
+                            </a>
+                            <div class="mt-16 product-card__content">
+                                <div class="gap-6 mt-16 mb-20 flex-align">
+                                    <div class="gap-2 rating-info d-flex">
+                                        <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                        <span class="text-15 fw-medium text-warning-600 d-flex">
+                                            <i class="ph-fill ph-star"></i>
+                                        </span>
+                                        <span class="text-xs text-gray-500 fw-medium">(17k)</span>
+                                    </div>
+                                    <!-- Heart Icon -->
+                                    <button type="button" class="heart-icon ms-auto" 
+                                            id="wishlist-icon-{{ $product->product_id }}" 
+                                            onclick="toggleWishlist(this, '{{ $product->product_id }}')">
+                                        <i class="fa-regular fa-heart" style="font-size: 15px;"></i>
+                                    </button>
+                                </div>
+                                <h6 class="mt-12 mb-8 text-lg title fw-semibold">
+                                    <a href="{{ route('showProductDetails', $product->product_id) }}" class="link text-line-2" tabindex="0">{{ $product->product_name }}</a>
+                                </h6>
+                                <div class="gap-4 flex-align">
+                                    <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
+                                    <span class="text-xs text-gray-500">By {{ $product->seller_name ?? 'Store Name' }}</span>
+                                </div>
+                                <div class="mt-8">
+                                    <div class="h-4 progress w-100 bg-color-three rounded-pill" role="progressbar" aria-label="Sold Progress" aria-valuenow="{{ $product->sold_percentage ?? 35 }}" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: {{ $product->sold_percentage ?? 35 }}%"></div>
+                                    </div>
+                                    <span class="mt-8 text-xs text-gray-900 fw-medium">Sold: {{ $product->sold_units ?? 18 }}/{{ $product->total_units ?? 35 }}</span>
+                                </div>
+
+                                <div class="my-20 product-card__price">
+                                    <span class="text-heading text-md fw-semibold ">Rs {{ $product->normal_price }} <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                                </div>
+
+                                <a href="" style="width:230px" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
+                                    Add To Cart <i class="ph ph-shopping-cart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
         </div>
     </div>
 </section>
@@ -402,17 +483,17 @@
 <!-- ========================= Top Selling Products Start ================================ 
     <section class="top-selling-products pt-80 overflow-hidden">
         <div class="container container-lg">
-            <div class="border border-gray-100 p-24 rounded-16">
-                <div class="section-heading mb-24">
-                    <div class="flex-between flex-wrap gap-8">
+            <div class="p-24 border border-gray-100 rounded-16">
+                <div class="mb-24 section-heading">
+                    <div class="flex-wrap gap-8 flex-between">
                         <h5 class="mb-0 wow bounceInLeft">Top Selling Products</h5>
-                        <div class="flex-align gap-16 wow bounceInRight">
-                            <a href="shop.html" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
-                            <div class="flex-align gap-8">
-                                <button type="button" id="top-selling-prev" class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-neutral-600 text-xl hover-bg-neutral-600 hover-text-white transition-1">
+                        <div class="gap-16 flex-align wow bounceInRight">
+                            <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
+                            <div class="gap-8 flex-align">
+                                <button type="button" id="top-selling-prev" class="text-xl border border-gray-100 slick-prev slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
                                     <i class="ph ph-caret-left"></i>
                                 </button>
-                                <button type="button" id="top-selling-next" class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-neutral-600 text-xl hover-bg-neutral-600 hover-text-white transition-1">
+                                <button type="button" id="top-selling-next" class="text-xl border border-gray-100 slick-next slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
                                     <i class="ph ph-caret-right"></i>
                                 </button>
                             </div>
@@ -421,13 +502,13 @@
                 </div>
                 <div class="row g-12">
                     <div class="col-md-4" data-aos="zoom-in" data-aos-duration="800">
-                        <div class="position-relative rounded-16 overflow-hidden p-28 z-1 text-center">
+                        <div class="overflow-hidden text-center position-relative rounded-16 p-28 z-1">
                             <img src="frontend/assets/images/bg/deal-bg.png" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 z-n1 w-100 h-100">
                             <div class="py-xl-4">
                                 <h6 class="mb-4 fw-semibold">Polaroid Now+ Gen 2 - White</h6>
                                 <h5 class="mb-40 fw-semibold">Fresh Vegetables</h5>
-                                <a href="cart.html" class="btn text-heading border-neutral-600 hover-bg-neutral-600 hover-text-white py-16 px-24 flex-center d-inline-flex rounded-pill gap-8 fw-medium" tabindex="0">
-                                    Shop Now <i class="ph ph-shopping-cart text-xl d-flex"></i>
+                                <a href="cart.html" class="gap-8 px-24 py-16 btn text-heading border-neutral-600 hover-bg-neutral-600 hover-text-white flex-center d-inline-flex rounded-pill fw-medium" tabindex="0">
+                                    Shop Now <i class="text-xl ph ph-shopping-cart d-flex"></i>
                                 </a>
                             </div>
                             <div class="d-md-block d-none mt-36">
@@ -438,185 +519,185 @@
                     <div class="col-md-8">
                         <div class="top-selling-product-slider arrow-style-two">
                             <div data-aos="fade-up" data-aos-duration="200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-main-600 position-absolute inset-inline-start-0 inset-block-start-0">Sold </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img7.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <div class="flex-align gap-6">
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                    <div class="mt-16 product-card__content">
+                                        <div class="gap-6 flex-align">
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
                                             <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                            <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                         </div>
-                                        <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                        <h6 class="mt-12 mb-8 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
                                         </h6>
-                                        <div class="flex-align gap-4">
+                                        <div class="gap-4 flex-align">
                                             <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                            <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
+                                            <span class="text-xs text-gray-500">By Lucky Supermarket</span>
                                         </div>
                                         <div class="mt-8">
-                                            <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="h-4 progress w-100 bg-color-three rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
                                                 <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
                                             </div>
-                                            <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                                            <span class="mt-8 text-xs text-gray-900 fw-medium">Sold: 18/35</span>
                                         </div>
 
-                                        <div class="product-card__price my-20">
+                                        <div class="my-20 product-card__price">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
 
-                                        <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                        <a href="cart.html" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                             Add To Cart <i class="ph ph-shopping-cart"></i>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div data-aos="fade-up" data-aos-duration="400">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50% </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-danger-600 position-absolute inset-inline-start-0 inset-block-start-0">Sale 50% </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img8.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <div class="flex-align gap-6">
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                    <div class="mt-16 product-card__content">
+                                        <div class="gap-6 flex-align">
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
                                             <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                            <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                         </div>
-                                        <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                        <h6 class="mt-12 mb-8 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
                                         </h6>
-                                        <div class="flex-align gap-4">
+                                        <div class="gap-4 flex-align">
                                             <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                            <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
+                                            <span class="text-xs text-gray-500">By Lucky Supermarket</span>
                                         </div>
                                         <div class="mt-8">
-                                            <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="h-4 progress w-100 bg-color-three rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
                                                 <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
                                             </div>
-                                            <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                                            <span class="mt-8 text-xs text-gray-900 fw-medium">Sold: 18/35</span>
                                         </div>
 
-                                        <div class="product-card__price my-20">
+                                        <div class="my-20 product-card__price">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
 
-                                        <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                        <a href="cart.html" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                             Add To Cart <i class="ph ph-shopping-cart"></i>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div data-aos="fade-up" data-aos-duration="600">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img9.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <div class="flex-align gap-6">
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                    <div class="mt-16 product-card__content">
+                                        <div class="gap-6 flex-align">
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
                                             <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                            <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                         </div>
-                                        <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                        <h6 class="mt-12 mb-8 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
                                         </h6>
-                                        <div class="flex-align gap-4">
+                                        <div class="gap-4 flex-align">
                                             <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                            <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
+                                            <span class="text-xs text-gray-500">By Lucky Supermarket</span>
                                         </div>
                                         <div class="mt-8">
-                                            <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="h-4 progress w-100 bg-color-three rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
                                                 <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
                                             </div>
-                                            <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                                            <span class="mt-8 text-xs text-gray-900 fw-medium">Sold: 18/35</span>
                                         </div>
 
-                                        <div class="product-card__price my-20">
+                                        <div class="my-20 product-card__price">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
 
-                                        <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                        <a href="cart.html" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                             Add To Cart <i class="ph ph-shopping-cart"></i>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div data-aos="fade-up" data-aos-duration="800">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best seller</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best seller</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img10.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <div class="flex-align gap-6">
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                    <div class="mt-16 product-card__content">
+                                        <div class="gap-6 flex-align">
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
                                             <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                            <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                         </div>
-                                        <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                        <h6 class="mt-12 mb-8 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
                                         </h6>
-                                        <div class="flex-align gap-4">
+                                        <div class="gap-4 flex-align">
                                             <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                            <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
+                                            <span class="text-xs text-gray-500">By Lucky Supermarket</span>
                                         </div>
                                         <div class="mt-8">
-                                            <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="h-4 progress w-100 bg-color-three rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
                                                 <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
                                             </div>
-                                            <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                                            <span class="mt-8 text-xs text-gray-900 fw-medium">Sold: 18/35</span>
                                         </div>
 
-                                        <div class="product-card__price my-20">
+                                        <div class="my-20 product-card__price">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
 
-                                        <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                        <a href="cart.html" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                             Add To Cart <i class="ph ph-shopping-cart"></i>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div data-aos="fade-up" data-aos-duration="1000">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-main-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img8.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <div class="flex-align gap-6">
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                    <div class="mt-16 product-card__content">
+                                        <div class="gap-6 flex-align">
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
                                             <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                            <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                         </div>
-                                        <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                        <h6 class="mt-12 mb-8 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
                                         </h6>
-                                        <div class="flex-align gap-4">
+                                        <div class="gap-4 flex-align">
                                             <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                            <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
+                                            <span class="text-xs text-gray-500">By Lucky Supermarket</span>
                                         </div>
                                         <div class="mt-8">
-                                            <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="h-4 progress w-100 bg-color-three rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
                                                 <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
                                             </div>
-                                            <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                                            <span class="mt-8 text-xs text-gray-900 fw-medium">Sold: 18/35</span>
                                         </div>
 
-                                        <div class="product-card__price my-20">
+                                        <div class="my-20 product-card__price">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
 
-                                        <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                        <a href="cart.html" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                             Add To Cart <i class="ph ph-shopping-cart"></i>
                                         </a>
                                     </div>
@@ -634,9 +715,9 @@
 <!-- ========================= Trending Products Start ================================ 
     <section class="trending-productss pt-80 overflow-hidden">
         <div class="container container-lg">
-            <div class="border border-gray-100 p-24 rounded-16">
-                <div class="section-heading mb-24">
-                    <div class="flex-between flex-wrap gap-8">
+            <div class="p-24 border border-gray-100 rounded-16">
+                <div class="mb-24 section-heading">
+                    <div class="flex-wrap gap-8 flex-between">
                         <h5 class="mb-0 wow bounceInLeft">Trending Products</h5>
                         <ul class="nav common-tab style-two nav-pills wow bounceInRight" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -664,12 +745,12 @@
                     </div>
                 </div>
 
-                <div class="trending-products-box rounded-16 overflow-hidden flex-between position-relative mb-24">
+                <div class="mb-24 overflow-hidden trending-products-box rounded-16 flex-between position-relative">
                     <div class="d-md-block d-none ps-xxl-5 ps-md-4" data-aos="zoom-in" data-aos-duration="800">
                         <img src="frontend/assets/images/thumbs/trending-products-img1.png" alt="">
                     </div>
-                    <div class="trending-products-box__content px-4 d-block w-100 text-center py-32 wow bounceIn">
-                        <h6 class="mb-0 trending-products-box__title">Laptop Pro <span class="h4 mb-0 fw-semibold">20% </span> off All Time On Order Now $980</h6>
+                    <div class="px-4 py-32 text-center trending-products-box__content d-block w-100 wow bounceIn">
+                        <h6 class="mb-0 trending-products-box__title">Laptop Pro <span class="mb-0 h4 fw-semibold">20% </span> off All Time On Order Now $980</h6>
                     </div>
                     <div class="d-md-block d-none pe-xxl-5 me-xxl-5 pe-md-4" data-aos="zoom-in" data-aos-duration="800">
                         <img src="frontend/assets/images/thumbs/trending-products-img2.png" alt="">
@@ -680,31 +761,31 @@
                     <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab" tabindex="0">
                         <div class="row g-12">
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img1.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -713,31 +794,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="400">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -746,31 +827,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="600">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-danger-600 position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -779,31 +860,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="800">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-success-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-success-600 position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -812,31 +893,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img5.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -845,31 +926,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img6.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -882,31 +963,31 @@
                     <div class="tab-pane fade" id="pills-mobile" role="tabpanel" aria-labelledby="pills-mobile-tab" tabindex="0">
                         <div class="row g-12">
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img1.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -915,31 +996,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="400">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -948,31 +1029,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="600">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-danger-600 position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -981,31 +1062,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="800">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-success-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-success-600 position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1014,31 +1095,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img5.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1047,31 +1128,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img6.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1084,31 +1165,31 @@
                     <div class="tab-pane fade" id="pills-headphone" role="tabpanel" aria-labelledby="pills-headphone-tab" tabindex="0">
                         <div class="row g-12">
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img1.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1117,31 +1198,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="400">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1150,31 +1231,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="600">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-danger-600 position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1183,31 +1264,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="800">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-success-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-success-600 position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1216,31 +1297,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img5.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1249,31 +1330,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img6.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1286,31 +1367,31 @@
                     <div class="tab-pane fade" id="pills-usb" role="tabpanel" aria-labelledby="pills-usb-tab" tabindex="0">
                         <div class="row g-12">
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img1.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1319,31 +1400,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="400">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1352,31 +1433,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="600">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-danger-600 position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1385,31 +1466,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="800">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-success-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-success-600 position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1418,31 +1499,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img5.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1451,31 +1532,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img6.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1488,31 +1569,31 @@
                     <div class="tab-pane fade" id="pills-camera" role="tabpanel" aria-labelledby="pills-camera-tab" tabindex="0">
                         <div class="row g-12">
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img1.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1521,31 +1602,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="400">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1554,31 +1635,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="600">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-danger-600 position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1587,31 +1668,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="800">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-success-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-success-600 position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1620,31 +1701,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img5.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1653,31 +1734,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img6.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1690,31 +1771,31 @@
                     <div class="tab-pane fade" id="pills-laptop" role="tabpanel" aria-labelledby="pills-laptop-tab" tabindex="0">
                         <div class="row g-12">
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img1.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1723,31 +1804,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="400">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1756,31 +1837,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="600">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-danger-600 position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1789,31 +1870,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="800">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-success-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-success-600 position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1822,31 +1903,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img5.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1855,31 +1936,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img6.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1892,31 +1973,31 @@
                     <div class="tab-pane fade" id="pills-accessories" role="tabpanel" aria-labelledby="pills-accessories-tab" tabindex="0">
                         <div class="row g-12">
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img1.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1925,31 +2006,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="400">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1958,31 +2039,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="600">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-danger-600 position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -1991,31 +2072,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="800">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-success-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-success-600 position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -2024,31 +2105,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img5.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -2057,31 +2138,31 @@
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img6.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-success-600 bg-success-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-success-600 bg-success-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -2103,13 +2184,13 @@
         <div class="container container-lg">
             <div class="row gy-4">
                 <div class="col-xl-6" data-aos="zoom-in" data-aos-duration="600">
-                    <div class="discount-item rounded-16 overflow-hidden position-relative z-1 h-100 d-flex flex-column align-items-start justify-content-center">
+                    <div class="overflow-hidden discount-item rounded-16 position-relative z-1 h-100 d-flex flex-column align-items-start justify-content-center">
                         <img src="frontend/assets/images/bg/discount-bg1.jpg" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 z-n1">
-                        <div class="w-100 flex-between gap-20">
+                        <div class="gap-20 w-100 flex-between">
                             <div class="discount-item__content">
-                                <span class="fw-semibold text-tertiary-600 mb-20">UP TO 30% OFF</span>
+                                <span class="mb-20 fw-semibold text-tertiary-600">UP TO 30% OFF</span>
                                 <h6 class="mb-20">57" Odyssey Neo G9 Dual 4K UHD Quantum Mini-LED</h6>
-                                <a href="shop.html" class="btn btn-outline-black rounded-pill gap-8" tabindex="0">
+                                <a href="shop.html" class="gap-8 btn btn-outline-black rounded-pill" tabindex="0">
                                     Shop Now
                                 </a>
                             </div>
@@ -2118,13 +2199,13 @@
                     </div>
                 </div>
                 <div class="col-xl-6" data-aos="zoom-in" data-aos-duration="800">
-                    <div class="discount-item rounded-16 overflow-hidden position-relative z-1 h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="overflow-hidden discount-item rounded-16 position-relative z-1 h-100 d-flex flex-column align-items-center justify-content-center">
                         <img src="frontend/assets/images/bg/discount-bg2.jpg" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 z-n1">
-                        <div class="w-100 flex-between gap-20">
+                        <div class="gap-20 w-100 flex-between">
                             <div class="discount-item__content">
-                                <span class="fw-semibold text-tertiary-600 mb-20">UP TO 30% OFF</span>
+                                <span class="mb-20 fw-semibold text-tertiary-600">UP TO 30% OFF</span>
                                 <h6 class="mb-20">57" Odyssey Neo G9 Dual 4K UHD Quantum Mini-LED</h6>
-                                <a href="shop.html" class="btn btn-outline-black rounded-pill gap-8" tabindex="0">
+                                <a href="shop.html" class="gap-8 btn btn-outline-black rounded-pill" tabindex="0">
                                     Shop Now
                                 </a>
                             </div>
@@ -2139,19 +2220,19 @@
 
 <!--  <section class="featured-products overflow-hidden">
         <div class="container container-lg">
-            <div class="row g-4 flex-wrap-reverse">
+            <div class="flex-wrap-reverse row g-4">
                 <div class="col-xxl-8">
-                    <div class="border border-gray-100 p-24 rounded-16">
-                        <div class="section-heading mb-24">
-                            <div class="flex-between flex-wrap gap-8">
+                    <div class="p-24 border border-gray-100 rounded-16">
+                        <div class="mb-24 section-heading">
+                            <div class="flex-wrap gap-8 flex-between">
                                 <h5 class="mb-0 wow bounceInLeft">Featured Products </h5>
-                                <div class="flex-align gap-16 wow bounceInRight">
-                                    <a href="shop.html" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
-                                    <div class="flex-align gap-8">
-                                        <button type="button" id="featured-products-prev" class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-neutral-600 text-xl hover-bg-neutral-600 hover-text-white transition-1">
+                                <div class="gap-16 flex-align wow bounceInRight">
+                                    <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
+                                    <div class="gap-8 flex-align">
+                                        <button type="button" id="featured-products-prev" class="text-xl border border-gray-100 slick-prev slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
                                             <i class="ph ph-caret-left"></i>
                                         </button>
-                                        <button type="button" id="featured-products-next" class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-neutral-600 text-xl hover-bg-neutral-600 hover-text-white transition-1">
+                                        <button type="button" id="featured-products-next" class="text-xl border border-gray-100 slick-next slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
                                             <i class="ph ph-caret-right"></i>
                                         </button>
                                     </div>
@@ -2163,60 +2244,60 @@
                             <div class="col-xxl-6">
                                 <div class="featured-products__sliders">
                                     <div class="" data-aos="fade-up" data-aos-duration="800">
-                                        <div class="mt-24 product-card d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                            <a href="product-details-two.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                                <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50% </span>
+                                        <div class="gap-16 p-16 mt-24 border border-gray-100 product-card d-flex hover-border-main-600 rounded-16 position-relative transition-2">
+                                            <a href="product-details-two.html" class="flex-shrink-0 p-24 product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset" tabindex="0">
+                                                <span class="px-8 py-4 text-sm text-white product-card__badge bg-danger-600 position-absolute inset-inline-start-0 inset-block-start-0">Sale 50% </span>
                                                 <img src="frontend/assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
                                             </a>
-                                            <div class="product-card__content my-20 flex-grow-1">
-                                                <h6 class="title text-lg fw-semibold mb-12">
+                                            <div class="my-20 product-card__content flex-grow-1">
+                                                <h6 class="mb-12 text-lg title fw-semibold">
                                                     <a href="product-details-two.html" class="link text-line-2" tabindex="0">iPhone 15 Pro Warp Charge 30W Power Adapter</a>
                                                 </h6>
-                                                <div class="flex-align gap-6 mb-12">
-                                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                                <div class="gap-6 mb-12 flex-align">
+                                                    <span class="text-xs text-gray-500 fw-medium">4.8</span>
                                                     <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                                    <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                                 </div>
-                                                <div class="flex-align gap-4">
+                                                <div class="gap-4 flex-align">
                                                     <span class="text-main-two-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                                    <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
+                                                    <span class="text-xs text-gray-500">By Lucky Supermarket</span>
                                                 </div>
-                                                <div class="product-card__price my-20">
+                                                <div class="my-20 product-card__price">
                                                     <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                                     <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                                 </div>
 
-                                                <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                                <a href="cart.html" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                                     Add To Cart <i class="ph ph-shopping-cart"></i>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="" data-aos="fade-up" data-aos-duration="1000">
-                                        <div class="mt-24 product-card d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                            <a href="product-details-two.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                                <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best seller</span>
+                                        <div class="gap-16 p-16 mt-24 border border-gray-100 product-card d-flex hover-border-main-600 rounded-16 position-relative transition-2">
+                                            <a href="product-details-two.html" class="flex-shrink-0 p-24 product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset" tabindex="0">
+                                                <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best seller</span>
                                                 <img src="frontend/assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
                                             </a>
-                                            <div class="product-card__content my-20 flex-grow-1">
-                                                <h6 class="title text-lg fw-semibold mb-12">
+                                            <div class="my-20 product-card__content flex-grow-1">
+                                                <h6 class="mb-12 text-lg title fw-semibold">
                                                     <a href="product-details-two.html" class="link text-line-2" tabindex="0">iPhone 15 Pro Warp Charge 30W Power Adapter</a>
                                                 </h6>
-                                                <div class="flex-align gap-6 mb-12">
-                                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                                <div class="gap-6 mb-12 flex-align">
+                                                    <span class="text-xs text-gray-500 fw-medium">4.8</span>
                                                     <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                                    <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                                 </div>
-                                                <div class="flex-align gap-4">
+                                                <div class="gap-4 flex-align">
                                                     <span class="text-main-two-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                                    <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
+                                                    <span class="text-xs text-gray-500">By Lucky Supermarket</span>
                                                 </div>
-                                                <div class="product-card__price my-20">
+                                                <div class="my-20 product-card__price">
                                                     <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                                     <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                                 </div>
 
-                                                <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                                <a href="cart.html" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                                     Add To Cart <i class="ph ph-shopping-cart"></i>
                                                 </a>
                                             </div>
@@ -2227,60 +2308,60 @@
                             <div class="col-xxl-6">
                                 <div class="featured-products__sliders">
                                     <div class="" data-aos="fade-up" data-aos-duration="800">
-                                        <div class="mt-24 product-card d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                            <a href="product-details-two.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                                <span class="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Sale</span>
+                                        <div class="gap-16 p-16 mt-24 border border-gray-100 product-card d-flex hover-border-main-600 rounded-16 position-relative transition-2">
+                                            <a href="product-details-two.html" class="flex-shrink-0 p-24 product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset" tabindex="0">
+                                                <span class="px-8 py-4 text-sm text-white product-card__badge bg-primary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Sale</span>
                                                 <img src="frontend/assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
                                             </a>
-                                            <div class="product-card__content my-20 flex-grow-1">
-                                                <h6 class="title text-lg fw-semibold mb-12">
+                                            <div class="my-20 product-card__content flex-grow-1">
+                                                <h6 class="mb-12 text-lg title fw-semibold">
                                                     <a href="product-details-two.html" class="link text-line-2" tabindex="0">iPhone 15 Pro Warp Charge 30W Power Adapter</a>
                                                 </h6>
-                                                <div class="flex-align gap-6 mb-12">
-                                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                                <div class="gap-6 mb-12 flex-align">
+                                                    <span class="text-xs text-gray-500 fw-medium">4.8</span>
                                                     <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                                    <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                                 </div>
-                                                <div class="flex-align gap-4">
+                                                <div class="gap-4 flex-align">
                                                     <span class="text-main-two-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                                    <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
+                                                    <span class="text-xs text-gray-500">By Lucky Supermarket</span>
                                                 </div>
-                                                <div class="product-card__price my-20">
+                                                <div class="my-20 product-card__price">
                                                     <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                                     <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                                 </div>
 
-                                                <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                                <a href="cart.html" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                                     Add To Cart <i class="ph ph-shopping-cart"></i>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="" data-aos="fade-up" data-aos-duration="1000">
-                                        <div class="mt-24 product-card d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                            <a href="product-details-two.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                                <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <div class="gap-16 p-16 mt-24 border border-gray-100 product-card d-flex hover-border-main-600 rounded-16 position-relative transition-2">
+                                            <a href="product-details-two.html" class="flex-shrink-0 p-24 product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset" tabindex="0">
+                                                <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                                 <img src="frontend/assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
                                             </a>
-                                            <div class="product-card__content my-20 flex-grow-1">
-                                                <h6 class="title text-lg fw-semibold mb-12">
+                                            <div class="my-20 product-card__content flex-grow-1">
+                                                <h6 class="mb-12 text-lg title fw-semibold">
                                                     <a href="product-details-two.html" class="link text-line-2" tabindex="0">iPhone 15 Pro Warp Charge 30W Power Adapter</a>
                                                 </h6>
-                                                <div class="flex-align gap-6 mb-12">
-                                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                                <div class="gap-6 mb-12 flex-align">
+                                                    <span class="text-xs text-gray-500 fw-medium">4.8</span>
                                                     <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                                    <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                                 </div>
-                                                <div class="flex-align gap-4">
+                                                <div class="gap-4 flex-align">
                                                     <span class="text-main-two-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                                    <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
+                                                    <span class="text-xs text-gray-500">By Lucky Supermarket</span>
                                                 </div>
-                                                <div class="product-card__price my-20">
+                                                <div class="my-20 product-card__price">
                                                     <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                                     <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                                 </div>
 
-                                                <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                                <a href="cart.html" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                                     Add To Cart <i class="ph ph-shopping-cart"></i>
                                                 </a>
                                             </div>
@@ -2291,60 +2372,60 @@
                             <div class="col-xxl-6">
                                 <div class="featured-products__sliders">
                                     <div class="" data-aos="fade-up" data-aos-duration="800">
-                                        <div class="mt-24 product-card d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                            <a href="product-details-two.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                                <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50% </span>
+                                        <div class="gap-16 p-16 mt-24 border border-gray-100 product-card d-flex hover-border-main-600 rounded-16 position-relative transition-2">
+                                            <a href="product-details-two.html" class="flex-shrink-0 p-24 product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset" tabindex="0">
+                                                <span class="px-8 py-4 text-sm text-white product-card__badge bg-danger-600 position-absolute inset-inline-start-0 inset-block-start-0">Sale 50% </span>
                                                 <img src="frontend/assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
                                             </a>
-                                            <div class="product-card__content my-20 flex-grow-1">
-                                                <h6 class="title text-lg fw-semibold mb-12">
+                                            <div class="my-20 product-card__content flex-grow-1">
+                                                <h6 class="mb-12 text-lg title fw-semibold">
                                                     <a href="product-details-two.html" class="link text-line-2" tabindex="0">iPhone 15 Pro Warp Charge 30W Power Adapter</a>
                                                 </h6>
-                                                <div class="flex-align gap-6 mb-12">
-                                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                                <div class="gap-6 mb-12 flex-align">
+                                                    <span class="text-xs text-gray-500 fw-medium">4.8</span>
                                                     <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                                    <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                                 </div>
-                                                <div class="flex-align gap-4">
+                                                <div class="gap-4 flex-align">
                                                     <span class="text-main-two-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                                    <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
+                                                    <span class="text-xs text-gray-500">By Lucky Supermarket</span>
                                                 </div>
-                                                <div class="product-card__price my-20">
+                                                <div class="my-20 product-card__price">
                                                     <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                                     <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                                 </div>
 
-                                                <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                                <a href="cart.html" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                                     Add To Cart <i class="ph ph-shopping-cart"></i>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="" data-aos="fade-up" data-aos-duration="1000">
-                                        <div class="mt-24 product-card d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                            <a href="product-details-two.html" class="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24" tabindex="0">
-                                                <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best seller</span>
+                                        <div class="gap-16 p-16 mt-24 border border-gray-100 product-card d-flex hover-border-main-600 rounded-16 position-relative transition-2">
+                                            <a href="product-details-two.html" class="flex-shrink-0 p-24 product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset" tabindex="0">
+                                                <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best seller</span>
                                                 <img src="frontend/assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
                                             </a>
-                                            <div class="product-card__content my-20 flex-grow-1">
-                                                <h6 class="title text-lg fw-semibold mb-12">
+                                            <div class="my-20 product-card__content flex-grow-1">
+                                                <h6 class="mb-12 text-lg title fw-semibold">
                                                     <a href="product-details-two.html" class="link text-line-2" tabindex="0">iPhone 15 Pro Warp Charge 30W Power Adapter</a>
                                                 </h6>
-                                                <div class="flex-align gap-6 mb-12">
-                                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                                <div class="gap-6 mb-12 flex-align">
+                                                    <span class="text-xs text-gray-500 fw-medium">4.8</span>
                                                     <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                                                    <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                                 </div>
-                                                <div class="flex-align gap-4">
+                                                <div class="gap-4 flex-align">
                                                     <span class="text-main-two-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                                    <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
+                                                    <span class="text-xs text-gray-500">By Lucky Supermarket</span>
                                                 </div>
-                                                <div class="product-card__price my-20">
+                                                <div class="my-20 product-card__price">
                                                     <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                                     <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                                 </div>
 
-                                                <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                                <a href="cart.html" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                                     Add To Cart <i class="ph ph-shopping-cart"></i>
                                                 </a>
                                             </div>
@@ -2357,18 +2438,18 @@
                 </div>
 
                 <div class="col-xxl-4">
-                    <div class="position-relative rounded-16 bg-light-purple overflow-hidden p-28 pb-0 z-1 text-center h-100" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="pb-0 overflow-hidden text-center position-relative rounded-16 bg-light-purple p-28 z-1 h-100" data-aos="fade-up" data-aos-duration="1000">
                         <img src="frontend/assets/images/bg/featured-product-bg.png" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 z-n1 w-100 h-100 cover-img">
-                        <div class="py-xl-4 text-center">
-                            <span class="h6 mb-20 text-white">iPhone Smart Phone - Red</span>
-                            <div class="flex-center gap-12 text-white">
+                        <div class="text-center py-xl-4">
+                            <span class="mb-20 text-white h6">iPhone Smart Phone - Red</span>
+                            <div class="gap-12 text-white flex-center">
                                 <span class="">FROM</span>
                                 <h4 class="mb-8 text-white">$890</h4>
-                                <span class="badge-style-two position-relative me-8 bg-main-two-600 text-white text-sm py-2 px-8 rounded-4">20% off</span>
+                                <span class="px-8 py-2 text-sm text-white badge-style-two position-relative me-8 bg-main-two-600 rounded-4">20% off</span>
                             </div>
-                            <a href="shop.html" class="mt-16 mb-24 btn btn-main-two fw-medium d-inline-flex align-items-center rounded-pill gap-8" tabindex="0">
+                            <a href="shop.html" class="gap-8 mt-16 mb-24 btn btn-main-two fw-medium d-inline-flex align-items-center rounded-pill" tabindex="0">
                                 Shop Now
-                                <span class="icon text-xl d-flex"><i class="ph ph-arrow-right"></i></span>
+                                <span class="text-xl icon d-flex"><i class="ph ph-arrow-right"></i></span>
                             </a>
                         </div>
                         <img src="frontend/assets/images/thumbs/featured-product-img.png" alt="" class="d-xxl-inline-flex d-none wow bounceInUp">
@@ -2382,18 +2463,18 @@
 <!-- ========================= Big Deal Section Start =============================== 
     <div class="big-deal rounded-16 overflow-hidden flex-between position-relative mb-24 py-80">
         <div class="container container-lg">
-            <div class="big-deal-box position-relative z-1 rounded-16 py-40 overflow-hidden">
+            <div class="py-40 overflow-hidden big-deal-box position-relative z-1 rounded-16">
                 <img src="frontend/assets/images/bg/big-deal-pattern.png" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 z-n1 w-100 h-100 cover-img">
 
                 <div class="row gy-4 align-items-center">
-                    <div class="col-md-3 text-center d-md-block d-none" data-aos="zoom-out" data-aos-duration="1000">
+                    <div class="text-center col-md-3 d-md-block d-none" data-aos="zoom-out" data-aos-duration="1000">
                         <img src="frontend/assets/images/thumbs/big-deal1.png" alt="">
                     </div>
-                    <div class="col-md-6 big-deal-box__content text-center">
+                    <div class="text-center col-md-6 big-deal-box__content">
                         <h4 class="mb-20 text-uppercase" data-aos="zoom-in" data-aos-duration="1000">WATCHES BIG DEAL</h4>
                         <p class="text-heading fw-medium" data-aos="zoom-in" data-aos-duration="1000">Wonlex KT07 4G positioning watches</p>
                     </div>
-                    <div class="col-md-3 text-center d-md-block d-none" data-aos="zoom-out" data-aos-duration="1000">
+                    <div class="text-center col-md-3 d-md-block d-none" data-aos="zoom-out" data-aos-duration="1000">
                         <img src="frontend/assets/images/thumbs/big-deal2.png" alt="">
                     </div>
                 </div>
@@ -2408,31 +2489,31 @@
         <div class="container container-lg">
             <div class="row g-12">
                 <div class="col-xxl-4">
-                    <div class="position-relative rounded-16 bg-light-purple overflow-hidden p-28 z-1 text-center h-100" data-aos="zoom-in" data-aos-duration="800">
+                    <div class="overflow-hidden text-center position-relative rounded-16 bg-light-purple p-28 z-1 h-100" data-aos="zoom-in" data-aos-duration="800">
                         <img src="frontend/assets/images/bg/recommended-bg.png" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 z-n1 w-100 h-100 cover-img">
-                        <div class="py-xl-4 text-center">
-                            <span class="h6 mb-20 text-white">Insta360 GO 3S Action Camera - White</span>
-                            <div class="flex-center gap-12 text-white">
+                        <div class="text-center py-xl-4">
+                            <span class="mb-20 text-white h6">Insta360 GO 3S Action Camera - White</span>
+                            <div class="gap-12 text-white flex-center">
                                 <span class="">FROM</span>
                                 <h4 class="mb-8 text-white">$430</h4>
-                                <span class="badge-style-two position-relative me-8 bg-main-two-600 text-white text-sm py-2 px-8 rounded-4">20% off</span>
+                                <span class="px-8 py-2 text-sm text-white badge-style-two position-relative me-8 bg-main-two-600 rounded-4">20% off</span>
                             </div>
                         </div>
                         <img src="frontend/assets/images/thumbs/recommended-img.png" alt="" class="mt-48 d-xxl-block d-none wow bounceIn">
                     </div>
                 </div>
                 <div class="col-xxl-8">
-                    <div class="border border-gray-100 p-24 rounded-16">
-                        <div class="section-heading mb-24">
-                            <div class="flex-between flex-wrap gap-8">
+                    <div class="p-24 border border-gray-100 rounded-16">
+                        <div class="mb-24 section-heading">
+                            <div class="flex-wrap gap-8 flex-between">
                                 <h5 class="mb-0 wow bounceInLeft">Recommended For You</h5>
-                                <div class="flex-align gap-16 wow bounceInRight">
-                                    <a href="shop.html" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All</a>
-                                    <div class="flex-align gap-8">
-                                        <button type="button" id="recommended-prev" class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-neutral-600 text-xl hover-bg-neutral-600 hover-text-white transition-1">
+                                <div class="gap-16 flex-align wow bounceInRight">
+                                    <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All</a>
+                                    <div class="gap-8 flex-align">
+                                        <button type="button" id="recommended-prev" class="text-xl border border-gray-100 slick-prev slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
                                             <i class="ph ph-caret-left"></i>
                                         </button>
-                                        <button type="button" id="recommended-next" class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-neutral-600 text-xl hover-bg-neutral-600 hover-text-white transition-1">
+                                        <button type="button" id="recommended-next" class="text-xl border border-gray-100 slick-next slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
                                             <i class="ph ph-caret-right"></i>
                                         </button>
                                     </div>
@@ -2442,31 +2523,31 @@
 
                         <div class="recommended-slider">
                             <div data-aos="fade-up" data-aos-duration="400">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-tertiary-600 position-absolute inset-inline-start-0 inset-block-start-0">Best Seller </span>
                                         <img src="frontend/assets/images/thumbs/product-two-img1.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-main-600 bg-main-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -2475,31 +2556,31 @@
                                 </div>
                             </div>
                             <div data-aos="fade-up" data-aos-duration="600">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-main-600 bg-main-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -2508,31 +2589,31 @@
                                 </div>
                             </div>
                             <div data-aos="fade-up" data-aos-duration="800">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-danger-600 position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-main-600 bg-main-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -2541,31 +2622,31 @@
                                 </div>
                             </div>
                             <div data-aos="fade-up" data-aos-duration="1000">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-success-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-success-600 position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-main-600 bg-main-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -2574,31 +2655,31 @@
                                 </div>
                             </div>
                             <div data-aos="fade-up" data-aos-duration="1200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                     <a href="product-details-two.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                                        <span class="px-8 py-4 text-sm text-white product-card__badge bg-warning-600 position-absolute inset-inline-start-0 inset-block-start-0">New</span>
                                         <img src="frontend/assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
                                     </a>
-                                    <div class="product-card__content mt-16">
-                                        <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">19%OFF</span>
-                                        <h6 class="title text-lg fw-semibold my-16">
+                                    <div class="mt-16 product-card__content">
+                                        <span class="px-8 py-4 text-sm text-main-600 bg-main-50 fw-medium">19%OFF</span>
+                                        <h6 class="my-16 text-lg title fw-semibold">
                                             <a href="product-details-two.html" class="link text-line-2" tabindex="0">Instax Mini 12 Instant Film Camera - Green</a>
                                         </h6>
-                                        <div class="flex-align gap-6">
-                                            <div class="flex-align gap-8">
+                                        <div class="gap-6 flex-align">
+                                            <div class="gap-8 flex-align">
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                                 <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
+                                            <span class="text-xs text-gray-500 fw-medium">(12K)</span>
                                         </div>
 
-                                        <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by Marketpro</span>
+                                        <span class="px-8 py-2 mt-16 text-xs rounded-pill text-main-two-600 bg-main-two-50">Fulfilled by Marketpro</span>
 
-                                        <div class="product-card__price mt-16 mb-30">
+                                        <div class="mt-16 product-card__price mb-30">
                                             <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
                                             <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                         </div>
@@ -2622,64 +2703,64 @@
 <!-- =========================== Top Vendor Section Start ========================== 
     <section class="top-vendor py-80 overflow-hidden">
         <div class="container container-lg">
-            <div class="border border-gray-100 p-24 rounded-16">
-                <div class="section-heading mb-24">
-                    <div class="flex-between flex-wrap gap-8">
+            <div class="p-24 border border-gray-100 rounded-16">
+                <div class="mb-24 section-heading">
+                    <div class="flex-wrap gap-8 flex-between">
                         <h5 class="mb-0 wow bounceInLeft">Popular Products</h5>
-                        <div class="flex-align gap-16 wow bounceInRight">
-                            <a href="shop.html" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Products</a>
+                        <div class="gap-16 flex-align wow bounceInRight">
+                            <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Products</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="row gy-4 vendor-card-wrapper">
                     <div class="col-xxl-3 col-lg-4 col-sm-6 wow bounceIn">
-                        <div class="vendor-card text-center px-16 pb-24">
+                        <div class="px-16 pb-24 text-center vendor-card">
                             <div class="">
-                                <img src="frontend/assets/images/thumbs/vendor-logo1.png" alt="" class="vendor-card__logo m-12">
-                                <h6 class="title mt-32 text-lg">Organic Market</h6>
+                                <img src="frontend/assets/images/thumbs/vendor-logo1.png" alt="" class="m-12 vendor-card__logo">
+                                <h6 class="mt-32 text-lg title">Organic Market</h6>
 
-                                <div class="flex-align gap-6 justify-content-center">
+                                <div class="gap-6 flex-align justify-content-center">
                                     <span class="text-lg fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                     <span class="text-md fw-medium text-heading">4.8</span>
                                     <span class="text-md fw-medium text-heading">(12K)</span>
                                 </div>
                             </div>
                             <div class="position-relative slick-arrows-style-three">
-                                <button type="button" id="vendor-prev" class="slick-prev slick-arrow position-absolute top-50 translate-middle-y flex-center rounded-circle bg-neutral-600 hover-bg-main-two-600 w-24 h-24 text-white text-sm z-1 transition-1 inset-inline-start-0">
+                                <button type="button" id="vendor-prev" class="w-24 h-24 text-sm text-white slick-prev slick-arrow position-absolute top-50 translate-middle-y flex-center rounded-circle bg-neutral-600 hover-bg-main-two-600 z-1 transition-1 inset-inline-start-0">
                                     <i class="ph ph-caret-left"></i>
                                 </button>
-                                <button type="button" id="vendor-next" class="slick-next slick-arrow position-absolute top-50 translate-middle-y flex-center rounded-circle bg-neutral-600 hover-bg-main-two-600 w-24 h-24 text-white text-sm z-1 transition-1 inset-inline-end-0">
+                                <button type="button" id="vendor-next" class="w-24 h-24 text-sm text-white slick-next slick-arrow position-absolute top-50 translate-middle-y flex-center rounded-circle bg-neutral-600 hover-bg-main-two-600 z-1 transition-1 inset-inline-end-0">
                                     <i class="ph ph-caret-right"></i>
                                 </button>
                                 <div class="vendor-card__list style-two mt-22">
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img1.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img2.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img3.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img4.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img5.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img6.png" alt="">
                                         </div>
                                     </div>
@@ -2688,12 +2769,12 @@
                         </div>
                     </div>
                     <div class="col-xxl-3 col-lg-4 col-sm-6 wow bounceIn">
-                        <div class="vendor-card text-center px-16 pb-24">
+                        <div class="px-16 pb-24 text-center vendor-card">
                             <div class="">
-                                <img src="frontend/assets/images/thumbs/vendor-logo1.png" alt="" class="vendor-card__logo m-12">
-                                <h6 class="title mt-32 text-lg">Best Buy</h6>
+                                <img src="frontend/assets/images/thumbs/vendor-logo1.png" alt="" class="m-12 vendor-card__logo">
+                                <h6 class="mt-32 text-lg title">Best Buy</h6>
 
-                                <div class="flex-align gap-6 justify-content-center">
+                                <div class="gap-6 flex-align justify-content-center">
                                     <span class="text-lg fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                     <span class="text-md fw-medium text-heading">4.8</span>
                                     <span class="text-md fw-medium text-heading">(12K)</span>
@@ -2702,32 +2783,32 @@
                             <div class="position-relative slick-arrows-style-three">
                                 <div class="vendor-card__list style-two mt-22">
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img6.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img7.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img8.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img9.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img10.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img11.png" alt="">
                                         </div>
                                     </div>
@@ -2736,12 +2817,12 @@
                         </div>
                     </div>
                     <div class="col-xxl-3 col-lg-4 col-sm-6 wow bounceIn">
-                        <div class="vendor-card text-center px-16 pb-24">
+                        <div class="px-16 pb-24 text-center vendor-card">
                             <div class="">
-                                <img src="frontend/assets/images/thumbs/vendor-logo1.png" alt="" class="vendor-card__logo m-12">
-                                <h6 class="title mt-32 text-lg">Organic Market</h6>
+                                <img src="frontend/assets/images/thumbs/vendor-logo1.png" alt="" class="m-12 vendor-card__logo">
+                                <h6 class="mt-32 text-lg title">Organic Market</h6>
 
-                                <div class="flex-align gap-6 justify-content-center">
+                                <div class="gap-6 flex-align justify-content-center">
                                     <span class="text-lg fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                     <span class="text-md fw-medium text-heading">4.8</span>
                                     <span class="text-md fw-medium text-heading">(12K)</span>
@@ -2750,32 +2831,32 @@
                             <div class="position-relative slick-arrows-style-three">
                                 <div class="vendor-card__list style-two mt-22">
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img1.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img2.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img3.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img4.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img5.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img6.png" alt="">
                                         </div>
                                     </div>
@@ -2784,12 +2865,12 @@
                         </div>
                     </div>
                     <div class="col-xxl-3 col-lg-4 col-sm-6 wow bounceIn">
-                        <div class="vendor-card text-center px-16 pb-24">
+                        <div class="px-16 pb-24 text-center vendor-card">
                             <div class="">
-                                <img src="frontend/assets/images/thumbs/vendor-logo1.png" alt="" class="vendor-card__logo m-12">
-                                <h6 class="title mt-32 text-lg">Best Buy</h6>
+                                <img src="frontend/assets/images/thumbs/vendor-logo1.png" alt="" class="m-12 vendor-card__logo">
+                                <h6 class="mt-32 text-lg title">Best Buy</h6>
 
-                                <div class="flex-align gap-6 justify-content-center">
+                                <div class="gap-6 flex-align justify-content-center">
                                     <span class="text-lg fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                     <span class="text-md fw-medium text-heading">4.8</span>
                                     <span class="text-md fw-medium text-heading">(12K)</span>
@@ -2798,32 +2879,32 @@
                             <div class="position-relative slick-arrows-style-three">
                                 <div class="vendor-card__list style-two mt-22">
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img6.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img7.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img8.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img9.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img10.png" alt="">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="vendor-card__item bg-white rounded-circle flex-center">
+                                        <div class="bg-white vendor-card__item rounded-circle flex-center">
                                             <img src="frontend/assets/images/thumbs/vendor-two-img11.png" alt="">
                                         </div>
                                     </div>
@@ -2841,18 +2922,18 @@
 <!-- ================================== Day Sale Section Start =================================== 
     <section class="day-sale">
         <div class="container container-lg">
-            <div class="day-sale-box rounded-16 overflow-hidden flex-between position-relative mb-24 z-1">
+            <div class="mb-24 overflow-hidden day-sale-box rounded-16 flex-between position-relative z-1">
 
                 <img src="frontend/assets/images/bg/day-sale-bg.png" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 z-n1 w-100 h-100 cover-img">
                 <div class="d-xl-block d-none" data-aos="zoom-in" data-aos-duration="800">
                     <img src="frontend/assets/images/thumbs/day-sale-img1.png" alt="">
                 </div>
-                <div class="day-sale-box__content d-block w-100 text-start py-32 ps-lg-0 ps-24">
-                    <h3 class="text-white fw-medium mb-24">CYBER MONDAY SALE</h3>
-                    <h6 class="text-white fw-medium mb-8">UP TO 30% OFF</h6>
-                    <h6 class="text-white fw-medium mb-0">COMPUTER & MOBILE ACCESSORIES</h6>
-                    <a href="shop.html" class="btn btn-outline-white flex-align d-inline-flex rounded-pill gap-8 mt-28" tabindex="0">
-                        Shop Now <i class="ph ph-plus text-xl d-flex"></i>
+                <div class="py-32 day-sale-box__content d-block w-100 text-start ps-lg-0 ps-24">
+                    <h3 class="mb-24 text-white fw-medium">CYBER MONDAY SALE</h3>
+                    <h6 class="mb-8 text-white fw-medium">UP TO 30% OFF</h6>
+                    <h6 class="mb-0 text-white fw-medium">COMPUTER & MOBILE ACCESSORIES</h6>
+                    <a href="shop.html" class="gap-8 btn btn-outline-white flex-align d-inline-flex rounded-pill mt-28" tabindex="0">
+                        Shop Now <i class="text-xl ph ph-plus d-flex"></i>
                     </a>
                 </div>
                 <div class="d-md-block d-none pe-xxl-5 pe-md-4" data-aos="zoom-in" data-aos-duration="800">
@@ -2869,15 +2950,15 @@
 <!-- ============================== Top Brand Section Start ==================================== 
     <div class="top-brand py-80">
         <div class="container container-lg">
-            <div class="border border-gray-100 p-24 rounded-16">
-                <div class="section-heading mb-24">
-                    <div class="flex-between flex-wrap gap-8">
+            <div class="p-24 border border-gray-100 rounded-16">
+                <div class="mb-24 section-heading">
+                    <div class="flex-wrap gap-8 flex-between">
                         <h5 class="mb-0">Top Brands</h5>
-                        <div class="flex-align gap-8">
-                            <button type="button" id="topBrand-prev" class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-two-600 text-xl hover-bg-main-two-600 hover-text-white transition-1">
+                        <div class="gap-8 flex-align">
+                            <button type="button" id="topBrand-prev" class="text-xl border border-gray-100 slick-prev slick-arrow flex-center rounded-circle hover-border-main-two-600 hover-bg-main-two-600 hover-text-white transition-1">
                                 <i class="ph ph-caret-left"></i>
                             </button>
-                            <button type="button" id="topBrand-next" class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-two-600 text-xl hover-bg-main-two-600 hover-text-white transition-1">
+                            <button type="button" id="topBrand-next" class="text-xl border border-gray-100 slick-next slick-arrow flex-center rounded-circle hover-border-main-two-600 hover-bg-main-two-600 hover-text-white transition-1">
                                 <i class="ph ph-caret-right"></i>
                             </button>
                         </div>
@@ -2886,47 +2967,47 @@
 
                 <div class="top-brand__slider">
                     <div class="wow bounceIn">
-                        <div class="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
+                        <div class="px-8 border border-gray-100 top-brand__item flex-center rounded-8 hover-border-gray-200 transition-1">
                             <img src="frontend/assets/images/thumbs/top-brand-img1.png" alt="">
                         </div>
                     </div>
                     <div class="wow bounceIn">
-                        <div class="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
+                        <div class="px-8 border border-gray-100 top-brand__item flex-center rounded-8 hover-border-gray-200 transition-1">
                             <img src="frontend/assets/images/thumbs/top-brand-img2.png" alt="">
                         </div>
                     </div>
                     <div class="wow bounceIn">
-                        <div class="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
+                        <div class="px-8 border border-gray-100 top-brand__item flex-center rounded-8 hover-border-gray-200 transition-1">
                             <img src="frontend/assets/images/thumbs/top-brand-img3.png" alt="">
                         </div>
                     </div>
                     <div class="wow bounceIn">
-                        <div class="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
+                        <div class="px-8 border border-gray-100 top-brand__item flex-center rounded-8 hover-border-gray-200 transition-1">
                             <img src="frontend/assets/images/thumbs/top-brand-img4.png" alt="">
                         </div>
                     </div>
                     <div class="wow bounceIn">
-                        <div class="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
+                        <div class="px-8 border border-gray-100 top-brand__item flex-center rounded-8 hover-border-gray-200 transition-1">
                             <img src="frontend/assets/images/thumbs/top-brand-img5.png" alt="">
                         </div>
                     </div>
                     <div class="wow bounceIn">
-                        <div class="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
+                        <div class="px-8 border border-gray-100 top-brand__item flex-center rounded-8 hover-border-gray-200 transition-1">
                             <img src="frontend/assets/images/thumbs/top-brand-img6.png" alt="">
                         </div>
                     </div>
                     <div class="wow bounceIn">
-                        <div class="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
+                        <div class="px-8 border border-gray-100 top-brand__item flex-center rounded-8 hover-border-gray-200 transition-1">
                             <img src="frontend/assets/images/thumbs/top-brand-img7.png" alt="">
                         </div>
                     </div>
                     <div class="wow bounceIn">
-                        <div class="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
+                        <div class="px-8 border border-gray-100 top-brand__item flex-center rounded-8 hover-border-gray-200 transition-1">
                             <img src="frontend/assets/images/thumbs/top-brand-img8.png" alt="">
                         </div>
                     </div>
                     <div class="wow bounceIn">
-                        <div class="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
+                        <div class="px-8 border border-gray-100 top-brand__item flex-center rounded-8 hover-border-gray-200 transition-1">
                             <img src="frontend/assets/images/thumbs/top-brand-img5.png" alt="">
                         </div>
                     </div>
