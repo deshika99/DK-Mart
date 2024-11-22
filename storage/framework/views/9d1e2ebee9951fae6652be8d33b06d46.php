@@ -1,6 +1,4 @@
-@extends ('AdminDashboard.master')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="content-header">
     <div>
@@ -58,8 +56,8 @@
                                 <td><span class="badge bg-success">Published</span></td>
                                 <td class="text-end">
                                     <form action="" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
+                                        <?php echo csrf_field(); ?>
+                                        <?php echo method_field('DELETE'); ?>
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?');">
                                             <i class="fas fa-trash"></i>
                                         </button>
@@ -113,8 +111,8 @@
                                         </li>
                                         <li>
                                             <form action="" method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('DELETE')
+                                                <?php echo csrf_field(); ?>
+                                                <?php echo method_field('DELETE'); ?>
                                                 <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure you want to delete this review?');">
                                                     Delete
                                                 </button>
@@ -164,8 +162,8 @@
             </div>
             <div class="modal-footer">
                 <form id="approveReviewForm" action="" method="POST">
-                    @csrf
-                    @method('PATCH')
+                    <?php echo csrf_field(); ?>
+                    <?php echo method_field('PATCH'); ?>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Approve</button>
                 </form>
@@ -184,4 +182,6 @@
 </script>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('AdminDashboard.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/AdminDashboard/reviews.blade.php ENDPATH**/ ?>

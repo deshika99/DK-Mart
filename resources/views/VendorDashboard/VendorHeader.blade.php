@@ -44,17 +44,15 @@
             <li class="nav-item">
                 <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="requestfullscreen nav-link btn-icon"><i class="material-icons md-cast"></i></a>
-            </li>
             <li class="dropdown nav-item" style="position: relative;">
-                <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false">
+            <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false">
                     <img class="img-xs rounded-circle" 
-                        src="\backend\assets\images\default-user.png" 
+                        src="{{ asset('storage/' . ($vendor->profile_image ?? 'default-user.png')) }}" 
                         alt="User" />
                 </a>
+
                 <div class="dropdown-menu" style="left: -100px;" aria-labelledby="dropdownAccount">
-                    <a class="dropdown-item" href="">
+                    <a class="dropdown-item" href="{{ route('vendor.profile') }}">
                         <i class="material-icons md-perm_identity"></i> Edit Profile
                     </a>
                     <div class="dropdown-divider"></div>

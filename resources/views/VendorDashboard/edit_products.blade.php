@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function () {
             event.target.parentElement.remove();
         }
     });
-
+                  
     function removeImageFromFileList(index) {
         currentFiles.splice(index, 1); 
         updateFileInput();
