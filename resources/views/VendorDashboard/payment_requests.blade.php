@@ -14,7 +14,12 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="mb-3">Total Available Balance</p>
-                        <h3 class="mb-6">Rs {{ number_format($vendorWallet->balance, 2) }}</h3> 
+                        @if($vendorWallet)
+                        <h3 class="mb-6">Rs {{ number_format($vendorWallet->balance, 2) }}</h3>
+                        @else
+                        <h3 class="mb-6">RS.00.00</h3>
+                        @endif
+
                     </div>
                 </div>
             </div>

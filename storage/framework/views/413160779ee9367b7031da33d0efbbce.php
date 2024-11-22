@@ -12,7 +12,12 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="mb-3">Total Available Balance</p>
-                        <h3 class="mb-6">Rs <?php echo e(number_format($vendorWallet->balance, 2)); ?></h3> 
+                        <?php if($vendorWallet): ?>
+                        <h3 class="mb-6">Rs <?php echo e(number_format($vendorWallet->balance, 2)); ?></h3>
+                        <?php else: ?>
+                        <h3 class="mb-6">RS.00.00</h3>
+                        <?php endif; ?>
+
                     </div>
                 </div>
             </div>
