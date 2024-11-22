@@ -1,7 +1,9 @@
 <aside class="navbar-aside shadow-sm" id="offcanvas_aside">
     <div class="aside-top" style="padding:0">
         <a href="<?php echo e(route('vendorhome')); ?>" class="brand-wrap">
-            <img src="<?php echo e(asset('/backend/assets/DK mart-01.png')); ?>" class="logo" alt="DK-Mart"/>
+
+            <img src="<?php echo e(asset('/backend/assets/DK mart-01.png')); ?>" class="logo" alt="DK-Mart" />
+
         </a>
         <div>
             <button class="btn btn-icon btn-aside-minimize"><i class="text-muted material-icons md-menu_open"></i></button>
@@ -18,7 +20,9 @@
 
             <li class="menu-item <?php echo e(request()->routeIs('vendor.shop') ? 'active' : ''); ?>">
                 <a class="menu-link" href="<?php echo e(route('vendor.shop')); ?>">
-                <i class="icon material-icons md-store"></i>
+
+                    <i class="icon material-icons md-store"></i>
+
                     <span class="text">Shop</span>
                 </a>
             </li>
@@ -32,12 +36,14 @@
                 </a>
                 <!-- Add "show" class dynamically for submenu -->
                 <div class="submenu <?php echo e(request()->routeIs('vendor.products*') ? 'show' : ''); ?>">
-                    <a href="<?php echo e(route('vendor.products')); ?>" 
-                       class="<?php echo e(request()->routeIs('vendor.products') ? 'active' : ''); ?>">
+
+                    <a href="<?php echo e(route('vendor.products')); ?>"
+                        class="<?php echo e(request()->routeIs('vendor.products') ? 'active' : ''); ?>">
                         Product List
                     </a>
-                    <a href="<?php echo e(route('vendor.products.add')); ?>" 
-                       class="<?php echo e(request()->routeIs('vendor.products.add') ? 'active' : ''); ?>">
+                    <a href="<?php echo e(route('vendor.products.add')); ?>"
+                        class="<?php echo e(request()->routeIs('vendor.products.add') ? 'active' : ''); ?>">
+
                         Add Product
                     </a>
                 </div>
@@ -45,10 +51,27 @@
 
             <li class="menu-item <?php echo e(request()->routeIs('vendor.orders') ? 'active' : ''); ?>">
                 <a class="menu-link" href="<?php echo e(route('vendor.orders')); ?>">
-                <i class="icon material-icons md-shopping_cart"></i>
+
+                    <i class="icon material-icons md-shopping_cart"></i>
                     <span class="text">Orders</span>
                 </a>
             </li>
+            <li class="menu-item has-submenu ">
+                <a class="menu-link" href="#">
+                    <i class="icon material-icons md-description"></i>
+                    <span class="text">Reports</span>
+                </a>
+                <div class="submenu ">
+
+                    <a href="<?php echo e(route('vendorProductReport')); ?>">
+                        Products
+                    </a>
+                    <a href="<?php echo e(route('vendorOrderReport')); ?>">
+                        Orders
+                    </a>
+                </div>
+            </li>
+
 
         </ul>
 
@@ -57,5 +80,6 @@
         <br />
         <br />
     </nav>
-</aside>
-<?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/VendorDashboard/VendorSidebar.blade.php ENDPATH**/ ?>
+
+</aside><?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/VendorDashboard/VendorSidebar.blade.php ENDPATH**/ ?>
+

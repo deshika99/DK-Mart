@@ -81,6 +81,34 @@
                             <span class="text">Customer Inquiries</span>
                         </a>
                     </li>
+
+                    <li class="menu-item has-submenu ">
+                        <a class="menu-link" href="#">
+                            <i class="icon material-icons md-description"></i>
+                            <span class="text">Reports</span>
+                        </a>
+                        <div class="submenu ">
+                            <a href="<?php echo e(route('customerReport')); ?>" >
+                                Customers
+                            </a>
+                            <a href="<?php echo e(route('productReport')); ?>" >
+                                Products 
+                            </a>
+                            <a href="<?php echo e(route('affiliateCustomerReport')); ?>" >
+                                Affiliate Customer 
+                            </a>
+                            <a href="<?php echo e(route('affiliateCusBankData')); ?>" >
+                                Affiliate Bank Details 
+                            </a>
+                            <a href="<?php echo e(route('vendorReport')); ?>" >
+                                Vendors 
+                            </a>
+                            <a href="<?php echo e(route('orderReport')); ?>" >
+                                Orders 
+                            </a>
+                        </div>
+                    </li>
+
                     <li class="menu-item has-submenu <?php echo e(request()->is('admin/manage_company*') || request()->is('admin/users*') || request()->is('admin/role_list*') ? 'active' : ''); ?>">
                         <a class="menu-link" href="#">
                             <i class="icon material-icons md-settings"></i>
