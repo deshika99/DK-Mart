@@ -181,34 +181,9 @@
                 @endif
             </div>
 
-            <div class="mb-24 overflow-hidden deal-week-box rounded-16 flex-between position-relative z-1">
-                <img src="frontend/assets/images/bg/week-deal-bg.png" alt="" class="position-absolute inset-block-start-0 w-100 h-100 z-n1 object-fit-cover">
-                <div class="flex-shrink-0 d-lg-block d-none ps-22" data-aos="zoom-in">
-                    <img src="frontend/assets/images/imgs/deals2.png" alt="" style="width: 350px">
-                </div>
-                <div class="deal-week-box__content px-sm-4 d-block w-100">
-                    <h6 class="mb-20 wow bounceIn">Apple AirPods Max, Over Ear Headphones</h6>
-                    <div class="mt-20 countdown" id="countdown4">
-                        <ul class="flex-wrap countdown-list style-four flex-left">
-                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                <span class="days"></span>Days
-                            </li>
-                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                <span class="hours"></span>Hour
-                            </li>
-                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                <span class="minutes"></span>Min
-                            </li>
-                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                <span class="seconds"></span>Sec
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-            </div>
+            
 
-            <div class="deals-week-slider arrow-style-two">
+            <!-- <div class="deals-week-slider arrow-style-two">
                 @foreach ($products->slice(0, 10) as $product)
                     <div data-aos="fade-up" data-aos-duration="200">
                         <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
@@ -227,7 +202,7 @@
                                         </span>
                                         <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                     </div>
-                                    <!-- Heart Icon -->
+                                    
                                     <button type="button" class="heart-icon ms-auto" 
                                             id="wishlist-icon-{{ $product->product_id }}" 
                                             onclick="toggleWishlist(this, '{{ $product->product_id }}')">
@@ -259,7 +234,7 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
+            </div>  -->
 
         </div>
     </div>
@@ -385,31 +360,31 @@
                 </div>
             </div>
 
-            <div class="deal-week-box rounded-16 overflow-hidden flex-between position-relative z-1 mb-24">
-                <img src="frontend/assets/images/bg/week-deal-bg.png" alt="" class="position-absolute inset-block-start-0 inset-block-start-0 w-100 h-100 z-n1 object-fit-cover">
-                <div class="d-lg-block d-none ps-22 flex-shrink-0" data-aos="zoom-in">
+            <div class="mb-24 overflow-hidden deal-week-box rounded-16 flex-between position-relative z-1">
+                <img src="frontend/assets/images/bg/week-deal-bg.png" alt="" class="position-absolute inset-block-start-0 w-100 h-100 z-n1 object-fit-cover">
+                <div class="flex-shrink-0 d-lg-block d-none ps-22" data-aos="zoom-in">
                     <img src="frontend/assets/images/imgs/deals2.png" alt="" style="width: 350px">
                 </div>
                 <div class="deal-week-box__content px-sm-4 d-block w-100">
                     <h6 class="mb-20 wow bounceIn">Apple AirPods Max, Over Ear Headphones</h6>
-                    <div class="countdown mt-20" id="countdown4">
-                        <ul class="countdown-list style-four flex-left flex-wrap">
-                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600">
+                    <div class="mt-20 countdown" id="countdown4">
+                        <ul class="flex-wrap countdown-list style-four flex-left">
+                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
                                 <span class="days"></span>Days
                             </li>
-                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600">
+                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
                                 <span class="hours"></span>Hour
                             </li>
-                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600">
+                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
                                 <span class="minutes"></span>Min
                             </li>
-                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600">
+                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
                                 <span class="seconds"></span>Sec
                             </li>
                         </ul>
                     </div>
                 </div>
-
+                
             </div>
 
             <div class="deals-week-slider arrow-style-two">
