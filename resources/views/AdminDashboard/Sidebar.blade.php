@@ -25,9 +25,6 @@
                             <a href="{{ route('products_list') }}" class="{{ request()->is('admin/products') ? 'active' : '' }}">
                                 Product List
                             </a>
-                            <a href="{{ route('add_products') }}" class="{{ request()->is('admin/add_products') ? 'active' : '' }}">
-                                Add Product
-                            </a>
                             <a href="{{ route('categories') }}" class="{{ request()->is('admin/categories') ? 'active' : '' }}">
                                 Categories
                             </a>
@@ -63,20 +60,30 @@
                             <span class="text">Orders</span>
                         </a>
                     </li>
-                    <li class="menu-item {{ request()->routeIs('vendors') ? 'active' : '' }}">
-                        <a class="menu-link" href="{{ route('vendors') }}">
+
+                    <li class="menu-item has-submenu {{ request()->is('admin/vendors*') || request()->is('admin/payments*') ? 'active' : '' }}">
+                        <a class="menu-link" href="#">
                         <i class="icon material-icons md-store"></i>
                             <span class="text">Vendors</span>
                         </a>
+                        <div class="submenu {{ request()->is('admin/vendors*') || request()->is('admin/payments*') ? 'show' : '' }}">
+                            <a href="{{ route('vendors') }}" class="{{ request()->is('admin/vendors') ? 'active' : '' }}">
+                            Vendors
+                            </a>
+                            <a href="{{ route('admin.vendor.payments') }}" class="{{ request()->is('admin/payments') ? 'active' : '' }}">
+                            Payment Requests
+                            </a>
+                        </div>
                     </li>
+
                     <li class="menu-item {{ request()->routeIs('reviews') ? 'active' : '' }}">
                         <a class="menu-link" href="{{ route('reviews') }}">
                         <i class="icon material-icons md-comment"></i>
                             <span class="text">Reviews</span>
                         </a>
                     </li>
-                    <li class="menu-item {{ request()->routeIs('inquiries') ? 'active' : '' }}">
-                        <a class="menu-link" href="{{ route('inquiries') }}">
+                    <li class="menu-item {{ request()->routeIs('admin.customer.inquiries') ? 'active' : '' }}">
+                        <a class="menu-link" href="{{ route('admin.customer.inquiries') }}">
                         <i class="icon material-icons md-email"></i>
                             <span class="text">Customer Inquiries</span>
                         </a>
