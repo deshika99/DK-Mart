@@ -64,21 +64,6 @@
                 </div>
                 <p class="mb-24" style="max-width: 300px;">DK Mart is Your trusted online shopping destination in Sri Lanka, offering a wide range of quality products at unbeatable prices. Shop with confidence, convenience, and local expertise!  </p>
               
-
-                <p class="mb-24" style="text-align: justify;">DK Mart is Your trusted online shopping destination in Sri Lanka, offering a wide range of quality products at unbeatable prices. Shop with confidence, convenience, and local expertise!  </p>
-                <div class="gap-16 mb-16 flex-align">
-                    <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-phone-call"></i></span>
-                    <a href="tel:0787004900" class="text-gray-900 text-md hover-text-main-600">0787004900</a>
-                </div>
-                <div class="gap-16 mb-16 flex-align">
-                    <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-envelope"></i></span>
-                    <a href="mailto:admin@dkmart.lk" class="text-gray-900 text-md hover-text-main-600">admin@dkmart.lk</a>
-                </div>
-                <div class="gap-16 mb-16 flex-align">
-                    <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-map-pin"></i></span>
-                    <span class="text-gray-900 text-md ">No.57, Horana Road, Moragahahena.</span>
-
-                </div>
             </div>
             
             <div class="footer-item" data-aos="fade-up" data-aos-duration="400"style="margin-left: 45px;">
