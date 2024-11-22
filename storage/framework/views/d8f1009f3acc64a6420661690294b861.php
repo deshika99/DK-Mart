@@ -2,231 +2,239 @@
 <div class="banner-two">
     <div class="container container-lg">
         <div class="banner-two-wrapper d-flex align-items-start">
-                <div class="banner-item-two-wrapper rounded-24 overflow-hidden position-relative arrow-center flex-grow-1 mb-0">
-                    <img src="<?php echo e(asset('frontend/assets/images/bg/banner-two-bg.png')); ?>" alt="" class="banner-img position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 z-n1 object-fit-cover rounded-24">
-                    <div class="banner-item-two__slider">
-                        <div class="banner-item-two">
-                            <div class="banner-item-two__content">
-                                <span class="text-white mb-8 h6 wow bounceInDown">Starting at only Rs 500</span>
-                                <h2 class="banner-item-two__title bounce text-white wow bounceInLeft">Get The Sound You Love For Less</h2>
-                                <a href="<?php echo e(route('shop.index')); ?>" class="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48 wow bounceInUp">
-                                    Shop Now<span class="icon text-xl d-flex"><i class="ph ph-shopping-cart-simple"></i> </span>
-                                </a>
-                            </div>
-                            <div class="banner-item-two__thumb position-absolute bottom-0 wow bounceInUp" data-wow-duration="1s" data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="5000" data-tilt-scale="1.06">
-                                <img src="frontend/assets/images/imgs/music-cover1.png" alt="">
-                            </div>
+            <div class="banner-item-two-wrapper rounded-24 overflow-hidden position-relative arrow-center flex-grow-1 mb-0">
+                <img src="<?php echo e(asset('frontend/assets/images/bg/banner-two-bg.png')); ?>" alt="" class="banner-img position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 z-n1 object-fit-cover rounded-24">
+                <div class="banner-item-two__slider">
+                    <div class="banner-item-two">
+                        <div class="banner-item-two__content">
+                            <span class="text-white mb-8 h6 wow bounceInDown">Starting at only Rs 500</span>
+                            <h2 class="banner-item-two__title bounce text-white wow bounceInLeft">Get The Sound You Love For Less</h2>
+                            <a href="<?php echo e(route('shop.index')); ?>" class="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48 wow bounceInUp">
+                                Shop Now<span class="icon text-xl d-flex"><i class="ph ph-shopping-cart-simple"></i> </span>
+                            </a>
                         </div>
-                        <div class="banner-item-two">
-                            <div class="banner-item-two__content">
-                                <span class="text-white mb-8 h6 wow bounceInDown">Starting at only Rs 500</span>
-                                <h2 class="banner-item-two__title bounce text-white wow bounceInLeft">Get The Sound You Love For Less</h2>
-                                <a href="<?php echo e(route('shop.index')); ?>" class="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48 wow bounceInUp">
-                                    Shop Now<span class="icon text-xl d-flex"><i class="ph ph-shopping-cart-simple"></i> </span>
-                                </a>
-                            </div>
-                            <div class="banner-item-two__thumb position-absolute bottom-0 wow bounceInUp" data-wow-duration="1s" data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="5000" data-tilt-scale="1.06">
-                                <img src="frontend/assets/images/imgs/music-cover1.jpg" alt="">
-                            </div>
+                        <div class="banner-item-two__thumb position-absolute bottom-0 wow bounceInUp" data-wow-duration="1s" data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="5000" data-tilt-scale="1.06">
+                            <img src="frontend/assets/images/imgs/music-cover1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="banner-item-two">
+                        <div class="banner-item-two__content">
+                            <span class="text-white mb-8 h6 wow bounceInDown">Starting at only Rs 500</span>
+                            <h2 class="banner-item-two__title bounce text-white wow bounceInLeft">Get The Sound You Love For Less</h2>
+                            <a href="<?php echo e(route('shop.index')); ?>" class="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48 wow bounceInUp">
+                                Shop Now<span class="icon text-xl d-flex"><i class="ph ph-shopping-cart-simple"></i> </span>
+                            </a>
+                        </div>
+                        <div class="banner-item-two__thumb position-absolute bottom-0 wow bounceInUp" data-wow-duration="1s" data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="5000" data-tilt-scale="1.06">
+                            <img src="frontend/assets/images/imgs/music-cover1.jpg" alt="">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- ============================ Banner Section End =============================== -->
+</div>
+<!-- ============================ Banner Section End =============================== -->
 
-    <!-- ============================ promotional banner Start ========================== -->
-    <section class="promotional-banner mt-32">
-        <div class="container container-lg">
-            <div class="row gy-4">
-                <div class="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="600">
-                    <div class="position-relative rounded-16 overflow-hidden z-1 p-32">
-                        <img src="frontend/assets/images/bg/promo-bg-img1.png" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 object-fit-cover z-n1">
-                        <div class="flex-between flex-wrap gap-16">
-                            <div class="">
-                                <span class="text-heading text-sm mb-8">Latest Deal</span>
-                                <h6 class="mb-0">iPhone 15 Pro Max</h6>
-                                <a href="shop.html" class="d-inline-flex align-items-center gap-8 mt-16 text-heading text-md fw-medium border border-top-0 border-end-0 border-start-0 border-gray-900 hover-text-main-two-600 hover-border-main-two-600">
-                                    Shop Now
-                                    <span class="icon text-md d-flex"><i class="ph ph-plus"></i></span>
-                                </a>
-                            </div>
-                            <div class="pe-xxl-4">
-                                <img src="frontend/assets/images/imgs/phone.png" alt="" style="width: 130px;">
-                            </div>
+<!-- ============================ promotional banner Start ========================== -->
+<section class="promotional-banner mt-32">
+    <div class="container container-lg">
+        <div class="row gy-4">
+            <div class="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="600">
+                <div class="position-relative rounded-16 overflow-hidden z-1 p-32">
+                    <img src="frontend/assets/images/bg/promo-bg-img1.png" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 object-fit-cover z-n1">
+                    <div class="flex-between flex-wrap gap-16">
+                        <div class="">
+                            <span class="text-heading text-sm mb-8">Latest Deal</span>
+                            <h6 class="mb-0">iPhone 15 Pro Max</h6>
+                            <a href="shop.html" class="d-inline-flex align-items-center gap-8 mt-16 text-heading text-md fw-medium border border-top-0 border-end-0 border-start-0 border-gray-900 hover-text-main-two-600 hover-border-main-two-600">
+                                Shop Now
+                                <span class="icon text-md d-flex"><i class="ph ph-plus"></i></span>
+                            </a>
+                        </div>
+                        <div class="pe-xxl-4">
+                            <img src="frontend/assets/images/imgs/phone.png" alt="" style="width: 130px;">
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="800">
-                    <div class="position-relative rounded-16 overflow-hidden z-1 p-32">
-                        <img src="frontend/assets/images/bg/promo-bg-img2.png" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 object-fit-cover z-n1">
-                        <div class="flex-between flex-wrap gap-16">
-                            <div class="">
-                                <span class="text-heading text-sm mb-8">Get 60% Off</span>
-                                <h6 class="mb-0">Instax Mini 11 Camera</h6>
-                                <a href="shop.html" class="d-inline-flex align-items-center gap-8 mt-16 text-heading text-md fw-medium border border-top-0 border-end-0 border-start-0 border-gray-900 hover-text-main-two-600 hover-border-main-two-600">
-                                    Shop Now
-                                    <span class="icon text-md d-flex"><i class="ph ph-plus"></i></span>
-                                </a>
-                            </div>
-                            <div class="pe-xxl-4">
-                                <img src="frontend/assets/images/imgs/category-3.png" alt="" style="width: 100px;">
-                            </div>
+            </div>
+            <div class="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="800">
+                <div class="position-relative rounded-16 overflow-hidden z-1 p-32">
+                    <img src="frontend/assets/images/bg/promo-bg-img2.png" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 object-fit-cover z-n1">
+                    <div class="flex-between flex-wrap gap-16">
+                        <div class="">
+                            <span class="text-heading text-sm mb-8">Get 60% Off</span>
+                            <h6 class="mb-0">Instax Mini 11 Camera</h6>
+                            <a href="shop.html" class="d-inline-flex align-items-center gap-8 mt-16 text-heading text-md fw-medium border border-top-0 border-end-0 border-start-0 border-gray-900 hover-text-main-two-600 hover-border-main-two-600">
+                                Shop Now
+                                <span class="icon text-md d-flex"><i class="ph ph-plus"></i></span>
+                            </a>
+                        </div>
+                        <div class="pe-xxl-4">
+                            <img src="frontend/assets/images/imgs/category-3.png" alt="" style="width: 100px;">
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="position-relative rounded-16 overflow-hidden z-1 p-32">
-                        <img src="frontend/assets/images/bg/promo-bg-img3.png" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 object-fit-cover z-n1">
-                        <div class="flex-between flex-wrap gap-16">
-                            <div class="">
-                                <span class="text-heading text-sm mb-8">Start From $250</span>
-                                <h6 class="mb-0">Airpod Headphone</h6>
-                                <a href="shop.html" class="d-inline-flex align-items-center gap-8 mt-16 text-heading text-md fw-medium border border-top-0 border-end-0 border-start-0 border-gray-900 hover-text-main-two-600 hover-border-main-two-600">
-                                    Shop Now
-                                    <span class="icon text-md d-flex"><i class="ph ph-plus"></i></span>
-                                </a>
-                            </div>
-                            <div class="pe-xxl-4">
-                                <img src="frontend/assets/images/imgs/headphones.png" alt="" style="width: 90px;">
-                            </div>
+            </div>
+            <div class="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="1000">
+                <div class="position-relative rounded-16 overflow-hidden z-1 p-32">
+                    <img src="frontend/assets/images/bg/promo-bg-img3.png" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 object-fit-cover z-n1">
+                    <div class="flex-between flex-wrap gap-16">
+                        <div class="">
+                            <span class="text-heading text-sm mb-8">Start From $250</span>
+                            <h6 class="mb-0">Airpod Headphone</h6>
+                            <a href="shop.html" class="d-inline-flex align-items-center gap-8 mt-16 text-heading text-md fw-medium border border-top-0 border-end-0 border-start-0 border-gray-900 hover-text-main-two-600 hover-border-main-two-600">
+                                Shop Now
+                                <span class="icon text-md d-flex"><i class="ph ph-plus"></i></span>
+                            </a>
+                        </div>
+                        <div class="pe-xxl-4">
+                            <img src="frontend/assets/images/imgs/headphones.png" alt="" style="width: 90px;">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- ============================ promotional banner End ========================== -->
+    </div>
+</section>
+<!-- ============================ promotional banner End ========================== -->
 
 
-    <!-- ========================= random products Start ================================ -->
+<!-- ========================= random products Start ================================ -->
 
-    <section class="recently-viewed pt-80 overflow-hidden">
-        <div class="container container-lg">
-            <div class="border border-gray-100 p-24 rounded-16">
-                <div class="section-heading mb-24">
-                    <div class="flex-between flex-wrap gap-8">
-                        <h5 class="mb-0 wow bounceInLeft">Latest Products</h5>
-                        <div class="flex-align gap-16 wow bounceInRight">
-                            <a href="<?php echo e(route('shop.index')); ?>" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Products</a>
-                        </div>
+<section class="recently-viewed pt-80 overflow-hidden">
+    <div class="container container-lg">
+        <div class="border border-gray-100 p-24 rounded-16">
+            <div class="section-heading mb-24">
+                <div class="flex-between flex-wrap gap-8">
+                    <h5 class="mb-0 wow bounceInLeft">Latest Products</h5>
+                    <div class="flex-align gap-16 wow bounceInRight">
+                        <a href="<?php echo e(route('shop.index')); ?>" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Products</a>
                     </div>
                 </div>
+            </div>
 
-                <div class="row g-12">
-                    <?php if($products->isNotEmpty()): ?>
-                        <?php $__currentLoopData = $products->take(6); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <!-- Limit to 6 products -->
-                            <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="200">
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                    <a href="<?php echo e(route('showProductDetails', $product->product_id)); ?>" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller</span>
-                                        <img src="<?php echo e(asset('storage/' . $product->images->first()->image_path)); ?>" alt="<?php echo e($product->product_name); ?>" class="w-auto max-w-unset" style="width: 200px; height: 200px; object-fit: cover;">
-                                    </a>
-                                    <div class="product-card__content mt-16">
-                                        <?php if($product->normal_price > $product->total_price): ?>
-                                        <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">
-                                            <?php echo e(round(100 - ($product->total_price / $product->normal_price) * 100)); ?>% OFF
-                                        </span>
+            <div class="row g-12">
+                <?php if($products->isNotEmpty()): ?>
+                <?php $__currentLoopData = $products->take(6); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <!-- Limit to 6 products -->
+                <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration="200">
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="<?php echo e(route('showProductDetails', $product->product_id)); ?>" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Seller</span>
+                            <img src="<?php echo e(asset('storage/' . $product->images->first()->image_path)); ?>" alt="<?php echo e($product->product_name); ?>" class="w-auto max-w-unset" style="width: 200px; height: 200px; object-fit: cover;">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <?php if($product->normal_price > $product->total_price): ?>
+                            <span class="text-main-600 bg-main-50 text-sm fw-medium py-4 px-8">
+                                <?php echo e(round(100 - ($product->total_price / $product->normal_price) * 100)); ?>% OFF
+                            </span>
+                            <?php endif; ?>
+                            <h6 class="title text-lg fw-semibold my-16">
+                                <a href="<?php echo e(route('showProductDetails', $product->product_id)); ?>" class="link text-line-2" tabindex="0"><?php echo e($product->product_name); ?></a>
+                            </h6>
+                            <div class="flex-align gap-6">
+                                <!-- Dynamic Ratings -->
+                                <?php if($product->total_reviews!=0): ?>
+                                <div class="flex-align gap-8">
+                                    <?php
+                                    $fullStars = floor($product->average_rating); // Number of full stars
+                                    $hasHalfStar = ($product->average_rating - $fullStars) >= 0.5; // Half-star condition
+                                    ?>
+                                    <?php for($i = 0; $i < $fullStars; $i++): ?>
+                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                        <?php endfor; ?>
+                                        <?php if($hasHalfStar): ?>
+                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star-half"></i></span>
                                         <?php endif; ?>
-                                        <h6 class="title text-lg fw-semibold my-16">
-                                            <a href="<?php echo e(route('showProductDetails', $product->product_id)); ?>" class="link text-line-2" tabindex="0"><?php echo e($product->product_name); ?></a>
-                                        </h6>
-                                        <div class="flex-align gap-6">
-                                            <!-- Assuming static rating here; could be dynamic if ratings data available -->
-                                            <div class="flex-align gap-8">
-                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                            </div>
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-xs fw-medium text-gray-500">(12K)</span>
-                                        </div>
-
-                                        <div class="flex-align mb-20 mt-16 gap-6">
-                                            <div class="rating-info d-flex gap-2">
-                                                <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by DK Mart</span>
-                                            </div>
-                                            <!-- Heart Icon -->
-                                            <button type="button" class="heart-icon ms-auto" 
-                                                    id="wishlist-icon-<?php echo e($product->product_id); ?>" 
-                                                    onclick="toggleWishlist(this, '<?php echo e($product->product_id); ?>')">
-                                                <i class="fa-regular fa-heart" style="font-size: 15px;"></i>
-                                            </button>
-                                        </div>
-                                        <div class="product-card__price mt-16 mb-30">
-                                            <?php if($product->normal_price > $product->total_price): ?>
-                                            <span class="text-gray-400 text-md fw-semibold text-decoration-line-through">$<?php echo e($product->normal_price); ?></span>
-                                            <?php endif; ?>
-                                            <span class="text-heading text-md fw-semibold ">LKR <?php echo e($product->total_price); ?> <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                        </div>
-                                    </div>
                                 </div>
+
+                                <span class="text-xs fw-medium text-gray-500"><?php echo e(number_format($product->average_rating, 1)); ?></span>
+                                <span class="text-xs fw-medium text-gray-500">(<?php echo e($product->total_reviews); ?>)</span>
+                                <?php endif; ?>
                             </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php else: ?>
-                        <p>No products available at the moment.</p>
-                    <?php endif; ?>
+
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <div class="rating-info d-flex gap-2">
+                                    <span class="py-2 px-8 text-xs rounded-pill text-main-two-600 bg-main-two-50 mt-16">Fulfilled by DK Mart</span>
+                                </div>
+                                <!-- Heart Icon -->
+                                <button type="button" class="heart-icon ms-auto"
+                                    id="wishlist-icon-<?php echo e($product->product_id); ?>"
+                                    onclick="toggleWishlist(this, '<?php echo e($product->product_id); ?>')">
+                                    <i class="fa-regular fa-heart" style="font-size: 15px;"></i>
+                                </button>
+                            </div>
+                            <div class="product-card__price mt-16 mb-30">
+                                <?php if($product->normal_price > $product->total_price): ?>
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through">$<?php echo e($product->normal_price); ?></span>
+                                <?php endif; ?>
+                                <span class="text-heading text-md fw-semibold ">LKR <?php echo e($product->total_price); ?> <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php else: ?>
+                <p>No products available at the moment.</p>
+                <?php endif; ?>
             </div>
         </div>
-    </section>
-    <!-- ========================= recently viewed End ================================ -->
+    </div>
+</section>
+<!-- ========================= recently viewed End ================================ -->
 
 
-    <!-- ========================= Popular Products Start ================================ -->
-    <section class="popular-products pt-80 overflow-hidden">
-        <div class="container container-lg">
-            <div class="border border-gray-100 p-24 rounded-16">
-                <div class="section-heading mb-24">
-                    <div class="flex-between flex-wrap gap-8">
-                        <h5 class="mb-0 wow bounceInLeft">Popular Products</h5>
-                        <div class="flex-align gap-16 wow bounceInRight">
-                            <a href="shop.html" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Products</a>
-                        </div>
+<!-- ========================= Popular Products Start ================================ -->
+<section class="popular-products pt-80 overflow-hidden">
+    <div class="container container-lg">
+        <div class="border border-gray-100 p-24 rounded-16">
+            <div class="section-heading mb-24">
+                <div class="flex-between flex-wrap gap-8">
+                    <h5 class="mb-0 wow bounceInLeft">Popular Products</h5>
+                    <div class="flex-align gap-16 wow bounceInRight">
+                        <a href="shop.html" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Products</a>
                     </div>
                 </div>
+            </div>
 
-                <div class="popular-products-box rounded-16 overflow-hidden flex-between position-relative z-1 mb-24">
-                    <img src="frontend/assets/images/bg/expensive-offer-bg.png" alt="" class="position-absolute inset-block-start-0 inset-block-start-0 w-100 h-100 z-n1">
-                    <div class="d-lg-block d-none ps-32" data-aos="zoom-in" data-aos-duration="800">
-                        <img src="frontend/assets/images/imgs/img.png" alt="" style="width:250px;">
+            <div class="popular-products-box rounded-16 overflow-hidden flex-between position-relative z-1 mb-24">
+                <img src="frontend/assets/images/bg/expensive-offer-bg.png" alt="" class="position-absolute inset-block-start-0 inset-block-start-0 w-100 h-100 z-n1">
+                <div class="d-lg-block d-none ps-32" data-aos="zoom-in" data-aos-duration="800">
+                    <img src="frontend/assets/images/imgs/img.png" alt="" style="width:250px;">
+                </div>
+                <div class="popular-products-box__content px-sm-4 d-block w-100 text-center py-20">
+                    <div class="flex-align gap-16 justify-content-center" data-aos="zoom-in" data-aos-duration="800">
+                        <h6 class="mb-0">Exclusive Offer</h6>
+                        <h4 class="mb-0">45% OFF</h4>
                     </div>
-                    <div class="popular-products-box__content px-sm-4 d-block w-100 text-center py-20">
-                        <div class="flex-align gap-16 justify-content-center" data-aos="zoom-in" data-aos-duration="800">
-                            <h6 class="mb-0">Exclusive Offer</h6>
-                            <h4 class="mb-0">45% OFF</h4>
-                        </div>
-                        <div class="countdown mt-4" id="countdown10">
-                            <ul class="countdown-list style-four flex-center flex-wrap">
-                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
-                                    <span class="days"></span>Days
-                                </li>
-                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
-                                    <span class="hours"></span>Hour
-                                </li>
-                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
-                                    <span class="minutes"></span>Min
-                                </li>
-                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
-                                    <span class="seconds"></span>Sec
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="countdown mt-4" id="countdown10">
+                        <ul class="countdown-list style-four flex-center flex-wrap">
+                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
+                                <span class="days"></span>Days
+                            </li>
+                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
+                                <span class="hours"></span>Hour
+                            </li>
+                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
+                                <span class="minutes"></span>Min
+                            </li>
+                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
+                                <span class="seconds"></span>Sec
+                            </li>
+                        </ul>
                     </div>
-                    <div class="d-lg-block d-none" data-aos="zoom-in" data-aos-duration="800">
+                </div>
+                <div class="d-lg-block d-none" data-aos="zoom-in" data-aos-duration="800">
                     <img src="frontend/assets/images/imgs/img2.png" alt="" style="width:300px;">
-                    </div>
                 </div>
+            </div>
 
-                <div class="row gy-4">
-                    <?php $__currentLoopData = $categories->slice(0, 8); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-xxl-3 col-xl-4 col-sm-6 col-xs-6 wow bounceIn">
-                            <div class="product-card h-100 d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                <a href="<?php echo e(route('shop.index')); ?>" class="product-card__thumb flex-center h-unset rounded-8 position-relative w-unset flex-shrink-0 p-0" tabindex="0">
-                                    <img src="
+            <div class="row gy-4">
+                <?php $__currentLoopData = $categories->slice(0, 8); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="col-xxl-3 col-xl-4 col-sm-6 col-xs-6 wow bounceIn">
+                    <div class="product-card h-100 d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="<?php echo e(route('shop.index')); ?>" class="product-card__thumb flex-center h-unset rounded-8 position-relative w-unset flex-shrink-0 p-0" tabindex="0">
+                            <img src="
                                         <?php if(Str::contains(strtolower($category->name), 'women')): ?>
                                             <?php echo e(asset('frontend/assets/images/imgs/category-1.jpg')); ?>
 
@@ -259,138 +267,147 @@
 
                                         <?php endif; ?>
                                     " alt="<?php echo e($category->name); ?>" class="w-100 max-w-unset">
-                                </a>
-                                <div class="product-card__content flex-grow-1">
-                                    <h6 class="title text-lg fw-semibold mb-12">
-                                        <a href="<?php echo e(route('shop.index')); ?>" class="link text-line-2" tabindex="0"><?php echo e($category->name); ?></a>
-                                    </h6>
-                                    <?php $__currentLoopData = $category->subcategories->take(4); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <span class="text-gray-600 text-sm mb-4"><?php echo e($subcategory->name); ?></span><br>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </a>
+                        <div class="product-card__content flex-grow-1">
+                            <h6 class="title text-lg fw-semibold mb-12">
+                                <a href="<?php echo e(route('shop.index')); ?>" class="link text-line-2" tabindex="0"><?php echo e($category->name); ?></a>
+                            </h6>
+                            <?php $__currentLoopData = $category->subcategories->take(4); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <span class="text-gray-600 text-sm mb-4"><?php echo e($subcategory->name); ?></span><br>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                                    <a href="<?php echo e(route('shop.index')); ?>" class="text-tertiary-600 flex-align gap-8 mt-24">
-                                        All Categories
-                                        <i class="ph ph-arrow-right d-flex"></i>
-                                    </a>
-                                </div>
-                            </div>
+                            <a href="<?php echo e(route('shop.index')); ?>" class="text-tertiary-600 flex-align gap-8 mt-24">
+                                All Categories
+                                <i class="ph ph-arrow-right d-flex"></i>
+                            </a>
                         </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </div>
+                </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ========================= Popular Products End ================================ -->
+
+<!-- ========================= Deals Week Start ================================ -->
+<section class="deals-weeek pt-80 overflow-hidden">
+    <div class="container container-lg">
+        <div class="border border-gray-100 p-24 rounded-16">
+            <div class="section-heading mb-24">
+                <div class="flex-between flex-wrap gap-8">
+                    <h5 class="mb-0 wow bounceInLeft">Deal of The Week</h5>
+                    <div class="flex-align gap-16 wow bounceInRight">
+                        <a href="shop.html" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
+                        <div class="flex-align gap-8">
+                            <button type="button" id="deal-week-prev" class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-neutral-600 text-xl hover-bg-neutral-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-left"></i>
+                            </button>
+                            <button type="button" id="deal-week-next" class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-neutral-600 text-xl hover-bg-neutral-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deal-week-box rounded-16 overflow-hidden flex-between position-relative z-1 mb-24">
+                <img src="frontend/assets/images/bg/week-deal-bg.png" alt="" class="position-absolute inset-block-start-0 inset-block-start-0 w-100 h-100 z-n1 object-fit-cover">
+                <div class="d-lg-block d-none ps-22 flex-shrink-0" data-aos="zoom-in">
+                    <img src="frontend/assets/images/imgs/deals2.png" alt="" style="width: 350px">
+                </div>
+                <div class="deal-week-box__content px-sm-4 d-block w-100">
+                    <h6 class="mb-20 wow bounceIn">Apple AirPods Max, Over Ear Headphones</h6>
+                    <div class="countdown mt-20" id="countdown4">
+                        <ul class="countdown-list style-four flex-left flex-wrap">
+                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600">
+                                <span class="days"></span>Days
+                            </li>
+                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600">
+                                <span class="hours"></span>Hour
+                            </li>
+                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600">
+                                <span class="minutes"></span>Min
+                            </li>
+                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600">
+                                <span class="seconds"></span>Sec
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
             </div>
-        </div>
-    </section>
-    <!-- ========================= Popular Products End ================================ -->
 
-    <!-- ========================= Deals Week Start ================================ -->
-    <section class="deals-weeek pt-80 overflow-hidden">
-        <div class="container container-lg">
-            <div class="border border-gray-100 p-24 rounded-16">
-                <div class="section-heading mb-24">
-                    <div class="flex-between flex-wrap gap-8">
-                        <h5 class="mb-0 wow bounceInLeft">Deal of The Week</h5>
-                        <div class="flex-align gap-16 wow bounceInRight">
-                            <a href="shop.html" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
-                            <div class="flex-align gap-8">
-                                <button type="button" id="deal-week-prev" class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-neutral-600 text-xl hover-bg-neutral-600 hover-text-white transition-1">
-                                    <i class="ph ph-caret-left"></i>
-                                </button>
-                                <button type="button" id="deal-week-next" class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-neutral-600 text-xl hover-bg-neutral-600 hover-text-white transition-1">
-                                    <i class="ph ph-caret-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="deal-week-box rounded-16 overflow-hidden flex-between position-relative z-1 mb-24">
-                    <img src="frontend/assets/images/bg/week-deal-bg.png" alt="" class="position-absolute inset-block-start-0 inset-block-start-0 w-100 h-100 z-n1 object-fit-cover">
-                    <div class="d-lg-block d-none ps-22 flex-shrink-0" data-aos="zoom-in">
-                        <img src="frontend/assets/images/imgs/deals2.png" alt="" style="width: 350px">
-                    </div>
-                    <div class="deal-week-box__content px-sm-4 d-block w-100">
-                        <h6 class="mb-20 wow bounceIn">Apple AirPods Max, Over Ear Headphones</h6>
-                        <div class="countdown mt-20" id="countdown4">
-                            <ul class="countdown-list style-four flex-left flex-wrap">
-                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600">
-                                    <span class="days"></span>Days
-                                </li>
-                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600">
-                                    <span class="hours"></span>Hour
-                                </li>
-                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600">
-                                    <span class="minutes"></span>Min
-                                </li>
-                                <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600">
-                                    <span class="seconds"></span>Sec
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                </div>
-
-                <div class="deals-week-slider arrow-style-two">
-                    <?php $__currentLoopData = $products->slice(0, 10); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div data-aos="fade-up" data-aos-duration="200">
-                            <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                <a href="<?php echo e(route('showProductDetails', $product->product_id)); ?>" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                    <?php if($product->quantity == 0): ?>
-                                        <span class="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
-                                    <?php endif; ?>
-                                    <img src="<?php echo e(asset('storage/' . $product->images->first()->image_path)); ?>" alt="<?php echo e($product->product_name); ?>" class="w-auto max-w-unset" style="width: 200px; height: 200px; object-fit: cover;">
-                                </a>
-                                <div class="product-card__content mt-16">
-                                    <div class="flex-align mb-20 mt-16 gap-6">
-                                        <div class="rating-info d-flex gap-2">
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-15 fw-medium text-warning-600 d-flex">
-                                                <i class="ph-fill ph-star"></i>
-                                            </span>
-                                            <span class="text-xs fw-medium text-gray-500">(17k)</span>
-                                        </div>
-                                        <!-- Heart Icon -->
-                                        <button type="button" class="heart-icon ms-auto" 
-                                                id="wishlist-icon-<?php echo e($product->product_id); ?>" 
-                                                onclick="toggleWishlist(this, '<?php echo e($product->product_id); ?>')">
-                                            <i class="fa-regular fa-heart" style="font-size: 15px;"></i>
-                                        </button>
-                                    </div>
-                                    <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                        <a href="<?php echo e(route('showProductDetails', $product->product_id)); ?>" class="link text-line-2" tabindex="0"><?php echo e($product->product_name); ?></a>
-                                    </h6>
-                                    <div class="flex-align gap-4">
-                                        <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                        <span class="text-gray-500 text-xs">By <?php echo e($product->seller_name ?? 'Store Name'); ?></span>
-                                    </div>
-                                    <div class="mt-8">
-                                        <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Sold Progress" aria-valuenow="<?php echo e($product->sold_percentage ?? 35); ?>" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: <?php echo e($product->sold_percentage ?? 35); ?>%"></div>
-                                        </div>
-                                        <span class="text-gray-900 text-xs fw-medium mt-8">Sold: <?php echo e($product->sold_units ?? 18); ?>/<?php echo e($product->total_units ?? 35); ?></span>
-                                    </div>
-
-                                    <div class="product-card__price my-20">
-                                        <span class="text-heading text-md fw-semibold ">Rs <?php echo e($product->normal_price); ?> <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                                    </div>
-
-                                    <a href="" style="width:230px" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
-                                        Add To Cart <i class="ph ph-shopping-cart"></i>
-                                    </a>
+            <div class="deals-week-slider arrow-style-two">
+                <?php $__currentLoopData = $products->slice(0, 10); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div data-aos="fade-up" data-aos-duration="200">
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="<?php echo e(route('showProductDetails', $product->product_id)); ?>" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <?php if($product->quantity == 0): ?>
+                            <span class="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sold</span>
+                            <?php endif; ?>
+                            <img src="<?php echo e(asset('storage/' . $product->images->first()->image_path)); ?>" alt="<?php echo e($product->product_name); ?>" class="w-auto max-w-unset" style="width: 200px; height: 200px; object-fit: cover;">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <?php if($product->total_reviews!=0): ?>
+                                <div class="rating-info d-flex gap-2">
+                                    <?php
+                                    $fullStars = floor($product->average_rating); // Number of full stars
+                                    $hasHalfStar = ($product->average_rating - $fullStars) >= 0.5; // Half-star condition
+                                    ?>
+                                    <?php for($i = 0; $i < $fullStars; $i++): ?>
+                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                        <?php endfor; ?>
+                                        <?php if($hasHalfStar): ?>
+                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star-half"></i></span>
+                                        <?php endif; ?>
+                                        <span class="text-xs fw-medium text-gray-500"><?php echo e(number_format($product->average_rating, 1)); ?></span>
+                                        <span class="text-xs fw-medium text-gray-500">(<?php echo e($product->total_reviews); ?>)</span>
                                 </div>
+                                <?php endif; ?>
+                                <!-- Heart Icon -->
+                                <button type="button" class="heart-icon ms-auto"
+                                    id="wishlist-icon-<?php echo e($product->product_id); ?>"
+                                    onclick="toggleWishlist(this, '<?php echo e($product->product_id); ?>')">
+                                    <i class="fa-regular fa-heart" style="font-size: 15px;"></i>
+                                </button>
                             </div>
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="<?php echo e(route('showProductDetails', $product->product_id)); ?>" class="link text-line-2" tabindex="0"><?php echo e($product->product_name); ?></a>
+                            </h6>
+                            <div class="flex-align gap-4">
+                                <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
+                                <span class="text-gray-500 text-xs">By <?php echo e($product->seller_name ?? 'Store Name'); ?></span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Sold Progress" aria-valuenow="<?php echo e($product->sold_percentage ?? 35); ?>" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: <?php echo e($product->sold_percentage ?? 35); ?>%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: <?php echo e($product->sold_units ?? 18); ?>/<?php echo e($product->total_units ?? 35); ?></span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-heading text-md fw-semibold ">Rs <?php echo e($product->normal_price); ?> <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+
+                            <a href="" style="width:230px" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i>
+                            </a>
                         </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </div>
                 </div>
-
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
+
         </div>
-    </section>
-    <!-- ========================= Deals Week End ================================ -->
+    </div>
+</section>
+<!-- ========================= Deals Week End ================================ -->
 
 
-    <!-- ========================= Top Selling Products Start ================================ 
+<!-- ========================= Top Selling Products Start ================================ 
     <section class="top-selling-products pt-80 overflow-hidden">
         <div class="container container-lg">
             <div class="border border-gray-100 p-24 rounded-16">
@@ -622,7 +639,7 @@
     ========================= Top Selling Products End ================================ -->
 
 
-    <!-- ========================= Trending Products Start ================================ 
+<!-- ========================= Trending Products Start ================================ 
     <section class="trending-productss pt-80 overflow-hidden">
         <div class="container container-lg">
             <div class="border border-gray-100 p-24 rounded-16">
@@ -2089,7 +2106,7 @@
     ========================= Trending Products End ================================ -->
 
 
-    <!-- =============================== Discount Start ============================ 
+<!-- =============================== Discount Start ============================ 
     <section class="discount py-80">
         <div class="container container-lg">
             <div class="row gy-4">
@@ -2128,7 +2145,7 @@
     </section>
      =============================== Discount End ============================ -->
 
-   <!--  <section class="featured-products overflow-hidden">
+<!--  <section class="featured-products overflow-hidden">
         <div class="container container-lg">
             <div class="row g-4 flex-wrap-reverse">
                 <div class="col-xxl-8">
@@ -2370,7 +2387,7 @@
     </section>-->
 
 
-    <!-- ========================= Big Deal Section Start =============================== 
+<!-- ========================= Big Deal Section Start =============================== 
     <div class="big-deal rounded-16 overflow-hidden flex-between position-relative mb-24 py-80">
         <div class="container container-lg">
             <div class="big-deal-box position-relative z-1 rounded-16 py-40 overflow-hidden">
@@ -2394,7 +2411,7 @@
      ========================= Big Deal Section End =============================== -->
 
 
-    <!-- ========================= Top Selling Products Start ================================ 
+<!-- ========================= Top Selling Products Start ================================ 
     <section class="recommended overflow-hidden">
         <div class="container container-lg">
             <div class="row g-12">
@@ -2607,10 +2624,10 @@
      ========================= Top Selling Products End ================================ -->
 
 
-    
 
 
-    <!-- =========================== Top Vendor Section Start ========================== 
+
+<!-- =========================== Top Vendor Section Start ========================== 
     <section class="top-vendor py-80 overflow-hidden">
         <div class="container container-lg">
             <div class="border border-gray-100 p-24 rounded-16">
@@ -2829,7 +2846,7 @@
      =========================== Top Vendor Section End ========================== -->
 
 
-    <!-- ================================== Day Sale Section Start =================================== 
+<!-- ================================== Day Sale Section Start =================================== 
     <section class="day-sale">
         <div class="container container-lg">
             <div class="day-sale-box rounded-16 overflow-hidden flex-between position-relative mb-24 z-1">
@@ -2854,10 +2871,10 @@
     </section>
      ================================== Day Sale Section End =================================== -->
 
-    
 
 
-    <!-- ============================== Top Brand Section Start ==================================== 
+
+<!-- ============================== Top Brand Section Start ==================================== 
     <div class="top-brand py-80">
         <div class="container container-lg">
             <div class="border border-gray-100 p-24 rounded-16">
@@ -2927,92 +2944,95 @@
         </div>
     </div>
      ============================== Top Brand Section End ==================================== -->
-    
-    
 
-    <!-- =============================== Newsletter-two Section Start ============================ -->
-    <div class="newsletter-two bg-neutral-600 py-32 overflow-hidden" data-aos="fade-up" data-aos-duration="600">
-        <div class="container container-lg">
-            <div class="flex-between gap-20 flex-wrap">
-                <div class="flex-align gap-22">
-                    <span class="d-flex"><img src="frontend/assets/images/icon/envelop.png" alt=""></span>
-                    <div>
-                        <h5 class="text-white mb-12 fw-medium">Join Our Newsletter, Get 10% Off</h5>
-                        <p class="text-white fw-light">Get all latest information on events, sales and offer</p>
-                    </div>
+
+
+<!-- =============================== Newsletter-two Section Start ============================ -->
+<div class="newsletter-two bg-neutral-600 py-32 overflow-hidden" data-aos="fade-up" data-aos-duration="600">
+    <div class="container container-lg">
+        <div class="flex-between gap-20 flex-wrap">
+            <div class="flex-align gap-22">
+                <span class="d-flex"><img src="frontend/assets/images/icon/envelop.png" alt=""></span>
+                <div>
+                    <h5 class="text-white mb-12 fw-medium">Join Our Newsletter, Get 10% Off</h5>
+                    <p class="text-white fw-light">Get all latest information on events, sales and offer</p>
                 </div>
-                <form action="#" class="newsletter-two__form w-50">
-                    <div class="flex-align gap-16">
-                        <input type="text" class="common-input style-two rounded-8 flex-grow-1 py-14" placeholder="Enter your email address">
-                        <button type="submit" class="btn btn-main-two flex-shrink-0 rounded-8 py-16"> Subscribe</button>
-                    </div>
-                </form>
             </div>
+            <form action="#" class="newsletter-two__form w-50">
+                <div class="flex-align gap-16">
+                    <input type="text" class="common-input style-two rounded-8 flex-grow-1 py-14" placeholder="Enter your email address">
+                    <button type="submit" class="btn btn-main-two flex-shrink-0 rounded-8 py-16"> Subscribe</button>
+                </div>
+            </form>
         </div>
     </div>
-    <!-- =============================== Newsletter-two Section End ============================ -->
-    <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const productIds = [...document.querySelectorAll('.heart-icon')].map(button => button.id.replace('wishlist-icon-', ''));
+</div>
+<!-- =============================== Newsletter-two Section End ============================ -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const productIds = [...document.querySelectorAll('.heart-icon')].map(button => button.id.replace('wishlist-icon-', ''));
 
-    // Fetch wishlist status for all products on the page
-    fetch('/wishlist/check-multiple', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>'
-        },
-        body: JSON.stringify({ product_ids: productIds })
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Loop through each product and update the icon if it's in the wishlist
-        data.wishlist.forEach(productId => {
-            const heartIcon = document.querySelector(`#wishlist-icon-${productId}`);
-            if (heartIcon) {
-                heartIcon.classList.add('active');
-                const icon = heartIcon.querySelector('i');
-                icon.classList.replace('fa-regular', 'fa-solid');
-                icon.style.color = 'red';
-            }
-        });
-    })
-    .catch(error => console.error('Error:', error));
-});
+        // Fetch wishlist status for all products on the page
+        fetch('/wishlist/check-multiple', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>'
+                },
+                body: JSON.stringify({
+                    product_ids: productIds
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Loop through each product and update the icon if it's in the wishlist
+                data.wishlist.forEach(productId => {
+                    const heartIcon = document.querySelector(`#wishlist-icon-${productId}`);
+                    if (heartIcon) {
+                        heartIcon.classList.add('active');
+                        const icon = heartIcon.querySelector('i');
+                        icon.classList.replace('fa-regular', 'fa-solid');
+                        icon.style.color = 'red';
+                    }
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    });
 
-function toggleWishlist(button, productId) {
-    // Toggle active state
-    button.classList.toggle('active');
-    const icon = button.querySelector('i');
+    function toggleWishlist(button, productId) {
+        // Toggle active state
+        button.classList.toggle('active');
+        const icon = button.querySelector('i');
 
-    if (button.classList.contains('active')) {
-        icon.classList.replace('fa-regular', 'fa-solid');
-        icon.style.color = 'red';
-    } else {
-        icon.classList.replace('fa-solid', 'fa-regular');
-        icon.style.color = '#ccc';
-    }
-
-    // Send AJAX request to toggle wishlist status
-    fetch('/wishlist/toggle', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>'
-        },
-        body: JSON.stringify({ product_id: productId })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            alert(data.error); // If not logged in or another error
+        if (button.classList.contains('active')) {
+            icon.classList.replace('fa-regular', 'fa-solid');
+            icon.style.color = 'red';
         } else {
-            alert(data.message); // Display success message
+            icon.classList.replace('fa-solid', 'fa-regular');
+            icon.style.color = '#ccc';
         }
-    })
-    .catch(error => console.error('Error:', error));
-}
 
+        // Send AJAX request to toggle wishlist status
+        fetch('/wishlist/toggle', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>'
+                },
+                body: JSON.stringify({
+                    product_id: productId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error); // If not logged in or another error
+                } else {
+                    alert(data.message); // Display success message
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
 </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('frontend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/frontend/home.blade.php ENDPATH**/ ?>

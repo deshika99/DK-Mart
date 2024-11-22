@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminReportController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\VendorReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminTemplateController;
@@ -187,7 +188,12 @@ Route::get('/admin/affiliate_customers', [AffiliateUserController::class, 'showA
 Route::post('/admin/affiliates/{id}/status/{status}', [AffiliateUserController::class, 'updateStatus'])->name('admin.affiliates.updateStatus');
 Route::get('/admin/Affiliatecustomer-details/{id}', [AffiliateUserController::class, 'showDetails'])->name('admin.affiliates.show');
 
-Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
+Route::get('/admin/reviews', [ReviewsController::class, 'adminView'])->name('adminReviews');
+Route::get('/admin/reviews-details/{id}', [ReviewsController::class, 'adminViewDetails'])->name('viewReviewDetails');
+Route::patch('/reviews/{id}/status', [ReviewsController::class, 'updateStatus'])->name('reviews.updateStatus');
+Route::delete('/reviews/{review}', [ReviewsController::class, 'destroy'])->name('admin.reviews.destroy');
+
+
 Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inquiries');
 
 
@@ -300,9 +306,7 @@ Route::get('home/My-Account/my-orders', function () {
     return view('user_dashboard.my-orders');
 })->name('my-orders');
 
-Route::get('home/My-Account/My-Reviews', function () {
-    return view('user_dashboard.My-Reviews');
-})->name('My-Reviews');
+
 
 Route::get('home/My-Account/inquiries', function () {
     return view('user_dashboard.inquiries');
@@ -324,11 +328,13 @@ Route::get('home/My-Account/returns-details', function () {
     return view('user_dashboard.returns-details');
 })->name('returns.details');
 
-Route::get('home/My-Account/Write-Reviews', function () {
-    return view('user_dashboard.Write-Reviews');
-})->name('Write-Reviews');
 
 
+//reviews
+Route::get('home/My-Account/My-Reviews',[ReviewsController::class,'myReviews'])->name('My-Reviews');
+Route::get('home/My-Account/Write-Reviews/{id}',[ReviewsController::class,'writeReviews'])->name('write-review');
+Route::post('/reviews/{id}', [ReviewsController::class, 'store'])->name('reviews.store');
+Route::delete('/home/reviews/{review}', [ReviewsController::class, 'customerDestroy'])->name('customer.reviews.destroy');
 
 
 
@@ -361,3 +367,9 @@ Route::patch('/vendor_dashboard/order/update-status/{order_code}', [VendorOrderC
 // vendor_reports
 Route::get('/vendor/report/order_report', [VendorReportController::class, 'orderReport'])->name('vendorOrderReport');
 Route::get('/vendor/report/product_report', [VendorReportController::class, 'productReport'])->name('vendorProductReport');
+
+
+
+
+
+

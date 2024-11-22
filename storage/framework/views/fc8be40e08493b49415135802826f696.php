@@ -1,6 +1,4 @@
-@extends('layouts.user_sidebar')
-
-@section('dashboard-content')
+<?php $__env->startSection('dashboard-content'); ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <style>
@@ -141,45 +139,45 @@
         <div class="col-md-1 d-flex align-items-center">
             <div style="margin-right: 15px;">
                 <a href="#">
-                    @if($product->images->isNotEmpty())
-                    <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" width="70" height="70" class="img-xs" alt="Item" />
-                    @else
-                    <img src="{{ asset('path/to/default-image.jpg') }}" width="40" height="40" class="img-xs" alt="Default Image" />
-                    @endif
+                    <?php if($product->images->isNotEmpty()): ?>
+                    <img src="<?php echo e(asset('storage/' . $product->images->first()->image_path)); ?>" width="70" height="70" class="img-xs" alt="Item" />
+                    <?php else: ?>
+                    <img src="<?php echo e(asset('path/to/default-image.jpg')); ?>" width="40" height="40" class="img-xs" alt="Default Image" />
+                    <?php endif; ?>
                 </a>
             </div>
         </div>
 
         <div class="col-md-3 d-flex flex-column justify-content-center" style="font-size: 13px;margin-top:15px;color:black;">
-            <span style="font-weight: 600;">{{$product->product_name}}</span>
+            <span style="font-weight: 600;"><?php echo e($product->product_name); ?></span>
             <div class="d-flex align-items-center">
-                @if ($orderItem->color!=null)
+                <?php if($orderItem->color!=null): ?>
                 <span class="d-flex align-items-center me-2">
                     <strong>Color:</strong>
-                    <span style="display: inline-block; background-color: {{ $orderItem->color }}; border: 1px solid #e8ebec; height: 15px; width: 15px; border-radius: 50%;" title="Color"></span>
+                    <span style="display: inline-block; background-color: <?php echo e($orderItem->color); ?>; border: 1px solid #e8ebec; height: 15px; width: 15px; border-radius: 50%;" title="Color"></span>
                 </span> |
-                @endif
-                @if ($orderItem->size!=null)
-                <span class="me-2 ms-2">Size: <span style="font-weight: 600;">{{ $orderItem->size }}</span></span> |
-                @endif
-                <span class="ms-2">Qty: <span style="font-weight: 600;">{{ $orderItem->quantity }}</span></span>
+                <?php endif; ?>
+                <?php if($orderItem->size!=null): ?>
+                <span class="me-2 ms-2">Size: <span style="font-weight: 600;"><?php echo e($orderItem->size); ?></span></span> |
+                <?php endif; ?>
+                <span class="ms-2">Qty: <span style="font-weight: 600;"><?php echo e($orderItem->quantity); ?></span></span>
             </div>
-            <h6 class="mt-2" style="font-weight: bold;font-size: 15px">Rs {{ number_format($orderItem->cost, 2) }}</h6>
+            <h6 class="mt-2" style="font-weight: bold;font-size: 15px">Rs <?php echo e(number_format($orderItem->cost, 2)); ?></h6>
         </div> 
     </div>
 
-    <form method="POST" action="{{ route('reviews.store',$orderItem->id) }}" enctype="multipart/form-data">
-        @csrf
-        <input type="hidden" name="product_id" value="{{ $product->id }}">
+    <form method="POST" action="<?php echo e(route('reviews.store',$orderItem->id)); ?>" enctype="multipart/form-data">
+        <?php echo csrf_field(); ?>
+        <input type="hidden" name="product_id" value="<?php echo e($product->id); ?>">
 
 
         <!-- Rating -->
         <div class="review-rating-container">
             <h6>Overall Rating</h6>
             <div class="review-rating">
-                @for ($i = 1; $i <= 5; $i++)  
-                    <i class="far fa-star" data-value="{{ $i }}"></i>
-                    @endfor
+                <?php for($i = 1; $i <= 5; $i++): ?>  
+                    <i class="far fa-star" data-value="<?php echo e($i); ?>"></i>
+                    <?php endfor; ?>
             </div>
             <input type="hidden" name="rating" id="rating-input">
         </div>
@@ -348,4 +346,5 @@
         });
     </script>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.user_sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/user_dashboard/Write-Reviews.blade.php ENDPATH**/ ?>
