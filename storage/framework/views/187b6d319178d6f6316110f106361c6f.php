@@ -240,6 +240,7 @@
                         <p>Don't have an account? 
                             <a href="<?php echo e(route('register')); ?>" class="text-primary">Sign up</a>
                         </p>
+                    </div>
                 </form>
                 </div>
                 </div>

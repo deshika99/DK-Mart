@@ -9,7 +9,7 @@
                             <div class="banner-item-two__content">
                                 <span class="mb-8 text-white h6 wow bounceInDown">Starting at only Rs 500</span>
                                 <h2 class="text-white banner-item-two__title bounce wow bounceInLeft">Get The Sound You Love For Less</h2>
-                                <a href="<?php echo e(route('shop.index')); ?>" class="gap-8 mt-48 btn btn-outline-white d-inline-flex align-items-center rounded-pill wow bounceInUp">
+                                <a href="/shop" class="gap-8 mt-48 btn btn-outline-white d-inline-flex align-items-center rounded-pill wow bounceInUp">
                                     Shop Now<span class="text-xl icon d-flex"><i class="ph ph-shopping-cart-simple"></i> </span>
                                 </a>
                             </div>
@@ -121,34 +121,7 @@
                 </div>
             </div>
 
-            <div class="mb-24 overflow-hidden deal-week-box rounded-16 flex-between position-relative z-1">
-                <img src="frontend/assets/images/bg/week-deal-bg.png" alt="" class="position-absolute inset-block-start-0 w-100 h-100 z-n1 object-fit-cover">
-                <div class="flex-shrink-0 d-lg-block d-none ps-22" data-aos="zoom-in">
-                    <img src="frontend/assets/images/imgs/deals2.png" alt="" style="width: 350px">
-                </div>
-                <div class="deal-week-box__content px-sm-4 d-block w-100">
-                    <h6 class="mb-20 wow bounceIn">Apple AirPods Max, Over Ear Headphones</h6>
-                    <div class="mt-20 countdown" id="countdown4">
-                        <ul class="flex-wrap countdown-list style-four flex-left">
-                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                <span class="days"></span>Days
-                            </li>
-                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                <span class="hours"></span>Hour
-                            </li>
-                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                <span class="minutes"></span>Min
-                            </li>
-                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                <span class="seconds"></span>Sec
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-            </div>
-
-            <div class="deals-week-slider arrow-style-two">
+           <div class="deals-week-slider arrow-style-two">
                 <?php $__currentLoopData = $products->slice(0, 10); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div data-aos="fade-up" data-aos-duration="200">
                         <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
@@ -211,13 +184,13 @@
 <!-- ========================= new section end================================ -->
 
 
- <!-- ========================= Popular Products Start ================================ -->
-    <section class="overflow-hidden popular-products pt-80">
+ <!-- ========================= categories section Start ================================ -->
+    <section class="overflow-hidden popular-products pt-80"> 
         <div class="container container-lg">
             <div class="p-24 border border-gray-100 rounded-16">
                 <div class="mb-24 section-heading">
                     <div class="flex-wrap gap-8 flex-between">
-                        <h5 class="mb-0 wow bounceInLeft">Popular Products</h5>
+                        <h5 class="mb-0 wow bounceInLeft">Categories</h5>
                         <div class="gap-16 flex-align wow bounceInRight">
                             <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Products</a>
                         </div>
@@ -316,7 +289,7 @@
             </div>
         </div>
     </section>
-    <!-- ========================= Popular Products End ================================ -->
+    <!-- ========================= categories section End ================================ -->
 
     <!-- ========================= Deals Week Start ================================ -->
     <section class="overflow-hidden deals-weeek pt-80">
@@ -339,34 +312,7 @@
                     </div>
                 </div>
 
-                <div class="mb-24 overflow-hidden deal-week-box rounded-16 flex-between position-relative z-1">
-                    <img src="frontend/assets/images/bg/week-deal-bg.png" alt="" class="position-absolute inset-block-start-0 w-100 h-100 z-n1 object-fit-cover">
-                    <div class="flex-shrink-0 d-lg-block d-none ps-22" data-aos="zoom-in">
-                        <img src="frontend/assets/images/imgs/deals2.png" alt="" style="width: 350px">
-                    </div>
-                    <div class="deal-week-box__content px-sm-4 d-block w-100">
-                        <h6 class="mb-20 wow bounceIn">Apple AirPods Max, Over Ear Headphones</h6>
-                        <div class="mt-20 countdown" id="countdown4">
-                            <ul class="flex-wrap countdown-list style-four flex-left">
-                                <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                    <span class="days"></span>Days
-                                </li>
-                                <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                    <span class="hours"></span>Hour
-                                </li>
-                                <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                    <span class="minutes"></span>Min
-                                </li>
-                                <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                    <span class="seconds"></span>Sec
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                </div>
-
-                <div class="deals-week-slider arrow-style-two">
+                 <div class="deals-week-slider arrow-style-two">
                     <?php $__currentLoopData = $products->slice(0, 10); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div data-aos="fade-up" data-aos-duration="200">
                             <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
@@ -2963,30 +2909,7 @@
     </div>
      ============================== Top Brand Section End ==================================== -->
     
-    
-
-    <!-- =============================== Newsletter-two Section Start ============================ -->
-    <div class="py-32 overflow-hidden newsletter-two bg-neutral-600" data-aos="fade-up" data-aos-duration="600">
-        <div class="container container-lg">
-            <div class="flex-wrap gap-20 flex-between">
-                <div class="flex-align gap-22">
-                    <span class="d-flex"><img src="frontend/assets/images/icon/envelop.png" alt=""></span>
-                    <div>
-                        <h5 class="mb-12 text-white fw-medium">Join Our Newsletter, Get 10% Off</h5>
-                        <p class="text-white fw-light">Get all latest information on events, sales and offer</p>
-                    </div>
-                </div>
-                <form action="#" class="newsletter-two__form w-50">
-                    <div class="gap-16 flex-align">
-                        <input type="text" class="common-input style-two rounded-8 flex-grow-1 py-14" placeholder="Enter your email address">
-                        <button type="submit" class="flex-shrink-0 py-16 btn btn-main-two rounded-8"> Subscribe</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- =============================== Newsletter-two Section End ============================ -->
-    <script>
+<script>
 document.addEventListener('DOMContentLoaded', function () {
     const productIds = [...document.querySelectorAll('.heart-icon')].map(button => button.id.replace('wishlist-icon-', ''));
 

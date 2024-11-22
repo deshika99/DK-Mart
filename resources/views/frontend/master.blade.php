@@ -42,7 +42,7 @@
     <!-- ============================ Banner Section start =============================== -->
     @yield('content')
     <div class="preloader">
-        <img src="{{ asset('frontend/assets/images/logo/logo-two.png') }}" alt="" style="width: 150px;">
+        <img src="{{ asset('frontend/assets/images/logo/logo-two-new.png') }}" alt="" style="width: 150px;">
     </div>
 
     <script>

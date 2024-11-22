@@ -17,8 +17,8 @@
                         <p><strong>Price:</strong> Rs. <?php echo e($product->total_price); ?></p>
                         <?php if($product->is_affiliate): ?>
                             <p><strong>Affiliate Price:</strong> Rs. <?php echo e($product->affiliate_price); ?></p>
-                            <p><strong>Commission %:</strong> <?php echo e($product->commission_percentage); ?>%</p>
-                            <p><strong>Total Affiliate Price:</strong> Rs. <?php echo e($product->total_price); ?></p>
+                            <p><strong>Commission :</strong> <?php echo e($product->commission_percentage); ?>%</p>
+                            <p><strong>Commission Price:</strong> Rs. <?php echo e($product->commission_price); ?></p>
                         <?php endif; ?>
 
                         <!-- Sizes Section -->

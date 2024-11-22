@@ -36,11 +36,12 @@
     .profile-dropdown:hover .dropdown-menu {
         display: block;
     }
+    .header-middle {
+        background-color: #001f3f!important; /* Force Apply Dark Blue */
+     }
+
 
 </style>
-
-
-
 
 <!--==================== Overlay Start ====================-->
 <div class="overlay"></div>
@@ -82,8 +83,8 @@
 <div class="mobile-menu scroll-sm d-lg-none d-block">
     <button type="button" class="close-button"> <i class="ph ph-x"></i> </button>
     <div class="mobile-menu__inner">
-        <a href="index.html" class="mobile-menu__logo">
-            <img src="assets/images/logo/logo.png" alt="Logo">
+        <a href="/" class="mobile-menu__logo">
+            <img src="frontend/assets/images/logo/logo.png" alt="Logo">
         </a>
         <div class="mobile-menu__menu">
             <!-- Nav Menu Start -->
@@ -123,9 +124,9 @@
         <nav class="header-inner flex-between">
             <!-- Logo Start -->
             <div class="logo"style="margin-left: 80px;  margin-top: 0; margin-bottom: 0;">
-                <a href="index.html" class="link">
+                <a href="/" class="link">
 
-                    <img src="<?php echo e(asset('frontend/assets/images/logo/logo-two.png')); ?>" alt="Logo" style="width:110px;height:110px; margin-top: 0; margin-bottom: 0; ">
+                    <img src="<?php echo e(asset('frontend/assets/images/logo/logo-two-new.png')); ?>" alt="Logo" >
 
                 </a>
             </div>
@@ -315,18 +316,13 @@
         <li class="nav-menu__item">
 
     
-            <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
+            <a href="<?php echo e(route('vendor_register')); ?>" class="nav-menu__link">Vendors</a>
         </li>
     </ul>
 </div>
 
 </div>
-
-
-
-
-
-            <!-- Header Right start -->
+ <!-- Header Right start -->
             <div class="header-right flex-align">
 
                 <div class="select-dropdown-for-home-two d-lg-block d-none">

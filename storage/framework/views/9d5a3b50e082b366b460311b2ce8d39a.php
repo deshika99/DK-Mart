@@ -42,8 +42,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-4">
-                            <label class="form-label">Affiliate price</label>
-                            <input name="affiliate_price" id="affiliate_price" placeholder="Rs" type="number" class="form-control" readonly />
+                            <label class="form-label">Affiliate Price</label>
+                            <input name="affiliate_price" id="affiliate_price" type="number" class="form-control" readonly />
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                     <div class="col-lg-6">
                         <div class="mb-4">
                             <label class="form-label">Commission Rate %</label>
-                            <input name="commission_percentage" id="commission" type="number" placeholder="%" class="form-control" readonly />
+                            <input name="commission_percentage" id="commission" type="number" placeholder="%" class="form-control" />
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -159,7 +159,7 @@
  
 
 <script>
-   document.addEventListener('DOMContentLoaded', function () {
+ document.addEventListener('DOMContentLoaded', function () {
     const affiliateCheckbox = document.getElementById('affiliate_checkbox');
     const normalPriceInput = document.getElementById('normal_price');
     const affiliatePriceInput = document.getElementById('affiliate_price');
@@ -167,9 +167,10 @@
     const comPriceInput = document.getElementById('com_price');
 
     // Set initial state for inputs
-    affiliatePriceInput.readOnly = true;
-    commissionInput.readOnly = true;
-    commissionInput.value = 10; // Commission rate is fixed at 10%
+    affiliatePriceInput.value = normalPriceInput.value || 0;
+    affiliatePriceInput.readOnly = true; // Affiliate price should be equal to normal price and readonly
+    comPriceInput.readOnly = true;
+    commissionInput.readOnly = true; // Commission input should be readonly initially
 
     affiliateCheckbox.addEventListener('change', function () {
         if (affiliateCheckbox.checked) {
@@ -177,15 +178,15 @@
             affiliatePriceInput.value = normalPriceInput.value || 0; // Set affiliate price equal to normal price
             affiliatePriceInput.readOnly = true;
 
-            commissionInput.value = 10; // Set commission rate to 10%
-            commissionInput.readOnly = true;
-
+            commissionInput.readOnly = false; // Allow the commission to be edited when affiliate is checked
+            commissionInput.value = ''; // Reset commission if unchecked
             calculateCommissionPrice();
         } else {
             // When affiliate checkbox is unchecked
             affiliatePriceInput.value = '';
             commissionInput.value = '';
             comPriceInput.value = '';
+            commissionInput.readOnly = true; // Disable commission input when checkbox is unchecked
         }
     });
 
@@ -197,18 +198,18 @@
         calculateCommissionPrice();
     });
 
+    commissionInput.addEventListener('input', function () {
+        if (affiliateCheckbox.checked) {
+            calculateCommissionPrice(); // Recalculate commission price only if affiliate is checked
+        }
+    });
+
     function calculateCommissionPrice() {
         const normalPrice = parseFloat(normalPriceInput.value) || 0;
-        let affiliatePrice = normalPrice;
+        const commissionRate = parseFloat(commissionInput.value) || 0; // Get commission rate from input
+        const commissionPrice = normalPrice * (commissionRate / 100); // Calculate commission price
 
-        if (affiliateCheckbox.checked) {
-            const commissionRate = 10; // Commission rate (10%)
-            const commissionPrice = affiliatePrice * (commissionRate / 100); // 10% of affiliate price
-
-            comPriceInput.value = commissionPrice.toFixed(2); // Display reduced price
-        } else {
-            comPriceInput.value = '';
-        }
+        comPriceInput.value = commissionPrice.toFixed(2); // Display commission price
     }
 });
 
