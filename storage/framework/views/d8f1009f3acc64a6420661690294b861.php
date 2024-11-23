@@ -47,7 +47,7 @@
                             <div class="">
                                 <span class="mb-8 text-sm text-heading">Latest Deal</span>
                                 <h6 class="mb-0">iPhone 15 Pro Max</h6>
-                                <a href="shop.html" class="gap-8 mt-16 border border-gray-900 d-inline-flex align-items-center text-heading text-md fw-medium border-top-0 border-end-0 border-start-0 hover-text-main-two-600 hover-border-main-two-600">
+                                <a href="/shop" class="gap-8 mt-16 border border-gray-900 d-inline-flex align-items-center text-heading text-md fw-medium border-top-0 border-end-0 border-start-0 hover-text-main-two-600 hover-border-main-two-600">
                                     Shop Now
                                     <span class="icon text-md d-flex"><i class="ph ph-plus"></i></span>
                                 </a>
@@ -65,7 +65,7 @@
                             <div class="">
                                 <span class="mb-8 text-sm text-heading">Get 60% Off</span>
                                 <h6 class="mb-0">Instax Mini 11 Camera</h6>
-                                <a href="shop.html" class="gap-8 mt-16 border border-gray-900 d-inline-flex align-items-center text-heading text-md fw-medium border-top-0 border-end-0 border-start-0 hover-text-main-two-600 hover-border-main-two-600">
+                                <a href="/shop" class="gap-8 mt-16 border border-gray-900 d-inline-flex align-items-center text-heading text-md fw-medium border-top-0 border-end-0 border-start-0 hover-text-main-two-600 hover-border-main-two-600">
                                     Shop Now
                                     <span class="icon text-md d-flex"><i class="ph ph-plus"></i></span>
                                 </a>
@@ -83,7 +83,7 @@
                             <div class="">
                                 <span class="mb-8 text-sm text-heading">Start From $250</span>
                                 <h6 class="mb-0">Airpod Headphone</h6>
-                                <a href="shop.html" class="gap-8 mt-16 border border-gray-900 d-inline-flex align-items-center text-heading text-md fw-medium border-top-0 border-end-0 border-start-0 hover-text-main-two-600 hover-border-main-two-600">
+                                <a href="/shop" class="gap-8 mt-16 border border-gray-900 d-inline-flex align-items-center text-heading text-md fw-medium border-top-0 border-end-0 border-start-0 hover-text-main-two-600 hover-border-main-two-600">
                                     Shop Now
                                     <span class="icon text-md d-flex"><i class="ph ph-plus"></i></span>
                                 </a>

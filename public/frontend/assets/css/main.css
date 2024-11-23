@@ -8555,7 +8555,7 @@ input:focus-visible {
 }
 
 .submenus-submenu-wrapper {
-    overflow: unset;
+    overflow: visible;
 }
 
 .submenus-submenu {
@@ -8577,7 +8577,12 @@ input:focus-visible {
 .has-submenus-submenu:hover .submenus-submenu {
     visibility: visible;
     opacity: 1;
+   
 }
+.has-sub-submenu {
+    position: relative;
+}
+
 
 .submenus-submenu__list li a {
     padding: 10px 16px;
@@ -8615,19 +8620,22 @@ input:focus-visible {
     z-index: 1000 !important;
     background: hsl(var(--white));
     width: 300px;
+    position: absolute;
     left: 100%;
     top: 0;
-    visibility: hidden;
-    opacity: 0;
+    visibility: hidden !important;
+    opacity: 0 !important;
     overflow: hidden;
     transition: opacity 0.2s ease, visibility 0.2s ease;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: none !important;
+
 }
 
 .has-sub-submenu:hover > .sub-submenu-column {
     visibility: visible !important;
     opacity: 1 !important;
-    display: block;
+    display: block !important;
 }
 
 .sub-submenu li a {
@@ -8724,6 +8732,8 @@ input:focus-visible {
     min-width: 200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     z-index: 1000;
+    max-height: none; /* Temporarily remove restrictions */
+    overflow-y: visible; /* Allow complete content visibility */
 }
 
 .has-sub-submenu:hover .sub-submenu {

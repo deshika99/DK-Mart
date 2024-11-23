@@ -39,7 +39,7 @@
     .header-middle {
         background-color: #001f3f!important; /* Force Apply Dark Blue */
      }
-
+  
 
 </style>
 
@@ -84,7 +84,7 @@
     <button type="button" class="close-button"> <i class="ph ph-x"></i> </button>
     <div class="mobile-menu__inner">
         <a href="/" class="mobile-menu__logo">
-            <img src="frontend/assets/images/logo/logo.png" alt="Logo">
+            <img src="frontend/assets/images/logo/logo-mobile-menu.png" alt="Logo">
         </a>
         <div class="mobile-menu__menu">
             <!-- Nav Menu Start -->
@@ -126,7 +126,7 @@
             <div class="logo"style="margin-left: 80px;  margin-top: 0; margin-bottom: 0;">
                 <a href="/" class="link">
 
-                    <img src="{{ asset('frontend/assets/images/logo/logo-two-new.png') }}" alt="Logo" >
+                    <img src="{{ asset('frontend/assets/images/logo/header-logo.png') }}" alt="Logo" >
 
                 </a>
             </div>
@@ -278,7 +278,7 @@
                                             <div class="sub-submenu-column">
                                                 <ul class="overflow-y-auto sub-submenu max-h-300 scroll-sm">
                                                     @foreach ($subcategory->subSubcategories as $subSubcategory)
-                                                        <li>
+                                                        <li class="has-sub-submenu">
                                                             <a href="{{ url('/shop?subsubcategory_id=' . $subSubcategory->id) }}">{{ $subSubcategory->name }}</a>
                                                         </li>
                                                     @endforeach
@@ -407,3 +407,4 @@
     </div>
 </header>
 <!-- ==================== Header End Here ==================== -->
+

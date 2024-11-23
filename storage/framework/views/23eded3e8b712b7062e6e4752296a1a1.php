@@ -59,7 +59,7 @@
 
             <div class="footer-item max-w-275" data-aos="fade-up" data-aos-duration="200">
                 <div class="footer-item__logo">
-                    <a href="index.html"> <img src="<?php echo e(asset('frontend/assets/images/logo/logo-two-black-new1.png')); ?> " alt="" style="margin-bottom:20px;"></a>
+                    <a href="index.html"> <img src="<?php echo e(asset('frontend/assets/images/logo/footer-logo.png')); ?> " alt="" style="margin-bottom:20px;"></a>
 
                 </div>
                 <p class="mb-24" style="max-width: 300px;">DK Mart is Your trusted online shopping destination in Sri Lanka, offering a wide range of quality products at unbeatable prices. Shop with confidence, convenience, and local expertise!  </p>
