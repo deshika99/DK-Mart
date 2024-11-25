@@ -15,10 +15,26 @@ class Vendor extends Model
         'phone',
         'address',
         'status',
+        'profile_image',
+        'bank_name',
+        'branch',
+        'account_name',
+        'account_number'
     ];
+
 
     public function shop()
     {
-        return $this->hasOne(Shop::class);
+        return $this->hasOne(Shop::class, 'vendor_id');
     }
+
+
+
+    public function wallet()
+    {
+        return $this->hasOne(VendorWallet::class, 'vendor_id');
+    }
+
+
+    
 }
