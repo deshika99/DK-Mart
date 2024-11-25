@@ -45,6 +45,7 @@ class VendorPaymentRequestController extends Controller
     public function showPayments()
     {
         $vendor_id = session('vendor_id');
+    
         $vendorWallet = VendorWallet::where('vendor_id', $vendor_id)->first();
         $totalBalance = $vendorWallet ? $vendorWallet->balance : 0;
     
@@ -54,7 +55,6 @@ class VendorPaymentRequestController extends Controller
     
         return view('VendorDashboard.payment_requests', compact('vendorWallet', 'totalBalance', 'paymentRequests'));
     }
-    
     
 
 

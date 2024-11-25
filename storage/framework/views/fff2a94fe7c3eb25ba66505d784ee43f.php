@@ -63,11 +63,6 @@
             </div>
 
             <button type="submit" class="btn btn-primary btn-block">Login</button>
-            <div class="mt-3 text-center">
-                <p>Don't have an account? 
-                    <a href="<?php echo e(route('vendor_register')); ?>" class="text-primary">Sign up</a>
-                </p>
-            </div>
         </form>
     </div>
 
