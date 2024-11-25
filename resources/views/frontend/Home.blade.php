@@ -3,6 +3,7 @@
 @section('content')
 <div class="banner-two">
     <div class="container container-lg">
+
         <div class="banner-two-wrapper d-flex align-items-start">          
             <div class="banner-item-two-wrapper rounded-24 overflow-hidden position-relative arrow-center flex-grow-1 mb-0">
                 <img src="{{ asset('frontend/assets/images/bg/banner-two-bg.png') }}" alt="" class="banner-img position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 z-n1 object-fit-cover rounded-24">
@@ -14,6 +15,7 @@
                             <a href="{{ route('shop.index') }}" class="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48 wow bounceInUp">
                                 Shop Now<span class="icon text-xl d-flex"><i class="ph ph-shopping-cart-simple"></i> </span>
                             </a>
+
                         </div>
                         <div class="banner-item-two__thumb position-absolute bottom-0 wow bounceInUp" data-wow-duration="1s" data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="5000" data-tilt-scale="1.06">
                             <img src="frontend/assets/images/imgs/music-cover1.png" alt="">
@@ -106,6 +108,7 @@
 
 <section class="recently-viewed pt-80 overflow-hidden">
     <div class="container container-lg">
+
         <div class="border border-gray-100 p-24 rounded-16">
             <div class="section-heading mb-24">
                 <div class="flex-between flex-wrap gap-8">
@@ -173,6 +176,7 @@
                                 <span class="text-heading text-md fw-semibold ">LKR {{ $product->total_price }} <span class="text-gray-500 fw-normal">/Qty</span> </span>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 @endforeach
@@ -242,6 +246,7 @@
 <!-- ========================= recently viewed End ================================ -->
 
 
+
 <!-- ========================= Popular Products Start ================================ -->
 <section class="popular-products pt-80 overflow-hidden">
     <div class="container container-lg">
@@ -284,6 +289,7 @@
                 </div>
                 <div class="d-lg-block d-none" data-aos="zoom-in" data-aos-duration="800">
                     <img src="frontend/assets/images/imgs/img2.png" alt="" style="width:300px;">
+
                 </div>
             </div>
 

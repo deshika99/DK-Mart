@@ -64,6 +64,17 @@
                 <div class="px-24 py-40 border border-gray-100 hover-border-main-600 transition-1 rounded-16">
                     <h6 class="mb-32 text-xl text-center">Login</h6>
 
+                    <!-- Show Error Message -->
+        @if ($errors->any())
+            <div class="alert alert-danger mb-24">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
                     <!--  Email Address -->
                     <div class="mb-24">
                         <x-input-label class="fw-bold" for="email" :value="__('Email Address')" />

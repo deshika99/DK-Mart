@@ -23,8 +23,14 @@
     <script src="{{ asset('backend/assets/js/vendors/color-modes.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('backend/assets/css/main.css') }}">
 
+
+
+
+    </head>
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 
     <!-- DataTables CSS and JS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
