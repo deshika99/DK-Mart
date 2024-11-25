@@ -37,9 +37,7 @@
 
 <?php echo $__env->make('includes.navbar-2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-
-
-    <!-- ============================ Banner Section start =============================== -->
+ <!-- ============================ Banner Section start =============================== -->
     <?php echo $__env->yieldContent('content'); ?>
     
     <div class="preloader">

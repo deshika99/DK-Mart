@@ -67,8 +67,9 @@
     <button type="button" class="close-button"> <i class="ph ph-x"></i> </button>
     <div class="mobile-menu__inner">
         <a href="/" class="mobile-menu__logo">
-            <img src="frontend/assets/images/logo/logo-mobile-menu-new.png" alt="Logo">
+            <img src="frontend/assets/images/logo/logo-mobile-menu-new1.png" alt="Logo">
         </a>
+        
         <div class="mobile-menu__menu">
             <!-- Nav Menu Start -->
             <ul class="nav-menu flex-align nav-menu--mobile">
@@ -109,7 +110,7 @@
             <div class="logo"style="margin-left: 80px;  margin-top: 0; margin-bottom: 0;">
                 <a href="/" class="link">
 
-                    <img src="<?php echo e(asset('frontend/assets/images/logo/header-new-logo.png')); ?>" alt="Logo" >
+                    <img src="<?php echo e(asset('frontend/assets/images/logo/header-logo-new.png')); ?>" alt="Logo" >
 
                 </a>
             </div>

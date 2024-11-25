@@ -225,7 +225,6 @@ Route::post('/admin/affiliates/{id}/status/{status}', [AffiliateUserController::
 Route::get('/admin/Affiliatecustomer-details/{id}', [AffiliateUserController::class, 'showDetails'])->name('admin.affiliates.show');
 
 Route::get('/admin/reviews', [ReviewsController::class, 'adminView'])->name('adminReviews');
-Route::get('/admin/reviews', [ReviewsController::class, 'adminView'])->name('adminReviews');
 Route::get('/admin/reviews-details/{id}', [ReviewsController::class, 'adminViewDetails'])->name('viewReviewDetails');
 Route::patch('/reviews/{id}/status', [ReviewsController::class, 'updateStatus'])->name('reviews.updateStatus');
 Route::delete('/reviews/{review}', [ReviewsController::class, 'destroy'])->name('admin.reviews.destroy');
