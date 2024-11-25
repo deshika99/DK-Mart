@@ -24,6 +24,7 @@ class User extends Authenticatable
         'address',
         'dob',
         'phone',
+        'profile_image', // Added profile_image field
     ];
 
     /**
@@ -49,9 +50,24 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Get the full URL for the profile image.
+     */
+    public function getProfileImageUrlAttribute(): string
+    {
+        return $this->profile_image 
+            ? asset('storage/' . $this->profile_image) 
+            : asset('images/default-user.png');
+    }
 
+    /**
+     * Relationship: User has many Customer Orders.
+     */
     public function customerOrders()
     {
         return $this->hasMany(CustomerOrder::class, 'user_id', 'id');
     }
 }
+
+
+
