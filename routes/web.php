@@ -18,6 +18,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Log;
 
 
@@ -45,6 +46,18 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\VendorWalletController;
 use App\Http\Controllers\VendorPaymentRequestController;
 use App\Http\Controllers\VendorDashboardController;
+
+// Login Routes
+/*Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');*/
+Route::get('/login', [AuthenticatedSessionController::class, 'showLoginForm'])->name('frontend.login');
+
+
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+
+Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
 
 
 
@@ -80,15 +93,18 @@ Route::post('/wishlist/check-multiple', [WishlistController::class, 'checkMultip
 Route::get('/vendors', [VendorController::class, 'index'])->name('frontend.vendor');
 Route::get('/vendor-details/{vendorId}', [VendorController::class, 'showVendorDetails'])->name('frontend.vendor.details');
 
-
+/*
 Route::get('/search', [ProductController::class, 'searchView'])->name('product.search');
-Route::get('/searchview', [ProductController::class, 'searchView'])->name('searchview');
+Route::get('/searchview', [ProductController::class, 'searchView'])->name('searchview');*/
 
 
-/*search box
-Route::get('/search', [ProductController::class, 'searchProducts'])->name('search.products');
+//search box
 
-*/
+
+Route::get('/search-products', [ProductController::class, 'searchProducts'])->name('search.products');
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
