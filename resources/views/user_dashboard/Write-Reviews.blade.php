@@ -8,7 +8,7 @@
     .review-header {
         margin-bottom: 20px;
         padding: 10px 0;
-        text-align:left;
+        text-align: left;
         border-bottom: 1px solid #ddd;
     }
 
@@ -30,7 +30,8 @@
     .review-rating-container {
         display: flex;
         align-items: center;
-        gap: 60px; /* Gap between text and stars */
+        gap: 60px;
+        /* Gap between text and stars */
     }
 
     .review-rating {
@@ -42,12 +43,15 @@
 
     .review-rating i {
         font-size: 1.5rem;
-        color: #ccc; /* Default unfilled star color */
-        cursor: pointer; /* Clickable stars */
+        color: #ccc;
+        /* Default unfilled star color */
+        cursor: pointer;
+        /* Clickable stars */
     }
 
     .review-rating i.filled {
-        color: #FFD700; /* Gold filled star color */
+        color: #FFD700;
+        /* Gold filled star color */
     }
 
     .review-textarea {
@@ -63,7 +67,8 @@
         display: flex;
         gap: 15px;
         margin-bottom: 15px;
-        flex-wrap: wrap; /* Allow wrapping of images/videos */
+        flex-wrap: wrap;
+        /* Allow wrapping of images/videos */
     }
 
     .review-upload div {
@@ -82,7 +87,8 @@
         height: 100%;
         top: 0;
         left: 0;
-        opacity: 0; /* Invisible but clickable */
+        opacity: 0;
+        /* Invisible but clickable */
         cursor: pointer;
     }
 
@@ -116,14 +122,14 @@
 
         width: 15%;
         padding: 10px;
-        background: linear-gradient(to right, hsl(36, 100%, 50%), hsl(28, 90%, 50%)); /* Orange gradient */
+        background: linear-gradient(to right, hsl(36, 100%, 50%), hsl(28, 90%, 50%));
+        /* Orange gradient */
         border: none;
         border-radius: 5px;
         color: #fff;
         font-size: 1rem;
         cursor: pointer;
     }
-
 </style>
 
 <div class="review-container">
@@ -134,62 +140,80 @@
     <div class="review-product">
         <div class="col-md-1 d-flex align-items-center">
             <div style="margin-right: 15px;">
-                <!-- Display Product Image Placeholder -->
-                <a href="#"><img src="{{ asset('images/Apple iPhone 14 Pro Max.jpg') }}" alt="Product Image" width="70" height="auto"></a>
+                <a href="#">
+                    @if($product->images->isNotEmpty())
+                    <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" width="70" height="70" class="img-xs" alt="Item" />
+                    @else
+                    <img src="{{ asset('path/to/default-image.jpg') }}" width="40" height="40" class="img-xs" alt="Default Image" />
+                    @endif
+                </a>
             </div>
         </div>
 
         <div class="col-md-3 d-flex flex-column justify-content-center" style="font-size: 13px;margin-top:15px;color:black;">
-            <span style="font-weight: 600;">Apple iPhone 14 Pro Max</span>
+            <span style="font-weight: 600;">{{$product->product_name}}</span>
             <div class="d-flex align-items-center">
+                @if ($orderItem->color!=null)
                 <span class="d-flex align-items-center me-2">
                     <strong>Color:</strong>
-                    <span style="display: inline-block; background-color: #000; border: 1px solid #e8ebec; height: 15px; width: 15px; border-radius: 50%; margin-left: 0.5rem;" 
-                        title="Color"></span>
-                </span> | 
-                <span class="me-2">Size: <span style="font-weight: 600;">M</span></span> |
-                <span class="ms-2">Qty: <span style="font-weight: 600;">1</span></span>
+                    <span style="display: inline-block; background-color: {{ $orderItem->color }}; border: 1px solid #e8ebec; height: 15px; width: 15px; border-radius: 50%;" title="Color"></span>
+                </span> |
+                @endif
+                @if ($orderItem->size!=null)
+                <span class="me-2 ms-2">Size: <span style="font-weight: 600;">{{ $orderItem->size }}</span></span> |
+                @endif
+                <span class="ms-2">Qty: <span style="font-weight: 600;">{{ $orderItem->quantity }}</span></span>
             </div>
-            <h6 class="mt-2" style="font-size: 13px; font-weight: bold;">Rs 120000</h6>  
-        </div>
+            <h6 class="mt-2" style="font-weight: bold;font-size: 15px">Rs {{ number_format($orderItem->cost, 2) }}</h6>
+        </div> 
     </div>
 
-    <form>
+    <form method="POST" action="{{ route('reviews.store',$orderItem->id) }}" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+
+        <!-- Rating -->
         <div class="review-rating-container">
             <h6>Overall Rating</h6>
             <div class="review-rating">
-                <i class="far fa-star" data-value="1"></i>
-                <i class="far fa-star" data-value="2"></i>
-                <i class="far fa-star" data-value="3"></i>
-                <i class="far fa-star" data-value="4"></i>
-                <i class="far fa-star" data-value="5"></i>
+                @for ($i = 1; $i <= 5; $i++)  
+                    <i class="far fa-star" data-value="{{ $i }}"></i>
+                    @endfor
             </div>
+            <input type="hidden" name="rating" id="rating-input">
         </div>
 
-        <textarea class="review-textarea" rows="5" placeholder="Please tell us what needs to be improved."></textarea>
+        <!-- Review Text -->
+        <textarea name="review" class="review-textarea" rows="5" placeholder="Please tell us what needs to be improved."></textarea>
 
+        <!-- Media Upload -->
         <div class="review-upload">
             <div>
                 <i class="fas fa-camera"></i>
                 <p>Upload Photo</p>
-                <input type="file" accept="image/*" multiple style="display:none;" id="upload-photo">
+                <input type="file" accept="image/*" name="media[]" multiple style="display:none;" id="upload-photo">
                 <div id="uploaded-photos" class="uploaded-container"></div>
             </div>
             <div>
                 <i class="fas fa-video"></i>
                 <p>Upload Video</p>
-                <input type="file" accept="video/*" style="display:none;" id="upload-video">
+                <input type="file" accept="video/*" name="media[]" style="display:none;" id="upload-video">
                 <div id="uploaded-videos" class="uploaded-container"></div>
             </div>
         </div>
 
+        <!-- Anonymity -->
         <div class="review-checkbox">
-            <input type="checkbox" id="anonymous">
-            <label for="anonymous">Anonymously</label>
+            <input type="hidden" name="is_anonymous" value="0"> <!-- Default to unchecked -->
+            <input type="checkbox" name="is_anonymous" id="anonymous" value="1">
+            <label for="anonymous">Submit Anonymously</label>
         </div>
+
 
         <button type="submit" class="review-submit">Submit</button>
     </form>
+
 
     <script>
         // Review rating functionality
@@ -197,6 +221,10 @@
             star.addEventListener('click', function() {
                 const ratingValue = this.getAttribute('data-value');
 
+                // Update the hidden rating input
+                document.querySelector('#rating-input').value = ratingValue;
+
+                // Update star classes
                 document.querySelectorAll('.review-rating i').forEach((s, index) => {
                     if (index < ratingValue) {
                         s.classList.remove('far');
@@ -211,10 +239,10 @@
 
         // Photo upload functionality
         const photoInput = document.querySelector('#upload-photo');
-        const photoPreviewContainer = document.querySelector('#uploaded-photos'); 
+        const photoPreviewContainer = document.querySelector('#uploaded-photos');
 
         photoInput.parentElement.addEventListener('click', function() {
-            photoInput.click(); 
+            photoInput.click();
         });
 
         photoInput.addEventListener('change', function(event) {
@@ -228,7 +256,7 @@
                     imgWrapper.style.position = 'relative';
                     imgWrapper.style.width = '100px';
                     imgWrapper.style.height = '100px';
-                    imgWrapper.style.display = 'inline-block'; 
+                    imgWrapper.style.display = 'inline-block';
 
                     const img = document.createElement('img');
                     img.src = e.target.result;
@@ -252,7 +280,7 @@
                     deleteBtn.style.padding = '0';
 
                     deleteBtn.addEventListener('click', function() {
-                        imgWrapper.remove(); 
+                        imgWrapper.remove();
                     });
 
                     imgWrapper.appendChild(deleteBtn);
@@ -268,7 +296,7 @@
         const videoPreviewContainer = document.querySelector('#uploaded-videos');
 
         videoInput.parentElement.addEventListener('click', function() {
-            videoInput.click(); 
+            videoInput.click();
         });
 
         videoInput.addEventListener('change', function(event) {
@@ -276,8 +304,8 @@
 
             if (files.length > 1) {
                 alert("You can only upload one video at a time.");
-                event.target.value = ''; 
-                return; 
+                event.target.value = '';
+                return;
             } else if (files.length === 1) {
                 const reader = new FileReader();
 
@@ -315,7 +343,7 @@
                     videoPreviewContainer.appendChild(videoWrapper);
                 };
 
-                reader.readAsDataURL(files[0]); 
+                reader.readAsDataURL(files[0]);
             }
         });
     </script>

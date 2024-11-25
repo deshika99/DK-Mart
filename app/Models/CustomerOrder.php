@@ -33,6 +33,4 @@ class CustomerOrder extends Model
     {
         return $this->hasMany(CustomerOrderItems::class, 'order_code', 'order_code');
     }
-
-
 }
