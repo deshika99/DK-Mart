@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminReportController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\VendorReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminTemplateController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Log;
 
 
@@ -45,6 +47,18 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\VendorWalletController;
 use App\Http\Controllers\VendorPaymentRequestController;
 use App\Http\Controllers\VendorDashboardController;
+
+// Login Routes
+/*Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');*/
+Route::get('/login', [AuthenticatedSessionController::class, 'showLoginForm'])->name('frontend.login');
+
+
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+
+Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
 
 
 
@@ -80,15 +94,18 @@ Route::post('/wishlist/check-multiple', [WishlistController::class, 'checkMultip
 Route::get('/vendors', [VendorController::class, 'index'])->name('frontend.vendor');
 Route::get('/vendor-details/{vendorId}', [VendorController::class, 'showVendorDetails'])->name('frontend.vendor.details');
 
-
+/*
 Route::get('/search', [ProductController::class, 'searchView'])->name('product.search');
-Route::get('/searchview', [ProductController::class, 'searchView'])->name('searchview');
+Route::get('/searchview', [ProductController::class, 'searchView'])->name('searchview');*/
 
 
-/*search box
-Route::get('/search', [ProductController::class, 'searchProducts'])->name('search.products');
+//search box
 
-*/
+
+Route::get('/search-products', [ProductController::class, 'searchProducts'])->name('search.products');
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -207,8 +224,16 @@ Route::get('/admin/affiliate_customers', [AffiliateUserController::class, 'showA
 Route::post('/admin/affiliates/{id}/status/{status}', [AffiliateUserController::class, 'updateStatus'])->name('admin.affiliates.updateStatus');
 Route::get('/admin/Affiliatecustomer-details/{id}', [AffiliateUserController::class, 'showDetails'])->name('admin.affiliates.show');
 
+Route::get('/admin/reviews', [ReviewsController::class, 'adminView'])->name('adminReviews');
+Route::get('/admin/reviews-details/{id}', [ReviewsController::class, 'adminViewDetails'])->name('viewReviewDetails');
+Route::patch('/reviews/{id}/status', [ReviewsController::class, 'updateStatus'])->name('reviews.updateStatus');
+Route::delete('/reviews/{review}', [ReviewsController::class, 'destroy'])->name('admin.reviews.destroy');
+
+
+Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inquiries');
 Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
 Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('admin.customer.inquiries');
+
 
 
 Route::get('/admin/vendors', [VendorAccountController::class, 'show'])->name('vendors');
@@ -255,10 +280,10 @@ Route::view('/affiliate_home', 'AffiliateDashBoard.affiliate_home')->name('affil
 
 
 Route::view('/home/affiliate/affiliate_home', 'aff_home')->name('aff_home');
-Route::post('/home/affiliate/register', [AffiliateCustomerController::class, 'register'])->name('aff_reg');
+//Route::post('/home/affiliate/register', [AffiliateCustomerController::class, 'register'])->name('aff_reg');
 Route::view('/home/affiliate/register/', 'aff_reg')->name('register_form');
-Route::post('/home/affiliate/login', [AffiliateCustomerController::class, 'login'])->name('aff_login');
-Route::get('/affiliate/dashboard', [AffiliateCustomerController::class, 'index'])->name('index');
+//Route::post('/home/affiliate/login', [AffiliateCustomerController::class, 'login'])->name('aff_login');
+//Route::get('/affiliate/dashboard', [AffiliateCustomerController::class, 'index'])->name('index');
 Route::post('/affiliate/logout', [AffiliateUserController::class, 'logout'])->name('aff.logout');
 
 
@@ -269,7 +294,7 @@ Route::get('/affiliate/dashboard/ad_center/{id}/promote-modal', [AffiliateProduc
 Route::get('/affiliate/dashboard/ad_center/download-images', [AffiliateProductController::class, 'downloadImages'])->name('products.downloadImages');
 Route::post('/generate-promo', [AffiliateProductController::class, 'generatePromo'])->name('generate.promo');
 Route::view('/affiliate/dashboard/incentive_campaign', 'affiliate_dashboard.incentive_campaign')->name('incentive_campaign');
-Route::post('/affiliate/promo/maritial/genaratr', [AffiliateCustomerController::class, 'promomatirials'])->name('promo_matirials');
+//Route::post('/affiliate/promo/maritial/genaratr', [AffiliateCustomerController::class, 'promomatirials'])->name('promo_matirials');
 
 
 Route::view('/affiliate/dashboard/reports/income_report', 'affiliate_dashboard.income_report')->name('income_report');
@@ -325,9 +350,7 @@ Route::get('home/My-Account/edit-profile', function () {
 Route::get('home/My-Account/my-orders', [ProfileController::class, 'myOrders'])->name('my-orders');
 Route::get('/track-order/{orderCode}', [ProfileController::class, 'trackOrder'])->name('user.track-order');
 
-Route::get('home/My-Account/My-Reviews', function () {
-    return view('user_dashboard.My-Reviews');
-})->name('My-Reviews');
+
 
 Route::get('home/My-Account/inquiries', function () {
     return view('user_dashboard.inquiries');
@@ -349,21 +372,18 @@ Route::get('home/My-Account/returns-details', function () {
     return view('user_dashboard.returns-details');
 })->name('returns.details');
 
-Route::get('home/My-Account/Write-Reviews', function () {
-    return view('user_dashboard.Write-Reviews');
-})->name('Write-Reviews');
+
+
+//reviews
+Route::get('home/My-Account/My-Reviews',[ReviewsController::class,'myReviews'])->name('My-Reviews');
+Route::get('home/My-Account/Write-Reviews/{id}',[ReviewsController::class,'writeReviews'])->name('write-review');
+Route::post('/reviews/{id}', [ReviewsController::class, 'store'])->name('reviews.store');
+Route::delete('/home/reviews/{review}', [ReviewsController::class, 'customerDestroy'])->name('customer.reviews.destroy');
 
 
 
 
 
-Route::get('home/My-Account/returns-details', function () {
-    return view('user_dashboard.returns-details');
-})->name('returns.details');
-
-Route::get('home/My-Account/Write-Reviews', function () {
-    return view('user_dashboard.Write-Reviews');
-})->name('Write-Reviews');
 
 //Vendor dashboard
 

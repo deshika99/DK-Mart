@@ -59,24 +59,11 @@
 
             <div class="footer-item max-w-275" data-aos="fade-up" data-aos-duration="200">
                 <div class="footer-item__logo">
-                    <a href="index.html"> <img src="{{ asset('frontend/assets/images/logo/logo-two-black.png')}} " alt=""></a>
+                    <a href="index.html"> <img src="{{ asset('frontend/assets/images/logo/footer-logo-new.png')}} " alt="" style="margin-bottom:20px;"></a>
 
                 </div>
-
-                <p class="mb-24" style="text-align: justify;">DK Mart is Your trusted online shopping destination in Sri Lanka, offering a wide range of quality products at unbeatable prices. Shop with confidence, convenience, and local expertise!  </p>
-                <div class="gap-16 mb-16 flex-align">
-                    <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-phone-call"></i></span>
-                    <a href="tel:0787004900" class="text-gray-900 text-md hover-text-main-600">0787004900</a>
-                </div>
-                <div class="gap-16 mb-16 flex-align">
-                    <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-envelope"></i></span>
-                    <a href="mailto:admin@dkmart.lk" class="text-gray-900 text-md hover-text-main-600">admin@dkmart.lk</a>
-                </div>
-                <div class="gap-16 mb-16 flex-align">
-                    <span class="flex-shrink-0 w-32 h-32 border border-gray-100 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-map-pin"></i></span>
-                    <span class="text-gray-900 text-md ">No.57, Horana Road, Moragahahena.</span>
-
-                </div>
+                <p class="mb-24" style="max-width: 300px;">DK Mart is Your trusted online shopping destination in Sri Lanka, offering a wide range of quality products at unbeatable prices. Shop with confidence, convenience, and local expertise!  </p>
+              
             </div>
             
             <div class="footer-item" data-aos="fade-up" data-aos-duration="400"style="margin-left: 45px;">
@@ -90,7 +77,7 @@
                     </li>
                    
                     <li class="mb-16">
-                        <a href="{{ route('cart') }}" class="text-gray-600 hover-text-main-600">Contact Us</a>
+                        <a href="{{ route('contact') }}" class="text-gray-600 hover-text-main-600">Contact Us</a>
                     </li>
                     <li class="mb-16">
                         <a href="shop.html" class="text-gray-600 hover-text-main-600">Feedback</a>
@@ -110,7 +97,7 @@
                         <a href="{{ route('dashboard') }}" class="text-gray-600 hover-text-main-600">My Account</a>
                     </li>
                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Order History</a>
+                        <a href="/shop" class="text-gray-600 hover-text-main-600">Shop</a>
                     </li>
                     <li class="mb-16">
                         <a href="{{ route('cart') }}"  class="text-gray-600 hover-text-main-600">Shoping Cart</a>
@@ -153,7 +140,19 @@
                 <h6 class="">Connect with us</h6>
               
 
-                <ul class="gap-16 flex-align">
+              <div class="gap-14 mb-14 flex-align">
+                    <span class="flex-shrink-0 border border-gray-100 w-30 h-30 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-phone-call"></i></span>
+                    <a href="tel:0787004900" class="text-gray-900 text-md hover-text-main-600">0787004900</a>
+                </div>
+                <div class="gap-14 mb-14 flex-align">
+                    <span class="flex-shrink-0 border border-gray-100 w-30 h-30 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-envelope"></i></span>
+                    <a href="mailto:admin@dkmart.lk" class="text-gray-900 text-md hover-text-main-600">admin@dkmart.lk</a>
+                </div>
+                <div class="gap-14 mb-14 flex-align">
+                    <span class="flex-shrink-0 border border-gray-100 w-30 h-30 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-map-pin"></i></span>
+                    <span class="text-gray-900 text-md ">No.57, Horana Road, Moragahahena.</span>
+                </div>
+                <ul class="gap-16 flex-align" >
                     <li>
                         <a href="https://www.facebook.com" class="text-xl w-44 h-44 flex-center bg-main-two-50 text-main-two-600 rounded-8 hover-bg-main-two-600 hover-text-white">
                             <i class="ph-fill ph-facebook-logo"></i>
@@ -175,7 +174,7 @@
                         </a>
                     </li>
                 </ul>
-                
+           
             </div>
         </div>
     </div>
@@ -185,7 +184,7 @@
 <div class="py-8 bottom-footer bg-color-three">
     <div class="container container-lg"style="margin-right: 20px; margin-left:20px;">
         <div class="flex-wrap gap-16 py-16 bottom-footer__inner flex-between">
-            <p class="bottom-footer__text wow fadeInLeftBig">DK-Mart eCommerce &copy; 2024. All Rights Reserved </p>
+            <p class="bottom-footer__text wow fadeInLeftBig">DK-Mart eCommerce &copy; 2024. All Rights Reserved Powered by eSupport Technologies </p>
             <div class="flex-wrap gap-8 flex-align wow fadeInRightBig">
                 <span class="text-sm text-heading">We Are Accepting</span>
                 <img src="frontend/assets/images/thumbs/payment-method.jpg" alt=""style="margin-right: 35px; ">
@@ -193,4 +192,5 @@
         </div>
     </div>
 </div>
+
 <!-- ==================== Footer Two End Here ==================== -->

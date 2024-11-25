@@ -11,7 +11,7 @@
                             <div class="banner-item-two__content">
                                 <span class="mb-8 text-white h6 wow bounceInDown">Starting at only Rs 500</span>
                                 <h2 class="text-white banner-item-two__title bounce wow bounceInLeft">Get The Sound You Love For Less</h2>
-                                <a href="{{ route('shop.index') }}" class="gap-8 mt-48 btn btn-outline-white d-inline-flex align-items-center rounded-pill wow bounceInUp">
+                                <a href="/shop" class="gap-8 mt-48 btn btn-outline-white d-inline-flex align-items-center rounded-pill wow bounceInUp">
                                     Shop Now<span class="text-xl icon d-flex"><i class="ph ph-shopping-cart-simple"></i> </span>
                                 </a>
                             </div>
@@ -49,7 +49,7 @@
                             <div class="">
                                 <span class="mb-8 text-sm text-heading">Latest Deal</span>
                                 <h6 class="mb-0">iPhone 15 Pro Max</h6>
-                                <a href="shop.html" class="gap-8 mt-16 border border-gray-900 d-inline-flex align-items-center text-heading text-md fw-medium border-top-0 border-end-0 border-start-0 hover-text-main-two-600 hover-border-main-two-600">
+                                <a href="/shop" class="gap-8 mt-16 border border-gray-900 d-inline-flex align-items-center text-heading text-md fw-medium border-top-0 border-end-0 border-start-0 hover-text-main-two-600 hover-border-main-two-600">
                                     Shop Now
                                     <span class="icon text-md d-flex"><i class="ph ph-plus"></i></span>
                                 </a>
@@ -67,7 +67,7 @@
                             <div class="">
                                 <span class="mb-8 text-sm text-heading">Get 60% Off</span>
                                 <h6 class="mb-0">Instax Mini 11 Camera</h6>
-                                <a href="shop.html" class="gap-8 mt-16 border border-gray-900 d-inline-flex align-items-center text-heading text-md fw-medium border-top-0 border-end-0 border-start-0 hover-text-main-two-600 hover-border-main-two-600">
+                                <a href="/shop" class="gap-8 mt-16 border border-gray-900 d-inline-flex align-items-center text-heading text-md fw-medium border-top-0 border-end-0 border-start-0 hover-text-main-two-600 hover-border-main-two-600">
                                     Shop Now
                                     <span class="icon text-md d-flex"><i class="ph ph-plus"></i></span>
                                 </a>
@@ -85,7 +85,7 @@
                             <div class="">
                                 <span class="mb-8 text-sm text-heading">Start From $250</span>
                                 <h6 class="mb-0">Airpod Headphone</h6>
-                                <a href="shop.html" class="gap-8 mt-16 border border-gray-900 d-inline-flex align-items-center text-heading text-md fw-medium border-top-0 border-end-0 border-start-0 hover-text-main-two-600 hover-border-main-two-600">
+                                <a href="/shop" class="gap-8 mt-16 border border-gray-900 d-inline-flex align-items-center text-heading text-md fw-medium border-top-0 border-end-0 border-start-0 hover-text-main-two-600 hover-border-main-two-600">
                                     Shop Now
                                     <span class="icon text-md d-flex"><i class="ph ph-plus"></i></span>
                                 </a>
@@ -188,13 +188,13 @@
 <!-- ========================= new section end================================ -->
 
 
- <!-- ========================= Popular Products Start ================================ -->
-    <section class="overflow-hidden popular-products pt-80">
+ <!-- ========================= categories section Start ================================ -->
+    <section class="overflow-hidden popular-products pt-80"> 
         <div class="container container-lg">
             <div class="p-24 border border-gray-100 rounded-16">
                 <div class="mb-24 section-heading">
                     <div class="flex-wrap gap-8 flex-between">
-                        <h5 class="mb-0 wow bounceInLeft">Popular Products</h5>
+                        <h5 class="mb-0 wow bounceInLeft">Categories</h5>
                         <div class="gap-16 flex-align wow bounceInRight">
                             <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Products</a>
                         </div>
@@ -251,7 +251,7 @@
             </div>
         </div>
     </section>
-    <!-- ========================= Popular Products End ================================ -->
+    <!-- ========================= categories section End ================================ -->
 
     <!-- ========================= Deals Week Start ================================ -->
     <section class="overflow-hidden deals-weeek pt-80">
@@ -2873,30 +2873,7 @@
     </div>
      ============================== Top Brand Section End ==================================== -->
     
-    
-
-    <!-- =============================== Newsletter-two Section Start ============================ -->
-    <div class="py-32 overflow-hidden newsletter-two bg-neutral-600" data-aos="fade-up" data-aos-duration="600">
-        <div class="container container-lg">
-            <div class="flex-wrap gap-20 flex-between">
-                <div class="flex-align gap-22">
-                    <span class="d-flex"><img src="frontend/assets/images/icon/envelop.png" alt=""></span>
-                    <div>
-                        <h5 class="mb-12 text-white fw-medium">Join Our Newsletter, Get 10% Off</h5>
-                        <p class="text-white fw-light">Get all latest information on events, sales and offer</p>
-                    </div>
-                </div>
-                <form action="#" class="newsletter-two__form w-50">
-                    <div class="gap-16 flex-align">
-                        <input type="text" class="common-input style-two rounded-8 flex-grow-1 py-14" placeholder="Enter your email address">
-                        <button type="submit" class="flex-shrink-0 py-16 btn btn-main-two rounded-8"> Subscribe</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- =============================== Newsletter-two Section End ============================ -->
-    <script>
+<script>
 document.addEventListener('DOMContentLoaded', function () {
     const productIds = [...document.querySelectorAll('.heart-icon')].map(button => button.id.replace('wishlist-icon-', ''));
 

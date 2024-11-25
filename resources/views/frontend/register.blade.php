@@ -123,10 +123,9 @@
                     <!-- Privacy Policy -->
                     <div class="my-48 text-center">
                         <p class="text-gray-500">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our 
-                            <a href="#" class="text-main-600 text-decoration-underline">privacy policy</a>.
+                            <a href="{{ route('privacy-policy') }}"  class="text-main-600 text-decoration-underline">privacy policy</a>.
                         </p>
                     </div>
-
                     <!-- Submit Button -->
                     <div class="mt-48 text-center">
                         <x-primary-button type="submit" class="px-40 btn py-18">

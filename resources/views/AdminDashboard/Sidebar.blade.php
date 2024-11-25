@@ -76,8 +76,9 @@
                         </div>
                     </li>
 
-                    <li class="menu-item {{ request()->routeIs('reviews') ? 'active' : '' }}">
-                        <a class="menu-link" href="{{ route('reviews') }}">
+                    <li class="menu-item {{ request()->routeIs('adminReviews') ? 'active' : '' }}">
+                        <a class="menu-link" href="{{ route('adminReviews') }}">
+
                         <i class="icon material-icons md-comment"></i>
                             <span class="text">Reviews</span>
                         </a>

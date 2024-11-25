@@ -104,4 +104,20 @@ class UserController extends Controller
         return redirect()->route('users')->with('success', 'User deleted successfully.');
     }
 
+    public function login(Request $request)
+{
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+        // Login successful
+        return redirect()->intended('frontend.Home');
+    }
+
+    // Login failed
+    return back()->withErrors([
+        'email' => 'The provided credentials do not match our records.',
+    ])->withInput($request->except('password'));
+}
+
+
 }
