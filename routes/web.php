@@ -381,13 +381,8 @@ Route::delete('/home/reviews/{review}', [ReviewsController::class, 'customerDest
 
 
 
-Route::get('home/My-Account/returns-details', function () {
-    return view('user_dashboard.returns-details');
-})->name('returns.details');
 
-Route::get('home/My-Account/Write-Reviews', function () {
-    return view('user_dashboard.Write-Reviews');
-})->name('Write-Reviews');
+
 
 //Vendor dashboard
 

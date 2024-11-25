@@ -118,6 +118,7 @@
                         <p>Don't have an account? 
                             <a href="{{ route('register') }}" class="text-primary">Sign up</a>
                         </p>
+                    </div>
                 </form>
                 </div>
                 </div>
