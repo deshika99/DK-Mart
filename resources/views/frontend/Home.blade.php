@@ -1,5 +1,6 @@
 @extends ('frontend.master')
 
+
 @section('content')
 <div class="banner-two">
     <div class="container container-lg">
