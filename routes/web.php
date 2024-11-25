@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminReportController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewsController;
+use App\Http\Controllers\VendorReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminTemplateController;
 use App\Http\Controllers\HomeTemplateController;
@@ -15,6 +18,8 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Log;
 
 
@@ -38,7 +43,22 @@ use App\Http\Controllers\VendorProductController;
 use App\Http\Controllers\VendorOrderController;
 use App\Http\Controllers\VendorAccountController;
 use App\Http\Controllers\VendorShopController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\VendorWalletController;
+use App\Http\Controllers\VendorPaymentRequestController;
+use App\Http\Controllers\VendorDashboardController;
 
+// Login Routes
+/*Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');*/
+Route::get('/login', [AuthenticatedSessionController::class, 'showLoginForm'])->name('frontend.login');
+
+
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+
+Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
 
 
 
@@ -71,18 +91,21 @@ Route::get('/wishlist/count', [WishlistController::class, 'getWishlistCount'])->
 Route::post('/wishlist/toggle', [WishlistController::class, 'toggleWishlist'])->name('wishlist.toggle');
 Route::post('/wishlist/check-multiple', [WishlistController::class, 'checkMultipleWishlist'])->name('wishlist.checkMultiple');
 
+Route::get('/vendors', [VendorController::class, 'index'])->name('frontend.vendor');
+Route::get('/vendor-details/{vendorId}', [VendorController::class, 'showVendorDetails'])->name('frontend.vendor.details');
 
-
-
-
+/*
 Route::get('/search', [ProductController::class, 'searchView'])->name('product.search');
-Route::get('/searchview', [ProductController::class, 'searchView'])->name('searchview');
+Route::get('/searchview', [ProductController::class, 'searchView'])->name('searchview');*/
 
 
-/*search box
-Route::get('/search', [ProductController::class, 'searchProducts'])->name('search.products');
+//search box
 
-*/
+
+Route::get('/search-products', [ProductController::class, 'searchProducts'])->name('search.products');
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -140,6 +163,18 @@ Route::middleware([App\Http\Middleware\AdminAuth::class])->group(function () {
     // other routes
 });
 
+//notification
+
+
+Route::get('/admin/notifications', [NotificationController::class, 'index'])->name('admin.notifications');
+Route::post('/admin/notifications/add-user/{user}', [NotificationController::class, 'addUserNotification'])->name('notifications.addUser');
+Route::post('/admin/notifications/add-order/{order}', [NotificationController::class, 'addOrderNotification'])->name('notifications.addOrder');
+Route::post('/admin/notifications/clear', [NotificationController::class, 'clearNotifications'])->name('notifications.clear');
+
+
+
+
+
 Route::get('/admin/profile', [AdminProfileController::class, 'showProfile'])->name('profile');
 Route::post('/admin/profile/update', [AdminProfileController::class, 'updateProfile'])->name('admin.profile.update');
 Route::post('/admin/profile/password', [AdminProfileController::class, 'updatePassword'])->name('admin.profile.password.update');
@@ -189,11 +224,23 @@ Route::get('/admin/affiliate_customers', [AffiliateUserController::class, 'showA
 Route::post('/admin/affiliates/{id}/status/{status}', [AffiliateUserController::class, 'updateStatus'])->name('admin.affiliates.updateStatus');
 Route::get('/admin/Affiliatecustomer-details/{id}', [AffiliateUserController::class, 'showDetails'])->name('admin.affiliates.show');
 
-Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
+
+Route::get('/admin/reviews', [ReviewsController::class, 'adminView'])->name('adminReviews');
+Route::get('/admin/reviews-details/{id}', [ReviewsController::class, 'adminViewDetails'])->name('viewReviewDetails');
+Route::patch('/reviews/{id}/status', [ReviewsController::class, 'updateStatus'])->name('reviews.updateStatus');
+Route::delete('/reviews/{review}', [ReviewsController::class, 'destroy'])->name('admin.reviews.destroy');
+
+
 Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inquiries');
+Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
+Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('admin.customer.inquiries');
+
 
 
 Route::get('/admin/vendors', [VendorAccountController::class, 'show'])->name('vendors');
+Route::get('/admin/vendors/payments', [VendorPaymentRequestController::class, 'index'])->name('admin.vendor.payments');
+Route::post('/admin/vendors/payments/update/{id}', [VendorPaymentRequestController::class, 'updatePaymentStatus'])->name('vendor.updatePaymentStatus');
+
 Route::post('/admin/vendors/{id}/status/{status}', [VendorAccountController::class, 'updateStatus'])->name('admin.vendors.updateStatus');
 Route::get('/admin/vendor-details/{vendorId}', [VendorAccountController::class, 'showVendorDetails'])->name('vendor-details');
 
@@ -209,6 +256,16 @@ Route::post('/admin/users', [UserController::class, 'store'])->name('system_user
 Route::get('/admin/edit_users/{id}', [UserController::class, 'edit'])->name('edit_users');
 Route::post('/admin/edit_users/{id}', [UserController::class, 'update'])->name('update_users');
 Route::delete('/admin/edit_users/{id}', [UserController::class, 'destroy'])->name('delete_users');
+
+
+// admin_reports
+Route::get('/admin/report/customer_report', [AdminReportController::class, 'customerReport'])->name('customerReport');
+Route::get('/admin/report/affiliate_customer_report', [AdminReportController::class, 'affiliateCustomerReport'])->name('affiliateCustomerReport');
+Route::get('/admin/report/affiliate_bank_data', [AdminReportController::class, 'affiliateCusBankData'])->name('affiliateCusBankData');
+Route::get('/admin/report/vendor_report', [AdminReportController::class, 'vendorReport'])->name('vendorReport');
+Route::get('/admin/report/order_report', [AdminReportController::class, 'orderReport'])->name('orderReport');
+Route::get('/admin/report/product_report', [AdminReportController::class, 'productReport'])->name('productReport');
+
 
 
 
@@ -292,9 +349,7 @@ Route::get('home/My-Account/my-orders', function () {
     return view('user_dashboard.my-orders');
 })->name('my-orders');
 
-Route::get('home/My-Account/My-Reviews', function () {
-    return view('user_dashboard.My-Reviews');
-})->name('My-Reviews');
+
 
 Route::get('home/My-Account/inquiries', function () {
     return view('user_dashboard.inquiries');
@@ -316,11 +371,13 @@ Route::get('home/My-Account/returns-details', function () {
     return view('user_dashboard.returns-details');
 })->name('returns.details');
 
-Route::get('home/My-Account/Write-Reviews', function () {
-    return view('user_dashboard.Write-Reviews');
-})->name('Write-Reviews');
 
 
+//reviews
+Route::get('home/My-Account/My-Reviews',[ReviewsController::class,'myReviews'])->name('My-Reviews');
+Route::get('home/My-Account/Write-Reviews/{id}',[ReviewsController::class,'writeReviews'])->name('write-review');
+Route::post('/reviews/{id}', [ReviewsController::class, 'store'])->name('reviews.store');
+Route::delete('/home/reviews/{review}', [ReviewsController::class, 'customerDestroy'])->name('customer.reviews.destroy');
 
 
 
@@ -329,7 +386,7 @@ Route::get('home/My-Account/Write-Reviews', function () {
 
 //Vendor dashboard
 
-Route::view('/vendor_dashboard', 'VendorDashboard.vendorhome')->name('vendorhome');
+Route::get('/vendor_dashboard', [VendorDashboardController::class, 'vendorDashboard'])->name('vendorhome');
 Route::view('/vendor_login', 'VendorDashboard.vendor_login')->name('vendor_login');
 Route::post('/vendor_login', [VendorAccountController::class, 'login'])->name('vendor.login');
 Route::view('/vendor_register', 'VendorDashboard.vendor_register')->name('vendor_register');
@@ -352,5 +409,28 @@ Route::get('/vendor_dashboard/orders', [VendorOrderController::class, 'index'])-
 Route::delete('/vendor_dashboard/orders/{order}', [VendorOrderController::class, 'destroy'])->name('vendor.order.delete');
 Route::get('/vendor_dashboard/order-details/{orderCode}', [VendorOrderController::class, 'showOrderDetails'])->name('vendor.order-details');
 Route::patch('/vendor_dashboard/order/update-status/{order_code}', [VendorOrderController::class, 'updateStatus'])->name('vendor.order.updateStatus');
+
+
+Route::get('/vendor_dashboard/payments', [VendorPaymentRequestController::class, 'showPayments'])->name('vendor.payments');
+Route::post('/vendor/payment-request', [VendorPaymentRequestController::class, 'paymentRequest'])->name('vendor.paymentRequest');
+
+
+// vendor_reports
+Route::get('/vendor/report/order_report', [VendorReportController::class, 'orderReport'])->name('vendorOrderReport');
+Route::get('/vendor/report/product_report', [VendorReportController::class, 'productReport'])->name('vendorProductReport');
+
+
+Route::view('/vendor_dashboard/wallet', 'VendorDashboard.wallet')->name('vendor.wallet');
+
+
+
+Route::view('/vendor_dashboard/wallet', 'VendorDashboard.wallet')->name('vendor.wallet');
+Route::get('wallet', [VendorWalletController::class, 'index'])->name('vendor.wallet');
+
+
+Route::get('/vendor/profile', [VendorAccountController::class, 'showProfile'])->name('vendor.profile');
+Route::post('/vendor/profile/update', [VendorAccountController::class, 'updateProfile'])->name('vendor.updateProfile');
+Route::post('/vendor/password/update', [VendorAccountController::class, 'updatePassword'])->name('vendor.updatePassword');
+Route::post('/vendor/bank/update', [VendorAccountController::class, 'updateBankDetails'])->name('vendor.updateBankDetails');
 
 

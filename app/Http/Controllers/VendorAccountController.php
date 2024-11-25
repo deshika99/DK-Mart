@@ -110,4 +110,87 @@ class VendorAccountController extends Controller
     
 
 
+    public function showProfile()
+    {
+        $vendor = Vendor::where('id', session('vendor_id'))->first(); 
+        if (!$vendor) {
+            return redirect()->route('vendor_login')->withErrors(['error' => 'Vendor not found.']);
+        }
+        return view('VendorDashboard.profile', compact('vendor'));
+    }
+
+
+    // Update Profile
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:vendors,email,' . session('vendor_id'),
+            'contact' => 'required|string|max:20',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $vendor = Vendor::findOrFail(session('vendor_id'));
+
+        if ($request->hasFile('image')) {
+            $fileName = $request->file('image')->getClientOriginalName();
+            $imagePath = $request->file('image')->storeAs('vendor_images', $fileName, 'public');
+            $vendor->profile_image  = $imagePath;
+            $vendor->save();
+        }
+        
+        
+
+        $vendor->name = $request->name;
+        $vendor->email = $request->email;
+        $vendor->phone = $request->contact;
+        $vendor->save();
+
+        return back()->with('success', 'Profile updated successfully.');
+    }
+
+
+    // Update Password
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $vendor = Vendor::findOrFail(session('vendor_id'));
+
+        if (!Hash::check($request->current_password, $vendor->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        }
+
+        $vendor->password = Hash::make($request->new_password);
+        $vendor->save();
+
+        return back()->with('success', 'Password updated successfully.');
+    }
+
+
+    // Update Bank Details 
+    public function updateBankDetails(Request $request)
+    {
+        $request->validate([
+            'bank_name' => 'required|string|max:255',
+            'branch' => 'required|string|max:255',
+            'account_name' => 'required|string|max:255',
+            'account_number' => 'required|string|max:20',
+        ]);
+
+        $vendor = Vendor::findOrFail(session('vendor_id'));
+
+        $vendor->bank_name = $request->bank_name;
+        $vendor->branch = $request->branch;
+        $vendor->account_name = $request->account_name;
+        $vendor->account_number = $request->account_number;
+        $vendor->save();
+
+        return back()->with('success', 'Bank details updated successfully.');
+    }
+
+
 }

@@ -81,8 +81,8 @@
                             <form method="GET" action="{{ route('shop.index') }}">
                                 <input type="hidden" name="min_price" id="min_price" value="{{ $minPrice ?? 0 }}">
                                 <input type="hidden" name="max_price" id="max_price" value="{{ $maxPrice ?? 20000 }}">
-                                <button type="submit" class="h-40 btn btn-main flex-align">Filter </button>
-                            </form>
+                                <button type="submit" class="btn btn-main h-40 flex-align">Filter </button>
+                            </form>         
 
                                 <div class="gap-8 custom--range__content flex-align">
                                     <span class="flex-shrink-0 text-gray-500 text-md">Price:</span>
@@ -121,93 +121,39 @@
                     </div>
 
                     
-                    <div class="p-32 mb-32 border border-gray-100 shop-sidebar__box rounded-8">
-                        <h6 class="pb-24 mb-24 text-xl border-gray-100 border-bottom">Filter by Rating</h6>
-                        <div class="gap-8 mb-20 flex-align position-relative">
-                            <label class="cursor-pointer position-absolute w-100 h-100" for="rating5"> </label>
-                            <div class="mb-0 common-check common-radio">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="rating5">
-                            </div>
-                            <div class="h-8 bg-gray-100 progress w-100 rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar bg-main-600 rounded-pill" style="width: 70%"></div>
-                            </div>
-                            <div class="gap-4 flex-align">
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                            </div>
-                            <span class="flex-shrink-0 text-gray-900">124</span>
-                        </div>
-                        <div class="gap-8 mb-20 flex-align position-relative">
-                            <label class="cursor-pointer position-absolute w-100 h-100" for="rating4"> </label>
-                            <div class="mb-0 common-check common-radio">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="rating4">
-                            </div>
-                            <div class="h-8 bg-gray-100 progress w-100 rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar bg-main-600 rounded-pill" style="width: 50%"></div>
-                            </div>
-                            <div class="gap-4 flex-align">
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
-                            </div>
-                            <span class="flex-shrink-0 text-gray-900">52</span>
-                        </div>
-                        <div class="gap-8 mb-20 flex-align position-relative">
-                            <label class="cursor-pointer position-absolute w-100 h-100" for="rating3"> </label>
-                            <div class="mb-0 common-check common-radio">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="rating3">
-                            </div>
-                            <div class="h-8 bg-gray-100 progress w-100 rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar bg-main-600 rounded-pill" style="width: 35%"></div>
-                            </div>
-                            <div class="gap-4 flex-align">
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
-                            </div>
-                            <span class="flex-shrink-0 text-gray-900">12</span>
-                        </div>
-                        <div class="gap-8 mb-20 flex-align position-relative">
-                            <label class="cursor-pointer position-absolute w-100 h-100" for="rating2"> </label>
-                            <div class="mb-0 common-check common-radio">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="rating2">
-                            </div>
-                            <div class="h-8 bg-gray-100 progress w-100 rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar bg-main-600 rounded-pill" style="width: 20%"></div>
-                            </div>
-                            <div class="gap-4 flex-align">
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
-                            </div>
-                            <span class="flex-shrink-0 text-gray-900">5</span>
-                        </div>
-                        <div class="gap-8 mb-0 flex-align position-relative">
-                            <label class="cursor-pointer position-absolute w-100 h-100" for="rating1"> </label>
-                            <div class="mb-0 common-check common-radio">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="rating1">
-                            </div>
-                            <div class="h-8 bg-gray-100 progress w-100 rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar bg-main-600 rounded-pill" style="width: 5%"></div>
-                            </div>
-                            <div class="gap-4 flex-align">
-                                <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
-                                <span class="text-xs text-gray-400 fw-medium d-flex"><i class="ph-fill ph-star"></i></span>
-                            </div>
-                            <span class="flex-shrink-0 text-gray-900">2</span>
-                        </div>
+                    <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
+                        <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24">Filter by Rating</h6>
+                        <form method="GET" action="{{ route('shop.index') }}">
+                            <!-- Existing Filters -->
+                            <input type="hidden" name="min_price" value="{{ $minPrice }}">
+                            <input type="hidden" name="max_price" value="{{ $maxPrice }}">
+                            <input type="hidden" name="category_id" value="{{ $categoryId }}">
+                            <input type="hidden" name="color" value="{{ $color }}">
+
+                            <!-- Rating Options -->
+                            @for ($i = 5; $i >= 1; $i--)
+                                <div class="form-check mb-3">
+                                    <input 
+                                        class="form-check-input" 
+                                        type="radio" 
+                                        name="rating" 
+                                        value="{{ $i }}" 
+                                        id="rating{{ $i }}" 
+                                        {{ request('rating') == $i ? 'checked' : '' }}
+                                    >
+                                    <label class="form-check-label" for="rating{{ $i }}">
+                                        @for ($j = 1; $j <= $i; $j++)
+                                            <i class="ph-fill ph-star text-warning-600"></i>
+                                        @endfor
+                                        @for ($j = $i + 1; $j <= 5; $j++)
+                                            <i class="ph-fill ph-star text-gray-200"></i>
+                                        @endfor
+                                    </label>
+                                </div>
+                            @endfor
+
+                            <button type="submit" class="btn btn-main w-50 mt-4">Apply Filter</button>
+                        </form>
                     </div>
                         
                 </div>
@@ -250,14 +196,23 @@
                                 <h6 class="mt-12 mb-8 text-lg title fw-semibold">
                                     <a href="{{ url('/product-details/' . $product->product_id) }}" class="link text-line-2" tabindex="0">{{ $product->product_name }}</a>
                                 </h6>
-                                <div class="gap-6 mt-16 mb-20 flex-align">
-                                    <div class="gap-2 rating-info d-flex">
-                                        <span class="text-xs text-gray-500 fw-medium">4.8</span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex">
-                                            <i class="ph-fill ph-star"></i>
-                                        </span>
-                                        <span class="text-xs text-gray-500 fw-medium">(17k)</span>
+                                <div class="flex-align mb-20 mt-16 gap-6">
+                                    @if ($product->total_reviews!=0)
+                                    <div class="rating-info d-flex gap-2">
+                                        @php
+                                        $fullStars = floor($product->average_rating); // Number of full stars
+                                        $hasHalfStar = ($product->average_rating - $fullStars) >= 0.5; // Half-star condition
+                                        @endphp
+                                        @for ($i = 0; $i < $fullStars; $i++)
+                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                        @endfor
+                                        @if ($hasHalfStar)
+                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star-half"></i></span>
+                                        @endif
+                                        <span class="text-xs fw-medium text-gray-500">{{ number_format($product->average_rating, 1) }}</span>
+                                        &nbsp;<span class="text-xs fw-medium text-gray-500">({{ $product->total_reviews }})</span>
                                     </div>
+                                    @endif
                                     <!-- Heart Icon -->
                                     <button type="button" class="heart-icon ms-auto" 
                                             id="wishlist-icon-{{ $product->product_id }}" 
@@ -325,18 +280,25 @@
                                             <main class="col-lg-7">
                                                 <h6>{{ $product->product_name }}</h6>
                                                 <p class="product-description">{{ $product->product_description }}</p>
-                                                <div class="flex-wrap gap-12 mt-12 flex-align">
-                                                    <div class="flex-wrap gap-12 flex-align">
-                                                        <div class="gap-8 flex-align">
+                                                <div class="flex-align flex-wrap gap-12 mt-12">
+                                                    @if ($product->total_reviews!=0)
+                                                    <div class="flex-align gap-12 flex-wrap">
+                                                        <div class="flex-align gap-8">
+                                                        @php
+                                                        $fullStars = floor($product->average_rating); // Number of full stars
+                                                        $hasHalfStar = ($product->average_rating - $fullStars) >= 0.5; // Half-star condition
+                                                        @endphp
+                                                        @for ($i = 0; $i < $fullStars; $i++)
                                                             <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                                            @endfor
+                                                            @if ($hasHalfStar)
+                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star-half"></i></span>
+                                                            @endif
                                                         </div>
-                                                        <span class="text-sm fw-medium text-neutral-600">4.7 Star Rating</span>
-                                                        <span class="text-sm text-gray-500 fw-medium">(21,671)</span>
-                                                    </div>
+                                                        <span class="text-sm fw-medium text-neutral-600">{{ number_format($product->average_rating, 1) }} Star Rating</span>
+                                                        <span class="text-sm fw-medium text-gray-500">({{ $product->total_reviews }})</span>
+                                                    </div>                                               
+                                                    @endif
                                                 </div>
                                                 <hr />
                                                 
