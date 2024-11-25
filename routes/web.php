@@ -216,7 +216,9 @@ Route::get('/admin/vendors/payments', [VendorPaymentRequestController::class, 'i
 Route::post('/admin/vendors/payments/update/{id}', [VendorPaymentRequestController::class, 'updatePaymentStatus'])->name('vendor.updatePaymentStatus');
 
 Route::post('/admin/vendors/{id}/status/{status}', [VendorAccountController::class, 'updateStatus'])->name('admin.vendors.updateStatus');
-Route::get('/admin/vendor-details/{vendorId}', [VendorAccountController::class, 'showVendorDetails'])->name('vendor-details');
+Route::get('/admin/{vendorId}', [VendorAccountController::class, 'showVendorDetails'])->name('vendor-details');
+
+
 
 
 Route::view('/admin/role_list', 'AdminDashboard.role_list')->name('role_list');
@@ -319,9 +321,9 @@ Route::get('home/My-Account/edit-profile', function () {
     return view('user_dashboard.edit-profile');
 })->name('edit-profile');
 
-Route::get('home/My-Account/my-orders', function () {
-    return view('user_dashboard.my-orders');
-})->name('my-orders');
+
+Route::get('home/My-Account/my-orders', [ProfileController::class, 'myOrders'])->name('my-orders');
+Route::get('/track-order/{orderCode}', [ProfileController::class, 'trackOrder'])->name('user.track-order');
 
 Route::get('home/My-Account/My-Reviews', function () {
     return view('user_dashboard.My-Reviews');
@@ -398,9 +400,6 @@ Route::post('/vendor/payment-request', [VendorPaymentRequestController::class, '
 Route::get('/vendor/report/order_report', [VendorReportController::class, 'orderReport'])->name('vendorOrderReport');
 Route::get('/vendor/report/product_report', [VendorReportController::class, 'productReport'])->name('vendorProductReport');
 
-Route::view('/vendor_dashboard/payments', 'VendorDashboard.payment_requests')->name('vendor.payments');
-Route::view('/vendor_dashboard/wallet', 'VendorDashboard.wallet')->name('vendor.wallet');
-
 
 
 Route::view('/vendor_dashboard/wallet', 'VendorDashboard.wallet')->name('vendor.wallet');
@@ -411,5 +410,4 @@ Route::get('/vendor/profile', [VendorAccountController::class, 'showProfile'])->
 Route::post('/vendor/profile/update', [VendorAccountController::class, 'updateProfile'])->name('vendor.updateProfile');
 Route::post('/vendor/password/update', [VendorAccountController::class, 'updatePassword'])->name('vendor.updatePassword');
 Route::post('/vendor/bank/update', [VendorAccountController::class, 'updateBankDetails'])->name('vendor.updateBankDetails');
-
 

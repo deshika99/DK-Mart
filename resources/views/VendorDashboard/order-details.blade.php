@@ -16,18 +16,31 @@
                 <a href="#" class="fw-bold">Order ID: #{{ $order->order_code }}</a>
             </div>
             <div class="col-lg-6 col-md-6 ms-auto text-md-end">
-                <form action="{{ route('vendor.order.updateStatus', $order->order_code) }}" method="POST" class="d-inline">
-                    @csrf
-                    @method('PATCH')
-                    <select name="status" class="form-select d-inline-block mb-lg-0 mr-5 mw-200">
-                        <option selected>{{ $order->status }}</option>
+            <form id="update-status-form-{{ $order->order_code }}" action="{{ route('vendor.order.updateStatus', $order->order_code) }}" method="POST" class="d-inline">
+                @csrf
+                @method('PATCH')
+                <select name="status" class="form-select d-inline-block mb-lg-0 mr-5 mw-200" 
+                        {{ in_array($order->status, ['Packed', 'Pickup Done', 'Ready to Ship']) ? 'disabled' : '' }}>
+                    <option selected>{{ $order->status }}</option>
+                    @if($order->status === 'Pending')
                         <option value="Accepted">Accepted</option>
-                        <option value="Shipped">Shipped</option>
-                        <option value="Delivered">Delivered</option>
-                        <option value="Cancelled">Cancelled</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary p-2">Update</button>
-                </form>
+                    @elseif($order->status === 'Accepted')
+                        <option value="Packed">Packed</option>
+                    @endif
+                </select>
+
+                <button type="button" class="btn btn-primary p-2" onclick="confirmUpdate('{{ $order->order_code }}')">Update</button>
+            </form>
+
+            <script>
+                function confirmUpdate(orderCode) {
+                    const confirmation = confirm("Are you sure you want to update the status?");
+                    if (confirmation) {
+                        document.getElementById(`update-status-form-${orderCode}`).submit();
+                    }
+                }
+            </script>
+
                 <a class="btn btn-secondary print ms-2" href="#"><i class="icon material-icons md-print"></i></a>
             </div>
 
@@ -143,7 +156,116 @@
         </div>
 
 
+
+    </div>
+
+    
+
+</div>
+
+<div class="progress-container mt-4">
+    <h5>Order Progress</h5>
+    <div class="progress-wrapper">
+        @php
+            $statuses = [
+                'Pending' => 'Order Placed',
+                'Accepted' => 'Order Accepted',
+                'Packed' => 'Order Packed',
+                'Pickup Done' => 'Order Picked Up',
+                'Ready to Ship' => 'Ready to Ship',
+                'Shipped' => 'Shipped',
+                'In Transit' => 'In Transit',
+                'Delivered' => 'Delivered',
+            ];
+
+            $currentStatusIndex = array_search($order->status, array_keys($statuses));
+        @endphp
+
+        <ul class="progress-timeline">
+            @foreach ($statuses as $key => $label)
+                <li class="{{ $currentStatusIndex >= array_search($key, array_keys($statuses)) ? 'completed' : '' }}">
+                    <div class="step-circle">{{ $loop->index + 1 }}</div>
+                    <span class="step-label">{{ $label }}</span>
+                </li>
+            @endforeach
+        </ul>
     </div>
 </div>
+
+
+<style>
+
+    .progress-container {
+        margin-top: 30px;
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+    }
+
+    .progress-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        padding-top: 20px;
+    }
+
+    .progress-timeline {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .progress-timeline::before {
+        content: '';
+        position: absolute;
+        top: 30%;
+        left: 5%;
+        width: 92%;
+        height: 4px;
+        background: #ddd;
+        z-index: 0;
+    }
+
+    .progress-timeline li {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .step-circle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #ddd;
+        color: white;
+        line-height: 30px;
+        font-size: 14px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+    .step-circle.completed {
+        background: #4caf50;
+    }
+
+    .step-label {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    li.completed .step-circle {
+        background-color: #4caf50;
+        color: white;
+    }
+</style>
+
+
 
 @endsection

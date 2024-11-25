@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+use App\Models\CustomerOrder;
+
 class ProfileController extends Controller
 {
     /**
@@ -57,4 +59,24 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function myOrders()
+    {
+        $orders = CustomerOrder::where('user_id', auth()->id())->get();
+        return view('user_dashboard.my-orders', compact('orders'));
+    }
+
+    public function trackOrder($orderCode)
+{
+    $order = CustomerOrder::where('order_code', $orderCode)->firstOrFail();
+
+    // Convert activity_logs to a Laravel Collection
+    $order->activity_logs = collect($order->activity_logs ?? []);
+
+    return view('user_dashboard.tracking-page', compact('order'));
+}
+
+
+
+
 }

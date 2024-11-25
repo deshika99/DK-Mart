@@ -56,18 +56,57 @@ class VendorOrderController extends Controller
 
 
     public function updateStatus(Request $request, $orderCode)
-    {
+{
+    // Fetch the order based on the provided order code
+    $order = CustomerOrder::where('order_code', $orderCode)->firstOrFail();
 
-        $request->validate([
-            'status' => 'required|string|in:Accepted,Shipped,Delivered,Cancelled',
-        ]);
+    // Define valid status transitions for the vendor
+    $validTransitions = [
+        'Pending' => ['Accepted'], // From Pending, the vendor can mark it as Accepted
+        'Accepted' => ['Packed'],  // From Accepted, the vendor can mark it as Packed
+    ];
 
-        $order = CustomerOrder::where('order_code', $orderCode)->firstOrFail();
+    // Define status messages for the activity log
+    $statusMessages = [
+        'Accepted' => 'Order accepted by the vendor.',
+        'Packed' => 'Order packed by the vendor.',
+    ];
 
-        $order->update([
-            'status' => $request->status,
-        ]);
-        return redirect()->back()->with('success', 'Order status updated successfully.');
+    // Validate the new status
+    $request->validate([
+        'status' => [
+            'required',
+            'string',
+            function ($attribute, $value, $fail) use ($order, $validTransitions) {
+                // Check if the current status allows valid transitions
+                if (!isset($validTransitions[$order->status])) {
+                    $fail("The current status '{$order->status}' cannot be updated.");
+                }
+
+                // Check if the new status is allowed
+                if (!in_array($value, $validTransitions[$order->status])) {
+                    $fail("The status transition from '{$order->status}' to '{$value}' is not allowed.");
+                }
+            },
+        ],
+    ]);
+
+    $newStatus = $request->status;
+
+    // Add an activity log for the status change
+    if (isset($statusMessages[$newStatus])) {
+        $order->addActivityLog($statusMessages[$newStatus]);
     }
+
+    // Update the order status
+    $order->update(['status' => $newStatus]);
+
+    // Return success message
+    return redirect()->back()->with('success', "Order status updated to '{$newStatus}' successfully.");
+}
+
+
+
+
 
 }
