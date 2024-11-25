@@ -2,17 +2,14 @@
 
 @section('content')
 <style>
-
-
-a.disabled {
-    pointer-events: none;
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
+    a.disabled {
+        pointer-events: none;
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
 </style>
- <!-- ========================= Breadcrumb Start =============================== -->
- <div class="breadcrumb mb-0 py-26 bg-main-two-50">
+<!-- ========================= Breadcrumb Start =============================== -->
+<div class="breadcrumb mb-0 py-26 bg-main-two-50">
     <div class="container container-lg">
         <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
             <h6 class="mb-0"> Product Details</h6>
@@ -34,32 +31,32 @@ a.disabled {
 <!-- ========================= Breadcrumb End =============================== -->
 
 
-  <!-- ========================== Product Details Two Start =========================== -->
-  <section class="product-details py-80">
+<!-- ========================== Product Details Two Start =========================== -->
+<section class="product-details py-80">
     <div class="container container-lg" style="width:90%">
         <div class="row gy-4">
             <div class="col-xl-9">
                 <div class="row gy-4">
                     <div class="col-xl-5">
-                        <div class="product-details__left"> 
+                        <div class="product-details__left">
                             <div class="product-details__thumb-slider border border-gray-100 rounded-16">
                                 @foreach ($product->images as $image)
-                                    <div class="">
-                                        <div class="product-details__thumb flex-center">
-                                            <img src="{{ asset('storage/' . $image->image_path) }}" alt="{{ $product->product_name }}" class="img-responsive rounded-15">
-                                        </div>
+                                <div class="">
+                                    <div class="product-details__thumb flex-center">
+                                        <img src="{{ asset('storage/' . $image->image_path) }}" alt="{{ $product->product_name }}" class="img-responsive rounded-15">
                                     </div>
+                                </div>
                                 @endforeach
                             </div>
 
                             <div class="mt-24">
                                 <div class="product-details__images-slider">
                                     @foreach ($product->images as $image)
-                                        <div>
-                                            <div class="max-w-120 max-h-120 h-100 flex-center border border-gray-100 rounded-15 p-0">
-                                                <img src="{{ asset('storage/' . $image->image_path) }}" alt="{{ $product->product_name }}" class="img-responsive rounded-15">
-                                            </div>
+                                    <div>
+                                        <div class="max-w-120 max-h-120 h-100 flex-center border border-gray-100 rounded-15 p-0">
+                                            <img src="{{ asset('storage/' . $image->image_path) }}" alt="{{ $product->product_name }}" class="img-responsive rounded-15">
                                         </div>
+                                    </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -68,7 +65,7 @@ a.disabled {
                     </div>
                     <div class="col-xl-6">
                         <div class="product-details__content">
-                            
+
                             <div class="flex-center mb-24 flex-wrap gap-16 bg-color-one rounded-8 py-16 px-24 position-relative z-1">
                                 <img src="{{ asset('/frontend/assets/images/bg/details-offer-bg.png') }}" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 z-n1">
                                 <div class="flex-align gap-16">
@@ -84,20 +81,27 @@ a.disabled {
                                 </div>
                                 <span class="text-white text-xs">Remains untill the end of the offer</span>
                             </div>
-                            
+
                             <h5 class="mb-12">{{ $product->product_name }}</h5>
                             <div class="flex-align flex-wrap gap-12">
+                                @if ($totalReviews!=0)
                                 <div class="flex-align gap-12 flex-wrap">
                                     <div class="flex-align gap-8">
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                        @php
+                                        $fullStars = floor($averageRating); // Number of full stars
+                                        $hasHalfStar = ($averageRating - $fullStars) >= 0.5; // Half-star condition
+                                        @endphp
+                                        @for ($i = 0; $i < $fullStars; $i++)
+                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                            @endfor
+                                            @if ($hasHalfStar)
+                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star-half"></i></span>
+                                            @endif
                                     </div>
-                                    <span class="text-sm fw-medium text-neutral-600">4.7 Star Rating</span>
-                                    <span class="text-sm fw-medium text-gray-500">(21,671)</span>
+                                    <span class="text-sm fw-medium text-neutral-600">{{ number_format($averageRating, 1) }} Star Rating</span>
+                                    <span class="text-sm fw-medium text-gray-500">({{$totalReviews}})</span>
                                 </div>
+                                @endif
                             </div>
                             <span class="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block"></span>
 
@@ -114,53 +118,53 @@ a.disabled {
                                     <h6 class="text-xl text-gray-400 mb-0 fw-medium">Rs 5500.00</h6>
                                 </div>
                             </div>
-                            
+
                             <span class="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block"></span>
 
                             <div class="">
                                 <p class="mb-10 text-black">
-                                    Availability: 
+                                    Availability:
                                     @if ($product->quantity > 0)
-                                        <span class="text-success-600">In Stock</span>
+                                    <span class="text-success-600">In Stock</span>
                                     @else
-                                        <span class="text-danger-600">Out of Stock</span>
+                                    <span class="text-danger-600">Out of Stock</span>
                                     @endif
                                 </p>
-                              <!-- Sizes Section -->
-                            @if ($product->variations->pluck('value')->filter()->unique()->isNotEmpty())
+                                <!-- Sizes Section -->
+                                @if ($product->variations->pluck('value')->filter()->unique()->isNotEmpty())
                                 <div class="flex-between align-items-start flex-wrap gap-16">
                                     <div class="d-flex align-items-center mb-5">
                                         <span class="text-gray-900 me-3">Size:</span>
                                         @foreach ($product->variations->pluck('value')->filter()->unique() as $size)
-                                            <button type="button" 
-                                                    class="size_button ms-5 border border-2 border-gray-300 d-flex align-items-center justify-content-center"
-                                                    data-size="{{ $size }}">
-                                                {{ $size }}
-                                            </button>
+                                        <button type="button"
+                                            class="size_button ms-5 border border-2 border-gray-300 d-flex align-items-center justify-content-center"
+                                            data-size="{{ $size }}">
+                                            {{ $size }}
+                                        </button>
                                         @endforeach
                                     </div>
                                 </div>
-                            @endif
+                                @endif
 
-                        
-                            <!-- Colors Section -->
-                            @if ($product->variations->pluck('hex_value')->filter()->unique()->isNotEmpty())
+
+                                <!-- Colors Section -->
+                                @if ($product->variations->pluck('hex_value')->filter()->unique()->isNotEmpty())
                                 <div class="flex-between align-items-center flex-wrap gap-16 mt-4">
                                     <div class="d-flex align-items-center mb-4">
                                         <span class="text-gray-900 me-3">Color:</span>
                                         @foreach ($product->variations->pluck('hex_value')->filter()->unique() as $color)
-                                            <button type="button" 
-                                                    class="color-list__button w-24 h-24 border border-2 border-gray-50 rounded-circle me-2"
-                                                    style="background-color: {{ $color }};" 
-                                                    data-color="{{ $color }}">
-                                            </button>
+                                        <button type="button"
+                                            class="color-list__button w-24 h-24 border border-2 border-gray-50 rounded-circle me-2"
+                                            style="background-color: {{ $color }};"
+                                            data-color="{{ $color }}">
+                                        </button>
                                         @endforeach
                                     </div>
                                 </div>
-                            @endif
+                                @endif
 
                             </div>
-                            
+
                             <span class="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block"></span>
                             <div class="mt-0">
                                 <span class="fw-medium text-gray-900">100% Guarantee Safe Checkout</span>
@@ -187,7 +191,7 @@ a.disabled {
                             </button>
                         </div>
                     </div>
-                    
+
                     <div class="mb-32">
                         <div class="flex-between flex-wrap gap-8 border-bottom border-gray-100 pb-16 mb-16">
                             <span class="text-gray-500">Price</span>
@@ -200,33 +204,33 @@ a.disabled {
                     </div>
 
                     @auth
-                        <!-- Add To Cart Form -->
-                        <form action="{{ route('cart.add') }}" method="POST" id="addToCartForm">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input type="hidden" name="size" id="selectedSize">
-                            <input type="hidden" name="color" id="selectedColor">
-                            <input type="hidden" name="quantity" id="hiddenQuantity" value="1">
-                            <input type="hidden" name="price" id="hiddenPrice" value="{{ $product->normal_price }}">
+                    <!-- Add To Cart Form -->
+                    <form action="{{ route('cart.add') }}" method="POST" id="addToCartForm">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="size" id="selectedSize">
+                        <input type="hidden" name="color" id="selectedColor">
+                        <input type="hidden" name="quantity" id="hiddenQuantity" value="1">
+                        <input type="hidden" name="price" id="hiddenPrice" value="{{ $product->normal_price }}">
 
-                            <!-- Add To Cart Button -->
-                            <button type="submit" class="btn btn-main w-100" 
-                                    @if ($product->quantity == 0) disabled @endif>
-                                Add To Cart
-                            </button>
-                        </form>
+                        <!-- Add To Cart Button -->
+                        <button type="submit" class="btn btn-main w-100"
+                            @if ($product->quantity == 0) disabled @endif>
+                            Add To Cart
+                        </button>
+                    </form>
 
 
                     <!-- Buy Now Button -->
-                    <a href="{{ route('buyNow.checkout', ['product_id' => $product->id]) }}" 
-                    id="buyNowBtn" 
-                    class="btn btn-outline-main rounded-8 fw-normal mt-16 w-100 @if ($product->quantity == 0) disabled @endif">
-                    Buy Now
+                    <a href="{{ route('buyNow.checkout', ['product_id' => $product->id]) }}"
+                        id="buyNowBtn"
+                        class="btn btn-outline-main rounded-8 fw-normal mt-16 w-100 @if ($product->quantity == 0) disabled @endif">
+                        Buy Now
                     </a>
 
 
                     @else
-                        <p class="text-danger">Please <a href="{{ route('login') }}">log in</a> to add items to the cart.</p>
+                    <p class="text-danger">Please <a href="{{ route('login') }}">log in</a> to add items to the cart.</p>
                     @endauth
 
                     <div class="mt-32">
@@ -240,7 +244,7 @@ a.disabled {
                             <span class="w-32 h-32 bg-white text-main-600 rounded-circle flex-center text-xl flex-shrink-0">
                                 <i class="ph-fill ph-storefront"></i>
                             </span>
-                            <span class="text-sm text-neutral-600">Sold by:  <span class="fw-semibold">MR Distribution </span> </span>
+                            <span class="text-sm text-neutral-600">Sold by: <span class="fw-semibold">MR Distribution </span> </span>
                         </div>
                     </div>
                 </div>
@@ -253,10 +257,10 @@ a.disabled {
                 <div class="product-dContent__header border-bottom border-gray-100 flex-between flex-wrap gap-16">
                     <ul class="nav common-tab nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link active" id="pills-description-tab" data-bs-toggle="pill" data-bs-target="#pills-description" type="button" role="tab" aria-controls="pills-description" aria-selected="true">Description</button>
+                            <button class="nav-link active" id="pills-description-tab" data-bs-toggle="pill" data-bs-target="#pills-description" type="button" role="tab" aria-controls="pills-description" aria-selected="true">Description</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link" id="pills-reviews-tab" data-bs-toggle="pill" data-bs-target="#pills-reviews" type="button" role="tab" aria-controls="pills-reviews" aria-selected="false">Reviews</button>
+                            <button class="nav-link" id="pills-reviews-tab" data-bs-toggle="pill" data-bs-target="#pills-reviews" type="button" role="tab" aria-controls="pills-reviews" aria-selected="false">Reviews</button>
                         </li>
                     </ul>
                     <a href="#" class="btn bg-color-one rounded-16 flex-align gap-8 text-main-600 hover-bg-main-600 hover-text-white">
@@ -279,21 +283,21 @@ a.disabled {
                                             <i class="ph ph-check"></i>
                                         </span>
                                         <span class="text-heading fw-medium">
-                                            Available sizes: 
+                                            Available sizes:
                                             <span class="text-gray-500">
                                                 {{ implode(', ', $product->variations->pluck('value')->filter()->unique()->toArray()) }}
                                             </span>
                                         </span>
                                     </li>
                                     <li class="text-gray-400 mb-14 flex-align gap-14">
-                                    <span class="w-20 h-20 bg-main-50 text-main-600 text-xs flex-center rounded-circle">
-                                        <i class="ph ph-check"></i>
-                                    </span>
+                                        <span class="w-20 h-20 bg-main-50 text-main-600 text-xs flex-center rounded-circle">
+                                            <i class="ph ph-check"></i>
+                                        </span>
                                         <span class="text-heading fw-medium">
-                                            Available colors: 
+                                            Available colors:
                                             <span class="text-gray-500  gap-4">
                                                 @foreach($product->variations->pluck('hex_value')->filter()->unique() as $color)
-                                                    <span class="w-14 h-14 rounded-circle" style="background-color: {{ $color }};"></span>
+                                                <span class="w-14 h-14 rounded-circle" style="background-color: {{ $color }};"></span>
                                                 @endforeach
                                             </span>
                                         </span>
@@ -305,39 +309,56 @@ a.disabled {
                         <div class="tab-pane fade" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab" tabindex="0">
                             <div class="row g-4">
                                 <div class="col-lg-6">
-                                    <h6 class="mb-24">Product Description</h6>
-                                    <div class="d-flex align-items-start gap-24 pb-44 border-bottom border-gray-100 mb-44">
-                                        <img src="{{ asset('/frontend/assets/images/icon/default-user.png') }}" alt="" class="w-52 h-52 object-fit-cover rounded-circle flex-shrink-0">
-                                        <div class="flex-grow-1">
-                                            <div class="flex-between align-items-start gap-8 ">
-                                                <div class="">
-                                                    <h6 class="mb-12 text-md">Nicolas cage</h6>
-                                                    <div class="flex-align gap-8">
-                                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                    <h6 class="mb-24">Product Reviews</h6>
+                                    <div class="reviews">
+                                        @forelse($reviews as $review)
+                                        <div class="d-flex align-items-start gap-24 pb-44 border-bottom border-gray-100 mb-44">
+                                            <!-- Reviewer Info -->
+                                            <img src="{{ asset('/frontend/assets/images/icon/default-user.png') }}" alt="" class="w-52 h-52 object-fit-cover rounded-circle flex-shrink-0">
+                                            <div class="flex-grow-1">
+                                                <div class="flex-between align-items-start gap-8">
+                                                    <div>
+                                                        <h6 class="mb-12 text-md">{{ $review->is_anonymous ? 'Anonymous' : $review->reviewer->name }}</h6>
+                                                        <!-- Rating -->
+                                                        <div class="flex-align gap-8">
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                <i class="{{ $review->rating >= $i ? 'fa-star fas filled' : 'far fa-star' }}" style="color: #ffbf00;"></i>
+                                                                @endfor
+                                                        </div>
                                                     </div>
+                                                    <!-- Review Date -->
+                                                    <span class="text-gray-800 text-xs">{{ $review->created_at->format('d.m.Y') }}</span>
                                                 </div>
-                                                <span class="text-gray-800 text-xs">3 Days ago</span>
-                                            </div>
-                                            <h6 class="mb-14 text-md mt-24">Greate Product</h6>
-                                            <p class="text-gray-700">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
+                                                <!-- Review Text -->
+                                                <p class="text-gray-700">{{ $review->review }}</p>
+                                                <!-- Review Media -->
+                                                @if($review->media)
+                                                <div class="flex-wrap gap-8 mt-12">
+                                                    @php
+                                                    $mediaFiles = is_string($review->media) ? json_decode($review->media, true) : $review->media;
+                                                    @endphp
 
-                                            <div class="flex-align gap-20 mt-44">
-                                                <button class="flex-align gap-12 text-gray-700 hover-text-main-600">
-                                                    <i class="ph-bold ph-thumbs-up"></i>
-                                                    Like
-                                                </button>
-                                                <a href="#comment-form" class="flex-align gap-12 text-gray-700 hover-text-main-600">
-                                                    <i class="ph-bold ph-arrow-bend-up-left"></i>
-                                                    Replay
-                                                </a>
+                                                    @foreach ($mediaFiles as $media)
+                                                    @if (in_array(pathinfo($media, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif']))
+                                                    <img src="{{ asset('storage/' . $media) }}" alt="Review Media" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
+                                                    @elseif (in_array(pathinfo($media, PATHINFO_EXTENSION), ['mp4', 'avi', 'mov', 'webm']))
+                                                    <video controls style="width: 100px; height: 100px;">
+                                                        <source src="{{ asset('storage/' . $media) }}" type="video/{{ pathinfo($media, PATHINFO_EXTENSION) }}">
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                    @endif
+                                                    @endforeach
+                                                </div>
+                                                @endif
                                             </div>
                                         </div>
+                                        @empty
+                                        <p>No reviews available for this product.</p>
+                                        @endforelse
                                     </div>
-                                    <div class="mt-56">
+
+
+                                    <!-- <div class="mt-56">
                                         <div class="">
                                             <h6 class="mb-24">Write a Review</h6>
                                             <span class="text-heading mb-8">What is it like to Product?</span>
@@ -362,101 +383,59 @@ a.disabled {
                                                 <button type="submit" class="btn btn-main rounded-pill mt-48">Submit Review</button>
                                             </form>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="ms-xxl-5">
                                         <h6 class="mb-24">Customers Feedback</h6>
                                         <div class="d-flex flex-wrap gap-44">
+                                            <!-- Average Rating -->
                                             <div class="border border-gray-100 rounded-8 px-40 py-52 flex-center flex-column flex-shrink-0 text-center">
-                                                <h2 class="mb-6 text-main-600">4.8</h2>
+                                                <h2 class="mb-6 text-main-600">{{ number_format($averageRating, 1) }}</h2>
                                                 <div class="flex-center gap-8">
-                                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                                    @php
+                                                    $fullStars = floor($averageRating); // Number of full stars
+                                                    $hasHalfStar = ($averageRating - $fullStars) >= 0.5; // Half-star condition
+                                                    @endphp
+                                                    @for ($i = 0; $i < $fullStars; $i++)
+                                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                                        @endfor
+                                                        @if ($hasHalfStar)
+                                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star-half"></i></span>
+                                                        @endif
                                                 </div>
                                                 <span class="mt-16 text-gray-500">Average Product Rating</span>
                                             </div>
+
+                                            <!-- Rating Breakdown -->
                                             <div class="border border-gray-100 rounded-8 px-24 py-40 flex-grow-1">
+                                                @foreach ($ratingCounts as $rating => $count)
+                                                @php
+                                                $percentage = $totalReviews > 0 ? ($count / $totalReviews) * 100 : 0;
+                                                @endphp
                                                 <div class="flex-align gap-8 mb-20">
-                                                    <span class="text-gray-900 flex-shrink-0">5</span>
-                                                    <div class="progress w-100 bg-gray-100 rounded-pill h-8" role="progressbar" aria-label="Basic example" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                                        <div class="progress-bar bg-main-600 rounded-pill" style="width: 70%"></div>
+                                                    <span class="text-gray-900 flex-shrink-0">{{ $rating }}</span>
+                                                    <div class="progress w-100 bg-gray-100 rounded-pill h-8" role="progressbar" aria-label="Basic example" aria-valuenow="{{ $percentage }}" aria-valuemin="0" aria-valuemax="100">
+                                                        <div class="progress-bar bg-main-600 rounded-pill" style="width: {{ $percentage }}%"></div>
                                                     </div>
                                                     <div class="flex-align gap-4">
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            <span class="text-xs fw-medium {{ $rating >= $i ? 'text-warning-600' : 'text-gray-600' }} d-flex">
+                                                            <i class="ph-fill ph-star"></i>
+                                                            </span>
+                                                            @endfor
                                                     </div>
-                                                    <span class="text-gray-900 flex-shrink-0">124</span>
+                                                    <span class="text-gray-900 flex-shrink-0">{{ $count }}</span>
                                                 </div>
-                                                <div class="flex-align gap-8 mb-20">
-                                                    <span class="text-gray-900 flex-shrink-0">4</span>
-                                                    <div class="progress w-100 bg-gray-100 rounded-pill h-8" role="progressbar" aria-label="Basic example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                                        <div class="progress-bar bg-main-600 rounded-pill" style="width: 50%"></div>
-                                                    </div>
-                                                    <div class="flex-align gap-4">
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    </div>
-                                                    <span class="text-gray-900 flex-shrink-0">52</span>
-                                                </div>
-                                                <div class="flex-align gap-8 mb-20">
-                                                    <span class="text-gray-900 flex-shrink-0">3</span>
-                                                    <div class="progress w-100 bg-gray-100 rounded-pill h-8" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                                        <div class="progress-bar bg-main-600 rounded-pill" style="width: 35%"></div>
-                                                    </div>
-                                                    <div class="flex-align gap-4">
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    </div>
-                                                    <span class="text-gray-900 flex-shrink-0">12</span>
-                                                </div>
-                                                <div class="flex-align gap-8 mb-20">
-                                                    <span class="text-gray-900 flex-shrink-0">2</span>
-                                                    <div class="progress w-100 bg-gray-100 rounded-pill h-8" role="progressbar" aria-label="Basic example" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <div class="progress-bar bg-main-600 rounded-pill" style="width: 20%"></div>
-                                                    </div>
-                                                    <div class="flex-align gap-4">
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    </div>
-                                                    <span class="text-gray-900 flex-shrink-0">5</span>
-                                                </div>
-                                                <div class="flex-align gap-8 mb-0">
-                                                    <span class="text-gray-900 flex-shrink-0">1</span>
-                                                    <div class="progress w-100 bg-gray-100 rounded-pill h-8" role="progressbar" aria-label="Basic example" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
-                                                        <div class="progress-bar bg-main-600 rounded-pill" style="width: 5%"></div>
-                                                    </div>
-                                                    <div class="flex-align gap-4">
-                                                        <span class="text-xs fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        <span class="text-xs fw-medium text-gray-400 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                    </div>
-                                                    <span class="text-gray-900 flex-shrink-0">2</span>
-                                                </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                </div>  
+
+
+                                </div>
                             </div>
-                        </div>  
+                        </div>
                     </div>
                 </div>
             </div>
@@ -488,44 +467,44 @@ a.disabled {
         </div>
 
         <div class="new-arrival__slider arrow-style-two">
-        @foreach($similarProducts as $similarProduct)
-        <div>
-            <div class="product-card h-100 p-8 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <a href="{{ route('showProductDetails', $similarProduct->product_id) }}" class="product-card__thumb flex-center">
-                    <img src="{{ asset('storage/' . $similarProduct->images->first()->image_path) }}" alt="{{ $similarProduct->name }}" style="width: 200px; height: 200px; object-fit: cover;">
-                </a>
+            @foreach($similarProducts as $similarProduct)
+            <div>
+                <div class="product-card h-100 p-8 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                    <a href="{{ route('showProductDetails', $similarProduct->product_id) }}" class="product-card__thumb flex-center">
+                        <img src="{{ asset('storage/' . $similarProduct->images->first()->image_path) }}" alt="{{ $similarProduct->name }}" style="width: 200px; height: 200px; object-fit: cover;">
+                    </a>
 
-                <div class="product-card__content p-sm-2 w-100">
-                    <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                        <a href="{{ route('showProductDetails', $similarProduct->product_id) }}" class="link text-line-2">{{ $similarProduct->product_name }}</a>
-                    </h6>   
-                    <div class="flex-align gap-4">
-                        <span class="text-main-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                        <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
-                    </div>
-
-                    <div class="flex-align mb-20 mt-16 gap-6">
-                        <div class="rating-info d-flex gap-2">
-                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                            <span class="text-15 fw-medium text-warning-600 d-flex">
-                                <i class="ph-fill ph-star"></i>
-                            </span>
-                            <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                    <div class="product-card__content p-sm-2 w-100">
+                        <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                            <a href="{{ route('showProductDetails', $similarProduct->product_id) }}" class="link text-line-2">{{ $similarProduct->product_name }}</a>
+                        </h6>
+                        <div class="flex-align gap-4">
+                            <span class="text-main-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
+                            <span class="text-gray-500 text-xs">By Lucky Supermarket</span>
                         </div>
-                        <!-- Heart Icon -->
-                        <button type="button" class="heart-icon ms-auto" 
-                                id="wishlist-icon-{{ $similarProduct->product_id }}" 
-                                data-product-id="{{ $similarProduct->product_id }}" 
-                                onclick="toggleWishlist(this, '{{ $similarProduct->product_id }}')">
-                            <i class="fa-regular fa-heart" style="font-size: 15px;"></i>
-                        </button>
 
+                        <div class="flex-align mb-20 mt-16 gap-6">
+                            <div class="rating-info d-flex gap-2">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex">
+                                    <i class="ph-fill ph-star"></i>
+                                </span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <!-- Heart Icon -->
+                            <button type="button" class="heart-icon ms-auto"
+                                id="wishlist-icon-{{ $similarProduct->product_id }}"
+                                data-product-id="{{ $similarProduct->product_id }}"
+                                onclick="toggleWishlist(this, '{{ $similarProduct->product_id }}')">
+                                <i class="fa-regular fa-heart" style="font-size: 15px;"></i>
+                            </button>
+
+                        </div>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
-    </div>
 
     </div>
 </section>
@@ -533,10 +512,10 @@ a.disabled {
 
 
 <!-- ========================== Similar Product End ============================= -->
-    
- 
 
-    <!-- =============================== Newsletter Section Start ============================ -->
+
+
+<!-- =============================== Newsletter Section Start ============================ -->
 <div class="newsletter">
     <div class="container container-lg">
         <div class="newsletter-box position-relative rounded-16 flex-align gap-16 flex-wrap z-1">
@@ -565,230 +544,228 @@ a.disabled {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-document.querySelectorAll('.size_button').forEach(button => {
-    button.addEventListener('click', () => {
-        document.querySelectorAll('.size_button').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        document.getElementById('selectedSize').value = button.getAttribute('data-size');
+    document.querySelectorAll('.size_button').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.size_button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            document.getElementById('selectedSize').value = button.getAttribute('data-size');
+        });
     });
-});
 
-document.querySelectorAll('.color-list__button').forEach(button => {
-    button.addEventListener('click', () => {
-        document.querySelectorAll('.color-list__button').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        document.getElementById('selectedColor').value = button.getAttribute('data-color');
+    document.querySelectorAll('.color-list__button').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.color-list__button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            document.getElementById('selectedColor').value = button.getAttribute('data-color');
+        });
     });
-});
-
 </script>
 
 <script>
-var minus = $('.quantity__minus');
-var plus = $('.quantity__plus');
-var normalPrice = parseFloat('{{ $product->normal_price }}'); 
+    var minus = $('.quantity__minus');
+    var plus = $('.quantity__plus');
+    var normalPrice = parseFloat('{{ $product->normal_price }}');
 
-$(plus).on('click', function () {
-    var input = $(this).siblings('.quantity__input');
-    var value = parseInt(input.val()); 
-    value++; // Increment value
-    input.val(value); 
+    $(plus).on('click', function() {
+        var input = $(this).siblings('.quantity__input');
+        var value = parseInt(input.val());
+        value++; // Increment value
+        input.val(value);
 
-    updatePrice(value); 
-});
+        updatePrice(value);
+    });
 
-$(minus).on('click', function () {
-    var input = $(this).siblings('.quantity__input');
-    var value = parseInt(input.val()); 
-    if (value > 1) {
-        value--; 
+    $(minus).on('click', function() {
+        var input = $(this).siblings('.quantity__input');
+        var value = parseInt(input.val());
+        if (value > 1) {
+            value--;
+        }
+        input.val(value);
+
+        updatePrice(value);
+    });
+
+    function updatePrice(quantity) {
+        var newPrice = (normalPrice * quantity).toFixed(2);
+        $('.price-display').text(newPrice);
+        $('#hiddenQuantity').val(quantity);
+        $('#hiddenPrice').val(newPrice);
     }
-    input.val(value); 
 
-    updatePrice(value); 
-});
-
-function updatePrice(quantity) {
-    var newPrice = (normalPrice * quantity).toFixed(2); 
-    $('.price-display').text(newPrice); 
-    $('#hiddenQuantity').val(quantity); 
-    $('#hiddenPrice').val(newPrice); 
-}
-
-$(document).ready(function() {
-    var initialQuantity = parseInt($('#quantityInput').val());
-    updatePrice(initialQuantity); 
-});
+    $(document).ready(function() {
+        var initialQuantity = parseInt($('#quantityInput').val());
+        updatePrice(initialQuantity);
+    });
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Track the selected size and color
-    let selectedSize = null;
-    let selectedColor = null;
-    const productHasSize = document.querySelectorAll('.size_button').length > 0;
-    const productHasColor = document.querySelectorAll('.color-list__button').length > 0;
+    document.addEventListener('DOMContentLoaded', function() {
+        // Track the selected size and color
+        let selectedSize = null;
+        let selectedColor = null;
+        const productHasSize = document.querySelectorAll('.size_button').length > 0;
+        const productHasColor = document.querySelectorAll('.color-list__button').length > 0;
 
-    // Add event listener for size buttons
-    document.querySelectorAll('.size_button').forEach(button => {
-        button.addEventListener('click', () => {
-            document.querySelectorAll('.size_button').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            selectedSize = button.getAttribute('data-size'); 
-            document.getElementById('selectedSize').value = selectedSize; 
-        });
-    });
-
-    // Add event listener for color buttons
-    document.querySelectorAll('.color-list__button').forEach(button => {
-        button.addEventListener('click', () => {
-            document.querySelectorAll('.color-list__button').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            selectedColor = button.getAttribute('data-color'); 
-            document.getElementById('selectedColor').value = selectedColor; 
-        });
-    });
-
-    // Handle Add to Cart form submission
-    document.getElementById('addToCartForm').addEventListener('submit', function(e) {
-        // Check if size/color are required and selected
-        if ((productHasSize && !selectedSize) || (productHasColor && !selectedColor)) {
-            e.preventDefault(); 
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Please select both a size and a color to proceed.',
-                icon: 'warning',
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true
+        // Add event listener for size buttons
+        document.querySelectorAll('.size_button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.size_button').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                selectedSize = button.getAttribute('data-size');
+                document.getElementById('selectedSize').value = selectedSize;
             });
-        }
-    });
-
-   
-}); 
-</script>
-
-<script>
-
-document.addEventListener('DOMContentLoaded', function() {
-    let selectedSize = null;
-    let selectedColor = null;
-
-    const productHasSize = document.querySelectorAll('.size_button').length > 0;
-    const productHasColor = document.querySelectorAll('.color-list__button').length > 0;
-
-    // Size selection event listener
-    document.querySelectorAll('.size_button').forEach(button => {
-        button.addEventListener('click', () => {
-            document.querySelectorAll('.size_button').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            selectedSize = button.getAttribute('data-size');
         });
-    });
 
-    // Color selection event listener
-    document.querySelectorAll('.color-list__button').forEach(button => {
-        button.addEventListener('click', () => {
-            document.querySelectorAll('.color-list__button').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            selectedColor = button.getAttribute('data-color').replace('#', ''); 
-        });
-    });
-
-    // Handle "Buy Now" button click
-    document.getElementById('buyNowBtn').addEventListener('click', function(e) {
-        e.preventDefault();
-
-        const quantity = document.getElementById('quantityInput').value || 1;
-
-        if ((productHasSize && !selectedSize) || (productHasColor && !selectedColor)) {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Please select both a size and a color to proceed.',
-                icon: 'warning',
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,7
-                timerProgressBar: true
+        // Add event listener for color buttons
+        document.querySelectorAll('.color-list__button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.color-list__button').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                selectedColor = button.getAttribute('data-color');
+                document.getElementById('selectedColor').value = selectedColor;
             });
-        } else {
-            const url = new URL("{{ url('/buy-now-checkout/' . $product->id) }}");
-            url.searchParams.append('selectedSize', selectedSize || '');
-            url.searchParams.append('selectedColor', selectedColor || ''); 
-            url.searchParams.append('quantity', quantity);
-            window.location.href = url;
-        }
-    });
-});
+        });
 
-
-</script> 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Get all product IDs in the similar products section
-    const productIds = Array.from(document.querySelectorAll('.heart-icon')).map(icon => icon.getAttribute('data-product-id'));
-
-    // Check if each product is in the wishlist
-    productIds.forEach(productId => {
-        fetch(`/wishlist/check/${productId}`, {
-            method: 'GET',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+        // Handle Add to Cart form submission
+        document.getElementById('addToCartForm').addEventListener('submit', function(e) {
+            // Check if size/color are required and selected
+            if ((productHasSize && !selectedSize) || (productHasColor && !selectedColor)) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Warning!',
+                    text: 'Please select both a size and a color to proceed.',
+                    icon: 'warning',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                });
             }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.in_wishlist) {
-                // If product is in wishlist, mark the heart icon as active
-                const heartIcon = document.querySelector(`#wishlist-icon-${productId}`);
-                if (heartIcon) {
-                    heartIcon.classList.add('active');
-                    heartIcon.querySelector('i').classList.replace('fa-regular', 'fa-solid');
-                    heartIcon.querySelector('i').style.color = 'red';
+        });
+
+
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let selectedSize = null;
+        let selectedColor = null;
+
+        const productHasSize = document.querySelectorAll('.size_button').length > 0;
+        const productHasColor = document.querySelectorAll('.color-list__button').length > 0;
+
+        // Size selection event listener
+        document.querySelectorAll('.size_button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.size_button').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                selectedSize = button.getAttribute('data-size');
+            });
+        });
+
+        // Color selection event listener
+        document.querySelectorAll('.color-list__button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.color-list__button').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                selectedColor = button.getAttribute('data-color').replace('#', '');
+            });
+        });
+
+        // Handle "Buy Now" button click
+        document.getElementById('buyNowBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const quantity = document.getElementById('quantityInput').value || 1;
+
+            if ((productHasSize && !selectedSize) || (productHasColor && !selectedColor)) {
+                Swal.fire({
+                    title: 'Warning!',
+                    text: 'Please select both a size and a color to proceed.',
+                    icon: 'warning',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    7
+                    timerProgressBar: true
+                });
+            } else {
+                const url = new URL("{{ url('/buy-now-checkout/' . $product->id) }}");
+                url.searchParams.append('selectedSize', selectedSize || '');
+                url.searchParams.append('selectedColor', selectedColor || '');
+                url.searchParams.append('quantity', quantity);
+                window.location.href = url;
+            }
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all product IDs in the similar products section
+        const productIds = Array.from(document.querySelectorAll('.heart-icon')).map(icon => icon.getAttribute('data-product-id'));
+
+        // Check if each product is in the wishlist
+        productIds.forEach(productId => {
+            fetch(`/wishlist/check/${productId}`, {
+                    method: 'GET',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.in_wishlist) {
+                        // If product is in wishlist, mark the heart icon as active
+                        const heartIcon = document.querySelector(`#wishlist-icon-${productId}`);
+                        if (heartIcon) {
+                            heartIcon.classList.add('active');
+                            heartIcon.querySelector('i').classList.replace('fa-regular', 'fa-solid');
+                            heartIcon.querySelector('i').style.color = 'red';
+                        }
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    });
+
+    // Function to toggle wishlist
+    function toggleWishlist(button, productId) {
+        // Toggle active state for heart icon
+        button.classList.toggle('active');
+
+        if (button.classList.contains('active')) {
+            button.querySelector('i').classList.replace('fa-regular', 'fa-solid');
+            button.querySelector('i').style.color = 'red';
+        } else {
+            button.querySelector('i').classList.replace('fa-solid', 'fa-regular');
+            button.querySelector('i').style.color = '#ccc';
+        }
+
+        // Send request to toggle wishlist
+        fetch('/wishlist/toggle', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: JSON.stringify({
+                    product_id: productId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    alert(data.message);
                 }
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
-});
-
-// Function to toggle wishlist
-function toggleWishlist(button, productId) {
-    // Toggle active state for heart icon
-    button.classList.toggle('active');
-
-    if (button.classList.contains('active')) {
-        button.querySelector('i').classList.replace('fa-regular', 'fa-solid');
-        button.querySelector('i').style.color = 'red';
-    } else {
-        button.querySelector('i').classList.replace('fa-solid', 'fa-regular');
-        button.querySelector('i').style.color = '#ccc';
+            })
+            .catch(error => console.error('Error:', error));
     }
-
-    // Send request to toggle wishlist
-    fetch('/wishlist/toggle', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-        },
-        body: JSON.stringify({ product_id: productId })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            alert(data.error);
-        } else {
-            alert(data.message);
-        }
-    })
-    .catch(error => console.error('Error:', error));
-}
-
 </script>
 
 @endsection
