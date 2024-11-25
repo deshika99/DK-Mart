@@ -224,7 +224,7 @@ Route::get('/admin/affiliate_customers', [AffiliateUserController::class, 'showA
 Route::post('/admin/affiliates/{id}/status/{status}', [AffiliateUserController::class, 'updateStatus'])->name('admin.affiliates.updateStatus');
 Route::get('/admin/Affiliatecustomer-details/{id}', [AffiliateUserController::class, 'showDetails'])->name('admin.affiliates.show');
 
-
+Route::get('/admin/reviews', [ReviewsController::class, 'adminView'])->name('adminReviews');
 Route::get('/admin/reviews', [ReviewsController::class, 'adminView'])->name('adminReviews');
 Route::get('/admin/reviews-details/{id}', [ReviewsController::class, 'adminViewDetails'])->name('viewReviewDetails');
 Route::patch('/reviews/{id}/status', [ReviewsController::class, 'updateStatus'])->name('reviews.updateStatus');
@@ -279,10 +279,10 @@ Route::view('/affiliate_home', 'AffiliateDashBoard.affiliate_home')->name('affil
 
 
 Route::view('/home/affiliate/affiliate_home', 'aff_home')->name('aff_home');
-Route::post('/home/affiliate/register', [AffiliateCustomerController::class, 'register'])->name('aff_reg');
+//Route::post('/home/affiliate/register', [AffiliateCustomerController::class, 'register'])->name('aff_reg');
 Route::view('/home/affiliate/register/', 'aff_reg')->name('register_form');
-Route::post('/home/affiliate/login', [AffiliateCustomerController::class, 'login'])->name('aff_login');
-Route::get('/affiliate/dashboard', [AffiliateCustomerController::class, 'index'])->name('index');
+//Route::post('/home/affiliate/login', [AffiliateCustomerController::class, 'login'])->name('aff_login');
+//Route::get('/affiliate/dashboard', [AffiliateCustomerController::class, 'index'])->name('index');
 Route::post('/affiliate/logout', [AffiliateUserController::class, 'logout'])->name('aff.logout');
 
 
@@ -293,7 +293,7 @@ Route::get('/affiliate/dashboard/ad_center/{id}/promote-modal', [AffiliateProduc
 Route::get('/affiliate/dashboard/ad_center/download-images', [AffiliateProductController::class, 'downloadImages'])->name('products.downloadImages');
 Route::post('/generate-promo', [AffiliateProductController::class, 'generatePromo'])->name('generate.promo');
 Route::view('/affiliate/dashboard/incentive_campaign', 'affiliate_dashboard.incentive_campaign')->name('incentive_campaign');
-Route::post('/affiliate/promo/maritial/genaratr', [AffiliateCustomerController::class, 'promomatirials'])->name('promo_matirials');
+//Route::post('/affiliate/promo/maritial/genaratr', [AffiliateCustomerController::class, 'promomatirials'])->name('promo_matirials');
 
 
 Route::view('/affiliate/dashboard/reports/income_report', 'affiliate_dashboard.income_report')->name('income_report');
