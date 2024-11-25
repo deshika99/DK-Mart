@@ -1,10 +1,8 @@
 @extends ('frontend.master')
 
-
 @section('content')
 <div class="banner-two">
     <div class="container container-lg">
-
         <div class="banner-two-wrapper d-flex align-items-start">
                 <div class="mb-0 overflow-hidden banner-item-two-wrapper rounded-24 position-relative arrow-center flex-grow-1">
                     <img src="{{ asset('frontend/assets/images/bg/banner-two-bg.png') }}" alt="" class="banner-img position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 z-n1 object-fit-cover rounded-24">
@@ -20,31 +18,25 @@
                             <div class="bottom-0 banner-item-two__thumb position-absolute wow bounceInUp" data-wow-duration="1s" data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="5000" data-tilt-scale="1.06">
                                 <img src="frontend/assets/images/imgs/music-cover1.png" alt="">
                             </div>
-
                         </div>
-                        <div class="banner-item-two__thumb position-absolute bottom-0 wow bounceInUp" data-wow-duration="1s" data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="5000" data-tilt-scale="1.06">
-                            <img src="frontend/assets/images/imgs/music-cover1.png" alt="">
-                        </div>
-                    </div>
-                    <div class="banner-item-two">
-                        <div class="banner-item-two__content">
-                            <span class="text-white mb-8 h6 wow bounceInDown">Starting at only Rs 500</span>
-                            <h2 class="banner-item-two__title bounce text-white wow bounceInLeft">Get The Sound You Love For Less</h2>
-                            <a href="{{ route('shop.index') }}" class="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48 wow bounceInUp">
-                                Shop Now<span class="icon text-xl d-flex"><i class="ph ph-shopping-cart-simple"></i> </span>
-                            </a>
-                        </div>
-                        <div class="banner-item-two__thumb position-absolute bottom-0 wow bounceInUp" data-wow-duration="1s" data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="5000" data-tilt-scale="1.06">
-                            <img src="frontend/assets/images/imgs/music-cover1.jpg" alt="">
+                        <div class="banner-item-two">
+                            <div class="banner-item-two__content">
+                                <span class="mb-8 text-white h6 wow bounceInDown">Starting at only Rs 500</span>
+                                <h2 class="text-white banner-item-two__title bounce wow bounceInLeft">Get The Sound You Love For Less</h2>
+                                <a href="{{ route('shop.index') }}" class="gap-8 mt-48 btn btn-outline-white d-inline-flex align-items-center rounded-pill wow bounceInUp">
+                                    Shop Now<span class="text-xl icon d-flex"><i class="ph ph-shopping-cart-simple"></i> </span>
+                                </a>
+                            </div>
+                            <div class="bottom-0 banner-item-two__thumb position-absolute wow bounceInUp" data-wow-duration="1s" data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="5000" data-tilt-scale="1.06">
+                                <img src="frontend/assets/images/imgs/music-cover1.jpg" alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- ============================ Banner Section End =============================== -->
-
+    <!-- ============================ Banner Section End =============================== -->
 
     <!-- ============================ promotional banner Start ========================== -->
     <section class="mt-32 promotional-banner">
@@ -101,35 +93,37 @@
                             <div class="pe-xxl-4">
                                 <img src="frontend/assets/images/imgs/headphones.png" alt="" style="width: 90px;">
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- ============================ promotional banner End ========================== -->
+    </section>
+    <!-- ============================ promotional banner End ========================== -->
 
-
-<!-- ========================= random products Start ================================ -->
-
-<section class="recently-viewed pt-80 overflow-hidden">
+<!-- ============================ new section add leatest product========================== -->
+  <!-- ========================= Deals Week Start ================================ -->
+  <section class="overflow-hidden deals-weeek pt-80">
     <div class="container container-lg">
-
-        <div class="border border-gray-100 p-24 rounded-16">
-            <div class="section-heading mb-24">
-                <div class="flex-between flex-wrap gap-8">
-                    <h5 class="mb-0 wow bounceInLeft">Latest Products</h5>
-                    <div class="flex-align gap-16 wow bounceInRight">
-                        <a href="{{ route('shop.index') }}" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Products</a>
+        <div class="p-24 border border-gray-100 rounded-16">
+            <div class="mb-24 section-heading">
+                <div class="flex-wrap gap-8 flex-between">
+                    <h5 class="mb-0 wow bounceInLeft">Leatest product</h5>
+                    <div class="gap-16 flex-align wow bounceInRight">
+                        <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
+                        <div class="gap-8 flex-align">
+                            <button type="button" id="deal-week-prev" class="text-xl border border-gray-100 slick-prev slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-left"></i>
+                            </button>
+                            <button type="button" id="deal-week-next" class="text-xl border border-gray-100 slick-next slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-right"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-
            <div class="deals-week-slider arrow-style-two">
-
                 @foreach ($products->slice(0, 10) as $product)
                     <div data-aos="fade-up" data-aos-duration="200">
                         <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
@@ -148,7 +142,7 @@
                                         </span>
                                         <span class="text-xs text-gray-500 fw-medium">(17k)</span>
                                     </div>
-                                    
+                                    <!-- Heart Icon -->
                                     <button type="button" class="heart-icon ms-auto" 
                                             id="wishlist-icon-{{ $product->product_id }}" 
                                             onclick="toggleWishlist(this, '{{ $product->product_id }}')">
@@ -180,15 +174,16 @@
                         </div>
                     </div>
                 @endforeach
-            </div>  -->
+            </div>
 
         </div>
     </div>
 </section>
-<!-- ========================= recently viewed End ================================ -->
+<!-- ========================= Deals Week End ================================ -->
 
+   
 
-
+<!-- ========================= new section end================================ -->
 
 
  <!-- ========================= categories section Start ================================ -->
@@ -201,50 +196,47 @@
                         <div class="gap-16 flex-align wow bounceInRight">
                             <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Products</a>
                         </div>
+                    </div>
+                </div>
 
+                <div class="mb-24 overflow-hidden popular-products-box rounded-16 flex-between position-relative z-1">
+                    <img src="frontend/assets/images/bg/expensive-offer-bg.png" alt="" class="position-absolute inset-block-start-0 w-100 h-100 z-n1">
+                    <div class="d-lg-block d-none ps-32" data-aos="zoom-in" data-aos-duration="800">
+                        <img src="frontend/assets/images/imgs/img.png" alt="" style="width:250px;">
                     </div>
-                </div>
-            </div>
-
-            <div class="popular-products-box rounded-16 overflow-hidden flex-between position-relative z-1 mb-24">
-                <img src="frontend/assets/images/bg/expensive-offer-bg.png" alt="" class="position-absolute inset-block-start-0 inset-block-start-0 w-100 h-100 z-n1">
-                <div class="d-lg-block d-none ps-32" data-aos="zoom-in" data-aos-duration="800">
-                    <img src="frontend/assets/images/imgs/img.png" alt="" style="width:250px;">
-                </div>
-                <div class="popular-products-box__content px-sm-4 d-block w-100 text-center py-20">
-                    <div class="flex-align gap-16 justify-content-center" data-aos="zoom-in" data-aos-duration="800">
-                        <h6 class="mb-0">Exclusive Offer</h6>
-                        <h4 class="mb-0">45% OFF</h4>
+                    <div class="py-20 text-center popular-products-box__content px-sm-4 d-block w-100">
+                        <div class="gap-16 flex-align justify-content-center" data-aos="zoom-in" data-aos-duration="800">
+                            <h6 class="mb-0">Exclusive Offer</h6>
+                            <h4 class="mb-0">45% OFF</h4>
+                        </div>
+                        <div class="mt-4 countdown" id="countdown10">
+                            <ul class="flex-wrap countdown-list style-four flex-center">
+                                <li class="w-56 h-56 text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
+                                    <span class="days"></span>Days
+                                </li>
+                                <li class="w-56 h-56 text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
+                                    <span class="hours"></span>Hour
+                                </li>
+                                <li class="w-56 h-56 text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
+                                    <span class="minutes"></span>Min
+                                </li>
+                                <li class="w-56 h-56 text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
+                                    <span class="seconds"></span>Sec
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="countdown mt-4" id="countdown10">
-                        <ul class="countdown-list style-four flex-center flex-wrap">
-                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
-                                <span class="days"></span>Days
-                            </li>
-                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
-                                <span class="hours"></span>Hour
-                            </li>
-                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
-                                <span class="minutes"></span>Min
-                            </li>
-                            <li class="countdown-list__item flex-align flex-column text-sm fw-medium text-white rounded-circle bg-neutral-600 w-56 h-56">
-                                <span class="seconds"></span>Sec
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="d-lg-block d-none" data-aos="zoom-in" data-aos-duration="800">
+                    <div class="d-lg-block d-none" data-aos="zoom-in" data-aos-duration="800">
                     <img src="frontend/assets/images/imgs/img2.png" alt="" style="width:300px;">
-
+                    </div>
                 </div>
-            </div>
 
-            <div class="row gy-4">
-                @foreach ($categories->slice(0, 8) as $category)
-                <div class="col-xxl-3 col-xl-4 col-sm-6 col-xs-6 wow bounceIn">
-                    <div class="product-card h-100 d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                        <a href="{{ route('shop.index') }}" class="product-card__thumb flex-center h-unset rounded-8 position-relative w-unset flex-shrink-0 p-0" tabindex="0">
-                            <img src="
+                <div class="row gy-4">
+                    @foreach ($categories->slice(0, 8) as $category)
+                        <div class="col-xxl-3 col-xl-4 col-sm-6 col-xs-6 wow bounceIn">
+                            <div class="gap-16 p-16 border border-gray-100 product-card h-100 d-flex hover-border-main-600 rounded-16 position-relative transition-2">
+                                <a href="{{ route('shop.index') }}" class="flex-shrink-0 p-0 product-card__thumb flex-center h-unset rounded-8 position-relative w-unset" tabindex="0">
+                                    <img src="
                                         @if (Str::contains(strtolower($category->name), 'women'))
                                             {{ asset('frontend/assets/images/imgs/category-1.jpg') }}
                                         @elseif (Str::contains(strtolower($category->name), 'men'))
@@ -267,51 +259,50 @@
                                             {{ asset('frontend/assets/images/imgs/default-1.png') }}
                                         @endif
                                     " alt="{{ $category->name }}" class="w-100 max-w-unset">
-                        </a>
-                        <div class="product-card__content flex-grow-1">
-                            <h6 class="title text-lg fw-semibold mb-12">
-                                <a href="{{ route('shop.index') }}" class="link text-line-2" tabindex="0">{{ $category->name }}</a>
-                            </h6>
-                            @foreach ($category->subcategories->take(4) as $subcategory)
-                            <span class="text-gray-600 text-sm mb-4">{{ $subcategory->name }}</span><br>
-                            @endforeach
+                                </a>
+                                <div class="product-card__content flex-grow-1">
+                                    <h6 class="mb-12 text-lg title fw-semibold">
+                                        <a href="{{ route('shop.index') }}" class="link text-line-2" tabindex="0">{{ $category->name }}</a>
+                                    </h6>
+                                    @foreach ($category->subcategories->take(4) as $subcategory)
+                                        <span class="mb-4 text-sm text-gray-600">{{ $subcategory->name }}</span><br>
+                                    @endforeach
 
-                            <a href="{{ route('shop.index') }}" class="text-tertiary-600 flex-align gap-8 mt-24">
-                                All Categories
-                                <i class="ph ph-arrow-right d-flex"></i>
-                            </a>
+                                    <a href="{{ route('shop.index') }}" class="gap-8 mt-24 text-tertiary-600 flex-align">
+                                        All Categories
+                                        <i class="ph ph-arrow-right d-flex"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-                @endforeach
+
             </div>
-
         </div>
-
     </section>
     <!-- ========================= categories section End ================================ -->
 
-
-<!-- ========================= Deals Week Start ================================ -->
-<section class="deals-weeek pt-80 overflow-hidden">
-    <div class="container container-lg">
-        <div class="border border-gray-100 p-24 rounded-16">
-            <div class="section-heading mb-24">
-                <div class="flex-between flex-wrap gap-8">
-                    <h5 class="mb-0 wow bounceInLeft">Deal of The Week</h5>
-                    <div class="flex-align gap-16 wow bounceInRight">
-                        <a href="shop.html" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
-                        <div class="flex-align gap-8">
-                            <button type="button" id="deal-week-prev" class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-neutral-600 text-xl hover-bg-neutral-600 hover-text-white transition-1">
-                                <i class="ph ph-caret-left"></i>
-                            </button>
-                            <button type="button" id="deal-week-next" class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-neutral-600 text-xl hover-bg-neutral-600 hover-text-white transition-1">
-                                <i class="ph ph-caret-right"></i>
-                            </button>
+    <!-- ========================= Deals Week Start ================================ -->
+    <section class="overflow-hidden deals-weeek pt-80">
+        <div class="container container-lg">
+            <div class="p-24 border border-gray-100 rounded-16">
+                <div class="mb-24 section-heading">
+                    <div class="flex-wrap gap-8 flex-between">
+                        <h5 class="mb-0 wow bounceInLeft">Deal of The Week</h5>
+                        <div class="gap-16 flex-align wow bounceInRight">
+                            <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
+                            <div class="gap-8 flex-align">
+                                <button type="button" id="deal-week-prev" class="text-xl border border-gray-100 slick-prev slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
+                                    <i class="ph ph-caret-left"></i>
+                                </button>
+                                <button type="button" id="deal-week-next" class="text-xl border border-gray-100 slick-next slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
+                                    <i class="ph ph-caret-right"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
                  <div class="deals-week-slider arrow-style-two">
                     @foreach ($products->slice(0, 10) as $product)
@@ -360,32 +351,20 @@
                                     <a href="" style="width:230px" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                         Add To Cart <i class="ph ph-shopping-cart"></i>
                                     </a>
-
                                 </div>
-                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: {{ $product->sold_units ?? 18 }}/{{ $product->total_units ?? 35 }}</span>
                             </div>
-
-                            <div class="product-card__price my-20">
-                                <span class="text-heading text-md fw-semibold ">Rs {{ $product->normal_price }} <span class="text-gray-500 fw-normal">/Qty</span> </span>
-                            </div>
-
-                            <a href="" style="width:230px" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
-                                Add To Cart <i class="ph ph-shopping-cart"></i>
-                            </a>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-                @endforeach
+
             </div>
-
         </div>
-    </div>
-</section>
-<!-- ========================= Deals Week End ================================ -->
+    </section>
+    <!-- ========================= Deals Week End ================================ -->
 
 
-<!-- ========================= Top Selling Products Start ================================ 
-    <section class="top-selling-products pt-80 overflow-hidden">
+    <!-- ========================= Top Selling Products Start ================================ 
+    <section class="overflow-hidden top-selling-products pt-80">
         <div class="container container-lg">
             <div class="p-24 border border-gray-100 rounded-16">
                 <div class="mb-24 section-heading">
@@ -616,8 +595,8 @@
     ========================= Top Selling Products End ================================ -->
 
 
-<!-- ========================= Trending Products Start ================================ 
-    <section class="trending-productss pt-80 overflow-hidden">
+    <!-- ========================= Trending Products Start ================================ 
+    <section class="overflow-hidden trending-productss pt-80">
         <div class="container container-lg">
             <div class="p-24 border border-gray-100 rounded-16">
                 <div class="mb-24 section-heading">
@@ -2083,7 +2062,7 @@
     ========================= Trending Products End ================================ -->
 
 
-<!-- =============================== Discount Start ============================ 
+    <!-- =============================== Discount Start ============================ 
     <section class="discount py-80">
         <div class="container container-lg">
             <div class="row gy-4">
@@ -2122,7 +2101,7 @@
     </section>
      =============================== Discount End ============================ -->
 
-<!--  <section class="featured-products overflow-hidden">
+   <!--  <section class="overflow-hidden featured-products">
         <div class="container container-lg">
             <div class="flex-wrap-reverse row g-4">
                 <div class="col-xxl-8">
@@ -2364,8 +2343,8 @@
     </section>-->
 
 
-<!-- ========================= Big Deal Section Start =============================== 
-    <div class="big-deal rounded-16 overflow-hidden flex-between position-relative mb-24 py-80">
+    <!-- ========================= Big Deal Section Start =============================== 
+    <div class="mb-24 overflow-hidden big-deal rounded-16 flex-between position-relative py-80">
         <div class="container container-lg">
             <div class="py-40 overflow-hidden big-deal-box position-relative z-1 rounded-16">
                 <img src="frontend/assets/images/bg/big-deal-pattern.png" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 z-n1 w-100 h-100 cover-img">
@@ -2388,8 +2367,8 @@
      ========================= Big Deal Section End =============================== -->
 
 
-<!-- ========================= Top Selling Products Start ================================ 
-    <section class="recommended overflow-hidden">
+    <!-- ========================= Top Selling Products Start ================================ 
+    <section class="overflow-hidden recommended">
         <div class="container container-lg">
             <div class="row g-12">
                 <div class="col-xxl-4">
@@ -2601,11 +2580,11 @@
      ========================= Top Selling Products End ================================ -->
 
 
+    
 
 
-
-<!-- =========================== Top Vendor Section Start ========================== 
-    <section class="top-vendor py-80 overflow-hidden">
+    <!-- =========================== Top Vendor Section Start ========================== 
+    <section class="overflow-hidden top-vendor py-80">
         <div class="container container-lg">
             <div class="p-24 border border-gray-100 rounded-16">
                 <div class="mb-24 section-heading">
@@ -2823,7 +2802,7 @@
      =========================== Top Vendor Section End ========================== -->
 
 
-<!-- ================================== Day Sale Section Start =================================== 
+    <!-- ================================== Day Sale Section Start =================================== 
     <section class="day-sale">
         <div class="container container-lg">
             <div class="mb-24 overflow-hidden day-sale-box rounded-16 flex-between position-relative z-1">
@@ -2848,10 +2827,10 @@
     </section>
      ================================== Day Sale Section End =================================== -->
 
+    
 
 
-
-<!-- ============================== Top Brand Section Start ==================================== 
+    <!-- ============================== Top Brand Section Start ==================================== 
     <div class="top-brand py-80">
         <div class="container container-lg">
             <div class="p-24 border border-gray-100 rounded-16">
@@ -2921,7 +2900,6 @@
         </div>
     </div>
      ============================== Top Brand Section End ==================================== -->
-
     
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -2978,32 +2956,12 @@ function toggleWishlist(button, productId) {
     .then(data => {
         if (data.error) {
             alert(data.error); // If not logged in or another error
-
         } else {
-            icon.classList.replace('fa-solid', 'fa-regular');
-            icon.style.color = '#ccc';
+            alert(data.message); // Display success message
         }
+    })
+    .catch(error => console.error('Error:', error));
+}
 
-        // Send AJAX request to toggle wishlist status
-        fetch('/wishlist/toggle', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({
-                    product_id: productId
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    alert(data.error); // If not logged in or another error
-                } else {
-                    alert(data.message); // Display success message
-                }
-            })
-            .catch(error => console.error('Error:', error));
-    }
 </script>
 @endsection
