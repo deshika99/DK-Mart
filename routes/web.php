@@ -16,8 +16,9 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\NotificationController;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use Illuminate\Support\Facades\Log;
+
 
 
 //Affiliate_Dashboard Links
@@ -45,6 +46,8 @@ use App\Http\Controllers\VendorShopController;
 /*Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');*/
+Route::get('/login', [AuthenticatedSessionController::class, 'showLoginForm'])->name('frontend.login');
+
 
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 
@@ -81,15 +84,18 @@ Route::post('/wishlist/check-multiple', [WishlistController::class, 'checkMultip
 
 
 
-
+/*
 Route::get('/search', [ProductController::class, 'searchView'])->name('product.search');
-Route::get('/searchview', [ProductController::class, 'searchView'])->name('searchview');
+Route::get('/searchview', [ProductController::class, 'searchView'])->name('searchview');*/
 
 
-/*search box
-Route::get('/search', [ProductController::class, 'searchProducts'])->name('search.products');
+//search box
 
-*/
+
+Route::get('/search-products', [ProductController::class, 'searchProducts'])->name('search.products');
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
