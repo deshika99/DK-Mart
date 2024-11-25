@@ -37,6 +37,25 @@
         display: block;
     }
 
+    .profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-initial {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #fff;
+}
+
 </style>
 
 
@@ -172,37 +191,44 @@
 
     <!-- Profile Dropdown -->
     <div class="profile-dropdown">
-        @auth
-            <a href="#" class="gap-8 flex-align flex-column item-hover-two profile-toggle">
-                <span class="profile-initial d-flex justify-content-center align-items-center">
+    @auth
+        <a href="#" class="gap-8 flex-align flex-column item-hover-two profile-toggle">
+            <span class="profile-initial d-flex justify-content-center align-items-center">
+                @if(auth()->user()->profile_image && file_exists(public_path('storage/' . auth()->user()->profile_image)))
+                
+                    <!-- If the user has a profile image, display it -->
+                    <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="Profile Image" class="profile-img">
+                @else
+                    <!-- If no profile image, display the first initial of the user -->
                     {{ auth()->user()->name[0] }}
-                </span>
-            </a>
+                @endif
+            </span>
+        </a>
 
-            <!-- Dropdown Menu for Logged-In User -->
-            <div class="dropdown-menu" style="width: 170px">
-                <a href="{{ route('dashboard') }}" class="dropdown-item">Profile</a>
-                <form method="POST" action="{{ route('logout') }}" class="p-0 dropdown-item">
-                    @csrf
-                    <button type="submit" class="dropdown-item w-100">Logout</button>
-                </form>
-            </div>
-        @else
-            <!-- Default Profile Icon and Links for Guests -->
-            <a href="#" class="gap-8 flex-align flex-column item-hover-two profile-toggle">
-                <span class="text-2xl text-white d-flex position-relative item-hover__text">
-                    <i class="ph ph-user"></i>
-                </span>
-                <span class="text-white text-md item-hover__text d-none d-lg-flex">Profile</span>
-            </a>
+        <!-- Dropdown Menu for Logged-In User -->
+        <div class="dropdown-menu" style="width: 170px">
+            <a href="{{ route('dashboard') }}" class="dropdown-item">Profile</a>
+            <form method="POST" action="{{ route('logout') }}" class="p-0 dropdown-item">
+                @csrf
+                <button type="submit" class="dropdown-item w-100">Logout</button>
+            </form>
+        </div>
+    @else
+        <!-- Default Profile Icon and Links for Guests -->
+        <a href="#" class="gap-8 flex-align flex-column item-hover-two profile-toggle">
+            <span class="text-2xl text-white d-flex position-relative item-hover__text">
+                <i class="ph ph-user"></i>
+            </span>
+            <span class="text-white text-md item-hover__text d-none d-lg-flex">Profile</span>
+        </a>
 
-            <!-- Dropdown Menu for Guests -->
-            <div class="dropdown-menu" style="width: 170px">
-                <a href="{{ route('login') }}" class="dropdown-item">Login</a>
-                <a href="{{ route('register') }}" class="dropdown-item">Sign Up</a>
-            </div>
-        @endauth
-    </div>
+        <!-- Dropdown Menu for Guests -->
+        <div class="dropdown-menu" style="width: 170px">
+            <a href="{{ route('login') }}" class="dropdown-item">Login</a>
+            <a href="{{ route('register') }}" class="dropdown-item">Sign Up</a>
+        </div>
+    @endauth
+</div>
 
 
     <a href="{{ route('wishlist') }}" class="gap-8 flex-align flex-column item-hover-two">
