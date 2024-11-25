@@ -37,9 +37,7 @@
 
 @include('includes.navbar-2')
 
-
-
-    <!-- ============================ Banner Section start =============================== -->
+ <!-- ============================ Banner Section start =============================== -->
     @yield('content')
     
     <div class="preloader">

@@ -126,7 +126,6 @@
                             <a href="{{ route('privacy-policy') }}"  class="text-main-600 text-decoration-underline">privacy policy</a>.
                         </p>
                     </div>
-
                     <!-- Submit Button -->
                     <div class="mt-48 text-center">
                         <x-primary-button type="submit" class="px-40 btn py-18">
