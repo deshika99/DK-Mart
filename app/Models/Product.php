@@ -56,8 +56,12 @@ class Product extends Model
         return $this->hasMany(AffiliateProduct::class, 'product_id');
     }
 
-
-    
+    // Relationship with the CustomerOrderItem model
+    public function customerOrderItems()
+    {
+        return $this->hasMany(CustomerOrderItem::class); // one product can have many order items
+    }
+  
 }
 
 
