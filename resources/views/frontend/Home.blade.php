@@ -9,7 +9,7 @@
                     <div class="banner-item-two__slider">
                         <div class="banner-item-two">
                             <div class="banner-item-two__content">
-                                <span class="mb-8 text-white h6 wow bounceInDown">Starting at only Rs 500</span>
+                                <span class="mb-8 text-white h6 wow bounceInDown">Welcome DK Mart</span>
                                 <h2 class="text-white banner-item-two__title bounce wow bounceInLeft">Get The Sound You Love For Less</h2>
                                 <a href="{{ route('shop.index') }}" class="gap-8 mt-48 btn btn-outline-white d-inline-flex align-items-center rounded-pill wow bounceInUp">
                                     Shop Now<span class="text-xl icon d-flex"><i class="ph ph-shopping-cart-simple"></i> </span>
@@ -110,41 +110,8 @@
                 <div class="flex-wrap gap-8 flex-between">
                     <h5 class="mb-0 wow bounceInLeft">Leatest product</h5>
                     <div class="gap-16 flex-align wow bounceInRight">
-                        <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
-                        <div class="gap-8 flex-align">
-                            <button type="button" id="deal-week-prev" class="text-xl border border-gray-100 slick-prev slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
-                                <i class="ph ph-caret-left"></i>
-                            </button>
-                            <button type="button" id="deal-week-next" class="text-xl border border-gray-100 slick-next slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
-                                <i class="ph ph-caret-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mb-24 overflow-hidden deal-week-box rounded-16 flex-between position-relative z-1">
-                <img src="frontend/assets/images/bg/week-deal-bg.png" alt="" class="position-absolute inset-block-start-0 w-100 h-100 z-n1 object-fit-cover">
-                <div class="flex-shrink-0 d-lg-block d-none ps-22" data-aos="zoom-in">
-                    <img src="frontend/assets/images/imgs/deals2.png" alt="" style="width: 350px">
-                </div>
-                <div class="deal-week-box__content px-sm-4 d-block w-100">
-                    <h6 class="mb-20 wow bounceIn">Apple AirPods Max, Over Ear Headphones</h6>
-                    <div class="mt-20 countdown" id="countdown4">
-                        <ul class="flex-wrap countdown-list style-four flex-left">
-                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                <span class="days"></span>Days
-                            </li>
-                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                <span class="hours"></span>Hour
-                            </li>
-                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                <span class="minutes"></span>Min
-                            </li>
-                            <li class="text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                <span class="seconds"></span>Sec
-                            </li>
-                        </ul>
+                        
+                        
                     </div>
                 </div>
                 
@@ -220,41 +187,10 @@
                 <div class="mb-24 section-heading">
                     <div class="flex-wrap gap-8 flex-between">
                         <h5 class="mb-0 wow bounceInLeft">Popular Products</h5>
-                        <div class="gap-16 flex-align wow bounceInRight">
-                            <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Products</a>
+                        
                         </div>
                     </div>
-                </div>
-
-                <div class="mb-24 overflow-hidden popular-products-box rounded-16 flex-between position-relative z-1">
-                    <img src="frontend/assets/images/bg/expensive-offer-bg.png" alt="" class="position-absolute inset-block-start-0 w-100 h-100 z-n1">
-                    <div class="d-lg-block d-none ps-32" data-aos="zoom-in" data-aos-duration="800">
-                        <img src="frontend/assets/images/imgs/img.png" alt="" style="width:250px;">
-                    </div>
-                    <div class="py-20 text-center popular-products-box__content px-sm-4 d-block w-100">
-                        <div class="gap-16 flex-align justify-content-center" data-aos="zoom-in" data-aos-duration="800">
-                            <h6 class="mb-0">Exclusive Offer</h6>
-                            <h4 class="mb-0">45% OFF</h4>
-                        </div>
-                        <div class="mt-4 countdown" id="countdown10">
-                            <ul class="flex-wrap countdown-list style-four flex-center">
-                                <li class="w-56 h-56 text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                    <span class="days"></span>Days
-                                </li>
-                                <li class="w-56 h-56 text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                    <span class="hours"></span>Hour
-                                </li>
-                                <li class="w-56 h-56 text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                    <span class="minutes"></span>Min
-                                </li>
-                                <li class="w-56 h-56 text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                    <span class="seconds"></span>Sec
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-lg-block d-none" data-aos="zoom-in" data-aos-duration="800">
-                    <img src="frontend/assets/images/imgs/img2.png" alt="" style="width:300px;">
+                   
                     </div>
                 </div>
 
