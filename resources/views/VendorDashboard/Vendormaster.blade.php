@@ -23,7 +23,7 @@
     <script src="{{ asset('backend/assets/js/vendors/color-modes.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('backend/assets/css/main.css') }}">
 
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
 
     </head>

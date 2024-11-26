@@ -175,9 +175,6 @@ Route::get('/api/subcategories/{categoryId}', [ProductController::class, 'getSub
 Route::get('/api/sub-subcategories/{subcategoryId}', [ProductController::class, 'getSubSubcategories']);
 
 
-Route::delete('/delete-product-image/{imageId}', [ProductController::class, 'deleteProductImage']);
-
-
 Route::get('/admin/categories', [CategoryController::class, 'index'])->name('categories');
 Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 Route::post('/admin/categories', [CategoryController::class, 'store'])->name('categories.store');
@@ -401,6 +398,7 @@ Route::post('/vendor/payment-request', [VendorPaymentRequestController::class, '
 Route::get('/vendor/report/order_report', [VendorReportController::class, 'orderReport'])->name('vendorOrderReport');
 Route::get('/vendor/report/product_report', [VendorReportController::class, 'productReport'])->name('vendorProductReport');
 
+Route::view('/vendor_dashboard/payments', 'VendorDashboard.payment_requests')->name('vendor.payments');
 Route::view('/vendor_dashboard/wallet', 'VendorDashboard.wallet')->name('vendor.wallet');
 
 
