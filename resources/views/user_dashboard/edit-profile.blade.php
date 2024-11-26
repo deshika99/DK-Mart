@@ -4,13 +4,24 @@
 <style>
     .btn-primary {
         background-color: #ff3c00 !important;
-        border-color:#ff3c00!important;
+        border-color: #ff3c00!important;
     }
+
     .form-control:focus, .form-select:focus {
         border-color: hsl(14, 72%, 69%) !important;
         box-shadow: 0 0 0 0.2rem hsla(12, 81%, 40%, 0.251) !important;
     }
+
+    #profileImageInput {
+        display: none;
+    }
+
+    #profileImagePreview {
+        cursor: pointer;
+        border-radius: 50%;
+    }
 </style>
+
 
 <h4 class="px-2 py-2">Edit Profile</h4>
 <div class="container p-4">
@@ -31,21 +42,26 @@
                  style="cursor: pointer;">
             <!-- Hidden file input for image upload -->
             <input type="file" id="profileImageInput" name="profile_image" accept="image/*" style="display: none;">
+
         </div>
 
         <div class="mb-3">
             <label for="fullName" class="form-label">Full Name</label>
+
             <input type="text" class="form-control" id="fullName" name="full_name" value="{{ $user->name }}" placeholder="Enter your full name">
+
         </div>
-        
+
         <div class="row">
             <div class="mb-3 col-md-6">
                 <label for="email" class="form-label">Email address</label>
+
                 <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" placeholder="Enter your email">
             </div>
             <div class="mb-3 col-md-6">
                 <label for="mobile" class="form-label">Mobile</label>
                 <input type="tel" class="form-control" id="mobile" name="phone_num" value="{{ $user->phone }}" placeholder="Enter your mobile number">
+
             </div>
         </div>
 
@@ -70,25 +86,23 @@
 </div>
 
 <script>
-    const profileImagePreview = document.getElementById('profileImagePreview');
     const profileImageInput = document.getElementById('profileImageInput');
+    const profileImagePreview = document.getElementById('profileImagePreview');
+
 
     // Open file input when profile image is clicked
-    profileImagePreview.addEventListener('click', function() {
-        profileImageInput.click();
-    });
+    profileImagePreview.addEventListener('click', () => profileImageInput.click());
 
     // Preview the selected image
-    profileImageInput.addEventListener('change', function(event) {
+    profileImageInput.addEventListener('change', (event) => {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = function(e) {
-                profileImagePreview.src = e.target.result;
-            };
+            reader.onload = (e) => profileImagePreview.src = e.target.result;
             reader.readAsDataURL(file);
         }
     });
 </script>
 
 @endsection
+
