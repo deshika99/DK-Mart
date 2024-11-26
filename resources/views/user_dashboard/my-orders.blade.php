@@ -80,7 +80,7 @@
 
 
 </style>
-<!--
+
 <h4 class="px-2 py-2">My Orders</h4>
 <div class="mt-4 d-flex justify-content-between align-items-center"style="margin-bottom: 25px;">
     <div class="button-tabs" >
@@ -98,9 +98,9 @@
         </select>
     </div>
 </div>
-<!- All Orders Tab ->
+<!-- All Orders Tab -->
 <div id="all-orders" class="tab-content active">
-    <!- First Order Card ->
+    <!-- First Order Card -->
     <div class="order-card"style="border: 1px solid #ccc; border-radius: 10px; padding: 15px;">
         <div class="order-card-header d-flex justify-content-between align-items-center" style="margin-bottom:20px;border-bottom: 1px solid #eaeaea;">
             <span class="status confirmed" style="margin-bottom: 10px;">Confirmed</span>
@@ -126,12 +126,12 @@
 
    
 
-    <!- Pagination ->
+    <!-- Pagination -->
     <div class="mt-3 pagination d-flex justify-content-center">
         <button class="btn btn-primary">1</button>
     </div>
 </div>
-<!- Cancel Confirmation Modal ->
+<!-- Cancel Confirmation Modal -->
 <div class="modal fade" id="cancel-confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -170,59 +170,7 @@
             document.getElementById(this.getAttribute('data-target')).classList.add('active');
         });
     });
-</script> -->
-
-<h4 class="px-2 py-2">My Orders</h4>
-<div class="mt-4 d-flex justify-content-between align-items-center" style="margin-bottom: 25px;">
-    <div class="button-tabs">
-        <button class="mb-1 tab-button active" data-target="all-orders">All Orders</button>
-        <button class="mb-1 tab-button" data-target="in-progress-orders">In Progress</button>
-        <button class="mb-1 tab-button" data-target="shipped-orders">Shipped</button>
-        <button class="mb-1 tab-button" data-target="delivered-orders">Delivered</button>
-    </div>
-    <div class="mb-3 order-filter ms-auto">
-        <select class="form-select custom-select" aria-label="Order Time Filter">
-            <option value="all" selected>All</option>
-            <option value="last_year">Last Year</option>
-            <option value="last_6_months">Last 6 Months</option>
-            <option value="last_2_years">Last 2 Years</option>
-        </select>
-    </div>
-</div>
-
-<!-- All Orders Tab -->
-<div id="all-orders" class="tab-content active">
-    @foreach($orders as $order)
-    <div class="order-card" style="border: 1px solid #ccc; border-radius: 10px; padding: 15px;">
-        <div class="order-card-header d-flex justify-content-between align-items-center" style="margin-bottom:20px;border-bottom: 1px solid #eaeaea;">
-            <span class="status confirmed" style="margin-bottom: 10px;">Confirmed</span>
-            <a href="{{ route('order-details', $order->order_code) }}" class="order-details-link" style="margin-bottom: 10px;">Order Details ></a>
-        </div>
-
-        <div class="order-card-body d-flex align-items-center">
-            <div class="order-image" style="position: relative; margin-right: 15px;">
-                <img src="{{ asset('images/' . $order->product->image) }}" alt="Product Image" style="width: 70px; height: 80px;">
-                <span class="additional-count" style="position: absolute; bottom: 0px; right: 0px; background: rgba(0, 0, 0, 0.3); color: white; padding: 5px; border-radius: 5px;">+{{ $order->quantity }}</span>
-            </div>
-            <div class="order-info" style="font-size: 13px; color:black;">
-                <p><a href="#" class="order-link">Order ID:</a> <a href="#" class="order-link">{{ $order->order_code }}</a></p>
-                <p class="order-date">Order date: {{ $order->date->format('Y-m-d') }}</p>
-                <p class="order-summary">{{ $order->product->name }} | {{ $order->size }} | {{ $order->color }}</p>
-                <p class="order-price">Rs {{ number_format($order->cost, 2) }}</p>
-            </div>
-            <div style="text-align: right; margin-left: auto;">
-                <button class="btn btn-outline-dark btn-sm" onclick="openCancelModal('{{ $order->order_code }}')">Cancel</button>
-            </div>
-        </div>
-    </div>
-    @endforeach
-
-    <!-- Pagination -->
-    <div class="mt-3 pagination d-flex justify-content-center">
-        {{ $orders->links() }}  <!-- Pagination links -->
-    </div>
-</div>
-
+</script>
 
 
 @endsection
