@@ -55,10 +55,15 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 Route::get('/login', [AuthenticatedSessionController::class, 'showLoginForm'])->name('frontend.login');
 
 
+
+
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 
 Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
+
+
+
 
 
 
