@@ -37,10 +37,13 @@
         display: block;
     }
 
+    .header-middle {
+        background-color: #001f3f!important; /* Force Apply Dark Blue */
+     }
+  
+
+
 </style>
-
-
-
 
 <!--==================== Overlay Start ====================-->
 <div class="overlay"></div>
@@ -58,33 +61,15 @@
 </div>
 <!-- ==================== Scroll to Top End Here ==================== -->
 
-<!-- ==================== Search Box Start Here ==================== -->
-
- <form action="#" class="search-box">
-  <button type="button" class="w-48 h-48 m-16 text-2xl text-white border border-gray-100 search-box__close position-absolute inset-block-start-0 inset-inline-end-0 rounded-circle flex-center hover-text-gray-800 hover-bg-white transition-1">
-
-    <i class="ph ph-x"></i>
-  </button>
-  <div class="container">
-    <div class="position-relative">
-
-      <input type="text" class="px-24 py-16 text-xl form-control rounded-pill pe-64" placeholder="Search for a product or brand">
-      <button type="submit" class="w-48 h-48 text-xl text-white bg-main-600 rounded-circle flex-center position-absolute top-50 translate-middle-y inset-inline-end-0 me-8">
-
-        <i class="ph ph-magnifying-glass"></i>
-      </button>
-    </div>
-  </div>
- </form>
-<!-- ==================== Search Box End Here ==================== -->
 
 <!-- ==================== Mobile Menu Start Here ==================== -->
 <div class="mobile-menu scroll-sm d-lg-none d-block">
     <button type="button" class="close-button"> <i class="ph ph-x"></i> </button>
     <div class="mobile-menu__inner">
-        <a href="index.html" class="mobile-menu__logo">
-            <img src="assets/images/logo/logo.png" alt="Logo">
+        <a href="/" class="mobile-menu__logo">
+            <img src="frontend/assets/images/logo/logo-mobile-menu-new1.png" alt="Logo">
         </a>
+        
         <div class="mobile-menu__menu">
             <!-- Nav Menu Start -->
             <ul class="nav-menu flex-align nav-menu--mobile">
@@ -108,7 +93,7 @@
                 </li>
             
                 <li class="nav-menu__item">
-                    <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
+                    <a href="{{ route('frontend.vendor') }}" class="nav-menu__link">Vendors</a>
                 </li>
             </ul>
             <!-- Nav Menu End -->
@@ -123,9 +108,9 @@
         <nav class="header-inner flex-between">
             <!-- Logo Start -->
             <div class="logo"style="margin-left: 80px;  margin-top: 0; margin-bottom: 0;">
-                <a href="index.html" class="link">
+                <a href="/" class="link">
 
-                    <img src="{{ asset('frontend/assets/images/logo/logo-two.png') }}" alt="Logo" style="width:110px;height:110px; margin-top: 0; margin-bottom: 0; ">
+                    <img src="{{ asset('frontend/assets/images/logo/navbar-logo-new.png') }}" alt="Logo" >
 
                 </a>
             </div>
@@ -149,13 +134,15 @@
                         @endforeach
                     </select>
 
-                        <div class="search-form__wrapper position-relative">
+                    <div class="search-form__wrapper position-relative">
 
-                            <input type="text" class="border-0 search-form__input common-input py-13 ps-16 pe-18 rounded-0" placeholder="Search for a product or brand">
-
+                            <input type="text" class="border-0 search-form__input common-input py-13 ps-16 pe-18 rounded-0" placeholder="Search for a product or brand..">
+                            <div id="search-results" class="dropdown-menu"></div>
                         </div>
                         <button type="submit" class="flex-shrink-0 w-48 text-xl text-white bg-main-two-600 flex-center hover-bg-main-two-600 d-lg-flex d-none"><i class="ph ph-magnifying-glass"></i></button>
                     </div>
+
+
                 </form>
             </div>
             <!-- form Category start -->
@@ -277,7 +264,7 @@
                                             <div class="sub-submenu-column">
                                                 <ul class="overflow-y-auto sub-submenu max-h-300 scroll-sm">
                                                     @foreach ($subcategory->subSubcategories as $subSubcategory)
-                                                        <li>
+                                                        <li class="has-sub-submenu">
                                                             <a href="{{ url('/shop?subsubcategory_id=' . $subSubcategory->id) }}">{{ $subSubcategory->name }}</a>
                                                         </li>
                                                     @endforeach
@@ -312,20 +299,13 @@
             <a href="/contact" class="nav-menu__link">Contact Us</a>
         </li>
         <li class="nav-menu__item">
-
-    
-            <a href="vendor-two.html" class="nav-menu__link">Vendors</a>
+            <a href="{{ route('frontend.vendor') }}" class="nav-menu__link">Vendors</a>
         </li>
     </ul>
 </div>
 
 </div>
-
-
-
-
-
-            <!-- Header Right start -->
+ <!-- Header Right start -->
             <div class="header-right flex-align">
 
                 <div class="select-dropdown-for-home-two d-lg-block d-none">
@@ -410,4 +390,46 @@
         </nav>
     </div>
 </header>
+
 <!-- ==================== Header End Here ==================== -->
+
+
+<script>
+    $(document).ready(function () {
+        $('#product-search').on('keyup', function () {
+            let query = $(this).val();
+            $('#search-results').empty();
+
+            if (query.length > 0) {
+                $.ajax({
+                    url: "{{ route('search.products') }}",
+                    method: 'GET',
+                    data: { query: query },
+                    success: function (response) {
+                        if (response.products && response.products.length > 0) {
+                            $('#search-results').show();
+                            response.products.forEach(function (product) {
+                                $('#search-results').append(
+                                    `<div class="p-2 border-bottom">${product.product_name}</div>`
+                                );
+                            });
+                        } else {
+                            $('#search-results').show().html('<div class="p-2">No products found</div>');
+                        }
+                    },
+                    error: function (xhr) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            } else {
+                $('#search-results').hide();
+            }
+        });
+    });
+</script>
+
+<script>
+    
+
+</script>
+

@@ -1,53 +1,83 @@
-@extends ('AffiliateDashBoard.master')
+@extends ('AffiliateDashBoard.affmaster')
 
 @section('content')
 
 <main>
-    <div class="container pt-4 px-4">
+<div class="container pt-4 px-4">
         <h3 class="py-3">AD Center</h3>
-        <ul class="nav nav-tabs mb-3" id="myTab0" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab0" data-tab="hot_deals">Hot Deals</button>
+        <ul class="nav nav-tabs mb-3" id="adCenterTabs" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="hot-deals-tab" data-bs-toggle="tab" data-bs-target="#hot-deals" type="button" role="tab" aria-controls="hot-deals" aria-selected="true">
+                    Hot Deals
+                </button>
             </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="commision-tab0" data-tab="commision">Higher Commission</button>
+            <li class="nav-item">
+                <button class="nav-link" id="commission-tab" data-bs-toggle="tab" data-bs-target="#commission" type="button" role="tab" aria-controls="commission" aria-selected="false">
+                    Higher Commission
+                </button>
             </li>
         </ul>
 
         <div class="card">
             <div class="card-body">
-                <div class="tab-content" id="myTabContent0">
+                <div class="tab-content" id="adCenterTabContent">
                     <!-- Hot Deals -->
-                    <div class="tab-pane fade show active" id="hot_deals" role="tabpanel">
-                        <div class="container mt-6 mb-5">
-                            <div class="row">
-                                @foreach($hotDeals as $product)
-                                    <div class="col-md-3 mb-7">
-                                        <div class="deal-items product-card">
-                                            <a href="javascript:void(0)" class="open-modal" data-product-id="{{ $product->product_id }}">
-                                                @if($product->images->isNotEmpty())
-                                                    <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" alt="{{ $product->product_name }}" class="img-fluid">
-                                                @else
-                                                    <img src="{{ asset('storage/default-image.png') }}" alt="Default Image" class="img-fluid">
-                                                @endif
-                                                <div class="pricee">
-                                                    <p>{{ $product->product_name }}</p>
-                                                </div>
-                                                <div class="price mb-2">Rs.{{ $product->total_price }}</div>
-                                                @php
-                                                    $commissionPrice = $product->total_price - $product->affiliate_price;
-                                                @endphp
-                                                <div class="commission mb-2">
-                                                    Est. Commission Rs. {{ $commissionPrice }} | {{ $product->commission_percentage }}%
-                                                </div>
-                                                <button class="btn btn-primary open-modal" data-product-id="{{ $product->product_id }}">
-                                                    Promote Now
-                                                </button>
-                                            </a>
-                                        </div>
+                    <div class="tab-pane fade show active" id="hot-deals" role="tabpanel" aria-labelledby="hot-deals-tab">
+                        <div class="row mt-4">
+                            @foreach($hotDeals as $product)
+                                <div class="col-md-3 mb-4">
+                                    <div class="product-card">
+                                        <a href="javascript:void(0)" class="open-modal" data-product-id="{{ $product->product_id }}">
+                                            @if($product->images->isNotEmpty())
+                                                <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" alt="{{ $product->product_name }}" class="img-fluid">
+                                            @else
+                                                <img src="{{ asset('storage/default-image.png') }}" alt="Default Image" class="img-fluid">
+                                            @endif
+                                            <div class="pricee">
+                                                <p>{{ $product->product_name }}</p>
+                                            </div>
+                                            <div class="price mb-2">Rs.{{ $product->affiliate_price }}</div>
+                                            
+                                            <div class="commission mb-2">
+                                                Est. Commission Rs. {{ $product->commission_price }} | {{ $product->commission_percentage }}%
+                                            </div>
+                                            <button class="btn btn-primary open-modal" data-product-id="{{ $product->product_id }}">
+                                                Promote Now
+                                            </button>
+                                        </a>
                                     </div>
-                                @endforeach
-                            </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <!-- Higher Commission -->
+                    <div class="tab-pane fade" id="commission" role="tabpanel" aria-labelledby="commission-tab">
+                        <div class="row mt-4">
+                            @foreach($higherCommissionDeals as $product)
+                                <div class="col-md-3 mb-4">
+                                    <div class="product-card">
+                                        <a href="javascript:void(0)" class="open-modal" data-product-id="{{ $product->product_id }}">
+                                            @if($product->images->isNotEmpty())
+                                                <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" alt="{{ $product->product_name }}" class="img-fluid">
+                                            @else
+                                                <img src="{{ asset('storage/default-image.png') }}" alt="Default Image" class="img-fluid">
+                                            @endif
+                                            <div class="pricee">
+                                                <p>{{ $product->product_name }}</p>
+                                            </div>
+                                            <div class="price mb-2">Rs.{{ $product->affiliate_price }}</div>
+                                            
+                                            <div class="commission mb-2">
+                                                Est. Commission Rs. {{ $product->commission_price }} | {{ $product->commission_percentage }}%
+                                            </div>
+                                            <button class="btn btn-primary open-modal" data-product-id="{{ $product->product_id }}">
+                                                Promote Now
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -95,15 +125,16 @@
 
 
                         <!-- Promo Materials Section -->
-                        <div class="mb-3">
+                        <div class="promo-material-container mb-3">
                             <h5>Promo Materials</h5>
                             <textarea id="promoMaterial-{{ $product->product_id }}" class="form-control" rows="5" readonly>
                                 Product: {{ $product->product_name }}
                                 Description: {{ $product->product_description }}
-                                Original price: LKR {{ number_format($product->total_price, 2) }}
+                                Original price: LKR {{ number_format($product->affiliate_price, 2) }}
                             </textarea>
-                            <button type="button" class="btn btn-primary mt-2" onclick="copyPromoMaterial('{{ $product->product_id }}')">Copy Promo Material</button>
+                            <button type="button" class="btn mt-2" onclick="copyPromoMaterial('{{ $product->product_id }}')">Copy Promo Material</button>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -187,6 +218,57 @@
         font-weight:bold;
         margin-bottom:10px;
     }
+
+    /* Promo Materials Section Styling */
+    .promo-material-container {
+        background-color: #f8f9fa; /* Light grey background */
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0; /* Subtle border */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        margin-bottom: 20px;
+    }
+
+    .promo-material-container h5 {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333; /* Dark grey text */
+        margin-bottom: 10px;
+    }
+
+    .promo-material-container textarea {
+        border: 1px solid #ced4da; /* Bootstrap light grey border */
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 14px;
+        color: #495057; /* Bootstrap text color */
+        background-color: #ffffff; /* White background */
+        resize: none; /* Prevent resizing */
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+    }
+
+    .promo-material-container textarea:focus {
+        outline: none; /* Remove outline */
+        border-color: #007bff; /* Blue border on focus */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue glow */
+    }
+
+    .promo-material-container button {
+        background-color: #007bff; /* Bootstrap primary button color */
+        color: #fff;
+        border: none;
+        padding: 8px 15px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover transition */
+    }
+
+    .promo-material-container button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+        transform: scale(1.05); /* Slight zoom effect */
+    }
+
 </style>
 
 <script>

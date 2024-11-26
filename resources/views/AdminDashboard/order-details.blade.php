@@ -20,20 +20,40 @@
                     @csrf
                     @method('PATCH')
                     <select name="status" class="form-select d-inline-block mb-lg-0 mr-5 mw-200">
-                        <option selected>{{ $order->status }}</option>
-                        <option value="Accepted">Accepted</option>
-                        <option value="Shipped">Shipped</option>
-                        <option value="Delivered">Delivered</option>
-                        <option value="Cancelled">Cancelled</option>
+                        <option selected disabled>{{ $order->status }}</option>
+                        @php
+                            $statuses = [
+                                'Packed' => 'Pickup Done',
+                                'Pickup Done' => 'Ready to Ship',
+                                'Ready to Ship' => 'Shipped',
+                                'Shipped' => 'In Transit',
+                                'In Transit' => 'Delivered',
+                                'Delivered' => '',
+                                'Cancelled' => '',
+                                'Returned' => '',
+                            ];
+                        @endphp
+
+                        @foreach ($statuses as $current => $next)
+                            @if ($order->status === $current && $next)
+                                <option value="{{ $next }}">{{ $next }}</option>
+                            @endif
+                        @endforeach
+                        <!-- Add options for 'Cancelled' and 'Returned' if needed -->
+                        @if (!in_array($order->status, ['Cancelled', 'Returned']))
+                            <option value="Cancelled">Cancelled</option>
+                            <option value="Returned">Returned</option>
+                        @endif
                     </select>
+
                     <button type="submit" class="btn btn-primary p-2">Update</button>
                 </form>
                 <a class="btn btn-secondary print ms-2" href="#"><i class="icon material-icons md-print"></i></a>
             </div>
-
         </div>
     </header>
     <div class="card-body">
+        <!-- Customer, Shipping, and Billing Details -->
         <div class="row mb-50 mt-20 order-info-wrap">
             <div class="col-md-4">
                 <article class="icontext align-items-start">
@@ -82,6 +102,7 @@
             </div>
         </div>
 
+        <!-- Product Details -->
         <div class="row">
             <div class="col-lg-8">
                 <div class="table-responsive">
@@ -108,11 +129,10 @@
                                         </div>
                                         <div>{{ $item->product->product_name }}</div>
                                     </a>
-
                                     </td>
-                                    <td>Rs {{ $item->cost }}</td>
+                                    <td>Rs {{ $item->product->normal_price }}</td>
                                     <td>{{ $item->quantity }}</td>
-                                    <td class="text-end">Rs {{ $item->cost * $item->quantity }}</td>
+                                    <td class="text-end">Rs {{ $item->product->normal_price * $item->quantity }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -141,9 +161,113 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
+
+<div class="progress-container mt-4">
+    <h5>Order Progress</h5>
+    <div class="progress-wrapper">
+        @php
+            $statuses = [
+                'Pending' => 'Order Placed',
+                'Accepted' => 'Order Accepted',
+                'Packed' => 'Order Packed',
+                'Pickup Done' => 'Order Picked Up',
+                'Ready to Ship' => 'Ready to Ship',
+                'Shipped' => 'Shipped',
+                'In Transit' => 'In Transit',
+                'Delivered' => 'Delivered',
+                'Cancelled' => 'Cancelled',
+                'Returned' => 'Returned',
+            ];
+
+            $currentStatusIndex = array_search($order->status, array_keys($statuses));
+        @endphp
+
+        <ul class="progress-timeline">
+            @foreach ($statuses as $key => $label)
+                <li class="{{ $currentStatusIndex >= array_search($key, array_keys($statuses)) ? 'completed' : '' }}">
+                    <div class="step-circle">{{ $loop->index + 1 }}</div>
+                    <span class="step-label">{{ $label }}</span>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+
+
+<style>
+
+    .progress-container {
+        margin-top: 30px;
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+    }
+
+    .progress-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        padding-top: 20px;
+    }
+
+    .progress-timeline {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .progress-timeline::before {
+        content: '';
+        position: absolute;
+        top: 30%;
+        left: 5%;
+        width: 92%;
+        height: 4px;
+        background: #ddd;
+        z-index: 0;
+    }
+
+    .progress-timeline li {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .step-circle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #ddd;
+        color: white;
+        line-height: 30px;
+        font-size: 14px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+    .step-circle.completed {
+        background: #4caf50;
+    }
+
+    .step-label {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    li.completed .step-circle {
+        background-color: #4caf50;
+        color: white;
+    }
+</style>
+
 
 @endsection

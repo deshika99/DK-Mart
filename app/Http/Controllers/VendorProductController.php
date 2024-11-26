@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\Shop;
 use App\Models\SubSubcategory;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -36,11 +37,21 @@ class VendorProductController extends Controller
 
     public function showproducts()
     {
-        $products = Product::with(['images', 'category'])->paginate(10);
+        $vendorId = session('vendor_id'); 
+        $shop = Shop::where('vendor_id', $vendorId)->first();
+        
+        if (!$shop) {
+            return redirect()->back()->with('error', 'Shop not found for the vendor.');
+        }
+        $products = Product::with(['images', 'category'])
+            ->where('shop_id', $shop->id)  
+            ->paginate(10);
+        
         $categories = Category::all();
-
+    
         return view('VendorDashboard.products_list', compact('products', 'categories'));
     }
+    
 
     
 
@@ -54,6 +65,13 @@ class VendorProductController extends Controller
     
     public function store(Request $request)
     {
+        $vendorId = session('vendor_id');
+        $shop = Shop::where('vendor_id', $vendorId)->first();
+    
+        if (!$shop) {
+            return redirect()->back()->with('error', 'Shop not found for the vendor.');
+        }
+    
         $request->merge([
             'is_affiliate' => $request->has('is_affiliate') ? true : false,
         ]);
@@ -80,15 +98,14 @@ class VendorProductController extends Controller
             'variations.*.quantity' => 'nullable|integer',
         ]);
     
-        
-        $commissionPercentage = $validatedData['is_affiliate'] ? 10 : 0; 
+        // Use the commission percentage provided by the user
+        $commissionPercentage = $validatedData['commission_percentage'] ?? 0;
         $affiliatePrice = $validatedData['is_affiliate'] ? ($validatedData['normal_price'] ?? 0) : null;
         $commissionPrice = $affiliatePrice ? ($affiliatePrice * $commissionPercentage / 100) : null;
     
         // Create product
         $product = Product::create([
             'product_id' => 'P-' . strtoupper(substr(uniqid(), -6)),
-            //'shop_id' => $validatedData['shop_id'],
             'product_name' => $validatedData['product_name'],
             'product_description' => $validatedData['product_description'],
             'category_id' => $validatedData['category_id'],
@@ -101,6 +118,7 @@ class VendorProductController extends Controller
             'affiliate_price' => $affiliatePrice,
             'commission_percentage' => $commissionPercentage,
             'commission_price' => $commissionPrice,
+            'shop_id' => $shop->id, // Assign the retrieved shop_id
         ]);
     
         // Handle product images
@@ -133,6 +151,7 @@ class VendorProductController extends Controller
     }
     
     
+    
 
 
     public function destroy($productId)
@@ -152,7 +171,6 @@ class VendorProductController extends Controller
     
 
     
-
 
     public function update(Request $request, $id)
     {
@@ -255,7 +273,7 @@ class VendorProductController extends Controller
             }
         }
     
-        return redirect()->route('vendor.products')->with('success', 'Product updated successfully.');
+        return redirect()->route('vendor.products')->with('success', 'Product updated successfully!');
     }
     
     

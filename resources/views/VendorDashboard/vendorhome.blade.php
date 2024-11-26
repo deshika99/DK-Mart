@@ -12,8 +12,8 @@
                             <article class="icontext">
                                 <span class="icon icon-sm rounded-circle bg-primary-light"><i class="text-primary material-icons md-monetization_on"></i></span>
                                 <div class="text">
-                                    <h6 class="mb-1 card-title">Today Revenue</h6>
-                                    <span>Rs </span>
+                                    <h6 class="mb-1 card-title">Today Earnings</h6>
+                                    <span>Rs {{ number_format($totalEarningsToday, 2) }}</span> <!-- Display total revenue -->
                                 </div>
                             </article>
                         </div>
@@ -24,7 +24,7 @@
                                 <span class="icon icon-sm rounded-circle bg-success-light"><i class="text-success material-icons md-local_shipping"></i></span>
                                 <div class="text">
                                     <h6 class="mb-1 card-title">Orders</h6>
-                                    <span></span>
+                                    <span>{{ $totalOrders }}</span> <!-- Display total orders -->
                                 </div>
                             </article>
                         </div>
@@ -35,7 +35,7 @@
                                 <span class="icon icon-sm rounded-circle bg-warning-light"><i class="text-warning material-icons md-qr_code"></i></span>
                                 <div class="text">
                                     <h6 class="mb-1 card-title">Products</h6>
-                                    <span></span>
+                                    <span>{{ $totalProducts }}</span> <!-- Display total products -->
                                 </div>
                             </article>
                         </div>
@@ -51,6 +51,7 @@
                             </article>
                         </div>
                     </div>
+
                 </div>
                 <div class="row">
                     <div class="col-xl-8 col-lg-12">

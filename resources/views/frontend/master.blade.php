@@ -37,12 +37,11 @@
 
 @include('includes.navbar-2')
 
-
-
-    <!-- ============================ Banner Section start =============================== -->
+ <!-- ============================ Banner Section start =============================== -->
     @yield('content')
+    
     <div class="preloader">
-        <img src="{{ asset('frontend/assets/images/logo/logo-two.png') }}" alt="" style="width: 150px;">
+        <img src="{{ asset('frontend/assets/images/logo/preloader-new1.png') }}" alt="" style="width: 150px;">
     </div>
 
     <script>

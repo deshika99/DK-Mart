@@ -20,7 +20,7 @@
                         @if($product->is_affiliate)
                             <p><strong>Affiliate Price:</strong> Rs. {{ $product->affiliate_price }}</p>
                             <p><strong>Commission :</strong> {{ $product->commission_percentage }}%</p>
-                            <p><strong>Total Affiliate Price:</strong> Rs. {{ $product->commission_price }}</p>
+                            <p><strong>Commission Price:</strong> Rs. {{ $product->commission_price }}</p>
                         @endif
 
                         <!-- Sizes Section -->

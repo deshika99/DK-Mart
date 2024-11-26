@@ -36,13 +36,13 @@
                     
               
     <!-- ========================= Breadcrumb Start =============================== -->
-<div class="breadcrumb mb-0 py-26 bg-main-two-50">
+<div class="mb-0 breadcrumb py-26 bg-main-two-50">
     <div class="container container-lg">
-        <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
+        <div class="flex-wrap gap-16 breadcrumb-wrapper flex-between">
             <h6 class="mb-0">My Account</h6>
-            <ul class="flex-align gap-8 flex-wrap">
+            <ul class="flex-wrap gap-8 flex-align">
                 <li class="text-sm">
-                    <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
+                    <a href="index.html" class="gap-8 text-gray-900 flex-align hover-text-main-600">
                         <i class="ph ph-house"></i>
                         Home
                     </a>
@@ -66,8 +66,8 @@
         <div class="row gy-4 justify-content-center">
             <!-- Register Card Start -->
             <div class="col-xl-6 col-lg-8 col-md-10">
-                <div class="border border-gray-100 hover-border-main-600 transition-1 rounded-16 px-24 py-40">
-                    <h6 class="text-xl mb-32 text-center">Register</h6>
+                <div class="px-24 py-40 border border-gray-100 hover-border-main-600 transition-1 rounded-16">
+                    <h6 class="mb-32 text-xl text-center">Register</h6>
 
                     <!-- Name -->
                     <div class="mb-24">
@@ -115,7 +115,7 @@
                         <span class="text-danger">*</span>
                         <div class="position-relative">
                             <x-text-input id="password" class="common-input w-100" type="password" name="password" placeholder="Enter Password" required autocomplete="new-password" />
-                            <span class="toggle-password position-absolute top-50 inset-inline-end-0 me-16 translate-middle-y cursor-pointer ph ph-eye-slash" id="toggle-password"></span>
+                            <span class="cursor-pointer toggle-password position-absolute top-50 inset-inline-end-0 me-16 translate-middle-y ph ph-eye-slash" id="toggle-password"></span>
                         </div>
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
@@ -123,16 +123,19 @@
                     <!-- Privacy Policy -->
                     <div class="my-48 text-center">
                         <p class="text-gray-500">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our 
-                            <a href="#" class="text-main-600 text-decoration-underline">privacy policy</a>.
+                            <a href="{{ route('privacy-policy') }}"  class="text-main-600 text-decoration-underline">privacy policy</a>.
                         </p>
                     </div>
-
                     <!-- Submit Button -->
                     <div class="mt-48 text-center">
-                        <x-primary-button type="submit" class="btn py-18 px-40">
+                        <x-primary-button type="submit" class="px-40 btn py-18">
                             {{ __('Register') }}
                         </x-primary-button>
                     </div>
+                    <div class="mt-3 text-center">
+                        <p>Already have an account? 
+                            <a href="{{ route('login') }}" class="text-primary">Login</a>
+                        </p>
                 </div>
             </div>
             <!-- Register Card End -->

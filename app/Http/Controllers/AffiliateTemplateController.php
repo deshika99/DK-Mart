@@ -54,7 +54,7 @@ class AffiliateTemplateController extends Controller
             $referralsOverMonths[] = $monthlyReferrals;
         }
 
-        return view('AffiliateDashBoard.Home',compact(
+        return view('AffiliateDashBoard.affindex',compact(
             'affiliateName',
             'affiliateId',
             'totalReferrals',

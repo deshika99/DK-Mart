@@ -1,4 +1,4 @@
-@extends ('AffiliateDashBoard.master')
+@extends ('AffiliateDashBoard.affmaster')
 
 @section('content')
 
