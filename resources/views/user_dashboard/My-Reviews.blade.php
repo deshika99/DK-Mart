@@ -60,61 +60,48 @@
         color: orange !important; /* Text color on hover */
     }
 
-    .order-card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
-    transition: box-shadow 0.3s ease;
-}
-
-.order-card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.order-image img {
-    border-radius: 5px;
-}
-
 
 </style>
 
 <h4 class="px-2 py-2">My Reviews</h4>
-<div id="all-reviews" class="mt-4">
-    @forelse ($orderItems as $item)
-        <div class="order-card" style="border: 1px solid #ccc; border-radius: 10px; padding: 15px; margin-bottom: 15px;">
-            <div class="order-card-body d-flex align-items-center">
-                <!-- Product Image -->
-                <div class="order-image" style="margin-right: 15px;">
-                    <img src="{{ asset('images/' . $item->product->image) }}" alt="{{ $item->product->name }}" style="width: 70px; height: 80px;">
+<div class="mt-4 d-flex justify-content-between align-items-center">
+    <div class="button-tabs">
+        <button class="mb-1 tab-button active" data-target="to-be-reviewed">To be Reviewed (1)</button>
+        <button class="mb-1 tab-button" data-target="history">History (0)</button>
+    </div>
+</div>
+
+<!-- To be reviewed Tab -->
+<div id="to-be-reviewed" class="tab-content active">
+    <div class="mt-3 order-items">
+        <div class="px-3 order-items-list">
+            <div class="order-item d-flex align-items-center justify-content-between" style="padding: 10px; border-bottom: 1px solid #eaeaea;">
+                <div style="display: flex; align-items: center;">
+                    <div style="margin-right: 15px;">
+                        <a href="#"><img src="{{ asset('images/Apple iPhone 14 Pro Max.jpg') }}" alt="Product Image" width="70" height="auto"></a>
+                    </div>
+                    <div style="line-height: 1.7;color:black;">
+                        <span style="font-weight: 600; font-size: 15px;margin-top:15px;">Apple iPhone 14 Pro Max</span><br>
+                        <div class="d-flex align-items-center">
+                            <span class="d-flex align-items-center me-2">
+                                <strong>Color:</strong> 
+                                <span style="display: inline-block; background-color: #000; border: 1px solid #e8ebec; height: 15px; width: 15px; border-radius: 50%;" title="Color"></span>
+                            </span> |
+                            <span class="me-2 ms-2">Size: <span style="font-weight: 600;">M</span></span> |
+                            <span class="ms-2">Qty: <span style="font-weight: 600;">2</span></span>
+                        </div>
+                        <h6 class="mt-2" style="font-weight: bold;font-size: 15px">Rs 120000</h6>  
+                    </div>
                 </div>
-                
-                <!-- Product Info -->
-                <div class="order-info" style="font-size: 13px; color: black;">
-                    <p><strong>Product Name:</strong> {{ $item->product->name }}</p>
-                    <p><strong>Order Code:</strong> {{ $item->order_code }}</p>
-                    <p><strong>Quantity:</strong> {{ $item->quantity }}</p>
-                    <p><strong>Cost:</strong> Rs {{ number_format($item->cost, 2) }}</p>
-                    <p><strong>Order Date:</strong> {{ $item->date->format('Y-m-d') }}</p>
-                </div>
-                
-                <!-- Add Review Button -->
-                <div style="margin-left: auto;">
-                    <a href="{{ route('add.review', $item->id) }}" class="btn btn-outline-primary btn-sm">Add Review</a>
+                <div class="ml-auto" style="text-align: right;">
+                    <a href="{{ route('Write-Reviews') }}" class="btn-review">Review</a>
                 </div>
             </div>
         </div>
-    @empty
-        <p>No items available for review.</p>
-    @endforelse
+    </div>
 </div>
 
-<!-- Pagination -->
-<div class="mt-3 pagination d-flex justify-content-center">
-    {{ $orderItems->links() }}
-</div>
 
-<!--
 <script>
     document.querySelectorAll('.tab-button').forEach(button => {
         button.addEventListener('click', function() {
@@ -125,5 +112,5 @@
             document.getElementById(this.getAttribute('data-target')).classList.add('active');
         });
     });
-</script> -->
+</script>
 @endsection
