@@ -91,7 +91,7 @@ Route::get('/wishlist/count', [WishlistController::class, 'getWishlistCount'])->
 Route::post('/wishlist/toggle', [WishlistController::class, 'toggleWishlist'])->name('wishlist.toggle');
 Route::post('/wishlist/check-multiple', [WishlistController::class, 'checkMultipleWishlist'])->name('wishlist.checkMultiple');
 
-Route::get('/vendors', [VendorController::class, 'index'])->name('frontend.vendor');
+Route::get('/vendors', [VendorController::class, 'indexx'])->name('frontend.vendor');
 Route::get('/vendor-details/{vendorId}', [VendorController::class, 'showVendorDetails'])->name('frontend.vendor.details');
 
 /*
@@ -105,6 +105,7 @@ Route::get('/searchview', [ProductController::class, 'searchView'])->name('searc
 Route::get('/search-products', [ProductController::class, 'searchProducts'])->name('search.products');
 
 
+Route::get('/admin/reviews', [ReviewsController::class, 'adminView'])->name('adminReviews');
 
 
 Route::middleware('auth')->group(function () {
@@ -224,7 +225,7 @@ Route::get('/admin/affiliate_customers', [AffiliateUserController::class, 'showA
 Route::post('/admin/affiliates/{id}/status/{status}', [AffiliateUserController::class, 'updateStatus'])->name('admin.affiliates.updateStatus');
 Route::get('/admin/Affiliatecustomer-details/{id}', [AffiliateUserController::class, 'showDetails'])->name('admin.affiliates.show');
 
-Route::get('/admin/reviews', [ReviewsController::class, 'adminView'])->name('adminReviews');
+//Route::get('/admin/reviews', [ReviewsController::class, 'adminView'])->name('adminReviews');
 Route::get('/admin/reviews-details/{id}', [ReviewsController::class, 'adminViewDetails'])->name('viewReviewDetails');
 Route::patch('/reviews/{id}/status', [ReviewsController::class, 'updateStatus'])->name('reviews.updateStatus');
 Route::delete('/reviews/{review}', [ReviewsController::class, 'destroy'])->name('admin.reviews.destroy');
@@ -280,10 +281,10 @@ Route::view('/affiliate_home', 'AffiliateDashBoard.affiliate_home')->name('affil
 
 
 Route::view('/home/affiliate/affiliate_home', 'aff_home')->name('aff_home');
-//Route::post('/home/affiliate/register', [AffiliateCustomerController::class, 'register'])->name('aff_reg');
+Route::post('/home/affiliate/register', [AffiliateCustomerController::class, 'register'])->name('aff_reg');
 Route::view('/home/affiliate/register/', 'aff_reg')->name('register_form');
-//Route::post('/home/affiliate/login', [AffiliateCustomerController::class, 'login'])->name('aff_login');
-//Route::get('/affiliate/dashboard', [AffiliateCustomerController::class, 'index'])->name('index');
+Route::post('/home/affiliate/login', [AffiliateCustomerController::class, 'login'])->name('aff_login');
+Route::get('/affiliate/dashboard', [AffiliateCustomerController::class, 'index'])->name('index');
 Route::post('/affiliate/logout', [AffiliateUserController::class, 'logout'])->name('aff.logout');
 
 

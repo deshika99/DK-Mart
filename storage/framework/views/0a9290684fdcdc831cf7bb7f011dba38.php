@@ -1,6 +1,4 @@
-@extends ('AffiliateDashBoard.affmaster')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
 
@@ -13,17 +11,19 @@
 
 <!-- Display Flash Messages -->
 <div class="container pt-4 px-4">
-    @if(session('success'))
+    <?php if(session('success')): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
+            <?php echo e(session('success')); ?>
+
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    @elseif(session('error'))
+    <?php elseif(session('error')): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('error') }}
+            <?php echo e(session('error')); ?>
+
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    @endif
+    <?php endif; ?>
 </div>
 
 <div class="container pt-4 px-4">
@@ -48,10 +48,10 @@
                 <table class="table table-borderless">
                     <tbody>
                         <tr>
-                            <td><strong>Login Email</strong><br>{{ $customer->email }}</td>
+                            <td><strong>Login Email</strong><br><?php echo e($customer->email); ?></td>
                             <td><strong>Password</strong><br>*********</td>
-                            <td><strong>Login Phone Number</strong><br>{{ $customer->contactno ?: '-' }}</td>
-                            <td><strong>Payee Name</strong><br>{{ $customer->name }}</td>
+                            <td><strong>Login Phone Number</strong><br><?php echo e($customer->contactno ?: '-'); ?></td>
+                            <td><strong>Payee Name</strong><br><?php echo e($customer->name); ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -82,30 +82,30 @@
                         <tr>
                             <td><strong>Promotion Methods</strong><br>
                                 <ul>
-                                    @foreach($customer->promotion_method ?? [] as $method)
-                                        <li>{{ $method }}</li>
-                                    @endforeach
+                                    <?php $__currentLoopData = $customer->promotion_method ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $method): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li><?php echo e($method); ?></li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </ul>
                             </td>
                             <td><strong>Social Media Platform</strong><br>
-                                @if($customer->instagram_url)
-                                    Instagram: <a href="{{ $customer->instagram_url }}" target="_blank">{{ $customer->instagram_url }}</a><br>
-                                @endif
-                                @if($customer->facebook_url)
-                                    Facebook: <a href="{{ $customer->facebook_url }}" target="_blank">{{ $customer->facebook_url }}</a><br>
-                                @endif
-                                @if($customer->tiktok_url)
-                                    TikTok: <a href="{{ $customer->tiktok_url }}" target="_blank">{{ $customer->tiktok_url }}</a><br>
-                                @endif
-                                @if($customer->youtube_url)
-                                    YouTube: <a href="{{ $customer->youtube_url }}" target="_blank">{{ $customer->youtube_url }}</a><br>
-                                @endif
-                                @if($customer->content_website_url)
-                                    Website: <a href="{{ $customer->content_website_url }}" target="_blank">{{ $customer->content_website_url }}</a><br>
-                                @endif
-                                @if($customer->content_whatsapp_url)
-                                    WhatsApp: <a href="{{ $customer->content_whatsapp_url }}" target="_blank">{{ $customer->content_whatsapp_url }}</a><br>
-                                @endif
+                                <?php if($customer->instagram_url): ?>
+                                    Instagram: <a href="<?php echo e($customer->instagram_url); ?>" target="_blank"><?php echo e($customer->instagram_url); ?></a><br>
+                                <?php endif; ?>
+                                <?php if($customer->facebook_url): ?>
+                                    Facebook: <a href="<?php echo e($customer->facebook_url); ?>" target="_blank"><?php echo e($customer->facebook_url); ?></a><br>
+                                <?php endif; ?>
+                                <?php if($customer->tiktok_url): ?>
+                                    TikTok: <a href="<?php echo e($customer->tiktok_url); ?>" target="_blank"><?php echo e($customer->tiktok_url); ?></a><br>
+                                <?php endif; ?>
+                                <?php if($customer->youtube_url): ?>
+                                    YouTube: <a href="<?php echo e($customer->youtube_url); ?>" target="_blank"><?php echo e($customer->youtube_url); ?></a><br>
+                                <?php endif; ?>
+                                <?php if($customer->content_website_url): ?>
+                                    Website: <a href="<?php echo e($customer->content_website_url); ?>" target="_blank"><?php echo e($customer->content_website_url); ?></a><br>
+                                <?php endif; ?>
+                                <?php if($customer->content_whatsapp_url): ?>
+                                    WhatsApp: <a href="<?php echo e($customer->content_whatsapp_url); ?>" target="_blank"><?php echo e($customer->content_whatsapp_url); ?></a><br>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     </tbody>
@@ -126,19 +126,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('affiliate.updateBasicInfo') }}" method="POST">
-                    @csrf
+                <form action="<?php echo e(route('affiliate.updateBasicInfo')); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
                     <div class="form-group mb-3">
                         <label for="payeename" class="text-secondary">Payee Name</label>
-                        <input type="text" id="payeename" name="payeename" class="form-control" value="{{ $customer->name }}">
+                        <input type="text" id="payeename" name="payeename" class="form-control" value="<?php echo e($customer->name); ?>">
                     </div>
                     <div class="form-group mb-3">
                         <label for="loginemail" class="text-secondary">Login Email</label>
-                        <input type="email" id="loginemail" name="loginemail" class="form-control" value="{{ $customer->email }}">
+                        <input type="email" id="loginemail" name="loginemail" class="form-control" value="<?php echo e($customer->email); ?>">
                     </div>
                     <div class="form-group mb-3">
                         <label for="loginphone" class="text-secondary">Login Phone Number</label>
-                        <input type="text" id="loginphone" name="loginphone" class="form-control" value="{{ $customer->contactno }}">
+                        <input type="text" id="loginphone" name="loginphone" class="form-control" value="<?php echo e($customer->contactno); ?>">
                     </div>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
@@ -156,33 +156,34 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('affiliate.updateSiteInfo') }}" method="POST">
-                    @csrf
+                <form action="<?php echo e(route('affiliate.updateSiteInfo')); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
                     <div class="form-group mb-3">
                         <label class="text-secondary mb-2">Promotion Methods</label>
-                        @php
+                        <?php
                             $promotionMethods = $customer->promotion_method ?? [];
                             $allMethods = ['Instagram', 'Facebook', 'TikTok', 'YouTube', 'Content website/blog', 'WhatsApp'];
-                        @endphp
-                        @foreach($allMethods as $method)
+                        ?>
+                        <?php $__currentLoopData = $allMethods; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $method): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" 
                                        name="promotion_methods[]" 
-                                       value="{{ $method }}" 
-                                       id="promotion_method_{{ $loop->index }}" 
-                                       {{ in_array($method, $promotionMethods) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="promotion_method_{{ $loop->index }}">
-                                    {{ $method }}
+                                       value="<?php echo e($method); ?>" 
+                                       id="promotion_method_<?php echo e($loop->index); ?>" 
+                                       <?php echo e(in_array($method, $promotionMethods) ? 'checked' : ''); ?>>
+                                <label class="form-check-label" for="promotion_method_<?php echo e($loop->index); ?>">
+                                    <?php echo e($method); ?>
+
                                 </label>
                             </div>
                             <div class="form-group mt-2">
                                 <input type="text" class="form-control" 
-                                       name="{{ strtolower(str_replace(' ', '_', $method)) . '_url' }}" 
-                                       placeholder="Enter {{ $method }} URL"
-                                       value="{{ $customer->{strtolower(str_replace(' ', '_', $method)) . '_url'} ?? '' }}"
-                                       {{ !in_array($method, $promotionMethods) ? 'disabled' : '' }}>
+                                       name="<?php echo e(strtolower(str_replace(' ', '_', $method)) . '_url'); ?>" 
+                                       placeholder="Enter <?php echo e($method); ?> URL"
+                                       value="<?php echo e($customer->{strtolower(str_replace(' ', '_', $method)) . '_url'} ?? ''); ?>"
+                                       <?php echo e(!in_array($method, $promotionMethods) ? 'disabled' : ''); ?>>
                             </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
@@ -205,4 +206,6 @@
     });
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('AffiliateDashBoard.affmaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\DK-Mart\resources\views/AffiliateDashBoard/myWebsite.blade.php ENDPATH**/ ?>

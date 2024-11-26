@@ -117,8 +117,8 @@
                     <div class="blog-sidebar border border-gray-100 rounded-8 p-32 mb-40">
                         <h6 class="text-xl mb-32 pb-32 border-bottom border-gray-100">Best Sell Products</h6>
                         <div class="d-flex flex-column gap-24">
-                        <?php if($vendor->best_selling_products): ?>
-                            <?php $__currentLoopData = $vendor->best_selling_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($vendornew->best_selling_products): ?>
+                            <?php $__currentLoopData = $vendornew->best_selling_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="d-flex align-items-center flex-sm-nowrap flex-wrap gap-16">
                                     <a href="<?php echo e(route('showProductDetails', $product->id)); ?>" class="w-100 h-100 rounded-4 overflow-hidden w-76 h-76 flex-shrink-0 bg-color-three flex-center">
                                         <img src="<?php echo e(asset('storage/' . $product->image)); ?>" alt="<?php echo e($product->name); ?>">
@@ -280,5 +280,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
-    <?php $__env->stopSection(); ?>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('frontend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\DK-Mart\resources\views/frontend/vendor-details.blade.php ENDPATH**/ ?>

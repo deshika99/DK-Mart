@@ -1,6 +1,4 @@
-@extends ('AffiliateDashBoard.affmaster')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="content-header">
     <div>
@@ -14,8 +12,8 @@
 <section class="tool-content pt-4">
     <div class="tool-form-container">
         <h2>Generate Your Affiliate Link</h2>
-        <form class="tool-form" id="affiliateForm" action="{{ route('genarate_tracking_Link') }}" method="post">
-            @csrf <!-- Laravel CSRF token -->
+        <form class="tool-form" id="affiliateForm" action="<?php echo e(route('genarate_tracking_Link')); ?>" method="post">
+            <?php echo csrf_field(); ?> <!-- Laravel CSRF token -->
 
             <!-- Product URL Input -->
             <div class="form-group">
@@ -27,11 +25,12 @@
             <div class="form-group">
                 <label for="tracking-id">Select Tracking ID:</label>
                 <select id="tracking-id" name="tracking_id">
-                    @foreach($trackingIds as $trackingId)
-                        <option value="{{ $trackingId->token }}">
-                            {{ $trackingId->token }}
+                    <?php $__currentLoopData = $trackingIds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $trackingId): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($trackingId->token); ?>">
+                            <?php echo e($trackingId->token); ?>
+
                         </option>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
 
@@ -46,11 +45,11 @@
             <h3>Your Affiliate Link:</h3>
 
             <!-- Check if the session contains the generated link -->
-            @if(session('generated_link'))
-                <p id="output-link">{{ session('generated_link') }}</p>
-            @else
+            <?php if(session('generated_link')): ?>
+                <p id="output-link"><?php echo e(session('generated_link')); ?></p>
+            <?php else: ?>
                 <p id="output-link">No link generated yet.</p>
-            @endif
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -139,4 +138,6 @@
     }
 </style>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('AffiliateDashBoard.affmaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\DK-Mart\resources\views/AffiliateDashBoard/tools.blade.php ENDPATH**/ ?>

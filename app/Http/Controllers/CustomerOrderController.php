@@ -20,31 +20,51 @@ class CustomerOrderController extends Controller
 {
 
     public function trackReferral($tracking_id, $product_id)
-    {
-        // Find the raffle ticket by the tracking ID
-        $raffleTicket = RaffleTicket::where('token', $tracking_id)->first();
+{
+    // Retrieve tracking ID and affiliate user ID from session
+    $affiliate_user_id = session('affiliate_user_id');
 
-        if ($raffleTicket) {
-            // Find the specific referral record by raffle_ticket_id and product_id
-            $referral = AffiliateReferral::where('raffle_ticket_id', $raffleTicket->id)
-                                        ->where('product_url', 'like', '%' . $product_id . '%')
-                                        ->first();
+    // Find the raffle ticket using the tracking ID
+    $raffleTicket = RaffleTicket::where('token', $tracking_id)->first();
 
-            if ($referral) {
-                // Retrieve the product details to get the affiliate price
-                $product = Product::where('product_id', $product_id)->first();
+    if ($raffleTicket) {
+        // Construct the actual product URL using the product_id
+        $product_url = url('product-details/' . $product_id);
 
-                if ($product && $product->affiliate_price) {
-                    // Increment the referral count
-                    $referral->increment('referral_count');
+        // Log for debugging
+        Log::info('Tracking Referral', ['tracking_id' => $tracking_id, 'product_url' => $product_url, 'user_id' => $affiliate_user_id]);
 
-                    // Calculate and add the affiliate commission based on affiliate price
-                    $referral->total_affiliate_price += $referral->affiliate_commission;
-                    $referral->save(); // Save the updated referral with the new commission
-                }
-            }
+        // Match the actual product URL in the affiliate_referrals table
+        $referral = AffiliateReferral::where('raffle_ticket_id', $raffleTicket->id)
+            ->where('product_url', $product_url) // Match against product_url
+            ->where('user_id', $affiliate_user_id)
+            ->first();
+
+        if ($referral) {
+            // Increment referral count
+            $referral->increment('referral_count');
+
+            // Log success
+            Log::info('Referral Count Updated', ['referral_id' => $referral->id, 'new_count' => $referral->referral_count]);
+
+            return true;
+        } else {
+            // Log if referral record is not found
+            Log::info('Referral not found for tracking', [
+                'raffle_ticket_id' => $raffleTicket->id,
+                'product_url' => $product_url,
+                'user_id' => $affiliate_user_id,
+            ]);
         }
+    } else {
+        // Log if raffle ticket is not found
+        Log::info('Raffle ticket not found', ['tracking_id' => $tracking_id]);
     }
+
+    return false;
+}
+
+
 
 
     public function placeOrder(Request $request)
@@ -143,67 +163,75 @@ class CustomerOrderController extends Controller
 
 
     public function buynow_placeOrder(Request $request)
-    {
-        $userId = Auth::id();
-        $orderCode = 'ORD-' . strtoupper(Str::random(8));
-        $deliveryFee = 300;
-        $subtotal = 0;
+{
+    $userId = Auth::id();
+    $orderCode = 'ORD-' . strtoupper(Str::random(8));
+    $deliveryFee = 300;
+    $subtotal = 0;
 
-        // Calculate subtotal based on the products in the request
-        if ($request->has('products') && is_array($request->products)) {
-            foreach ($request->products as $product) {
-                $itemSubtotal = $product['cost'] * $product['quantity'];
-                $subtotal += $itemSubtotal;
-            }
-        } else {
-            return redirect()->back()->with('error', 'No products selected');
+    // Calculate subtotal based on the products in the request
+    if ($request->has('products') && is_array($request->products)) {
+        foreach ($request->products as $product) {
+            $itemSubtotal = $product['cost'] * $product['quantity'];
+            $subtotal += $itemSubtotal;
         }
+    } else {
+        return redirect()->back()->with('error', 'No products selected');
+    }
 
     $total = $subtotal + $deliveryFee;
-    
-        $order = CustomerOrder::create([
-            'order_code' => $orderCode,
-            'user_id' => $userId,
-            'customer_name' => $request->first_name . ' ' . $request->last_name,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'house_no' => $request->house_no,
-            'apartment' => $request->apartment,
-            'city' => $request->city,
-            'postal_code' => $request->postal_code,
-            'date' => Carbon::now(),
-            'total_cost' => $total,
-            'status' => 'Pending',
-            'payment_method' => $request->input('payment_method', null),
-            'payment_status' => 'Pending',
-        ]);
-    
-        if ($request->has('products') && is_array($request->products)) {
-            foreach ($request->products as $product) {
-                $itemSubtotal = $product['cost'] * $product['quantity'];
-    
-                CustomerOrderItems::create([
-                    'order_code' => $orderCode,
-                    'product_id' => $product['product_id'],
-                    'quantity' => $product['quantity'],
-                    'size' => $product['size'],
-                    'color' => $product['color'],
-                    'cost' => $itemSubtotal,
-                    'date' => Carbon::now(),
-                ]);
-            }
-        } else {
-            return redirect()->back()->with('error', 'No products selected');
-        }
-    
-        foreach ($request->products as $product) {
-            $productRecord = Product::find($product['product_id']);
-            $productRecord->decrement('quantity', $product['quantity']);
-        }
-    
-        return redirect()->route('payment', ['order_code' => $orderCode]);
 
+    $order = CustomerOrder::create([
+        'order_code' => $orderCode,
+        'user_id' => $userId,
+        'customer_name' => $request->first_name . ' ' . $request->last_name,
+        'phone' => $request->phone,
+        'email' => $request->email,
+        'house_no' => $request->house_no,
+        'apartment' => $request->apartment,
+        'city' => $request->city,
+        'postal_code' => $request->postal_code,
+        'date' => Carbon::now(),
+        'total_cost' => $total,
+        'status' => 'Pending',
+        'payment_method' => $request->input('payment_method', null),
+        'payment_status' => 'Pending',
+    ]);
+
+    if ($request->has('products') && is_array($request->products)) {
+        foreach ($request->products as $product) {
+            $itemSubtotal = $product['cost'] * $product['quantity'];
+
+            CustomerOrderItems::create([
+                'order_code' => $orderCode,
+                'product_id' => $product['product_id'],
+                'quantity' => $product['quantity'],
+                'size' => $product['size'],
+                'color' => $product['color'],
+                'cost' => $itemSubtotal,
+                'date' => Carbon::now(),
+            ]);
+
+            // Retrieve the tracking ID and product URL
+            $tracking_id = session('tracking_id'); // Retrieve from session
+            $product_url = url('product-details/' . $product['product_id']); // Construct actual product URL
+
+            // Track referral for each product in the order
+            $this->trackReferral($tracking_id, $product_url);
+        }
+    } else {
+        return redirect()->back()->with('error', 'No products selected');
     }
+
+    foreach ($request->products as $product) {
+        $productRecord = Product::find($product['product_id']);
+        $productRecord->decrement('quantity', $product['quantity']);
+    }
+
+    return redirect()->route('payment', ['order_code' => $orderCode]);
+}
+
+
 
 
 

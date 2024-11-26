@@ -299,11 +299,7 @@
             <a href="/contact" class="nav-menu__link">Contact Us</a>
         </li>
         <li class="nav-menu__item">
-
-    
-
-            <a href="{{ route('vendor_register') }}" class="nav-menu__link">Vendors</a>
-
+            <a href="{{ route('frontend.vendor') }}" class="nav-menu__link">Vendors</a>
         </li>
     </ul>
 </div>

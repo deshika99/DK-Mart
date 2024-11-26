@@ -37,12 +37,11 @@
 
 <?php echo $__env->make('includes.navbar-2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-
-
-    <!-- ============================ Banner Section start =============================== -->
+ <!-- ============================ Banner Section start =============================== -->
     <?php echo $__env->yieldContent('content'); ?>
+    
     <div class="preloader">
-        <img src="<?php echo e(asset('frontend/assets/images/logo/logo-two.png')); ?>" alt="" style="width: 150px;">
+        <img src="<?php echo e(asset('frontend/assets/images/logo/preloader-new.png')); ?>" alt="" style="width: 150px;">
     </div>
 
     <script>

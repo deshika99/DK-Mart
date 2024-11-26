@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class VendorController extends Controller
 {
-    public function index()
+    public function indexx()
     {
         $location = request()->get('location');
         $vendors = Vendor::with('shop')

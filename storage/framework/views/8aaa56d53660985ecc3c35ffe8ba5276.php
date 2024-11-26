@@ -1,23 +1,23 @@
-@extends ('AffiliateDashBoard.affmaster')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <body>
 
 <!-- Display Flash Messages -->
 <div class="container pt-4 px-4">
-    @if(session('success'))
+    <?php if(session('success')): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
+            <?php echo e(session('success')); ?>
+
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    @elseif(session('error'))
+    <?php elseif(session('error')): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('error') }}
+            <?php echo e(session('error')); ?>
+
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    @endif
+    <?php endif; ?>
 </div>
 
     <section class="content-main">
@@ -35,8 +35,8 @@
                 <div class="row">
                     <div class="col-md-3">
                         <h4>Create Raffle Ticket</h4>
-                        <form action="{{ route('tracking_id_store') }}" method="POST">
-                            @csrf
+                        <form action="<?php echo e(route('tracking_id_store')); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
                             <div class="mb-4">
                                 <label for="tracking_id" class="form-label">User ID <span class="text-danger">*</span></label>
                                 <input type="string" id="tracking_id" name="tracking_id" placeholder="Enter user ID" class="form-control" required />
@@ -59,23 +59,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($raffleTickets as $ticket)
+                                    <?php $__currentLoopData = $raffleTickets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ticket): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td>{{ $ticket->id }}</td>
-                                            <td>{{ $ticket->token }}</td>
-                                            <td>{{ $ticket->created_at->format('Y-m-d') }}</td>
+                                            <td><?php echo e($ticket->id); ?></td>
+                                            <td><?php echo e($ticket->token); ?></td>
+                                            <td><?php echo e($ticket->created_at->format('Y-m-d')); ?></td>
                                             <td class="text-end">
                                                 
-                                                <form action="{{ route('raffletickets.destroy', $ticket->id) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
+                                                <form action="<?php echo e(route('raffletickets.destroy', $ticket->id)); ?>" method="POST" style="display:inline;">
+                                                    <?php echo csrf_field(); ?>
+                                                    <?php echo method_field('DELETE'); ?>
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this ticket?')" title="Delete">
                                                         <i class="icon material-icons md-delete"></i>
                                                     </button>
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                         </div>
@@ -107,4 +107,6 @@
     <script src="backend/assets/js/main.js?v=6.0" type="text/javascript"></script>
 </body>
 </html>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('AffiliateDashBoard.affmaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\DK-Mart\resources\views/AffiliateDashBoard/trackingid.blade.php ENDPATH**/ ?>

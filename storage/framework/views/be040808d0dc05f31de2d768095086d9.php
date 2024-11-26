@@ -1,6 +1,4 @@
-@extends ('AffiliateDashBoard.affmaster')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="content-header">
     <div>
         <h2 class="content-title card-title">Affiliate Rules</h2>
@@ -31,15 +29,17 @@
 <main class="mt-4">
     <div class="container px-4"> 
         <div class="row">
-            @foreach($rules as $rule)
+            <?php $__currentLoopData = $rules; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $rule): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-md-12">
                     <div class="rule-card">
-                        <div class="rule-title">Rule #{{ $loop->iteration }}</div>
-                        <p class="rule-description">{{ $rule->rule }}</p>
+                        <div class="rule-title">Rule #<?php echo e($loop->iteration); ?></div>
+                        <p class="rule-description"><?php echo e($rule->rule); ?></p>
                     </div>
                 </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </main>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('AffiliateDashBoard.affmaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\DK-Mart\resources\views/AffiliateDashBoard/affiliateRules.blade.php ENDPATH**/ ?>

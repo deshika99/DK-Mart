@@ -1,6 +1,4 @@
-@extends ('AffiliateDashBoard.affmaster')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <main>
 <div class="container pt-4 px-4">
@@ -24,60 +22,60 @@
                     <!-- Hot Deals -->
                     <div class="tab-pane fade show active" id="hot-deals" role="tabpanel" aria-labelledby="hot-deals-tab">
                         <div class="row mt-4">
-                            @foreach($hotDeals as $product)
+                            <?php $__currentLoopData = $hotDeals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="col-md-3 mb-4">
                                     <div class="product-card">
-                                        <a href="javascript:void(0)" class="open-modal" data-product-id="{{ $product->product_id }}">
-                                            @if($product->images->isNotEmpty())
-                                                <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" alt="{{ $product->product_name }}" class="img-fluid">
-                                            @else
-                                                <img src="{{ asset('storage/default-image.png') }}" alt="Default Image" class="img-fluid">
-                                            @endif
+                                        <a href="javascript:void(0)" class="open-modal" data-product-id="<?php echo e($product->product_id); ?>">
+                                            <?php if($product->images->isNotEmpty()): ?>
+                                                <img src="<?php echo e(asset('storage/' . $product->images->first()->image_path)); ?>" alt="<?php echo e($product->product_name); ?>" class="img-fluid">
+                                            <?php else: ?>
+                                                <img src="<?php echo e(asset('storage/default-image.png')); ?>" alt="Default Image" class="img-fluid">
+                                            <?php endif; ?>
                                             <div class="pricee">
-                                                <p>{{ $product->product_name }}</p>
+                                                <p><?php echo e($product->product_name); ?></p>
                                             </div>
-                                            <div class="price mb-2">Rs.{{ $product->affiliate_price }}</div>
+                                            <div class="price mb-2">Rs.<?php echo e($product->affiliate_price); ?></div>
                                             
                                             <div class="commission mb-2">
-                                                Est. Commission Rs. {{ $product->commission_price }} | {{ $product->commission_percentage }}%
+                                                Est. Commission Rs. <?php echo e($product->commission_price); ?> | <?php echo e($product->commission_percentage); ?>%
                                             </div>
-                                            <button class="btn btn-primary open-modal" data-product-id="{{ $product->product_id }}">
+                                            <button class="btn btn-primary open-modal" data-product-id="<?php echo e($product->product_id); ?>">
                                                 Promote Now
                                             </button>
                                         </a>
                                     </div>
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
 
                     <!-- Higher Commission -->
                     <div class="tab-pane fade" id="commission" role="tabpanel" aria-labelledby="commission-tab">
                         <div class="row mt-4">
-                            @foreach($higherCommissionDeals as $product)
+                            <?php $__currentLoopData = $higherCommissionDeals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="col-md-3 mb-4">
                                     <div class="product-card">
-                                        <a href="javascript:void(0)" class="open-modal" data-product-id="{{ $product->product_id }}">
-                                            @if($product->images->isNotEmpty())
-                                                <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" alt="{{ $product->product_name }}" class="img-fluid">
-                                            @else
-                                                <img src="{{ asset('storage/default-image.png') }}" alt="Default Image" class="img-fluid">
-                                            @endif
+                                        <a href="javascript:void(0)" class="open-modal" data-product-id="<?php echo e($product->product_id); ?>">
+                                            <?php if($product->images->isNotEmpty()): ?>
+                                                <img src="<?php echo e(asset('storage/' . $product->images->first()->image_path)); ?>" alt="<?php echo e($product->product_name); ?>" class="img-fluid">
+                                            <?php else: ?>
+                                                <img src="<?php echo e(asset('storage/default-image.png')); ?>" alt="Default Image" class="img-fluid">
+                                            <?php endif; ?>
                                             <div class="pricee">
-                                                <p>{{ $product->product_name }}</p>
+                                                <p><?php echo e($product->product_name); ?></p>
                                             </div>
-                                            <div class="price mb-2">Rs.{{ $product->affiliate_price }}</div>
+                                            <div class="price mb-2">Rs.<?php echo e($product->affiliate_price); ?></div>
                                             
                                             <div class="commission mb-2">
-                                                Est. Commission Rs. {{ $product->commission_price }} | {{ $product->commission_percentage }}%
+                                                Est. Commission Rs. <?php echo e($product->commission_price); ?> | <?php echo e($product->commission_percentage); ?>%
                                             </div>
-                                            <button class="btn btn-primary open-modal" data-product-id="{{ $product->product_id }}">
+                                            <button class="btn btn-primary open-modal" data-product-id="<?php echo e($product->product_id); ?>">
                                                 Promote Now
                                             </button>
                                         </a>
                                     </div>
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
                 </div>
@@ -85,60 +83,63 @@
         </div>
 
         <!-- All Modals Placed Outside Card Body -->
-        @foreach($hotDeals as $product)
-            <div class="custom-modal" id="customModal-{{ $product->product_id }}">
+        <?php $__currentLoopData = $hotDeals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="custom-modal" id="customModal-<?php echo e($product->product_id); ?>">
                 <div class="custom-modal-content">
-                    <span class="custom-close" data-product-id="{{ $product->product_id }}">&times;</span>
-                    <h5>Promo Items for {{ $product->product_name }}</h5>
+                    <span class="custom-close" data-product-id="<?php echo e($product->product_id); ?>">&times;</span>
+                    <h5>Promo Items for <?php echo e($product->product_name); ?></h5>
                     <div class="modal-body">
                         <!-- Product Images -->
-                        @if($product->images->count() > 0)
+                        <?php if($product->images->count() > 0): ?>
                             <div class="d-flex mb-3">
                                 <div class="me-3">
                                     <p>Pictures:</p>
                                 </div>
-                                <div id="productImagesContainer-{{ $product->product_id }}" class="d-flex flex-wrap">
-                                    @foreach($product->images as $image)
+                                <div id="productImagesContainer-<?php echo e($product->product_id); ?>" class="d-flex flex-wrap">
+                                    <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="image-wrapper position-relative mb-2 me-2">
-                                            <img src="{{ asset('storage/' . $image->image_path) }}" alt="Product Image" class="img-fluid" width="100px" data-image-id="{{ $image->id }}" style="cursor: pointer;">
+                                            <img src="<?php echo e(asset('storage/' . $image->image_path)); ?>" alt="Product Image" class="img-fluid" width="100px" data-image-id="<?php echo e($image->id); ?>" style="cursor: pointer;">
                                             <input type="checkbox" class="position-absolute top-0 start-0 m-2 image-checkbox" style="z-index: 1;">
                                         </div>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                             </div>
 
                             <!-- Download Buttons -->
                             <div class="d-flex mb-3">
-                                <button onclick="downloadAllImages('{{ $product->product_id }}')" class="btn btn-primary me-2">Download All Images</button>
-                                <button onclick="downloadSelectedImages('{{ $product->product_id }}')" class="btn btn-secondary" id="downloadSelectedBtn-{{ $product->product_id }}">Download Selected Images</button>
+                                <button onclick="downloadAllImages('<?php echo e($product->product_id); ?>')" class="btn btn-primary me-2">Download All Images</button>
+                                <button onclick="downloadSelectedImages('<?php echo e($product->product_id); ?>')" class="btn btn-secondary" id="downloadSelectedBtn-<?php echo e($product->product_id); ?>">Download Selected Images</button>
                             </div>
-                        @else
+                        <?php else: ?>
                             <p>No images available for this product.</p>
-                        @endif
+                        <?php endif; ?>
 
                         <!-- Promo Link Section -->
                         <div class="mb-3">
                             <label class="form-label">Product Link:</label>
-                            <input type="text" value="{{ url('product-details/' . $product->product_id) }}" class="form-control" readonly>
-                            <button type="button" class="btn btn-secondary mt-2" onclick="copyLink('{{ url('product-details/' . $product->product_id) }}')">Copy Link</button>
+                            <input type="text" value="<?php echo e(url('product-details/' . $product->product_id)); ?>" class="form-control" readonly>
+                            <button type="button" class="btn btn-secondary mt-2" onclick="copyLink('<?php echo e(url('product-details/' . $product->product_id)); ?>')">Copy Link</button>
                         </div>
 
 
                         <!-- Promo Materials Section -->
                         <div class="promo-material-container mb-3">
                             <h5>Promo Materials</h5>
-                            <textarea id="promoMaterial-{{ $product->product_id }}" class="form-control" rows="5" readonly>
-                                Product: {{ $product->product_name }}
-                                Description: {{ $product->product_description }}
-                                Original price: LKR {{ number_format($product->affiliate_price, 2) }}
+                            <textarea id="promoMaterial-<?php echo e($product->product_id); ?>" class="form-control" rows="5" readonly>
+                                Product: <?php echo e($product->product_name); ?>
+
+                                Description: <?php echo e($product->product_description); ?>
+
+                                Original price: LKR <?php echo e(number_format($product->affiliate_price, 2)); ?>
+
                             </textarea>
-                            <button type="button" class="btn mt-2" onclick="copyPromoMaterial('{{ $product->product_id }}')">Copy Promo Material</button>
+                            <button type="button" class="btn mt-2" onclick="copyPromoMaterial('<?php echo e($product->product_id); ?>')">Copy Promo Material</button>
                         </div>
 
                     </div>
                 </div>
             </div>
-        @endforeach
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
 </main>
 
@@ -337,4 +338,6 @@
     }
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('AffiliateDashBoard.affmaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\DK-Mart\resources\views/AffiliateDashBoard/adcenter.blade.php ENDPATH**/ ?>

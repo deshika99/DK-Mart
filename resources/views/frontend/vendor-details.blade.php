@@ -120,8 +120,8 @@
                     <div class="blog-sidebar border border-gray-100 rounded-8 p-32 mb-40">
                         <h6 class="text-xl mb-32 pb-32 border-bottom border-gray-100">Best Sell Products</h6>
                         <div class="d-flex flex-column gap-24">
-                        @if($vendor->best_selling_products)
-                            @foreach($vendor->best_selling_products as $product)
+                        @if($vendornew->best_selling_products)
+                            @foreach($vendornew->best_selling_products as $product)
                                 <div class="d-flex align-items-center flex-sm-nowrap flex-wrap gap-16">
                                     <a href="{{ route('showProductDetails', $product->id) }}" class="w-100 h-100 rounded-4 overflow-hidden w-76 h-76 flex-shrink-0 bg-color-three flex-center">
                                         <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">

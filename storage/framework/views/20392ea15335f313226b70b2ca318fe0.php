@@ -1,6 +1,4 @@
-@extends ('AffiliateDashBoard.affmaster')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
 
@@ -30,25 +28,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($affiliateLinks as $affiliateLink)
+                                    <?php $__currentLoopData = $affiliateLinks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $affiliateLink): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
                                             <td>
-                                                @if($affiliateLink->product && $affiliateLink->product->images->isNotEmpty())
-                                                    <img src="{{ asset('storage/' . $affiliateLink->product->images->first()->image_path) }}" alt="{{ $affiliateLink->product->product_name }}" style="width: 100px; height: auto;">
-                                                @else
+                                                <?php if($affiliateLink->product && $affiliateLink->product->images->isNotEmpty()): ?>
+                                                    <img src="<?php echo e(asset('storage/' . $affiliateLink->product->images->first()->image_path)); ?>" alt="<?php echo e($affiliateLink->product->product_name); ?>" style="width: 100px; height: auto;">
+                                                <?php else: ?>
                                                     No Image
-                                                @endif
+                                                <?php endif; ?>
                                             </td>
-                                            <td>{{ $affiliateLink->product->product_name ?? 'N/A' }}</td>
-                                            <td>{{ $affiliateLink->raffleTicket->token ?? 'N/A' }}</td>
+                                            <td><?php echo e($affiliateLink->product->product_name ?? 'N/A'); ?></td>
+                                            <td><?php echo e($affiliateLink->raffleTicket->token ?? 'N/A'); ?></td>
                                             <td>
-                                                <a href="{{ $affiliateLink->link }}" target="_blank">{{ $affiliateLink->link }}</a>
+                                                <a href="<?php echo e($affiliateLink->link); ?>" target="_blank"><?php echo e($affiliateLink->link); ?></a>
                                             </td>
                                             <td>
-                                                <button class="btn btn-primary" onclick="copyToClipboard('{{ $affiliateLink->link }}')">Copy</button>
+                                                <button class="btn btn-primary" onclick="copyToClipboard('<?php echo e($affiliateLink->link); ?>')">Copy</button>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                         </div>
@@ -97,4 +95,6 @@
     }
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('AffiliateDashBoard.affmaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\DK-Mart\resources\views/AffiliateDashBoard/codeCenter.blade.php ENDPATH**/ ?>
