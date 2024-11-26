@@ -1,6 +1,4 @@
-@extends('layouts.user_sidebar')
-
-@section('dashboard-content')
+<?php $__env->startSection('dashboard-content'); ?>
 
 <style>
     .text-danger {
@@ -95,10 +93,10 @@
             formData.append('new_password', newPassword);
             formData.append('new_password_confirmation', newPasswordConfirmation);
 
-            fetch('{{ route("user.change_password") }}', {
+            fetch('<?php echo e(route("user.change_password")); ?>', {
                 method: 'POST',
                 headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>',
                 },
                 body: formData,
             })
@@ -119,4 +117,6 @@
         }
     }
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.user_sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\DK-Mart\resources\views/user_dashboard/edit-password.blade.php ENDPATH**/ ?>

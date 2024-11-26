@@ -343,18 +343,14 @@ Route::post('/affiliate/dashboard/payment/realtime_tracking', [AffiliateReportCo
 
 require __DIR__.'/auth.php';
 
-//user dashboard
-Route::get('home/My-Account', function () {
-    return view('user_dashboard.dashboard');
-})->name('dashboard');
-
-Route::get('home/My-Account/edit-profile', function () {
-    return view('user_dashboard.edit-profile');
-})->name('edit-profile');
-
-
+Route::get('home/My-Account/edit-profile', [ProfileController::class, 'editProfile'])->name('edit-profile');
+Route::get('home/My-Account', [ProfileController::class, 'dashboard'])->name('dashboard');
 Route::get('home/My-Account/my-orders', [ProfileController::class, 'myOrders'])->name('my-orders');
 Route::get('/track-order/{orderCode}', [ProfileController::class, 'trackOrder'])->name('user.track-order');
+Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->name('user.profile.update');
+Route::post('home/My-Account/edit-password', [ProfileController::class, 'editPassword'])->name('edit-password');
+Route::post('/user/change-password', [UserController::class, 'changePassword'])->name('user.change_password');
+
 
 
 
