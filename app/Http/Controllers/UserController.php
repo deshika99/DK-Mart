@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\SystemUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
@@ -107,26 +106,5 @@ class UserController extends Controller
     }
 
 
-    public function changePassword(Request $request)
-    {
-        // Validate inputs
-        $request->validate([
-            'current_password' => 'required',
-            'new_password' => 'required|min:8|confirmed',
-        ]);
-
-        // Get authenticated user
-        $user = Auth::user();
-
-        // Check if current password is correct
-        if (!Hash::check($request->current_password, $user->password)) {
-            return response()->json(['error' => 'Current password is incorrect'], 400);
-        }
-
-        // Update user's password
-        $user->password = Hash::make($request->new_password);
-        $user->save();
-
-        return response()->json(['success' => 'Password updated successfully']);
-    }
+    
 }
