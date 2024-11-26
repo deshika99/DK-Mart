@@ -237,7 +237,7 @@ Route::delete('/reviews/{review}', [ReviewsController::class, 'destroy'])->name(
 
 
 Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inquiries');
-Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
+// Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
 Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('admin.customer.inquiries');
 
 
