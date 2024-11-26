@@ -47,11 +47,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($vendors as $index => $vendor)
+                                @foreach($vendors as $index => $vendor)
                                     <tr>
-                                        <td>{{ $index+1 }}</td>
+                                        <td>{{ $index + 1 }}</td>
                                         <td>{{ $vendor->name }}</td>
-                                        <td>{{ $vendor->shop->shop_name }}</td>
+                                        <td>{{ $vendor->shop ? $vendor->shop->shop_name : 'No Shop' }}</td>
                                         <td>{{ $vendor->address }}</td>
                                         <td>{{ $vendor->email }}</td>
                                         <td>{{ $vendor->phone }}</td>
@@ -61,8 +61,8 @@
                                             </span>
                                         </td>
                                     </tr>
+                                @endforeach
 
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

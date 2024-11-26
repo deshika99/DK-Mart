@@ -23,7 +23,7 @@ class OrderController extends Controller
         $orders = $query->latest()->paginate(10);
 
         return view('AdminDashboard.orders', compact('orders'));
-}
+    }
 
     public function destroy($id)
     {
