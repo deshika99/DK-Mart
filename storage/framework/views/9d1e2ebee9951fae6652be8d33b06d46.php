@@ -43,7 +43,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $__empty_1 = true; $__currentLoopData = $publishedReviews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index=>$review): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                            <?php $__empty_1 = true; $__currentLoopData = $publishedReviews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index=>$review): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>    
                             <tr>
                                 <td><?php echo e($index+1); ?></td>
                                 <td><b><?php echo e($review->product->product_name); ?></b></td>
