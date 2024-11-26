@@ -5273,3 +5273,7 @@
 #56 C:\\xampp\\htdocs\\esupport_systems\\DK-Mart\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('C:\\\\xampp\\\\htdocs...')
 #57 {main}
 "} 
+[2024-11-26 08:14:04] local.INFO: Tracking Referral {"tracking_id":"abc","product_url":"http://127.0.0.1:8000/product-details/14","user_id":2} 
+[2024-11-26 08:14:04] local.INFO: Referral not found for tracking {"raffle_ticket_id":2,"product_url":"http://127.0.0.1:8000/product-details/14","user_id":2} 
+[2024-11-26 08:58:34] local.INFO: Tracking Referral {"tracking_id":"abc","product_url":"http://127.0.0.1:8000/product-details/http://127.0.0.1:8000/product-details/14","user_id":2} 
+[2024-11-26 08:58:34] local.INFO: Referral not found for tracking {"raffle_ticket_id":2,"product_url":"http://127.0.0.1:8000/product-details/http://127.0.0.1:8000/product-details/14","user_id":2} 
