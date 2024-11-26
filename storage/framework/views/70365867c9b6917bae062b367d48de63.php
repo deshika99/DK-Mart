@@ -121,7 +121,9 @@
                 </div>
             </div>
 
-           <div class="deals-week-slider arrow-style-two">
+            
+
+            <div class="deals-week-slider arrow-style-two">
                 <?php $__currentLoopData = $products->slice(0, 10); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div data-aos="fade-up" data-aos-duration="200">
                         <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
@@ -194,38 +196,6 @@
                         <div class="gap-16 flex-align wow bounceInRight">
                             <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Products</a>
                         </div>
-                    </div>
-                </div>
-
-                <div class="mb-24 overflow-hidden popular-products-box rounded-16 flex-between position-relative z-1">
-                    <img src="frontend/assets/images/bg/expensive-offer-bg.png" alt="" class="position-absolute inset-block-start-0 w-100 h-100 z-n1">
-                    <div class="d-lg-block d-none ps-32" data-aos="zoom-in" data-aos-duration="800">
-                        <img src="frontend/assets/images/imgs/img.png" alt="" style="width:250px;">
-                    </div>
-                    <div class="py-20 text-center popular-products-box__content px-sm-4 d-block w-100">
-                        <div class="gap-16 flex-align justify-content-center" data-aos="zoom-in" data-aos-duration="800">
-                            <h6 class="mb-0">Exclusive Offer</h6>
-                            <h4 class="mb-0">45% OFF</h4>
-                        </div>
-                        <div class="mt-4 countdown" id="countdown10">
-                            <ul class="flex-wrap countdown-list style-four flex-center">
-                                <li class="w-56 h-56 text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                    <span class="days"></span>Days
-                                </li>
-                                <li class="w-56 h-56 text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                    <span class="hours"></span>Hour
-                                </li>
-                                <li class="w-56 h-56 text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                    <span class="minutes"></span>Min
-                                </li>
-                                <li class="w-56 h-56 text-sm text-white countdown-list__item flex-align flex-column fw-medium rounded-circle bg-neutral-600">
-                                    <span class="seconds"></span>Sec
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-lg-block d-none" data-aos="zoom-in" data-aos-duration="800">
-                    <img src="frontend/assets/images/imgs/img2.png" alt="" style="width:300px;">
                     </div>
                 </div>
 
@@ -312,7 +282,9 @@
                     </div>
                 </div>
 
-                 <div class="deals-week-slider arrow-style-two">
+
+
+                <div class="deals-week-slider arrow-style-two">
                     <?php $__currentLoopData = $products->slice(0, 10); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div data-aos="fade-up" data-aos-duration="200">
                             <div class="p-16 border border-gray-100 product-card h-100 hover-border-main-600 rounded-16 position-relative transition-2">
