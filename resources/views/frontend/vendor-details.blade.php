@@ -116,6 +116,41 @@
                         </ul>
                     </div>
 
+
+                    <div class="blog-sidebar border border-gray-100 rounded-8 p-32 mb-40">
+                        <h6 class="text-xl mb-32 pb-32 border-bottom border-gray-100">Best Sell Products</h6>
+                        <div class="d-flex flex-column gap-24">
+                        @if($vendor->best_selling_products)
+                            @foreach($vendor->best_selling_products as $product)
+                                <div class="d-flex align-items-center flex-sm-nowrap flex-wrap gap-16">
+                                    <a href="{{ route('showProductDetails', $product->id) }}" class="w-100 h-100 rounded-4 overflow-hidden w-76 h-76 flex-shrink-0 bg-color-three flex-center">
+                                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                                    </a>
+                                    <div class="flex-grow-1">
+                                        <h6 class="text-lg mb-8 fw-medium">
+                                            <a href="{{ route('showProductDetails', $product->id) }}" class="text-line-3">{{ $product->name }}</a>
+                                        </h6>
+                                        <div class="flex-align gap-6">
+                                            <div class="flex-align gap-4">
+                                                @for ($i = 0; $i < 5; $i++)
+                                                    <span class="text-xs fw-medium text-warning-600 d-flex">
+                                                        <i class="ph-fill ph-star"></i>
+                                                    </span>
+                                                @endfor
+                                            </div>
+                                            <span class="text-xs fw-medium text-neutral-500">{{ $product->rating }}</span>
+                                            <span class="text-xs fw-medium text-neutral-500">({{ $product->reviews_count }})</span>
+                                        </div>
+                                        <h6 class="text-md mb-0 mt-4">${{ number_format($product->price, 2) }}</h6>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <p>No best selling products available.</p>
+                        @endif
+
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- Shop Sidebar End -->
@@ -173,125 +208,7 @@
                                 </a>
                             </div>
                         </div>
-                         <!-- Cart Modal -->
-                         <div class="modal fade" id="cartModal_{{ $product->product_id }}" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="p-6 modal-content" style="border-radius: 0;">
-                                    <div class="modal-header">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row gx-5">
-                                            <aside class="col-lg-5">
-                                                <div class="mb-3 rounded-4 d-flex justify-content-center">
-                                                    <a class="rounded-4 main-image-link" href="{{ asset('storage/' . $product->images->first()->image_path) }}">
-                                                        <img id="mainImage" class="rounded-4 fit" src="{{ asset('storage/' . $product->images->first()->image_path) }}" style="width:250px" />
-                                                    </a>
-                                                </div>
-                                                <div class="mb-3 d-flex justify-content-center">
-                                                    @foreach($product->images as $image)
-                                                        <a class="mx-1 rounded-2 thumbnail-image" data-image="{{ asset('storage/' . $image->image_path) }}" href="javascript:void(0);">
-                                                            <img class="thumbnail rounded-2" src="{{ asset('storage/' . $image->image_path) }}" style="width:80px" />
-                                                        </a>
-                                                    @endforeach
-                                                </div>
-                                            </aside>
-
-                                            <main class="col-lg-7">
-                                                <h6>{{ $product->product_name }}</h6>
-                                                <p class="product-description">{{ $product->product_description }}</p>
-                                                <div class="flex-wrap gap-12 mt-12 flex-align">
-                                                    <div class="flex-wrap gap-12 flex-align">
-                                                        <div class="gap-8 flex-align">
-                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                                        </div>
-                                                        <span class="text-sm fw-medium text-neutral-600">4.7 Star Rating</span>
-                                                        <span class="text-sm text-gray-500 fw-medium">(21,671)</span>
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                
-                                                <div class="mt-3 mb-12 product-availability">
-                                                    <span>Availability :</span>
-                                                    @if($product->quantity > 1)
-                                                        <span class="ms-1" style="color:#4caf50;">In stock</span>
-                                                    @else
-                                                        <span class="ms-1" style="color:red;">Out of stock</span>
-                                                    @endif
-                                                </div>
-
-                                                 <!-- Sizes Section -->
-                                                @if ($product->variations->pluck('value')->filter()->unique()->isNotEmpty())
-                                                    <div class="flex-wrap gap-16 mb-8 flex-between align-items-start">
-                                                        <div class="mb-5 d-flex align-items-center">
-                                                            <span class="text-gray-900 me-3">Size:</span>
-                                                            @foreach ($product->variations->pluck('value')->filter()->unique() as $size)
-                                                                <button type="button" 
-                                                                        class="border border-2 border-gray-300 size_button ms-5 d-flex align-items-center justify-content-center"
-                                                                        data-size="{{ $size }}">
-                                                                    {{ $size }}
-                                                                </button>
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
-                                                @endif
-
-                                            
-                                                <!-- Colors Section -->
-                                                @if ($product->variations->pluck('hex_value')->filter()->unique()->isNotEmpty())
-                                                    <div class="flex-wrap gap-16 mt-4 flex-between align-items-center">
-                                                        <div class="mb-4 d-flex align-items-center">
-                                                            <span class="text-gray-900 me-3">Color:</span>
-                                                            @foreach ($product->variations->pluck('hex_value')->filter()->unique() as $color)
-                                                                <button type="button" 
-                                                                        class="w-24 h-24 border border-2 color-list__button border-gray-50 rounded-circle me-2"
-                                                                        style="background-color: {{ $color }};" 
-                                                                        data-color="{{ $color }}"> 
-                                                                </button>
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
-                                                @endif
-
-                                                <div class="mt-8 mb-3 product-price d-flex align-items-center">
-                                                    <span class="" style="margin-right: 10px;">                                                   
-                                                    <h6 class="mb-0">Rs {{ $product->normal_price }}</h6>
-                                                    </span>
-                                                </div>
-
-                                                @auth
-                                                    <!-- Add To Cart Form -->
-                                                    <form action="{{ route('cart.add') }}" method="POST" id="addToCartForm">
-                                                        @csrf
-                                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                        <input type="hidden" name="size" id="selectedSize">
-                                                        <input type="hidden" name="color" id="selectedColor">
-                                                        <input type="hidden" name="quantity" id="hiddenQuantity" value="1">
-                                                        <input type="hidden" name="price" id="hiddenPrice" value="{{ $product->normal_price }}">
-
-                                                        <!-- Add To Cart Button -->
-                                                        <button type="submit" class="mt-5 btn btn-main w-95" 
-                                                                @if ($product->quantity == 0) disabled @endif>
-                                                            Add To Cart
-                                                        </button>
-                                                    </form>
-                                                @else
-                                                    <p class="mb-5 text-danger">Please <a href="{{ route('login') }}">log in</a> to add items to the cart.</p>
-                                                @endauth
-                                                <a href="{{ route('showProductDetails', $product->product_id ) }}" style="text-decoration: none; font-size:14px; color: #297aa5; margin-top:15px">
-                                                    View Full Details<i class="fa-solid fa-circle-right"></i>
-                                                </a>
-                                            </main>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        
                     @empty
                         <p class="text-gray-500 mt-4">No products found.</p>
                         
