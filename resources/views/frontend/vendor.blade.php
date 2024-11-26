@@ -41,7 +41,10 @@
              </form>
      
              <div class="d-flex align-items-center justify-content-between justify-content-sm-end gap-16 flex-grow-1">
-                 <div class="text-gray-600 text-md flex-shrink-0"> <span class="text-neutral-900 fw-semibold">52</span> Results Found</div>
+                <div class="text-gray-600 text-md flex-shrink-0">
+                    <span class="text-neutral-900 fw-semibold">{{ $totalResults }}</span> Results Found
+                </div>
+
                  <div class="d-flex align-items-center gap-8 d-sm-flex d-none">
                     <button type="button" class="grid-btn text-2xl d-flex w-48 h-48 border border-neutral-100 rounded-8 justify-content-center align-items-center border-main-600 text-white bg-main-600"><i class="ph ph-squares-four"></i></button>
                     <button type="button" class="list-btn text-2xl d-flex w-48 h-48 border border-neutral-100 rounded-8 justify-content-center align-items-center"><i class="ph ph-list-bullets"></i></button>
@@ -183,9 +186,9 @@
                                         <div class="d-flex align-items-center justify-content-between">
                                             <span class="w-80 h-80 flex-center bg-white rounded-circle flex-shrink-0">
                                             @if ($vendor->shop->shop_logo)
-                                                <img src="{{ asset('storage/' . $vendor->shop->shop_logo) }}" alt="" class="cover-img">
+                                                <img src="{{ asset('storage/' . $vendor->shop->shop_logo) }}" alt="" class="cover-img rounded-circle ">
                                             @else
-                                                <img src="assets/images/default-shop-logo.png" alt="Default Logo" class="cover-img">
+                                                <img src="assets/images/default-shop-logo.png" alt="Default Logo" class="cover-img rounded-circle ">
                                             @endif
                                             </span>
                                         </div>
@@ -232,6 +235,7 @@
                                         Visit Store
                                         <span class="text-xl d-flex text-main-two-600"> <i class="ph ph-storefront"></i></span>
                                     </a>
+
                                 </div>
                             </div>
                         @endif
@@ -246,7 +250,7 @@
                 <ul class="pagination flex-center flex-wrap gap-16">
                     <!-- Previous page button -->
                     <li class="page-item">
-                        <a class="page-link h-64 w-64 flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="{{ $vendors->previousPageUrl() }}">
+                        <a class="page-link h-44 w-44 flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="{{ $vendors->previousPageUrl() }}">
                             <i class="ph-bold ph-arrow-left"></i>
                         </a>
                     </li>
@@ -254,13 +258,13 @@
                     <!-- Page numbers -->
                     @foreach ($vendors->getUrlRange(1, $vendors->lastPage()) as $page => $url)
                         <li class="page-item {{ $page == $vendors->currentPage() ? 'active' : '' }}">
-                            <a class="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="{{ $url }}">{{ str_pad($page, 2, '0', STR_PAD_LEFT) }}</a>
+                            <a class="page-link h-44 w-44 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="{{ $url }}">{{ str_pad($page, 2, '0', STR_PAD_LEFT) }}</a>
                         </li>
                     @endforeach
 
                     <!-- Next page button -->
                     <li class="page-item">
-                        <a class="page-link h-64 w-64 flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="{{ $vendors->nextPageUrl() }}">
+                        <a class="page-link h-44 w-44 flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="{{ $vendors->nextPageUrl() }}">
                             <i class="ph-bold ph-arrow-right"></i>
                         </a>
                     </li>

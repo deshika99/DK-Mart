@@ -14,7 +14,7 @@ use Illuminate\Validation\ValidationException;
 class ProductController extends Controller
 {
   //navbar search box
-    public function searchView(Request $request)
+  /*  public function searchView(Request $request)
 {
     $query = $request->input('query');
     $categoryId = $request->input('category');
@@ -34,12 +34,24 @@ class ProductController extends Controller
     $categories = Category::all();
 
     return view('frontend.searchView', compact('products', 'categories'));
-}
+}*/
 
 // search box
 
+public function searchProducts(Request $request)
+{
+    $query = $request->input('query');
 
-//
+    if (!$query) {
+        return response()->json(['products' => []]);
+    }
+
+    $products = Product::where('product_name', 'LIKE', '%' . $query . '%')->get();
+
+    return response()->json([
+        'products' => $products,
+    ]);
+}
 
 
 

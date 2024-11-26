@@ -14,6 +14,7 @@ class VendorOrderController extends Controller
     public function index(Request $request)
     {
         $vendor_id = session('vendor_id');
+
         $query = CustomerOrder::query();
 
         if ($request->filled('order_code')) {
@@ -25,11 +26,8 @@ class VendorOrderController extends Controller
         }
 
         $orders = $query->whereHas('items.product', function ($query) use ($vendor_id) {
-            $query->where('shop_id', function ($query) use ($vendor_id) {
-                $query->select('shop_id')
-                    ->from('shops')
-                    ->where('vendor_id', $vendor_id)
-                    ->limit(1);
+            $query->whereHas('shop', function ($shopQuery) use ($vendor_id) {
+                $shopQuery->where('vendor_id', $vendor_id);
             });
         })
         ->latest()
@@ -37,6 +35,7 @@ class VendorOrderController extends Controller
 
         return view('VendorDashboard.orders', compact('orders'));
     }
+
 
 
     public function destroy($id)
