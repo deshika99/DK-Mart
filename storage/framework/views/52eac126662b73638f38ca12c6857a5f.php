@@ -41,7 +41,7 @@
     <?php echo $__env->yieldContent('content'); ?>
     
     <div class="preloader">
-        <img src="<?php echo e(asset('frontend/assets/images/logo/preloader-new.png')); ?>" alt="" style="width: 150px;">
+        <img src="<?php echo e(asset('frontend/assets/images/logo/preloader-new1.png')); ?>" alt="" style="width: 150px;">
     </div>
 
     <script>

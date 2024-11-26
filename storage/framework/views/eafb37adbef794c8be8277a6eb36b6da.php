@@ -76,13 +76,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item <?php echo e(request()->routeIs('adminReviews') ? 'active' : ''); ?>">
-                        <a class="menu-link" href="<?php echo e(route('adminReviews')); ?>">
-
-                        <i class="icon material-icons md-comment"></i>
-                            <span class="text">Reviews</span>
-                        </a>
-                    </li>
+                    
                     <li class="menu-item <?php echo e(request()->routeIs('admin.customer.inquiries') ? 'active' : ''); ?>">
                         <a class="menu-link" href="<?php echo e(route('admin.customer.inquiries')); ?>">
                         <i class="icon material-icons md-email"></i>
