@@ -17,7 +17,6 @@
         border-color: #e63300 !important;
     }
 
-    /* Text field focus border color */
     .form-control:focus, .form-select:focus {
         border-color: hsl(14, 72%, 69%) !important;
         box-shadow: 0 0 0 0.2rem hsla(12, 81%, 40%, 0.251) !important;
@@ -27,96 +26,46 @@
 <div class="container p-3">
     <h4 class="px-2 py-2">Change Password</h4>
 
-    <!-- Success and Error Message Placeholder -->
-    <div class="alert alert-success" id="success-message" style="display: none;">
-        Password changed successfully.
-    </div>
-    <div class="alert alert-danger" id="error-message" style="display: none;">
-        Failed to change password. Please try again.
-    </div>
+    <!-- Success and Error Message -->
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
-    <form id="changePasswordForm">
-        <div class="mb-3 position-relative">
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    <form action="{{ route('user.change_password') }}" method="POST">
+        @csrf
+        <div class="mb-3">
             <label for="current_password" class="form-label">Current Password</label>
-            <input type="password" class="form-control" id="current_password" name="current_password" placeholder="Current password">
-            <span class="text-danger" id="current_password_error" style="display: none;">Please enter your current password.</span>
+            <input type="password" class="form-control" id="current_password" name="current_password" placeholder="Current password" required>
+            @error('current_password')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
 
-        <div class="mb-3 position-relative">
+        <div class="mb-3">
             <label for="new_password" class="form-label">New Password</label>
-            <input type="password" class="form-control" id="new_password" name="new_password" placeholder="New password">
-            <span class="text-danger" id="new_password_error" style="display: none;">Please enter a new password.</span>
+            <input type="password" class="form-control" id="new_password" name="new_password" placeholder="New password" required>
+            @error('new_password')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
 
-        <div class="mb-3 position-relative">
+        <div class="mb-3">
             <label for="new_password_confirmation" class="form-label">Retype New Password</label>
-            <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" placeholder="Retype new password">
-            <span class="text-danger" id="new_password_confirmation_error" style="display: none;">Passwords do not match.</span>
+            <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" placeholder="Retype new password" required>
+            @error('new_password_confirmation')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
 
-        <button type="button" class="mt-3 btn btn-primary" onclick="validateForm()">Change Password</button>
+        <button type="submit" class="mt-3 btn btn-primary">Change Password</button>
     </form>
 </div>
-
-<script>
-    function validateForm() {
-        // Hide all previous error messages
-        document.getElementById("current_password_error").style.display = "none";
-        document.getElementById("new_password_error").style.display = "none";
-        document.getElementById("new_password_confirmation_error").style.display = "none";
-        document.getElementById("success-message").style.display = "none";
-        document.getElementById("error-message").style.display = "none";
-
-        let isValid = true;
-
-        // Get input values
-        const currentPassword = document.getElementById("current_password").value;
-        const newPassword = document.getElementById("new_password").value;
-        const newPasswordConfirmation = document.getElementById("new_password_confirmation").value;
-
-        // Validate inputs
-        if (!currentPassword) {
-            document.getElementById("current_password_error").style.display = "block";
-            isValid = false;
-        }
-        if (!newPassword) {
-            document.getElementById("new_password_error").style.display = "block";
-            isValid = false;
-        }
-        if (newPassword !== newPasswordConfirmation) {
-            document.getElementById("new_password_confirmation_error").style.display = "block";
-            isValid = false;
-        }
-
-        if (isValid) {
-            // Submit the form via AJAX to the backend
-            const formData = new FormData();
-            formData.append('current_password', currentPassword);
-            formData.append('new_password', newPassword);
-            formData.append('new_password_confirmation', newPasswordConfirmation);
-
-            fetch('{{ route("user.change_password") }}', {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                },
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    document.getElementById("success-message").style.display = "block";
-                } else {
-                    document.getElementById("error-message").textContent = data.message || 'Failed to change password.';
-                    document.getElementById("error-message").style.display = "block";
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById("error-message").textContent = 'An error occurred. Please try again.';
-                document.getElementById("error-message").style.display = "block";
-            });
-        }
-    }
-</script>
 @endsection

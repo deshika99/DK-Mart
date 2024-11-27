@@ -1,8 +1,8 @@
 
 <aside class="navbar-aside shadow-sm" id="offcanvas_aside">
             <div class="aside-top" style="padding:0">
-                <a href="" class="brand-wrap">
-                    <img src="{{ asset('/backend/assets/DK mart-01.png') }}" class="logo" alt="DK-Mart"/>
+                <a href="{{ route('admin.index') }}" class="brand-wrap">
+                    <img src="{{ asset('frontend/assets/images/logo/preloader-new1.png') }}" class="logo" alt="DK-Mart" style="margin-left:80%;"/>
                 </a>
                 <div>
                     <button class="btn btn-icon btn-aside-minimize"><i class="text-muted material-icons md-menu_open"></i></button>
@@ -76,13 +76,14 @@
                         </div>
                     </li>
 
-                    
-                    <li class="menu-item {{ request()->routeIs('admin.customer.inquiries') ? 'active' : '' }}">
-                        <a class="menu-link" href="{{ route('admin.customer.inquiries') }}">
-                        <i class="icon material-icons md-email"></i>
-                            <span class="text">Customer Inquiries</span>
+                    <li class="menu-item {{ request()->routeIs('adminReviews') ? 'active' : '' }}">
+                        <a class="menu-link" href="{{ route('adminReviews') }}">
+
+                        <i class="icon material-icons md-comment"></i>
+                            <span class="text">Reviews</span>
                         </a>
                     </li>
+
                     <li class="menu-item has-submenu ">
                         <a class="menu-link" href="#">
                             <i class="icon material-icons md-description"></i>
@@ -109,23 +110,26 @@
                             </a>
                         </div>
                     </li>
-                    <li class="menu-item has-submenu {{ request()->is('admin/manage_company*') || request()->is('admin/users*') || request()->is('admin/role_list*') ? 'active' : '' }}">
+
+                    <li class="menu-item has-submenu ">
                         <a class="menu-link" href="#">
                             <i class="icon material-icons md-settings"></i>
                             <span class="text">Settings</span>
                         </a>
-                        <div class="submenu {{ request()->is('admin/manage_company*') || request()->is('admin/users*') || request()->is('admin/role_list*') ? 'show' : '' }}">
-                            <a href="{{ route('manage_company') }}" class="{{ request()->is('admin/manage_company') ? 'active' : '' }}">
+                        <div class="submenu ">
+                            <a href="{{ route('manage_company_profile') }}" >
                                 Manage Company
                             </a>
-                            <a href="{{ route('users') }}" class="{{ request()->is('admin/users') ? 'active' : '' }}">
+                            <a href="{{ route('users') }}" >
                                 Users
                             </a>
-                            <a href="{{ route('role_list') }}" class="{{ request()->is('admin/role_list') ? 'active' : '' }}">
+                            <a href="{{ route('role_list') }}" >
                                 Role List
                             </a>
+                            
                         </div>
                     </li>
+                    
 
                 </ul>
                 <hr />

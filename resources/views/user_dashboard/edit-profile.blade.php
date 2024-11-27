@@ -4,7 +4,7 @@
 <style>
     .btn-primary {
         background-color: #ff3c00 !important;
-        border-color: #ff3c00!important;
+        border-color: #ff3c00 !important;
     }
 
     .form-control:focus, .form-select:focus {
@@ -22,7 +22,6 @@
     }
 </style>
 
-
 <h4 class="px-2 py-2">Edit Profile</h4>
 <div class="container p-4">
     @if(session('success'))
@@ -33,50 +32,68 @@
         @csrf
         @method('PUT')
 
-        <div class="mb-3 text-left col-md-3">
+        <div class="mb-3 text-center">
             <!-- Profile image preview -->
-            <img src="{{ $user->profile_image ? asset('uploads/profile_images/' . $user->profile_image) : asset('images/default-user.png') }}" 
-                 alt="Profile Image" class="rounded-circle" 
-                 id="profileImagePreview" 
-                 width="120" height="120" 
-                 style="cursor: pointer;">
+           
             <!-- Hidden file input for image upload -->
-            <input type="file" id="profileImageInput" name="profile_image" accept="image/*" style="display: none;">
-
+            <input type="file" id="profileImageInput" name="profile_image" accept="image/*">
         </div>
 
         <div class="mb-3">
             <label for="fullName" class="form-label">Full Name</label>
-
-            <input type="text" class="form-control" id="fullName" name="full_name" value="{{ $user->name }}" placeholder="Enter your full name">
-
+            <input 
+                type="text" 
+                class="form-control" 
+                id="fullName" 
+                name="full_name" 
+                value="{{ old('full_name', $user->name) }}" 
+                placeholder="Enter your full name"
+            >
         </div>
 
         <div class="row">
             <div class="mb-3 col-md-6">
-                <label for="email" class="form-label">Email address</label>
-
-                <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" placeholder="Enter your email">
+                <label for="email" class="form-label">Email Address</label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="email" 
+                    name="email" 
+                    value="{{ old('email', $user->email) }}" 
+                    placeholder="Enter your email"
+                >
             </div>
             <div class="mb-3 col-md-6">
                 <label for="mobile" class="form-label">Mobile</label>
-                <input type="tel" class="form-control" id="mobile" name="phone_num" value="{{ $user->phone }}" placeholder="Enter your mobile number">
-
+                <input 
+                    type="tel" 
+                    class="form-control" 
+                    id="mobile" 
+                    name="phone_num" 
+                    value="{{ old('phone_num', $user->phone) }}" 
+                    placeholder="Enter your mobile number"
+                >
             </div>
         </div>
 
         <div class="row">
             <div class="mb-3 col-md-6">
                 <label for="birthday" class="form-label">Birthday</label>
-                <input type="date" class="form-control" id="birthday" name="date_of_birth" value="{{ $user->dob }}">
+                <input 
+                    type="date" 
+                    class="form-control" 
+                    id="birthday" 
+                    name="date_of_birth" 
+                    value="{{ old('date_of_birth', $user->dob) }}"
+                >
             </div>
             <div class="mb-3 col-md-6">
                 <label for="gender" class="form-label">Gender</label>
                 <select class="form-select" id="gender" name="gender">
                     <option selected disabled>Select your gender</option>
-                    <option value="male" {{ $user->gender === 'male' ? 'selected' : '' }}>Male</option>
-                    <option value="female" {{ $user->gender === 'female' ? 'selected' : '' }}>Female</option>
-                    <option value="other" {{ $user->gender === 'other' ? 'selected' : '' }}>Other</option>
+                    <option value="male" {{ old('gender', $user->gender) === 'male' ? 'selected' : '' }}>Male</option>
+                    <option value="female" {{ old('gender', $user->gender) === 'female' ? 'selected' : '' }}>Female</option>
+                    <option value="other" {{ old('gender', $user->gender) === 'other' ? 'selected' : '' }}>Other</option>
                 </select>
             </div>
         </div>
@@ -88,7 +105,6 @@
 <script>
     const profileImageInput = document.getElementById('profileImageInput');
     const profileImagePreview = document.getElementById('profileImagePreview');
-
 
     // Open file input when profile image is clicked
     profileImagePreview.addEventListener('click', () => profileImageInput.click());
@@ -103,6 +119,4 @@
         }
     });
 </script>
-
 @endsection
-

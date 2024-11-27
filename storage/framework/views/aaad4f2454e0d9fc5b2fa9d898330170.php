@@ -1,8 +1,8 @@
 
 <aside class="navbar-aside shadow-sm" id="offcanvas_aside">
             <div class="aside-top" style="padding:0">
-                <a href="" class="brand-wrap">
-                    <img src="<?php echo e(asset('/backend/assets/DK mart-01.png')); ?>" class="logo" alt="DK-Mart"/>
+                <a href="<?php echo e(route('admin.index')); ?>" class="brand-wrap">
+                    <img src="<?php echo e(asset('frontend/assets/images/logo/preloader-new1.png')); ?>" class="logo" alt="DK-Mart" style="margin-left:80%;"/>
                 </a>
                 <div>
                     <button class="btn btn-icon btn-aside-minimize"><i class="text-muted material-icons md-menu_open"></i></button>
@@ -76,13 +76,14 @@
                         </div>
                     </li>
 
-                    
-                    <li class="menu-item <?php echo e(request()->routeIs('admin.customer.inquiries') ? 'active' : ''); ?>">
-                        <a class="menu-link" href="<?php echo e(route('admin.customer.inquiries')); ?>">
-                        <i class="icon material-icons md-email"></i>
-                            <span class="text">Customer Inquiries</span>
+                    <li class="menu-item <?php echo e(request()->routeIs('adminReviews') ? 'active' : ''); ?>">
+                        <a class="menu-link" href="<?php echo e(route('adminReviews')); ?>">
+
+                        <i class="icon material-icons md-comment"></i>
+                            <span class="text">Reviews</span>
                         </a>
                     </li>
+
                     <li class="menu-item has-submenu ">
                         <a class="menu-link" href="#">
                             <i class="icon material-icons md-description"></i>
@@ -109,23 +110,26 @@
                             </a>
                         </div>
                     </li>
-                    <li class="menu-item has-submenu <?php echo e(request()->is('admin/manage_company*') || request()->is('admin/users*') || request()->is('admin/role_list*') ? 'active' : ''); ?>">
+
+                    <li class="menu-item has-submenu ">
                         <a class="menu-link" href="#">
                             <i class="icon material-icons md-settings"></i>
                             <span class="text">Settings</span>
                         </a>
-                        <div class="submenu <?php echo e(request()->is('admin/manage_company*') || request()->is('admin/users*') || request()->is('admin/role_list*') ? 'show' : ''); ?>">
-                            <a href="<?php echo e(route('manage_company')); ?>" class="<?php echo e(request()->is('admin/manage_company') ? 'active' : ''); ?>">
+                        <div class="submenu ">
+                            <a href="<?php echo e(route('manage_company_profile')); ?>" >
                                 Manage Company
                             </a>
-                            <a href="<?php echo e(route('users')); ?>" class="<?php echo e(request()->is('admin/users') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(route('users')); ?>" >
                                 Users
                             </a>
-                            <a href="<?php echo e(route('role_list')); ?>" class="<?php echo e(request()->is('admin/role_list') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(route('role_list')); ?>" >
                                 Role List
                             </a>
+                            
                         </div>
                     </li>
+                    
 
                 </ul>
                 <hr />

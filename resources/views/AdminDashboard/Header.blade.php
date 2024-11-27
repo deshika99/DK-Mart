@@ -47,10 +47,9 @@
             </li>
             <li class="dropdown nav-item" style="position: relative;">
                 <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false">
-                    <img class="img-xs rounded-circle" 
-                        src="{{ asset('storage/user_images/' . session('image', 'default-user.png')) }}" 
-                        alt="User" />
+                    <img class="img-xs rounded-circle" src="{{ asset('backend/assets/imgs/people/avatar-2.png') }}" alt="User" />
                 </a>
+                
                 <div class="dropdown-menu" style="left: -100px;" aria-labelledby="dropdownAccount">
                     <a class="dropdown-item" href="{{ route('profile') }}">
                         <i class="material-icons md-perm_identity"></i> Edit Profile

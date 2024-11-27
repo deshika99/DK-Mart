@@ -47,10 +47,8 @@
                 <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
             </li>
             <li class="dropdown nav-item" style="position: relative;">
-            <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false">
-                    <img class="img-xs rounded-circle" 
-                        src="<?php echo e(asset('storage/' . ($vendor->profile_image ?? 'default-user.png'))); ?>" 
-                        alt="User" />
+                <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false">
+                    <img class="img-xs rounded-circle" src="<?php echo e(asset('backend/assets/imgs/people/avatar-2.png')); ?>" alt="User" />
                 </a>
 
                 <div class="dropdown-menu" style="left: -100px;" aria-labelledby="dropdownAccount">

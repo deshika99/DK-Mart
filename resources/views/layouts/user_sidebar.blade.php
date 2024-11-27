@@ -112,18 +112,7 @@
                         <a class="nav-link {{ request()->routeIs('My-Reviews') ? 'active' : '' }}" href="{{ route('My-Reviews') }}">My Reviews</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('inquiries') ? 'active' : '' }}" href="{{ route('inquiries') }}">Inquiries</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('address-book') ? 'active' : '' }}" href="{{ route('address-book') }}">Address Book</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('edit-password') ? 'active' : '' }}" href="{{ route('edit-password') }}">Password</a>
-                    </li>
-
-                     <!-- new "Returns" button  -->
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('returns') ? 'active' : '' }}" href="{{ route('returns') }}">Returns</a>
                     </li>
 
                     <li class="nav-item">

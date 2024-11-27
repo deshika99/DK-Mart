@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
+
 
 use App\Models\CustomerOrder;
 
@@ -136,6 +138,7 @@ class ProfileController extends Controller
 
     public function changePassword(Request $request)
     {
+        //dd($request);
         // Validate the input fields
         $request->validate([
             'current_password' => 'required',
@@ -157,10 +160,7 @@ class ProfileController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Your password has been successfully updated.',
-        ], 200);
+        return redirect()->route('dashboard-main')->with('success', 'Password updated successfully.');
     }
 
 

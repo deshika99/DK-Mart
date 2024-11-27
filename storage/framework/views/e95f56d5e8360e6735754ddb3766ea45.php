@@ -1,26 +1,25 @@
-@extends('AdminDashboard.master')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <body>
-    @if (session('success'))
+    <?php if(session('success')): ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
+        <?php echo e(session('success')); ?>
+
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    @endif
+    <?php endif; ?>
 
-    @if ($errors->any())
+    <?php if($errors->any()): ?>
     <div class="alert alert-danger">
         <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach    
+            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <li><?php echo e($error); ?></li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>    
         </ul>
     </div>
-    @endif
+    <?php endif; ?>
 
     <section class="content-main">
         <div class="content-header">
@@ -49,26 +48,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($products as $index=>$product)
-                                    <tr class="product-row" data-category="{{ $product->category->id ?? 'none' }}">
-                                        <td>{{ $index+1 }}</td>
-                                        <td>{{ $product->product_id }}</td>
-                                        <td>{{ $product->product_name }}</td>
-                                        <td>{{ $product->category->name ?? 'N/A' }}</td>
-                                        <td>{{ $product->quantity }}</td>
-                                        <td>{{ $product->normal_price }}</td>
-                                        <td>{{ $product->affiliate_price ?? 'No' }}</td>
-                                        <td>{{ $product->commission_price ?? 'No'}}</td>
+                                    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index=>$product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr class="product-row" data-category="<?php echo e($product->category->id ?? 'none'); ?>">
+                                        <td><?php echo e($index+1); ?></td>
+                                        <td><?php echo e($product->product_id); ?></td>
+                                        <td><?php echo e($product->product_name); ?></td>
+                                        <td><?php echo e($product->category->name ?? 'N/A'); ?></td>
+                                        <td><?php echo e($product->quantity); ?></td>
+                                        <td><?php echo e($product->normal_price); ?></td>
+                                        <td><?php echo e($product->affiliate_price ?? 'No'); ?></td>
+                                        <td><?php echo e($product->commission_price ?? 'No'); ?></td>
                                         <td class="text-end">
                                             <div>
-                                                <a href="{{ route('products.view', $product->id) }}" class="btn btn-view btn-sm me-2">
+                                                <a href="<?php echo e(route('products.view', $product->id)); ?>" class="btn btn-view btn-sm me-2">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                                
                                             </div>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                         </div>
@@ -123,4 +122,5 @@
 </body>
 
 </html>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('AdminDashboard.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\DK-Mart\resources\views/AdminDashboard/Reports/product_report.blade.php ENDPATH**/ ?>

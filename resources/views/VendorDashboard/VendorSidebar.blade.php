@@ -2,7 +2,7 @@
 <aside class="navbar-aside shadow-sm" id="offcanvas_aside">
     <div class="aside-top" style="padding:0">
         <a href="{{ route('vendorhome') }}" class="brand-wrap">
-            <img src="{{ asset('/backend/assets/DK mart-01.png') }}" class="logo" alt="DK-Mart" />
+            <img src="{{ asset('frontend/assets/images/logo/preloader-new1.png') }}" class="logo" alt="DK-Mart" style="margin-left:80%;"/>
         </a>
         <div>
             <button class="btn btn-icon btn-aside-minimize"><i class="text-muted material-icons md-menu_open"></i></button>
