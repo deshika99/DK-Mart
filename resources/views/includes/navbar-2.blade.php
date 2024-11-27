@@ -136,7 +136,7 @@
 
                     <div class="search-form__wrapper position-relative">
 
-                            <input type="text" class="border-0 search-form__input common-input py-13 ps-16 pe-18 rounded-0" placeholder="Search for a product or brand..">
+                            <input type="text" id="product-search"  class="border-0 search-form__input common-input py-13 ps-16 pe-18 rounded-0" placeholder="Search for a product or brand..">
                             <div id="search-results" class="dropdown-menu"></div>
                         </div>
                         <button type="submit" class="flex-shrink-0 w-48 text-xl text-white bg-main-two-600 flex-center hover-bg-main-two-600 d-lg-flex d-none"><i class="ph ph-magnifying-glass"></i></button>
