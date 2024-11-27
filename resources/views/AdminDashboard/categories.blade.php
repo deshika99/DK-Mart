@@ -7,83 +7,78 @@
 <div class="content-header">
     <div>
         <h2 class="content-title card-title">Categories</h2>
-        <p>Add, edit or delete a category</p>
     </div>
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCategoryModal">
         Create category
     </button>
 </div>
-<div>
-    <input type="text" placeholder="Search Categories" class="form-control bg-white" style="width:20%" />
-</div>
+
 <div class="card">
     <div class="card-body">
+       
+
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Main Category</th>
-                            <th>Sub Category</th>
-                            <th class="text-end">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                            @foreach ($categories as $category)
+              
+                        <table class="table table-hover">
+                            <thead>
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $category->name }}</td>
-                                    <td>
-                                        <div class="d-flex flex-column">
-                                            @foreach ($category->subcategories as $subcategory)
-                                                <div class="d-flex align-items-center mb-1"> <!-- Add margin bottom for spacing -->
-                                                    <span class="me-1">{{ $subcategory->name }}</span> <!-- Subcategory Name -->
-                                                    @if ($subcategory->subSubcategories->isNotEmpty())
-                                                        <div class="dropdown">
-                                                            <a href="#" data-bs-toggle="dropdown" class="btn p-0" style="width: 24px; height: 24px; border: none; background: none;">
-                                                                <i class="fa fa-caret-down" style="font-size: 14px;"></i> 
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                @foreach ($subcategory->subSubcategories as $subSubcategory)
-                                                                    <a class="dropdown-item" href="#">{{ $subSubcategory->name }}</a>
-                                                                @endforeach
+                                    <th>#</th>
+                                    <th>Main Category</th>
+                                    <th>Sub Category</th>
+                                    <th class="text-end">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($categories as $category)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $category->name }}</td>
+                                        <td>
+                                            <div class="d-flex flex-column">
+                                                @foreach ($category->subcategories as $subcategory)
+                                                    <div class="d-flex align-items-center mb-1">
+                                                        <span class="me-1">{{ $subcategory->name }}</span>
+                                                        @if ($subcategory->subSubcategories->isNotEmpty())
+                                                            <div class="dropdown">
+                                                                <a href="#" data-bs-toggle="dropdown" class="btn p-0" style="width: 24px; height: 24px; border: none; background: none;">
+                                                                    <i class="fa fa-caret-down" style="font-size: 14px;"></i>
+                                                                </a>
+                                                                <div class="dropdown-menu">
+                                                                    @foreach ($subcategory->subSubcategories as $subSubcategory)
+                                                                        <a class="dropdown-item" href="#">{{ $subSubcategory->name }}</a>
+                                                                    @endforeach
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </td>
-                                    <td class="text-end">
-                                    <div>
-                                        <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm me-2">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                         <form id="deleteForm{{ $category->id }}" action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: inline;">
+                                                        @endif
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm me-2">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form id="deleteForm{{ $category->id }}" action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('deleteForm{{ $category->id }}', 'Are you sure you want to delete this category?')">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
-                                    </div>
-                                    </td>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                   
                 </div>
             </div>
-            <!-- .col// -->
         </div>
-        <!-- .row // -->
     </div>
-    <!-- card body .// -->
 </div>
-<!-- card .// -->
+
 
 <!-- Modal for creating a category -->
 <div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryLabel" aria-hidden="true">
@@ -245,7 +240,11 @@
 });
 
 
-
+</script>
+<script>
+    function submitForm() {
+        document.getElementById('categorySearchForm').submit();
+    }
 </script>
 
 @endsection

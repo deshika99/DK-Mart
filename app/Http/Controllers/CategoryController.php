@@ -9,12 +9,19 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::with('subcategories.subSubcategories')->get();
+        $query = Category::query();
+        
+       
+        // Retrieve categories with subcategories and sub-subcategories
+        $categories = $query->with('subcategories.subSubcategories')->paginate(10);
+        
         return view('AdminDashboard.categories', compact('categories'));
     }
-
+    
+    
+    
 
 
     public function store(Request $request)

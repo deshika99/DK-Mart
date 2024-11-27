@@ -16,7 +16,7 @@
                         <p><strong>Quantity:</strong> {{ $product->quantity }}</p>
                     </div>
                     <div class="col-6 mb-2">
-                        <p><strong>Price:</strong> Rs. {{ $product->total_price }}</p>
+                        <p><strong>Price:</strong> Rs. {{ $product->normal_price }}</p>
                         @if($product->is_affiliate)
                             <p><strong>Affiliate Price:</strong> Rs. {{ $product->affiliate_price }}</p>
                             <p><strong>Commission :</strong> {{ $product->commission_percentage }}%</p>
