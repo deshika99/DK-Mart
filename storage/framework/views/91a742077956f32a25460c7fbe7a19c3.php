@@ -38,7 +38,7 @@
     }
 
     .header-middle {
-        background-color: #001f3f!important; /* Force Apply Dark Blue */
+        background-color: #121535!important; /* Force Apply Dark Blue */
      }
   
 
@@ -110,7 +110,7 @@
             <div class="logo"style="margin-left: 80px;  margin-top: 0; margin-bottom: 0;">
                 <a href="/" class="link">
 
-                    <img src="<?php echo e(asset('frontend/assets/images/logo/header-logo-new.png')); ?>" alt="Logo" >
+                    <img src="<?php echo e(asset('frontend/assets/images/logo/navbar-logo-new.png')); ?>" alt="Logo" >
 
                 </a>
             </div>

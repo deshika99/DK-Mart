@@ -23,8 +23,8 @@
     <section class="content-main">
         <div class="content-header">
             <div>
-                <h2 class="content-title card-title">Raffle Tickets</h2>
-                <p>Create, view, or delete raffle tickets</p>
+                <h2 class="content-title card-title">Tracking ID</h2>
+                <p>Create, view, or delete Tracking ID</p>
             </div>
             <div>
                 <input type="text" placeholder="Search Raffle Tickets" class="form-control bg-white" />
@@ -42,7 +42,7 @@
                                 <input type="string" id="tracking_id" name="tracking_id" placeholder="Enter user ID" class="form-control" required />
                             </div>
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Create Raffle Ticket</button>
+                                <button type="submit" class="btn btn-primary">Create Tracking ID</button>
                             </div>
                         </form>
                     </div>

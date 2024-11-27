@@ -123,6 +123,39 @@
         });
     </script>
 
+<style>
+    .status.packed {
+        background-color: #0275d8; /* Blue for Packed */
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    /* Pickup Done Status */
+    .status.pickup-done {
+        background-color: #5bc0de; /* Light Blue for Pickup Done */
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    /* Ready to Ship Status */
+    .status.ready-to-ship {
+        background-color: #f0ad4e; /* Orange for Ready to Ship */
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    /* In Transit Status */
+    .status.in-transit {
+        background-color: #6f42c1; /* Purple for In Transit */
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+</style>
+
 
 
 </body>

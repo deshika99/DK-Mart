@@ -28,6 +28,8 @@
                                     <tr>
                                         <th>#</th>
                                         <th>User</th>
+                                        <th>Request Amount</th>
+                                        <th>Processing Fee</th>
                                         <th>Withdraw Amount</th>
                                         <th>Bank Name</th>
                                         <th>Branch</th>
@@ -42,6 +44,8 @@
                                             <td><?php echo e($loop -> iteration); ?></td>
                                             <td><?php echo e($request->affiliateUser->name); ?></td>
                                             <td>Rs <?php echo e($request->withdraw_amount); ?></td>
+                                            <td>Rs <?php echo e(number_format($request->processing_fee, 2)); ?></td>
+                                            <td>Rs <?php echo e(number_format($request->paid_amount, 2)); ?></td>
                                             <td><?php echo e($request->bank_name); ?></td>
                                             <td><?php echo e($request->branch); ?></td>
                                             <td><?php echo e($request->account_name); ?></td>

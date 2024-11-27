@@ -58,7 +58,7 @@
                                         <td>{{ $product->quantity }}</td>
                                         <td>{{ $product->normal_price }}</td>
                                         <td>{{ $product->affiliate_price ?? 'No' }}</td>
-                                        <td>{{ $product->commision_price ?? 'No'}}</td>
+                                        <td>{{ $product->commission_price ?? 'No'}}</td>
                                         <td class="text-end">
                                             <div>
                                                 <a href="{{ route('products.view', $product->id) }}" class="btn btn-view btn-sm me-2">

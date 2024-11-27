@@ -31,6 +31,8 @@
                                         <th>#</th>
                                         <th>Vendor</th>
                                         <th>Request Amount</th>
+                                        <th>Processing Fee</th>
+                                        <th>Withdraw Amount</th>
                                         <th>Bank Name</th>
                                         <th>Branch</th>
                                         <th>Account Name</th>
@@ -44,6 +46,8 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $request->vendor->name }}</td> 
                                             <td>{{ $request->request_amount }}</td>
+                                            <td>Rs {{ number_format($request->processing_fee, 2) }}</td>
+                                            <td>Rs {{ number_format($request->paid_amount, 2) }}</td>
                                             <td>{{ $request->bank_name }}</td>
                                             <td>{{ $request->branch }}</td>
                                             <td>{{ $request->account_name }}</td>

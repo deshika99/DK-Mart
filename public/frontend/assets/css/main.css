@@ -8377,7 +8377,7 @@ input:focus-visible {
 }
 
 .logo img {
-    max-width: 200px;
+    max-width: 150px;
 }
 
 @media screen and (max-width: 424px) {

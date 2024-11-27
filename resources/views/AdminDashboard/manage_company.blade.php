@@ -35,10 +35,7 @@
                             <label class="form-label">Website</label>
                             <input class="form-control" type="text" name="website" placeholder="Type here" value="{{ old('website', $company->website ?? '') }}" />
                         </div>
-                        <div class="col-lg-6 mb-3">
-                            <label class="form-label">Footer Text</label>
-                            <input class="form-control" type="text" name="footer_text" placeholder="Type here" value="{{ old('footer_text', $company->footer_text ?? '') }}" />
-                        </div>
+                        
                         <div class="col-lg-6 mb-3 text-center">
                             <div>
                                 <img id="logoPreview" src="{{ asset($company->logo ?? '/backend/assets/imgs/placeholder-logo.png') }}" 
