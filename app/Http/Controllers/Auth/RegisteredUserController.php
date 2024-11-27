@@ -53,7 +53,7 @@ class RegisteredUserController extends Controller
     
         Auth::login($user);
     
-        return redirect()->route('frontend.login')->with('success', 'Registration successful! Please log in.');
+        return redirect()->route('home')->with('success', 'Registration successful! Please log in.');
     }
     
 }
