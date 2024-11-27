@@ -110,7 +110,7 @@
                 <div class="flex-wrap gap-8 flex-between">
                     <h5 class="mb-0 wow bounceInLeft">Leatest product</h5>
                     <div class="gap-16 flex-align wow bounceInRight">
-                        <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
+                        <a href="/shop" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
                         <div class="gap-10 flex-align">
                             <button type="button" id="deal-week-prev" class="text-xl border border-gray-100 slick-prev slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
                                 <i class="ph ph-caret-left"></i>
@@ -196,7 +196,7 @@
                     <div class="flex-wrap gap-8 flex-between">
                         <h5 class="mb-0 wow bounceInLeft">Categories</h5>
                         <div class="gap-16 flex-align wow bounceInRight">
-                            <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Products</a>
+                            <a href="/shop" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Products</a>
                         </div>
                     </div>
                 </div>
@@ -261,7 +261,7 @@
                     <div class="flex-wrap gap-8 flex-between">
                         <h5 class="mb-0 wow bounceInLeft">Deal of The Week</h5>
                         <div class="gap-16 flex-align wow bounceInRight">
-                            <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
+                            <a href="/shop" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
                             <div class="gap-8 flex-align">
                                 <button type="button" id="deal-week-prev" class="text-xl border border-gray-100 slick-prev slick-arrow flex-center rounded-circle hover-border-neutral-600 hover-bg-neutral-600 hover-text-white transition-1">
                                     <i class="ph ph-caret-left"></i>
