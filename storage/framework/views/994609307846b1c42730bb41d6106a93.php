@@ -110,18 +110,7 @@
                         <a class="nav-link <?php echo e(request()->routeIs('My-Reviews') ? 'active' : ''); ?>" href="<?php echo e(route('My-Reviews')); ?>">My Reviews</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo e(request()->routeIs('inquiries') ? 'active' : ''); ?>" href="<?php echo e(route('inquiries')); ?>">Inquiries</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo e(request()->routeIs('address-book') ? 'active' : ''); ?>" href="<?php echo e(route('address-book')); ?>">Address Book</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link <?php echo e(request()->routeIs('edit-password') ? 'active' : ''); ?>" href="<?php echo e(route('edit-password')); ?>">Password</a>
-                    </li>
-
-                     <!-- new "Returns" button  -->
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo e(request()->routeIs('returns') ? 'active' : ''); ?>" href="<?php echo e(route('returns')); ?>">Returns</a>
                     </li>
 
                     <li class="nav-item">

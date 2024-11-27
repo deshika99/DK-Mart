@@ -60,6 +60,7 @@
                             <span class="text">Orders</span>
                         </a>
                     </li>
+                 
 
                     <li class="menu-item has-submenu {{ request()->is('admin/vendors*') || request()->is('admin/payments*') ? 'active' : '' }}">
                         <a class="menu-link" href="#">
