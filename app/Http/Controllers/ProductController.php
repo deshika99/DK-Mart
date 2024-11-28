@@ -38,7 +38,9 @@ class ProductController extends Controller
 
 // search box
 
-public function searchProducts(Request $request)
+//search box 2
+
+ /* public function searchProducts(Request $request)
 {
     $query = $request->input('query');
 
@@ -51,7 +53,29 @@ public function searchProducts(Request $request)
     return response()->json([
         'products' => $products,
     ]);
+}}*/
+// search box 2
+
+public function searchProducts(Request $request)
+{
+    $query = $request->query('query');
+    
+    // Search across multiple tables
+    $products = Product::where('product_name', 'LIKE', "%{$query}%")
+        ->orWhereHas('category', function($q) use ($query) {
+            $q->where('name', 'LIKE', "%{$query}%");
+        })
+        ->orWhereHas('subcategory', function($q) use ($query) {
+            $q->where('name', 'LIKE', "%{$query}%");
+        })
+        ->orWhereHas('subsubcategory', function($q) use ($query) {
+            $q->where('name', 'LIKE', "%{$query}%");
+        })
+        ->get();
+
+    return response()->json(['products' => $products]);
 }
+
 
 
 

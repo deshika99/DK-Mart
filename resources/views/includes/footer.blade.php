@@ -70,10 +70,10 @@
                 <h6 class="footer-item__title">About us</h6>
                 <ul class="footer-menu">
                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Company Profile</a>
+                        <a href="{{ route('about') }}" class="text-gray-600 hover-text-main-600">Company Profile </a>
                     </li>
                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">All Retail Store</a>
+                        <a href="{{ route('frontend.vendor') }}" class="text-gray-600 hover-text-main-600">All Vendors </a>
                     </li>
                    
                     <li class="mb-16">
@@ -81,10 +81,6 @@
                     </li>
                     <li class="mb-16">
                         <a href="shop.html" class="text-gray-600 hover-text-main-600">Feedback</a>
-                    </li>
-                   
-                    <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Rules & Policy</a>
                     </li>
                 </ul>
             </div>
@@ -106,10 +102,6 @@
                     <li class="mb-16">
                         <a href="{{ route('wishlist') }}"  class="text-gray-600 hover-text-main-600">Wishlist</a>
                     </li>
-                    <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Order History</a>
-                    </li>
-                   
                 </ul>
             </div>
 
@@ -128,10 +120,6 @@
                   
                     <li class="mb-16">
                         <a href="shop.html" class="text-gray-600 hover-text-main-600">Extended Plan</a>
-                    </li>
-                   
-                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Community</a>
                     </li>
                 </ul>
             </div>
@@ -192,5 +180,4 @@
         </div>
     </div>
 </div>
-
 <!-- ==================== Footer Two End Here ==================== -->
