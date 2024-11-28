@@ -70,10 +70,10 @@
                 <h6 class="footer-item__title">About us</h6>
                 <ul class="footer-menu">
                     <li class="mb-16">
-                        <a href="{{ route('about') }}" class="text-gray-600 hover-text-main-600">Company Profile </a>
+                        <a href="{{ route('about') }}" class="text-gray-600 hover-text-main-600"> Company Profile </a>
                     </li>
                     <li class="mb-16">
-                        <a href="{{ route('frontend.vendor') }}" class="text-gray-600 hover-text-main-600">All Vendors </a>
+                        <a href="{{ route('frontend.vendor') }}" class="text-gray-600 hover-text-main-600"> All Vendors  </a>
                     </li>
                    
                     <li class="mb-16">

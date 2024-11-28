@@ -56,7 +56,7 @@ class ProductController extends Controller
 }}*/
 // search box 2
 
-public function searchProducts(Request $request)
+public function searchProducts(Request $request) //new part add
 {
     $query = $request->query('query');
     
