@@ -1,6 +1,4 @@
-@extends('layouts.user_sidebar')
-
-@section('dashboard-content')
+<?php $__env->startSection('dashboard-content'); ?>
 <style>
     .btn-primary {
         background-color: #ff3c00 !important;
@@ -24,13 +22,13 @@
 
 <h4 class="px-2 py-2">Edit Profile</h4>
 <div class="container p-4">
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+    <?php if(session('success')): ?>
+        <div class="alert alert-success"><?php echo e(session('success')); ?></div>
+    <?php endif; ?>
 
-    <form action="{{ route('user.profile.update') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+    <form action="<?php echo e(route('user.profile.update')); ?>" method="POST" enctype="multipart/form-data">
+        <?php echo csrf_field(); ?>
+        <?php echo method_field('PUT'); ?>
 
         <div class="mb-3 text-center">
             <!-- Profile image preview -->
@@ -46,7 +44,7 @@
                 class="form-control" 
                 id="fullName" 
                 name="full_name" 
-                value="{{ old('full_name', $user->name) }}" 
+                value="<?php echo e(old('full_name', $user->name)); ?>" 
                 placeholder="Enter your full name"
             >
         </div>
@@ -59,7 +57,7 @@
                     class="form-control" 
                     id="email" 
                     name="email" 
-                    value="{{ old('email', $user->email) }}" 
+                    value="<?php echo e(old('email', $user->email)); ?>" 
                     placeholder="Enter your email"
                 >
             </div>
@@ -70,7 +68,7 @@
                     class="form-control" 
                     id="mobile" 
                     name="phone_num" 
-                    value="{{ old('phone_num', $user->phone) }}" 
+                    value="<?php echo e(old('phone_num', $user->phone)); ?>" 
                     placeholder="Enter your mobile number"
                 >
             </div>
@@ -84,16 +82,16 @@
                     class="form-control" 
                     id="birthday" 
                     name="date_of_birth" 
-                    value="{{ old('date_of_birth', $user->dob) }}"
+                    value="<?php echo e(old('date_of_birth', $user->dob)); ?>"
                 >
             </div>
             <div class="mb-3 col-md-6">
                 <label for="gender" class="form-label">Gender</label>
                 <select class="form-select" id="gender" name="gender">
                     <option selected disabled>Select your gender</option>
-                    <option value="male" {{ old('gender', $user->gender) === 'male' ? 'selected' : '' }}>Male</option>
-                    <option value="female" {{ old('gender', $user->gender) === 'female' ? 'selected' : '' }}>Female</option>
-                    <option value="other" {{ old('gender', $user->gender) === 'other' ? 'selected' : '' }}>Other</option>
+                    <option value="male" <?php echo e(old('gender', $user->gender) === 'male' ? 'selected' : ''); ?>>Male</option>
+                    <option value="female" <?php echo e(old('gender', $user->gender) === 'female' ? 'selected' : ''); ?>>Female</option>
+                    <option value="other" <?php echo e(old('gender', $user->gender) === 'other' ? 'selected' : ''); ?>>Other</option>
                 </select>
             </div>
         </div>
@@ -119,4 +117,6 @@
         }
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.user_sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\DK-Mart\resources\views/user_dashboard/edit-profile.blade.php ENDPATH**/ ?>

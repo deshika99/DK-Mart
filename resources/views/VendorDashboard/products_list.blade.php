@@ -38,7 +38,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Product ID</th>
-                                <th>Product</th>
+                                <th>Product Image</th>
+                                <th>Product Name</th>
                                 <th>Category</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
@@ -56,12 +57,11 @@
                                                 <div class="left">
                                                     <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" class="img-sm img-thumbnail" alt="Item" />
                                                 </div>
-                                                <div class="info">
-                                                    <h6 class="mb-0">{{ $product->product_name }}</h6>
-                                                </div>
+                                               
                                             </a>
                                         </div>
                                     </td>
+                                    <td><h6 class="mb-0">{{ $product->product_name }}</h6></td>
                                     <td>{{ $product->category->name ?? 'N/A' }}</td>
                                     <td>{{ $product->quantity }}</td>
                                     <td>Rs. {{ $product->normal_price }}</td>

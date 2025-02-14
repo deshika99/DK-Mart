@@ -37,7 +37,7 @@
     <div class="order-card" style="border: 1px solid #ccc; border-radius: 10px; padding: 15px; margin-bottom: 15px;">
         <div class="order-card-header d-flex justify-content-between align-items-center" style="margin-bottom: 20px; border-bottom: 1px solid #eaeaea;">
             <span class="status {{ strtolower(str_replace(' ', '-', $order->status)) }}">{{ $order->status }}</span>
-            <a href="#" class="order-details-link" style="margin-bottom: 10px;">Order Details ></a>
+            
         </div>
 
         <div class="order-card-body d-flex align-items-center">

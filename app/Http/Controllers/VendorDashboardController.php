@@ -17,6 +17,11 @@ class VendorDashboardController extends Controller
 
     public function vendorDashboard(Request $request)
     {
+        // Check if the vendor is logged in
+        if (!session()->has('vendor_id')) {
+            return redirect()->route('vendor_login');
+        }
+
         $vendorId = session('vendor_id');
         $today = now()->toDateString(); 
     
@@ -27,14 +32,20 @@ class VendorDashboardController extends Controller
             $query->whereHas('shop', function ($shopQuery) use ($vendorId) {
                 $shopQuery->where('vendor_id', $vendorId);
             });
+
         })->latest()->get();
              
     
+
+        })->get();
+
+
         $totalOrders = $orders->count();
+
         $totalProducts = Product::whereHas('shop', function ($query) use ($vendorId) {
             $query->where('vendor_id', $vendorId);
         })->count();
-    
+
         // Fetch today's orders for the vendor
         $ordersToday = CustomerOrderItems::with('order', 'product')
             ->whereHas('product', function ($query) use ($vendorId) {
@@ -45,8 +56,10 @@ class VendorDashboardController extends Controller
                 });
             })
             ->whereDate('created_at', $today)
+
             ->get();
     
+
         $totalEarningsToday = $ordersToday->sum(function ($orderItem) {
             $product = $orderItem->product;
             $baseCommission = $orderItem->cost * 0.08;
@@ -137,6 +150,7 @@ class VendorDashboardController extends Controller
         return view('VendorDashboard.vendorhome', compact('customerCount', 'totalOrders', 'totalProducts', 'totalEarningsToday', 'salesData', 'ordersData', 'recentActivities','orders'));
     }
     
+
 
 
 

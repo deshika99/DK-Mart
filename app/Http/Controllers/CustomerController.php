@@ -17,8 +17,6 @@ class CustomerController extends Controller
     }
     
     
-
-
     public function showCustomerDetails($user_id)
     {
         $customer = User::findOrFail($user_id);

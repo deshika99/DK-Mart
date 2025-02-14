@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 class CompanySettingsController extends Controller
 {
 
-    public function index()
-    {
+    
+
+    public function company(){
         $company = CompanySettings::first();
         return view('AdminDashboard.manage_company', compact('company'));
     }

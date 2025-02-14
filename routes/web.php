@@ -257,13 +257,15 @@ Route::get('/admin/{vendorId}', [VendorAccountController::class, 'showVendorDeta
 
 
 
-Route::view('/admin/role_list', 'AdminDashboard.role_list')->name('role_list');
+Route::view('/admins/role_lists', 'AdminDashboard.role_list')->name('role_list');
+//Route::view('/adminss/company_profile', 'AdminDashboard.manage_company')->name('manage_company_profile');
 
-Route::get('/admin/manage_company', [CompanySettingsController::class, 'index'])->name('manage_company');
-Route::post('/admin/manage_company', [CompanySettingsController::class, 'store'])->name('manage_company.store');
+
+Route::get('/adminss/company_profile', [CompanySettingsController::class, 'company'])->name('manage_company_profile');
+Route::post('/admin/manage_company/update', [CompanySettingsController::class, 'store'])->name('manage_company.store');
 
 Route::resource('system_users', UserController::class);
-Route::get('/admin/users', [UserController::class, 'show'])->name('users');
+Route::get('/admins/userss', [UserController::class, 'show'])->name('users');
 Route::post('/admin/users', [UserController::class, 'store'])->name('system_users.store');
 Route::get('/admin/edit_users/{id}', [UserController::class, 'edit'])->name('edit_users');
 Route::post('/admin/edit_users/{id}', [UserController::class, 'update'])->name('update_users');
@@ -355,6 +357,7 @@ Route::get('home/My-Account', function () {
 })->name('dashboard');
 
 */
+
 Route::get('home/My-Account/edit-profile', [ProfileController::class, 'editProfile'])->name('edit-profile');
 Route::get('home/My-Account', [ProfileController::class, 'dashboard'])->name('dashboard');
 Route::get('home/My-Account/my-orders', [ProfileController::class, 'myOrders'])->name('my-orders');
@@ -390,7 +393,6 @@ Route::get('home/My-Account/My-Reviews',[ReviewsController::class,'myReviews'])-
 Route::get('home/My-Account/Write-Reviews/{id}',[ReviewsController::class,'writeReviews'])->name('write-review');
 Route::post('/reviews/{id}', [ReviewsController::class, 'store'])->name('reviews.store');
 Route::delete('/home/reviews/{review}', [ReviewsController::class, 'customerDestroy'])->name('customer.reviews.destroy');
-
 
 
 //Vendor dashboard

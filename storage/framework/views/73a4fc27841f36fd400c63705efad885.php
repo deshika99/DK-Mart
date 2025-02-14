@@ -1,26 +1,25 @@
-@extends('AdminDashboard.master')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <body>
-    @if (session('success'))
+    <?php if(session('success')): ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
+        <?php echo e(session('success')); ?>
+
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    @endif
+    <?php endif; ?>
 
-    @if ($errors->any())
+    <?php if($errors->any()): ?>
     <div class="alert alert-danger">
         <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
+            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <li><?php echo e($error); ?></li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </ul>
     </div>
-    @endif
+    <?php endif; ?>
 
     <section class="content-main">
         <div class="content-header">
@@ -49,31 +48,32 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($orders as $index =>$order)
+                                    <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index =>$order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
-                                        <td>{{ $index+1 }}</td>
-                                        <td>{{ $order->order_code }}</td>
-                                        <td><b>{{ $order->customer_name }}</b></td>
-                                        <td>{{ $order->phone }}</td>
-                                        <td>Rs. {{ number_format($order->total_cost, 2) }}</td>
-                                        <td>{{ $order->payment_status }}</td>
-                                        <td>{{ $order->date }}</td>
+                                        <td><?php echo e($index+1); ?></td>
+                                        <td><?php echo e($order->order_code); ?></td>
+                                        <td><b><?php echo e($order->customer_name); ?></b></td>
+                                        <td><?php echo e($order->phone); ?></td>
+                                        <td>Rs. <?php echo e(number_format($order->total_cost, 2)); ?></td>
+                                        <td><?php echo e($order->payment_status); ?></td>
+                                        <td><?php echo e($order->date); ?></td>
                                         <td>
                                             <span class="status 
-                                    {{ strtolower(str_replace(' ', '-', $order->status)) }}">
-                                                {{ $order->status }}
+                                    <?php echo e(strtolower(str_replace(' ', '-', $order->status))); ?>">
+                                                <?php echo e($order->status); ?>
+
                                             </span>
                                         </td>
                                         <td class="text-end">
                                             <div>
-                                                <a href="{{ route('order-details', $order->order_code) }}" class="btn btn-view btn-sm me-2">
+                                                <a href="<?php echo e(route('order-details', $order->order_code)); ?>" class="btn btn-view btn-sm me-2">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                                 
                                             </div>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                         </div>
@@ -161,4 +161,5 @@
 </body>
 
 </html>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('AdminDashboard.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\DK-Mart\resources\views/AdminDashboard/Reports/order_report.blade.php ENDPATH**/ ?>
