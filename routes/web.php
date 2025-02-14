@@ -235,14 +235,14 @@ Route::get('/admin/affiliate_customers', [AffiliateUserController::class, 'showA
 Route::post('/admin/affiliates/{id}/status/{status}', [AffiliateUserController::class, 'updateStatus'])->name('admin.affiliates.updateStatus');
 Route::get('/admin/Affiliatecustomer-details/{id}', [AffiliateUserController::class, 'showDetails'])->name('admin.affiliates.show');
 
-//Route::get('/admin/reviews', [ReviewsController::class, 'adminView'])->name('adminReviews');
+
 Route::get('/admin/reviews-details/{id}', [ReviewsController::class, 'adminViewDetails'])->name('viewReviewDetails');
 Route::patch('/reviews/{id}/status', [ReviewsController::class, 'updateStatus'])->name('reviews.updateStatus');
 Route::delete('/reviews/{review}', [ReviewsController::class, 'destroy'])->name('admin.reviews.destroy');
 
 
 Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inquiries');
-// Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
+Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
 Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('admin.customer.inquiries');
 
 
@@ -355,79 +355,14 @@ Route::get('home/My-Account', function () {
 })->name('dashboard');
 
 */
-Route::middleware(['auth'])->group(function (){
-    Route::get('home/My-Account', [DashboardController::class,'index'])->name('dashboard');
-    });
-    
-    Route::middleware('auth')->group(function () {
-        Route::get('home/My-Account/edit-profile', [ProfileController::class, 'edit'])->name('edit-profile');
-        Route::put('home/My-Account/edit-profile', [ProfileController::class, 'update'])->name('profile.update');
-    });
-    
-    Route::middleware('auth')->group(function () {
-    Route::get('home/My-Account/my-orders', [DashboardController::class, 'myOrders'])->name('my-orders');
-    Route::get('home/My-Account/order-details/{order_code}', [DashboardController::class, 'orderDetails'])->name('order-details');
-    });
-    /*
-    Route::get('home/My-Account/my-orders', function () {
-        return view('user_dashboard.my-orders');
-    })->name('my-orders');*/
-    
-    
-    Route::get('home/My-Account/My-Reviews', [DashboardController::class, 'myReviews'])->name('My-Reviews');
-    Route::get('home/My-Account/add-review/{id}', [DashboardController::class, 'addReview'])->name('add.review');
-    
-    /*
-    Route::get('home/My-Account/My-Reviews', function () {
-        return view('user_dashboard.My-Reviews');
-    })->name('My-Reviews'); */
-    
-    Route::get('/home/My-Account/inquiries', function () {
-        return view('user_dashboard.inquiries');
-    })->name('inquiries');
-    
-    
-    Route::middleware('auth')->group(function () {
-        // Address Book Routes
-        Route::get('home/My-Account/address-book', [AddressBookController::class, 'index'])->name('address.book');
-        Route::post('home/My-Account/address-book', [AddressBookController::class, 'store'])->name('address.book.store');
-        Route::get('home/My-Account/address-book/{id}/edit', [AddressBookController::class, 'edit'])->name('address.book.edit');
-        Route::put('home/My-Account/address-book/{id}', [AddressBookController::class, 'update'])->name('address.book.update');
-        Route::delete('home/My-Account/address-book/{id}', [AddressBookController::class, 'destroy'])->name('address.book.destroy');
-    });
-    
-    
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/home/My-Account/edit-password', function () {
-            return view('user_dashboard.edit-password');
-        })->name('edit-password');
-    
-        Route::post('/change-password', [UserController::class, 'changePassword'])->name('change-password');
-    });
-    
-    Route::get('home/My-Account/address-book', function () {
-        return view('user_dashboard.address-book');
-    })->name('address-book');
-    
-    Route::post('/logout', function () {
-        Auth::logout();
-        return redirect('/');
-    })->name('logout');
-    
-    /*Route::get('home/My-Account/edit-password', function () {
-        return view('user_dashboard.edit-password')->name('edit-password');
-    });
-    Route::post('home/My-Account/edit-password', [UserController::class, 'changePassword']);
-    */
-
-
-Route::get('home/My-Account/edit-profile', function () {
-    return view('user_dashboard.edit-profile');
-})->name('edit-profile');
-
-
+Route::get('home/My-Account/edit-profile', [ProfileController::class, 'editProfile'])->name('edit-profile');
+Route::get('home/My-Account', [ProfileController::class, 'dashboard'])->name('dashboard');
 Route::get('home/My-Account/my-orders', [ProfileController::class, 'myOrders'])->name('my-orders');
 Route::get('/track-order/{orderCode}', [ProfileController::class, 'trackOrder'])->name('user.track-order');
+Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->name('user.profile.update');
+Route::get('home/My-Account/edit-password', [ProfileController::class, 'editPassword'])->name('edit-password');
+Route::post('/user/change-password', [ProfileController::class, 'changePassword'])->name('user.change_password');
+
 
 
 
@@ -438,10 +373,6 @@ Route::get('home/My-Account/inquiries', function () {
 Route::get('home/My-Account/address-book', function () {
     return view('user_dashboard.address-book');
 })->name('address-book');
-
-Route::get('home/My-Account/edit-password', function () {
-    return view('user_dashboard.edit-password');
-})->name('edit-password');
 
 
 Route::get('home/My-Account/returns', function () {
@@ -459,9 +390,6 @@ Route::get('home/My-Account/My-Reviews',[ReviewsController::class,'myReviews'])-
 Route::get('home/My-Account/Write-Reviews/{id}',[ReviewsController::class,'writeReviews'])->name('write-review');
 Route::post('/reviews/{id}', [ReviewsController::class, 'store'])->name('reviews.store');
 Route::delete('/home/reviews/{review}', [ReviewsController::class, 'customerDestroy'])->name('customer.reviews.destroy');
-
-
-
 
 
 

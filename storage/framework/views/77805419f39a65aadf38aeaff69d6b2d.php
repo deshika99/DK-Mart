@@ -36,32 +36,14 @@
     .profile-dropdown:hover .dropdown-menu {
         display: block;
     }
-   
-    #search-results {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: white;
-    border: 1px solid #ddd;
-    z-index: 1000;
-    display: none;
-}
 
-#search-results .dropdown-item {
-    padding: 8px 12px;
-    cursor: pointer;
-}
-
-#search-results .dropdown-item:hover {
-    background-color: #f8f9fa;
-}
+    .header-middle {
+        background-color: #001f3f!important; /* Force Apply Dark Blue */
+     }
+  
 
 
 </style>
-
-
-
 
 <!--==================== Overlay Start ====================-->
 <div class="overlay"></div>
@@ -84,9 +66,10 @@
 <div class="mobile-menu scroll-sm d-lg-none d-block">
     <button type="button" class="close-button"> <i class="ph ph-x"></i> </button>
     <div class="mobile-menu__inner">
-        <a href="index.html" class="mobile-menu__logo">
-            <img src="assets/images/logo/logo.png" alt="Logo">
+        <a href="/" class="mobile-menu__logo">
+            <img src="frontend/assets/images/logo/logo-mobile-menu-new1.png" alt="Logo">
         </a>
+        
         <div class="mobile-menu__menu">
             <!-- Nav Menu Start -->
             <ul class="nav-menu flex-align nav-menu--mobile">
@@ -125,9 +108,9 @@
         <nav class="header-inner flex-between">
             <!-- Logo Start -->
             <div class="logo"style="margin-left: 80px;  margin-top: 0; margin-bottom: 0;">
-                <a href="index.html" class="link">
+                <a href="/" class="link">
 
-                    <img src="<?php echo e(asset('frontend/assets/images/logo/logo-two.png')); ?>" alt="Logo" style="width:110px;height:110px; margin-top: 0; margin-bottom: 0; ">
+                    <img src="<?php echo e(asset('frontend/assets/images/logo/navbar-logo-new.png')); ?>" alt="Logo" >
 
                 </a>
             </div>
@@ -282,7 +265,7 @@
                                             <div class="sub-submenu-column">
                                                 <ul class="overflow-y-auto sub-submenu max-h-300 scroll-sm">
                                                     <?php $__currentLoopData = $subcategory->subSubcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subSubcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <li>
+                                                        <li class="has-sub-submenu">
                                                             <a href="<?php echo e(url('/shop?subsubcategory_id=' . $subSubcategory->id)); ?>"><?php echo e($subSubcategory->name); ?></a>
                                                         </li>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -317,20 +300,13 @@
             <a href="/contact" class="nav-menu__link">Contact Us</a>
         </li>
         <li class="nav-menu__item">
-
-    
             <a href="<?php echo e(route('frontend.vendor')); ?>" class="nav-menu__link">Vendors</a>
         </li>
     </ul>
 </div>
 
 </div>
-
-
-
-
-
-            <!-- Header Right start -->
+ <!-- Header Right start -->
             <div class="header-right flex-align">
 
                 <div class="select-dropdown-for-home-two d-lg-block d-none">
@@ -418,6 +394,7 @@
 </header>
 
 <!-- ==================== Header End Here ==================== -->
+
 
 <script>
     $(document).ready(function () {
