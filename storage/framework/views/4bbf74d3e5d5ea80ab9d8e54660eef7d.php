@@ -127,40 +127,10 @@
 
 </body>
 
-
-<style>
-    .status.packed {
-        background-color: #0275d8; /* Blue for Packed */
-        color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
-    }
-
-    /* Pickup Done Status */
-    .status.pickup-done {
-        background-color: #5bc0de; /* Light Blue for Pickup Done */
-        color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
-    }
-
-    /* Ready to Ship Status */
-    .status.ready-to-ship {
-        background-color: #f0ad4e; /* Orange for Ready to Ship */
-        color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
-    }
-
-    /* In Transit Status */
-    .status.in-transit {
-        background-color: #6f42c1; /* Purple for In Transit */
-        color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
-    }
-</style>
-
 </html>
 <?php $__env->stopSection(); ?>
+<<<<<<<< Updated upstream:storage/framework/views/4bbf74d3e5d5ea80ab9d8e54660eef7d.php
 <?php echo $__env->make('VendorDashboard.Vendormaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\esupport_systems\DK-Mart\resources\views/VendorDashboard/Reports/order_report.blade.php ENDPATH**/ ?>
+========
+<?php echo $__env->make('AdminDashboard.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/AdminDashboard/Reports/order_report.blade.php ENDPATH**/ ?>
+>>>>>>>> Stashed changes:storage/framework/views/2d461f5cd6608d22909e117cac55fad9.php

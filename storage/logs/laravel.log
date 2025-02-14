@@ -4747,6 +4747,7 @@
 #27 {main}
 "} 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [2024-11-26 06:48:17] local.ERROR: Route [frontend.login] not defined. {"userId":9,"exception":"[object] (Symfony\\Component\\Routing\\Exception\\RouteNotFoundException(code: 0): Route [frontend.login] not defined. at C:\\xampp\\htdocs\\esupport_systems\\DK-Mart\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\UrlGenerator.php:516)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\esupport_systems\\DK-Mart\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Redirector.php(154): Illuminate\\Routing\\UrlGenerator->route('frontend.login', Array)
@@ -5279,6 +5280,8 @@
 [2024-11-26 08:58:34] local.INFO: Tracking Referral {"tracking_id":"abc","product_url":"http://127.0.0.1:8000/product-details/http://127.0.0.1:8000/product-details/14","user_id":2} 
 [2024-11-26 08:58:34] local.INFO: Referral not found for tracking {"raffle_ticket_id":2,"product_url":"http://127.0.0.1:8000/product-details/http://127.0.0.1:8000/product-details/14","user_id":2} 
 =======
+=======
+>>>>>>> Stashed changes
 [2024-11-22 07:34:56] local.ERROR: Undefined variable $vendorWallet (View: C:\xampp\htdocs\DK-Mart\resources\views\VendorDashboard\payment_requests.blade.php) {"exception":"[object] (Illuminate\\View\\ViewException(code: 0): Undefined variable $vendorWallet (View: C:\\xampp\\htdocs\\DK-Mart\\resources\\views\\VendorDashboard\\payment_requests.blade.php) at C:\\xampp\\htdocs\\DK-Mart\\storage\\framework\\views\\82c7b77b0d1c18819693af064cb2c0ce.php:15)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\DK-Mart\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(60): Illuminate\\View\\Engines\\CompilerEngine->handleViewException(Object(ErrorException), 1)
@@ -13609,6 +13612,7 @@
 #58 C:\\xampp\\htdocs\\DK-Mart\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('C:\\\\xampp\\\\htdocs...')
 #59 {main}
 "} 
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 [2025-01-06 09:46:30] local.ERROR: Target class [App\Http\Controllers\DashboardController] does not exist. {"userId":2,"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [App\\Http\\Controllers\\DashboardController] does not exist. at C:\\xampp\\htdocs\\DK-Mart\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:940)
 [stacktrace]
@@ -14235,3 +14239,5 @@
 #45 C:\\xampp\\htdocs\\DK-Mart\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('C:\\\\xampp\\\\htdocs...')
 #46 {main}
 "} 
+=======
+>>>>>>> Stashed changes

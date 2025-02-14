@@ -1,17 +1,6 @@
 <header class="main-header navbar shadow-sm">
     <div class="col-search">
-        <form class="searchform">
-            <div class="input-group">
-                <input list="search_terms" type="text" class="form-control" placeholder="Search term" />
-                <button class="btn btn-light bg" type="button"><i class="material-icons md-search"></i></button>
-            </div>
-            <datalist id="search_terms">
-                <option value="Products"></option>
-                <option value="New orders"></option>
-                <option value="Apple iphone"></option>
-                <option value="Ahmed Hassan"></option>
-            </datalist>
-        </form>
+      
     </div>
     <div class="col-nav">
         <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"><i class="material-icons md-apps"></i></button>
@@ -74,4 +63,8 @@
             </li>
         </ul>
     </div>
+<<<<<<<< Updated upstream:storage/framework/views/8dbba59b10a79dd4c5473e2dcecc63ab.php
 </header><?php /**PATH C:\xampp\htdocs\esupport_systems\DK-Mart\resources\views/VendorDashboard/VendorHeader.blade.php ENDPATH**/ ?>
+========
+</header><?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/VendorDashboard/VendorHeader.blade.php ENDPATH**/ ?>
+>>>>>>>> Stashed changes:storage/framework/views/4ab948183c343a8b9dae349ef6507062.php

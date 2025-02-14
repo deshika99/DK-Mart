@@ -23,7 +23,7 @@
 
     <section class="content-main">
         <div class="content-header">
-            <h2 class="content-title">Report - Products</h2>
+            <h2 class="content-title">Report - Affiliate Customer's Bank Details</h2>
         </div>
 
         <!-- Room Form -->
@@ -34,38 +34,29 @@
                     <div class="col-md-12">
                         <div class="table-responsive">
                             <table id="tableData" class="table table-hover display">
-                            <thead>
+                                <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Product ID</th>
-                                        <th>Product</th>
-                                        <th>Category</th>
-                                        <th>Quantity</th>
-                                        <th>Normal Price (Rs)</th>
-                                        <th>Affiliate Price (Rs)</th>
-                                        <th>Commision Price (Rs)</th>
-                                        <th class="text-end">Action</th>
+                                        <th>Name</th>
+                                        <th>NIC</th>
+                                        <th>Bank Name</th>
+                                        <th>Branch</th>
+                                        <th>Acount Name</th>
+                                        <th>Account Number</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index=>$product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <tr class="product-row" data-category="<?php echo e($product->category->id ?? 'none'); ?>">
+                                    <?php $__currentLoopData = $affiliates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index=>$affiliate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr>
                                         <td><?php echo e($index+1); ?></td>
-                                        <td><?php echo e($product->product_id); ?></td>
-                                        <td><?php echo e($product->product_name); ?></td>
-                                        <td><?php echo e($product->category->name ?? 'N/A'); ?></td>
-                                        <td><?php echo e($product->quantity); ?></td>
-                                        <td><?php echo e($product->normal_price); ?></td>
-                                        <td><?php echo e($product->affiliate_price ?? 'No'); ?></td>
-                                        <td><?php echo e($product->commision_price ?? 'No'); ?></td>
-                                        <td class="text-end">
-                                            <div>
-                                                <a href="<?php echo e(route('vendor.products.view', $product->id)); ?>" class="btn btn-view btn-sm me-2">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                               
-                                            </div>
-                                        </td>
+                                        <td><?php echo e($affiliate->name); ?></td>
+                                        <td><?php echo e($affiliate->NIC); ?></td>
+                                        <td><?php echo e($affiliate->bank_name); ?></td>
+                                        <td><?php echo e($affiliate->branch); ?></td>
+                                        <td><?php echo e($affiliate->account_name); ?></td>
+                                        <td><?php echo e($affiliate->account_number); ?></td>     
+                                        <td><?php echo e(ucfirst($affiliate->status)); ?></td>
                                     </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
@@ -98,7 +89,7 @@
                     {
                         extend: 'pdfHtml5',
                         footer: true,
-                        title: 'Product Report',
+                        title: 'Affiliate Customers bank details Report',
                         customize: function(doc) {
                             // Set a margin for the footer
                             doc.content[1].margin = [0, 0, 0, 20];
@@ -106,8 +97,8 @@
                     },
                     {
                         extend: 'print',
-                        footer: true,
-                        title: 'Product Report',
+                        footer: true,      
+                        title: 'Affiliate Customers Bank Details Report',
                     }
                 ],
 
@@ -123,4 +114,8 @@
 
 </html>
 <?php $__env->stopSection(); ?>
+<<<<<<<< Updated upstream:storage/framework/views/ae77be4909329dd386cb4172cf693b08.php
 <?php echo $__env->make('VendorDashboard.Vendormaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\esupport_systems\DK-Mart\resources\views/VendorDashboard/Reports/product_report.blade.php ENDPATH**/ ?>
+========
+<?php echo $__env->make('AdminDashboard.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\DK-Mart\resources\views/AdminDashboard/Reports/affiliate_cus_bank_data.blade.php ENDPATH**/ ?>
+>>>>>>>> Stashed changes:storage/framework/views/39f096ec7aca2ff99ae6aa2f63028ffd.php
