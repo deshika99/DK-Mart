@@ -48,7 +48,7 @@ class AuthController extends Controller
         Auth::login($user);
 
         // Generate Token
-        $token = $user->createToken('YourAppName')->plainTextToken;
+        $token = $user->createToken('DKmart')->plainTextToken;
 
         return response()->json([
             'message' => 'Registration successful. User logged in.',
