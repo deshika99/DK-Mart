@@ -57,7 +57,8 @@ use App\Http\Controllers\VendorDashboardController;
 /*Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');*/
-Route::get('/login', [AuthenticatedSessionController::class, 'showLoginForm'])->name('frontend.login');
+
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('frontend.login');
 
 
 
@@ -235,14 +236,14 @@ Route::get('/admin/affiliate_customers', [AffiliateUserController::class, 'showA
 Route::post('/admin/affiliates/{id}/status/{status}', [AffiliateUserController::class, 'updateStatus'])->name('admin.affiliates.updateStatus');
 Route::get('/admin/Affiliatecustomer-details/{id}', [AffiliateUserController::class, 'showDetails'])->name('admin.affiliates.show');
 
-
+//Route::get('/admin/reviews', [ReviewsController::class, 'adminView'])->name('adminReviews');
 Route::get('/admin/reviews-details/{id}', [ReviewsController::class, 'adminViewDetails'])->name('viewReviewDetails');
 Route::patch('/reviews/{id}/status', [ReviewsController::class, 'updateStatus'])->name('reviews.updateStatus');
 Route::delete('/reviews/{review}', [ReviewsController::class, 'destroy'])->name('admin.reviews.destroy');
 
 
 Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inquiries');
-Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
+// Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
 Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('admin.customer.inquiries');
 
 
@@ -350,13 +351,6 @@ Route::post('/affiliate/dashboard/payment/realtime_tracking', [AffiliateReportCo
 
 require __DIR__.'/auth.php';
 
-//user dashboard
-/*
-Route::get('home/My-Account', function () {
-    return view('user_dashboard.dashboard');
-})->name('dashboard');
-
-*/
 
 Route::get('home/My-Account/edit-profile', [ProfileController::class, 'editProfile'])->name('edit-profile');
 Route::get('home/My-Account', [ProfileController::class, 'dashboard'])->name('dashboard');
