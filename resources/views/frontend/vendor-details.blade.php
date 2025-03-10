@@ -186,24 +186,53 @@
                                 </h5>
                                 <div class="flex-align gap-6">
                                     <div class="flex-align gap-8">
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                        @if ($product->total_reviews!=0)
+                                        <div class="rating-info d-flex gap-2">
+                                            @php
+                                            $fullStars = floor($product->average_rating); // Number of full stars
+                                            $hasHalfStar = ($product->average_rating - $fullStars) >= 0.5; // Half-star condition
+                                            @endphp
+                                            @for ($i = 0; $i < $fullStars; $i++)
+                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                            @endfor
+                                            @if ($hasHalfStar)
+                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star-half"></i></span>
+                                            @endif
+                                            <span class="text-xs fw-medium text-gray-500">{{ number_format($product->average_rating, 1) }}</span>
+                                            &nbsp;<span class="text-xs fw-medium text-gray-500">({{ $product->total_reviews }})</span>
+                                        </div>
+                                        @endif
                                     </div>
-                                    <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                    <span class="text-xs fw-medium text-gray-500">(12K)</span>
+                                    <div class="gap-4 flex-align">
+                                    <span class="text-tertiary-600 text-md d-flex">
+                                        <i class="ph-fill ph-storefront"></i>
+                                    </span>
+                                    @if($product->shop_id && $product->shop) 
+                                        <span class="text-xs text-gray-500">By {{ $product->shop->shop_name }}</span>
+                                    @endif
+                                    </div>
+                                </div>
+                                <div class="mt-8">
+                                    @php
+                                        // Calculate the percentage sold
+                                        $percentageSold = $product->total_quantity > 0 
+                                            ? ($product->sold_quantity / $product->total_quantity) * 100 
+                                            : 0;
+                                    @endphp
+
+                                    <div class="h-4 progress w-100 bg-color-three rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="{{ $percentageSold }}" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-main-two-600 rounded-pill" style="width: {{ $percentageSold }}%;"></div>
+                                    </div>
+                                    <span class="mt-8 text-xs text-gray-900 fw-medium">
+                                        Sold: {{ $product->sold_quantity }}/{{ $product->total_quantity }}
+                                    </span>
                                 </div>
                                 <div class="product-card__price mt-16 mb-30">
                                     <span class="text-heading text-md fw-semibold ">Rs {{ number_format($product->normal_price, 2) }}<span class="text-gray-500 fw-normal">/Qty</span> </span>
                                 </div>
-                                <a href="#" 
+                                <a href="{{ route('showProductDetails', $product->product_id) }}" 
                                     style="width:230px" 
-                                    class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium add-to-cart-btn" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#cartModal_{{ $product->product_id }}" 
-                                    data-product-id="{{ $product->product_id }}">
+                                    class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium add-to-cart-btn" >
                                         Add To Cart <i class="ph ph-shopping-cart"></i> 
                                 </a>
                             </div>

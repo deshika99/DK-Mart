@@ -22,14 +22,7 @@
 </style>
 
 <h4 class="px-2 py-2">My Orders</h4>
-<div class="mt-4 d-flex justify-content-between align-items-center" style="margin-bottom: 25px;">
-    <div class="button-tabs">
-        <button class="mb-1 tab-button active" data-target="all-orders">All Orders</button>
-        <button class="mb-1 tab-button" data-target="in-progress-orders">In Progress</button>
-        <button class="mb-1 tab-button" data-target="shipped-orders">Shipped</button>
-        <button class="mb-1 tab-button" data-target="delivered-orders">Delivered</button>
-    </div>
-</div>
+
 
 <!-- All Orders Tab -->
 <div id="all-orders" class="tab-content active">
@@ -42,7 +35,12 @@
 
         <div class="order-card-body d-flex align-items-center">
             <div class="order-image" style="margin-right: 15px;">
-                <img src="{{ asset('path/to/order-image.jpg') }}" alt="Product Image" style="width: 70px; height: 80px;">
+               <!-- Displaying the product image -->
+               @foreach ($order->items as $orderItem)
+                    @if ($orderItem->product && $orderItem->product->images->first())
+                        <img src="{{ asset('storage/' . $orderItem->product->images->first()->image_path) }}" alt="Product Image" style="width: 70px; height: 80px;">
+                    @endif
+                @endforeach
             </div>
             <div class="order-info" style="font-size: 13px; color: black;">
                 <p><a href="#" class="order-link">Order ID:</a> <a href="#" class="order-link">{{ $order->order_code }}</a></p>
