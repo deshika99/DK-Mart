@@ -70,21 +70,16 @@
                 <h6 class="footer-item__title">About us</h6>
                 <ul class="footer-menu">
                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Company Profile</a>
+                        <a href="{{ route('about') }}" class="text-gray-600 hover-text-main-600">Company Profile</a>
                     </li>
                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">All Retail Store</a>
+                        <a href="/shop" class="text-gray-600 hover-text-main-600">Shop</a>
                     </li>
-                   
                     <li class="mb-16">
                         <a href="{{ route('contact') }}" class="text-gray-600 hover-text-main-600">Contact Us</a>
                     </li>
                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Feedback</a>
-                    </li>
-                   
-                    <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Rules & Policy</a>
+                        <a href="{{ route('frontend.vendor') }}" class="text-gray-600 hover-text-main-600">Vendors</a>
                     </li>
                 </ul>
             </div>
@@ -96,9 +91,7 @@
                     <li class="mb-16">
                         <a href="{{ route('dashboard') }}" class="text-gray-600 hover-text-main-600">My Account</a>
                     </li>
-                    <li class="mb-16">
-                        <a href="/shop" class="text-gray-600 hover-text-main-600">Shop</a>
-                    </li>
+                   
                     <li class="mb-16">
                         <a href="{{ route('cart') }}"  class="text-gray-600 hover-text-main-600">Shoping Cart</a>
                     </li>
@@ -126,31 +119,26 @@
                         <a href= "{{ route('privacy-policy') }}"class="text-gray-600 hover-text-main-600">Privacy Policy</a>
                     </li>
                   
-                    <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Extended Plan</a>
-                    </li>
-                   
-                     <li class="mb-16">
-                        <a href="shop.html" class="text-gray-600 hover-text-main-600">Community</a>
-                    </li>
                 </ul>
             </div>
             
             <div class="footer-item" data-aos="fade-up" data-aos-duration="1200" style="margin-right: 35px;">
                 <h6 class="">Connect with us</h6>
-              
+                    @php
+                        $companySettings = \App\Models\CompanySettings::first(); 
+                    @endphp
 
               <div class="gap-14 mb-14 flex-align">
                     <span class="flex-shrink-0 border border-gray-100 w-30 h-30 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-phone-call"></i></span>
-                    <a href="tel:0787004900" class="text-gray-900 text-md hover-text-main-600">0787004900</a>
+                    <a href="tel:0787004900" class="text-gray-900 text-md hover-text-main-600">{{$companySettings->contact}}</a>
                 </div>
                 <div class="gap-14 mb-14 flex-align">
                     <span class="flex-shrink-0 border border-gray-100 w-30 h-30 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-envelope"></i></span>
-                    <a href="mailto:admin@dkmart.lk" class="text-gray-900 text-md hover-text-main-600">admin@dkmart.lk</a>
+                    <a href="mailto:{{$companySettings->email}}" class="text-gray-900 text-md hover-text-main-600">{{$companySettings->email}}</a>
                 </div>
                 <div class="gap-14 mb-14 flex-align">
                     <span class="flex-shrink-0 border border-gray-100 w-30 h-30 flex-center rounded-circle text-main-two-600 text-md"><i class="ph-fill ph-map-pin"></i></span>
-                    <span class="text-gray-900 text-md ">No.57, Horana Road, Moragahahena.</span>
+                    <span class="text-gray-900 text-md ">{{ $companySettings->address }}</span>
                 </div>
                 <ul class="gap-16 flex-align" >
                     <li>

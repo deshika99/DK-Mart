@@ -2,7 +2,15 @@
 <aside class="navbar-aside shadow-sm" id="offcanvas_aside">
             <div class="aside-top" style="padding:0">
                 <a href="<?php echo e(route('admin.index')); ?>" class="brand-wrap">
-                    <img src="<?php echo e(asset('frontend/assets/images/logo/preloader-new1.png')); ?>" class="logo" alt="DK-Mart" style="margin-left:80%;"/>
+                    <?php
+                        $companySettings = \App\Models\CompanySettings::first(); 
+                    ?>
+
+                    <?php if($companySettings && $companySettings->logo): ?>
+                        <img src="<?php echo e(asset($companySettings->logo)); ?>" class="logo" alt="DK-Mart" style="margin-left:80%;"/>
+                    <?php else: ?>
+                        <img src="<?php echo e(asset('frontend/assets/images/logo/preloader-new1.png')); ?>" class="logo" alt="DK-Mart" style="margin-left:80%;"/>
+                    <?php endif; ?>
                 </a>
                 <div>
                     <button class="btn btn-icon btn-aside-minimize"><i class="text-muted material-icons md-menu_open"></i></button>
@@ -118,15 +126,18 @@
                             <span class="text">Settings</span>
                         </a>
                         <div class="submenu ">
+                            <a href="<?php echo e(route('admin.customer.inquiries')); ?>" >
+                                Inquiries
+                            </a>
                             <a href="<?php echo e(route('manage_company_profile')); ?>" >
                                 Manage Company
                             </a>
                             <a href="<?php echo e(route('users')); ?>" >
                                 Users
                             </a>
-                            <a href="<?php echo e(route('role_list')); ?>" >
+                           <!-- <a href="<?php echo e(route('role_list')); ?>" >
                                 Role List
-                            </a>
+                            </a>-->
                             
                         </div>
                     </li>

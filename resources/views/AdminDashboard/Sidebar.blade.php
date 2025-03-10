@@ -2,7 +2,15 @@
 <aside class="navbar-aside shadow-sm" id="offcanvas_aside">
             <div class="aside-top" style="padding:0">
                 <a href="{{ route('admin.index') }}" class="brand-wrap">
-                    <img src="{{ asset('frontend/assets/images/logo/preloader-new1.png') }}" class="logo" alt="DK-Mart" style="margin-left:80%;"/>
+                    @php
+                        $companySettings = \App\Models\CompanySettings::first(); 
+                    @endphp
+
+                    @if ($companySettings && $companySettings->logo)
+                        <img src="{{ asset($companySettings->logo) }}" class="logo" alt="DK-Mart" style="margin-left:80%;"/>
+                    @else
+                        <img src="{{ asset('frontend/assets/images/logo/preloader-new1.png') }}" class="logo" alt="DK-Mart" style="margin-left:80%;"/>
+                    @endif
                 </a>
                 <div>
                     <button class="btn btn-icon btn-aside-minimize"><i class="text-muted material-icons md-menu_open"></i></button>
@@ -118,15 +126,18 @@
                             <span class="text">Settings</span>
                         </a>
                         <div class="submenu ">
+                            <a href="{{ route('admin.customer.inquiries') }}" >
+                                Inquiries
+                            </a>
                             <a href="{{ route('manage_company_profile') }}" >
                                 Manage Company
                             </a>
                             <a href="{{ route('users') }}" >
                                 Users
                             </a>
-                            <a href="{{ route('role_list') }}" >
+                           <!-- <a href="{{ route('role_list') }}" >
                                 Role List
-                            </a>
+                            </a>-->
                             
                         </div>
                     </li>

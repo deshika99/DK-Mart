@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\CustomerOrderItems;
 use App\Models\Vendor;
 use App\Models\Product;
 use App\Models\Category;
@@ -32,18 +32,31 @@ class VendorController extends Controller
         // Fetch vendor and its related shop
         $vendornew = Vendor::with('shop')->find($vendorId);
         $categoryId = request()->get('category_id');
+        
+        $products = Product::with(['images', 'reviews' => function ($query) {
+            $query->where('status', 'Published'); 
+        }, 'shop'])
+        ->where('shop_id', $vendornew->shop->id)
+        ->when($categoryId, function ($query) use ($categoryId) {
+            return $query->where('category_id', $categoryId);
+        })
+        ->paginate(20);
+  
+        foreach ($products as $product) {
+            $orderedQuantity = CustomerOrderItems::where('product_id', $product->id)->sum('quantity');
+            $product->sold_quantity = $orderedQuantity;
+            $product->total_quantity = $orderedQuantity + $product->quantity;
     
-        $products = Product::where('shop_id', $vendornew->shop->id)
-                            ->when($categoryId, function ($query) use ($categoryId) {
-                                return $query->where('category_id', $categoryId);
-                            })
-                            ->paginate(20);
-        
+            // Calculate average rating and total reviews for only published reviews
+            $product->average_rating = $product->reviews->avg('rating') ?? 0;
+            $product->total_reviews = $product->reviews->count();
+        }
+    
         $categories = Category::all();
-        
+    
         return view('frontend.vendor-details', compact('vendornew', 'products', 'categories', 'categoryId'));
-
     }
+    
     
     
     

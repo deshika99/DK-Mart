@@ -10,48 +10,41 @@ use App\Models\Variations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log; 
 use Illuminate\Validation\ValidationException;
+use App\Models\CustomerOrderItems;
 
 class ProductController extends Controller
 {
-  //navbar search box
-  /*  public function searchView(Request $request)
-{
-    $query = $request->input('query');
-    $categoryId = $request->input('category');
-     $products = Product::query();
 
-    if ($query) {
-        $products = $products->where('product_name', 'LIKE', "%$query%")
-                             ->orWhere('product_description', 'LIKE', "%$query%");
+    public function searchProducts(Request $request)
+    {
+        $categoryId = $request->input('category');
+        $keyword = $request->input('search');
+        $products = Product::query();
+    
+        if ($keyword) {
+            $products = $products->where('product_name', 'LIKE', '%' . $keyword . '%')
+                                 ->orWhere('product_description', 'LIKE', '%' . $keyword . '%');
+        }
+    
+        if ($categoryId) {
+            $products = $products->where('category_id', $categoryId);
+        }
+    
+        $products = $products->get();
+        $categories = Category::all();
+        foreach ($products as $product) {
+            $orderedQuantity = CustomerOrderItems::where('product_id', $product->id)->sum('quantity');
+            $product->sold_quantity = $orderedQuantity;
+            $product->total_quantity = $orderedQuantity + $product->quantity;
+    
+            // Calculate average rating and total reviews for only published reviews
+            $product->average_rating = $product->reviews->where('status', 'Published')->avg('rating') ?? 0;
+            $product->total_reviews = $product->reviews->where('status', 'Published')->count();
+        }
+        return view('frontend.searchView', compact('products', 'categories', 'keyword')); // Pass keyword here
     }
-
-    if ($categoryId) {
-        $products = $products->where('category_id', $categoryId);
-    }
-
-    $products = $products->get();
-
-    $categories = Category::all();
-
-    return view('frontend.searchView', compact('products', 'categories'));
-}*/
-
-// search box
-
-public function searchProducts(Request $request)
-{
-    $query = $request->input('query');
-
-    if (!$query) {
-        return response()->json(['products' => []]);
-    }
-
-    $products = Product::where('product_name', 'LIKE', '%' . $query . '%')->get();
-
-    return response()->json([
-        'products' => $products,
-    ]);
-}
+    
+    
 
 
 

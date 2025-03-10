@@ -80,6 +80,8 @@
 
             <!-- Tab Content -->
             <div class="tab-content mt-4" id="paymentTabsContent">
+            <form action="{{ route('confirm.card.order', $order->order_code) }}" method="POST">
+            @csrf
               <!-- Credit/Debit Card Payment -->
               <div class="tab-pane fade show active" id="credit-card" role="tabpanel" aria-labelledby="credit-card-tab" style="width: 60%; margin-bottom: 30px;margin-top:30px;">
                 <div class="mb-4">
@@ -100,7 +102,8 @@
                     <input type="text" class="form-control square-input" id="cvv" placeholder="123" required>
                   </div>
                 </div>
-                <button type="button" class="btn" style="background-color: rgb(238, 82, 10); color: white; width: 48%; margin-top: 2rem;">Pay Now</button>
+                <button type="submit" class="btn" style="background-color: rgb(238, 82, 10); color: white; width: 48%; margin-top: 2rem;">Pay Now</button>
+                </form>
               </div>
 
               <!-- Cash on Delivery -->

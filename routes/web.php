@@ -18,8 +18,8 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\OrderController;
-
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InquiryController;
 
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -58,7 +58,7 @@ use App\Http\Controllers\VendorDashboardController;
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');*/
 
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('frontend.login');
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
 
 
@@ -89,6 +89,7 @@ Route::get('/privacy-policy', function () {
     return view('frontend.privacy-policy');
 })->name('privacy-policy');
 
+Route::post('/contact', [InquiryController::class, 'store'])->name('store.inquiries');
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
@@ -105,13 +106,8 @@ Route::post('/wishlist/check-multiple', [WishlistController::class, 'checkMultip
 Route::get('/vendors', [VendorController::class, 'indexx'])->name('frontend.vendor');
 Route::get('/vendor-details/{vendorId}', [VendorController::class, 'showVendorDetails'])->name('frontend.vendor.details');
 
-/*
-Route::get('/search', [ProductController::class, 'searchView'])->name('product.search');
-Route::get('/searchview', [ProductController::class, 'searchView'])->name('searchview');*/
-
 
 //search box
-
 
 Route::get('/search-products', [ProductController::class, 'searchProducts'])->name('search.products');
 
@@ -146,6 +142,7 @@ Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::get('/payment/{order_code}', [PaymentController::class, 'showPaymentPage'])->name('payment');
 
 Route::post('/confirm-cod-order/{order_code}', [PaymentController::class, 'confirmCODOrder'])->name('confirm.cod.order');
+Route::post('/confirm-card-order/{order_code}', [PaymentController::class, 'confirmcardOrder'])->name('confirm.card.order');
 Route::get('/order/order_received/{order_code}', [PaymentController::class, 'getOrderDetails'])->name('order.thankyou');
 
 Route::post('/buy_now_place-order', [CustomerOrderController::class, 'buynow_placeOrder'])->name('buynow_placeOrder');
@@ -172,10 +169,9 @@ Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('adm
 
 Route::middleware([App\Http\Middleware\AdminAuth::class])->group(function () {
     Route::get('/admin',[AdminTemplateController::class,'index'])->name('admin.index');
-    // other routes
-});
-
-//notification
+    
+    
+    //notification
 
 
 Route::get('/admin/notifications', [NotificationController::class, 'index'])->name('admin.notifications');
@@ -242,9 +238,9 @@ Route::patch('/reviews/{id}/status', [ReviewsController::class, 'updateStatus'])
 Route::delete('/reviews/{review}', [ReviewsController::class, 'destroy'])->name('admin.reviews.destroy');
 
 
-Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('inquiries');
 // Route::view('/admin/reviews', 'AdminDashboard.reviews')->name('reviews');
-Route::view('/admin/customer_inquiries', 'AdminDashboard.inquiries')->name('admin.customer.inquiries');
+Route::get('/admin/customer_inquiries', [InquiryController::class, 'index'])->name('admin.customer.inquiries');
+Route::post('/admin/inquiries/reply/{id}', [InquiryController::class, 'storeReply'])->name('admin.inquiries.reply');
 
 
 
@@ -280,6 +276,9 @@ Route::get('/admin/report/affiliate_bank_data', [AdminReportController::class, '
 Route::get('/admin/report/vendor_report', [AdminReportController::class, 'vendorReport'])->name('vendorReport');
 Route::get('/admin/report/order_report', [AdminReportController::class, 'orderReport'])->name('orderReport');
 Route::get('/admin/report/product_report', [AdminReportController::class, 'productReport'])->name('productReport');
+});
+
+
 
 
 

@@ -110,6 +110,7 @@
             <div class="logo"style="margin-left: 80px;  margin-top: 0; margin-bottom: 0;">
                 <a href="/" class="link">
 
+                
                     <img src="<?php echo e(asset('frontend/assets/images/logo/navbar-logo-new.png')); ?>" alt="Logo" >
 
                 </a>
@@ -124,26 +125,28 @@
                     <!-- Dropdown Select End -->
                 </div>
 
-                <form action="#" class="flex-wrap flex-align form-location-wrapper">
+                <form action="<?php echo e(route('search.products')); ?>" method="GET" class="flex-wrap flex-align form-location-wrapper">
                     <div class="h-48 search-category style-two d-flex search-form d-sm-flex d-none">
-                    <select class="border border-0 border-gray-200 js-example-basic-single border-end-0 rounded-0" name="category">
+                        <select class="border border-0 border-gray-200 js-example-basic-single border-end-0 rounded-0" name="category">
+                            <option value="" selected disabled>All Categories</option>
+                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($category->id); ?>" <?php echo e(request('category') == $category->id ? 'selected' : ''); ?>>
+                                    <?php echo e($category->name); ?>
 
-                        <option value="" selected disabled>All Categories</option>
-                        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
+                                </option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
 
-                    <div class="search-form__wrapper position-relative">
-
-                            <input type="text" class="border-0 search-form__input common-input py-13 ps-16 pe-18 rounded-0" placeholder="Search for a product or brand..">
+                        <div class="search-form__wrapper position-relative">
+                            <input type="text" class="border-0 search-form__input common-input py-13 ps-16 pe-18 rounded-0" name="search" placeholder="Search for a product or brand.." value="<?php echo e(request('search')); ?>">
                             <div id="search-results" class="dropdown-menu"></div>
                         </div>
-                        <button type="submit" class="flex-shrink-0 w-48 text-xl text-white bg-main-two-600 flex-center hover-bg-main-two-600 d-lg-flex d-none"><i class="ph ph-magnifying-glass"></i></button>
+                        <button type="submit" class="flex-shrink-0 w-48 text-xl text-white bg-main-two-600 flex-center hover-bg-main-two-600 d-lg-flex d-none">
+                            <i class="ph ph-magnifying-glass"></i>
+                        </button>
                     </div>
-
-
                 </form>
+
             </div>
             <!-- form Category start -->
              

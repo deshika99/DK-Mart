@@ -81,7 +81,7 @@
                         <img src="frontend/assets/images/bg/promo-bg-img3.png" alt="" class="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 object-fit-cover z-n1">
                         <div class="flex-wrap gap-16 flex-between">
                             <div class="">
-                                <span class="mb-8 text-sm text-heading">Start From $250</span>
+                                <span class="mb-8 text-sm text-heading">Start From Rs 250</span>
                                 <h6 class="mb-0">Airpod Headphone</h6>
                                 <a href="/shop" class="gap-8 mt-16 border border-gray-900 d-inline-flex align-items-center text-heading text-md fw-medium border-top-0 border-end-0 border-start-0 hover-text-main-two-600 hover-border-main-two-600">
                                     Shop Now
@@ -106,7 +106,7 @@
         <div class="p-24 border border-gray-100 rounded-16">
             <div class="mb-24 section-heading">
                 <div class="flex-wrap gap-8 flex-between">
-                    <h5 class="mb-0 wow bounceInLeft">Leatest product</h5>
+                    <h5 class="mb-0 wow bounceInLeft">Latest products</h5>
                     <div class="gap-16 flex-align wow bounceInRight">
                         <a href="shop.html" class="text-sm text-gray-700 fw-medium hover-text-main-600 hover-text-decoration-underline">View All Deals</a>
                         <div class="gap-10 flex-align">
@@ -135,13 +135,22 @@
                             </a>
                             <div class="mt-16 product-card__content">
                                 <div class="gap-6 mt-16 mb-20 flex-align">
-                                    <div class="gap-2 rating-info d-flex">
-                                        <span class="text-xs text-gray-500 fw-medium">4.8</span>
-                                        <span class="text-15 fw-medium text-warning-600 d-flex">
-                                            <i class="ph-fill ph-star"></i>
-                                        </span>
-                                        <span class="text-xs text-gray-500 fw-medium">(17k)</span>
+                                 <?php if($product->total_reviews!=0): ?>
+                                    <div class="rating-info d-flex gap-2">
+                                        <?php
+                                        $fullStars = floor($product->average_rating); // Number of full stars
+                                        $hasHalfStar = ($product->average_rating - $fullStars) >= 0.5; // Half-star condition
+                                        ?>
+                                        <?php for($i = 0; $i < $fullStars; $i++): ?>
+                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                        <?php endfor; ?>
+                                        <?php if($hasHalfStar): ?>
+                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star-half"></i></span>
+                                        <?php endif; ?>
+                                        <span class="text-xs fw-medium text-gray-500"><?php echo e(number_format($product->average_rating, 1)); ?></span>
+                                        &nbsp;<span class="text-xs fw-medium text-gray-500">(<?php echo e($product->total_reviews); ?>)</span>
                                     </div>
+                                    <?php endif; ?>
                                     <!-- Heart Icon -->
                                     <button type="button" class="heart-icon ms-auto" 
                                             id="wishlist-icon-<?php echo e($product->product_id); ?>" 
@@ -153,21 +162,35 @@
                                     <a href="<?php echo e(route('showProductDetails', $product->product_id)); ?>" class="link text-line-2" tabindex="0"><?php echo e($product->product_name); ?></a>
                                 </h6>
                                 <div class="gap-4 flex-align">
-                                    <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                    <span class="text-xs text-gray-500">By <?php echo e($product->seller_name ?? 'Store Name'); ?></span>
-                                </div>
-                                <div class="mt-8">
-                                    <div class="h-4 progress w-100 bg-color-three rounded-pill" role="progressbar" aria-label="Sold Progress" aria-valuenow="<?php echo e($product->sold_percentage ?? 35); ?>" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: <?php echo e($product->sold_percentage ?? 35); ?>%"></div>
-                                    </div>
-                                    <span class="mt-8 text-xs text-gray-900 fw-medium">Sold: <?php echo e($product->sold_units ?? 18); ?>/<?php echo e($product->total_units ?? 35); ?></span>
+                                    <span class="text-tertiary-600 text-md d-flex">
+                                        <i class="ph-fill ph-storefront"></i>
+                                    </span>
+                                    <?php if($product->shop_id && $product->shop): ?> 
+                                        <span class="text-xs text-gray-500">By <?php echo e($product->shop->shop_name); ?></span>
+                                    <?php endif; ?>
                                 </div>
 
+                                <div class="mt-8">
+                                    <?php
+                                        // Calculate the percentage sold
+                                        $percentageSold = $product->total_quantity > 0 
+                                            ? ($product->sold_quantity / $product->total_quantity) * 100 
+                                            : 0;
+                                    ?>
+
+                                    <div class="h-4 progress w-100 bg-color-three rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="<?php echo e($percentageSold); ?>" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-main-two-600 rounded-pill" style="width: <?php echo e($percentageSold); ?>%;"></div>
+                                    </div>
+                                    <span class="mt-8 text-xs text-gray-900 fw-medium">
+                                        Sold: <?php echo e($product->sold_quantity); ?>/<?php echo e($product->total_quantity); ?>
+
+                                    </span>
+                                </div>
                                 <div class="my-20 product-card__price">
                                     <span class="text-heading text-md fw-semibold ">Rs <?php echo e($product->normal_price); ?> <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                 </div>
 
-                                <a href="" style="width:230px" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
+                                <a href="<?php echo e(route('showProductDetails', $product->product_id)); ?>" style="width:230px" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                     Add To Cart <i class="ph ph-shopping-cart"></i>
                                 </a>
                             </div>
@@ -296,13 +319,22 @@
                                 </a>
                                 <div class="mt-16 product-card__content">
                                     <div class="gap-6 mt-16 mb-20 flex-align">
-                                        <div class="gap-2 rating-info d-flex">
-                                            <span class="text-xs text-gray-500 fw-medium">4.8</span>
-                                            <span class="text-15 fw-medium text-warning-600 d-flex">
-                                                <i class="ph-fill ph-star"></i>
-                                            </span>
-                                            <span class="text-xs text-gray-500 fw-medium">(17k)</span>
+                                        <?php if($product->total_reviews!=0): ?>
+                                        <div class="rating-info d-flex gap-2">
+                                            <?php
+                                            $fullStars = floor($product->average_rating); // Number of full stars
+                                            $hasHalfStar = ($product->average_rating - $fullStars) >= 0.5; // Half-star condition
+                                            ?>
+                                            <?php for($i = 0; $i < $fullStars; $i++): ?>
+                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                            <?php endfor; ?>
+                                            <?php if($hasHalfStar): ?>
+                                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star-half"></i></span>
+                                            <?php endif; ?>
+                                            <span class="text-xs fw-medium text-gray-500"><?php echo e(number_format($product->average_rating, 1)); ?></span>
+                                            &nbsp;<span class="text-xs fw-medium text-gray-500">(<?php echo e($product->total_reviews); ?>)</span>
                                         </div>
+                                        <?php endif; ?>
                                         <!-- Heart Icon -->
                                         <button type="button" class="heart-icon ms-auto" 
                                                 id="wishlist-icon-<?php echo e($product->product_id); ?>" 
@@ -314,21 +346,36 @@
                                         <a href="<?php echo e(route('showProductDetails', $product->product_id)); ?>" class="link text-line-2" tabindex="0"><?php echo e($product->product_name); ?></a>
                                     </h6>
                                     <div class="gap-4 flex-align">
-                                        <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                        <span class="text-xs text-gray-500">By <?php echo e($product->seller_name ?? 'Store Name'); ?></span>
+                                    <span class="text-tertiary-600 text-md d-flex">
+                                        <i class="ph-fill ph-storefront"></i>
+                                    </span>
+                                    <?php if($product->shop_id && $product->shop): ?> 
+                                        <span class="text-xs text-gray-500">By <?php echo e($product->shop->shop_name); ?></span>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="mt-8">
+                                    <?php
+                                        // Calculate the percentage sold
+                                        $percentageSold = $product->total_quantity > 0 
+                                            ? ($product->sold_quantity / $product->total_quantity) * 100 
+                                            : 0;
+                                    ?>
+
+                                    <div class="h-4 progress w-100 bg-color-three rounded-pill" role="progressbar" aria-label="Basic example" aria-valuenow="<?php echo e($percentageSold); ?>" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-main-two-600 rounded-pill" style="width: <?php echo e($percentageSold); ?>%;"></div>
                                     </div>
-                                    <div class="mt-8">
-                                        <div class="h-4 progress w-100 bg-color-three rounded-pill" role="progressbar" aria-label="Sold Progress" aria-valuenow="<?php echo e($product->sold_percentage ?? 35); ?>" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: <?php echo e($product->sold_percentage ?? 35); ?>%"></div>
-                                        </div>
-                                        <span class="mt-8 text-xs text-gray-900 fw-medium">Sold: <?php echo e($product->sold_units ?? 18); ?>/<?php echo e($product->total_units ?? 35); ?></span>
-                                    </div>
+                                    <span class="mt-8 text-xs text-gray-900 fw-medium">
+                                        Sold: <?php echo e($product->sold_quantity); ?>/<?php echo e($product->total_quantity); ?>
+
+                                    </span>
+                                </div>
 
                                     <div class="my-20 product-card__price">
                                         <span class="text-heading text-md fw-semibold ">Rs <?php echo e($product->normal_price); ?> <span class="text-gray-500 fw-normal">/Qty</span> </span>
                                     </div>
 
-                                    <a href="" style="width:230px" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
+                                    <a href="<?php echo e(route('showProductDetails', $product->product_id)); ?>" style="width:230px" class="gap-8 px-24 product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center fw-medium" tabindex="0">
                                         Add To Cart <i class="ph ph-shopping-cart"></i>
                                     </a>
                                 </div>
