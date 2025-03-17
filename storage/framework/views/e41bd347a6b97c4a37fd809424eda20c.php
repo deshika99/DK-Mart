@@ -1,6 +1,3 @@
-
-
-
 <?php $__env->startSection('content'); ?>
 <!-- =============================== Shop Section Start ======================================== -->
 <section class="shop py-80">

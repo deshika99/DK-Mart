@@ -35,7 +35,6 @@ class PaymentController extends Controller
         }
     }
 
-
     public function confirmcardOrder($order_code)
     {
         try {
@@ -44,6 +43,7 @@ class PaymentController extends Controller
             // Update the payment method and payment status
             $order->update([
                 'payment_method' => 'Card',
+                'payment_status' => 'Paid',
             ]);
 
             return redirect()->route('order.thankyou', ['order_code' => $order_code])
@@ -52,6 +52,7 @@ class PaymentController extends Controller
             return redirect()->back()->with('error', 'Failed to confirm order. Please try again.');
         }
     }
+
 
 
     public function getOrderDetails($order_code)
