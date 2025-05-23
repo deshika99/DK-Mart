@@ -7,7 +7,6 @@
         <h2 class="content-title card-title">Products List</h2>
     </div>
     <div>
-        <a href="#" class="btn btn-light rounded font-md">Export</a>
         <a href="{{ route('vendor.products.add') }}" class="btn btn-primary btn-sm rounded">Create new</a>
     </div>
 </div>

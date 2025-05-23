@@ -51,7 +51,7 @@
             >
         </div>
 
-        <div class="row">
+        <div class="row ">
             <div class="mb-3 col-md-6">
                 <label for="email" class="form-label">Email Address</label>
                 <input 
@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-3">
             <div class="mb-3 col-md-6">
                 <label for="birthday" class="form-label">Birthday</label>
                 <input 
@@ -88,14 +88,16 @@
                 >
             </div>
             <div class="mb-3 col-md-6">
-                <label for="gender" class="form-label">Gender</label>
-                <select class="form-select" id="gender" name="gender">
-                    <option selected disabled>Select your gender</option>
-                    <option value="male" {{ old('gender', $user->gender) === 'male' ? 'selected' : '' }}>Male</option>
-                    <option value="female" {{ old('gender', $user->gender) === 'female' ? 'selected' : '' }}>Female</option>
-                    <option value="other" {{ old('gender', $user->gender) === 'other' ? 'selected' : '' }}>Other</option>
-                </select>
-            </div>
+            <label for="address" class="form-label">Address</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="address" 
+                name="address" 
+                value="{{ old('address', $user->address) }}" 
+                placeholder="Enter your address"
+            >
+        </div>
         </div>
 
         <button type="submit" class="mt-3 btn btn-primary">Save Changes</button>

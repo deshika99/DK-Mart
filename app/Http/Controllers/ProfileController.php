@@ -104,6 +104,7 @@ class ProfileController extends Controller
             'full_name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
             'phone_num' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:255',
             'date_of_birth' => 'nullable|date',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Image validation
         ]);
@@ -113,9 +114,9 @@ class ProfileController extends Controller
         // Update user details
         $user->name = $request->input('full_name');
         $user->email = $request->input('email');
+        $user->address = $request->input('address');
         $user->phone = $request->input('phone_num');
         $user->dob = $request->input('date_of_birth');
-        $user->gender = $request->input('gender');
 
         // Handle profile image upload
         if ($request->hasFile('profile_image')) {

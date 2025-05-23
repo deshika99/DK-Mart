@@ -35,6 +35,25 @@ class PaymentController extends Controller
         }
     }
 
+    public function confirmcardOrder($order_code)
+    {
+        try {
+            $order = CustomerOrder::where('order_code', $order_code)->where('user_id', Auth::id())->firstOrFail();
+            
+            // Update the payment method and payment status
+            $order->update([
+                'payment_method' => 'Card',
+                'payment_status' => 'Paid',
+            ]);
+
+            return redirect()->route('order.thankyou', ['order_code' => $order_code])
+                            ->with('success', 'Order confirmed successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to confirm order. Please try again.');
+        }
+    }
+
+
 
     public function getOrderDetails($order_code)
     {

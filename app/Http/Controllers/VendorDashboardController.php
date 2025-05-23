@@ -34,11 +34,6 @@ class VendorDashboardController extends Controller
             });
 
         })->latest()->get();
-             
-    
-
-        })->get();
-
 
         $totalOrders = $orders->count();
 

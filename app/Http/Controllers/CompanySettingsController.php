@@ -46,7 +46,7 @@ class CompanySettingsController extends Controller
             CompanySettings::create($data);
         }
     
-        return redirect()->route('manage_company')->with('success', 'Company details saved successfully.');
+        return redirect()->route('manage_company_profile')->with('success', 'Company details saved successfully.');
     }
     
 }

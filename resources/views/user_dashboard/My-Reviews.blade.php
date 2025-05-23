@@ -128,52 +128,55 @@
     <div class="mt-3 order-items">
         @forelse($historyItems as $item)
         <div class="px-3 order-items-list">
-            <div class="order-item d-flex align-items-center " style="padding: 10px; border-bottom: 1px solid #eaeaea;">
-                <div style="display: flex; align-items: center; " class="col-md-6">
-                    <div style="margin-right: 15px;">
+            <div class="order-item d-flex align-items-center" style="padding: 15px; border-bottom: 1px solid #eaeaea; margin-bottom: 20px;">
+                <!-- Product Info Column -->
+                <div class="col-md-5">
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
                         <a href="#">
                             @if($item->product->images->isNotEmpty())
-                            <img src="{{ asset('storage/' . $item->product->images->first()->image_path) }}" width="70" height="70" class="img-xs" alt="Item" />
+                            <img src="{{ asset('storage/' . $item->product->images->first()->image_path) }}" width="70" height="70" class="img-xs" alt="Item Image" />
                             @else
                             <img src="{{ asset('path/to/default-image.jpg') }}" width="40" height="40" class="img-xs" alt="Default Image" />
                             @endif
                         </a>
-                    </div>
-                    <div style="line-height: 1.7;color:black;">
-                        <span style="font-weight: 600; font-size: 15px;margin-top:15px;">{{ $item->product->product_name }}</span><br>
-                        <div class="d-flex align-items-center">
-                            @if ($item->color!=null)
-                            <span class="d-flex align-items-center me-2">
-                                <strong>Color:</strong>
-                                <span style="display: inline-block; background-color: {{ $item->color }}; border: 1px solid #e8ebec; height: 15px; width: 15px; border-radius: 50%;" title="Color"></span>
-                            </span> |
-                            @endif
-                            @if ($item->size!=null)
-                            <span class="me-2 ms-2">Size: <span style="font-weight: 600;">{{ $item->size }}</span></span> |
-                            @endif
-                            <span class="ms-2">Qty: <span style="font-weight: 600;">{{ $item->quantity }}</span></span>
+                        <div style="line-height: 1.7; color: black; margin-left: 15px;">
+                            <span style="font-weight: 600; font-size: 15px;">{{ $item->product->product_name }}</span><br>
+                            <div class="d-flex align-items-center mt-2">
+                                @if ($item->color)
+                                <span class="d-flex align-items-center me-2">
+                                    <strong>Color:</strong>
+                                    <span style="display: inline-block; background-color: {{ $item->color }}; border: 1px solid #e8ebec; height: 15px; width: 15px; border-radius: 50%;" title="Color"></span>
+                                </span> |
+                                @endif
+                                @if ($item->size)
+                                <span class="me-2 ms-2">Size: <span style="font-weight: 600;">{{ $item->size }}</span></span> |
+                                @endif
+                                <span class="ms-2">Qty: <span style="font-weight: 600;">{{ $item->quantity }}</span></span>
+                            </div>
+                            <h6 class="mt-2" style="font-weight: bold;font-size: 15px;">Rs {{ number_format($item->cost, 2) }}</h6>
                         </div>
-                        <h6 class="mt-2" style="font-weight: bold;font-size: 15px">Rs {{ number_format($item->cost, 2) }}</h6>
                     </div>
                 </div>
-                <div class="col-md-6 text-end">
+
+                <!-- Review Details Column -->
+                <div class="col-md-5">
                     <div class="mb-4">
-                        <p class="text-dark mb-1" style="font-weight:bold">Date</p>
-                        <p class="text-muted">{{ $item->review->created_at->format('d.m.Y') }}</p>
+                        <p class="text-dark mb-1" style="font-weight: bold;">Date - {{ $item->review->created_at->format('d.m.Y') }}</p>
                     </div>
 
                     <div class="mb-4">
-                        <p class="text-dark mb-1" style="font-weight:bold">Rating & Review</p>
-                        @for ($i = 1; $i <= 5; $i++)
-                            <i class="{{ $item->review->rating >= $i ? 'fa-star fas filled' : 'far fa-star' }}" style="color: gold;"></i>
+                        <p class="text-dark mb-1" style="font-weight: bold;">Rating & Review</p>
+                        <div class="d-flex align-items-center">
+                            @for ($i = 1; $i <= 5; $i++)
+                                <i class="{{ $item->review->rating >= $i ? 'fa-star fas filled' : 'far fa-star' }}" style="color: gold;"></i>
                             @endfor
-                            <br />
-                            <p class="text-muted">{{ $item->review->review ?? 'No review available.' }}</p>
+                        </div>
+                        <p class="text-muted mt-2">{{ $item->review->review ?? 'No review available.' }}</p>
                     </div>
 
                     <div class="mb-4">
-                        <p class="text-dark mb-1" style="font-weight:bold">Review Media</p>
-                        <div class="d-flex flex-wrap justify-content-end mt-2">
+                        <p class="text-dark mb-1" style="font-weight: bold;">Review Media</p>
+                        <div class="d-flex flex-wrap justify-content-start mt-2">
                             @php
                             $mediaFiles = is_string($item->review->media) ? json_decode($item->review->media, true) : $item->review->media;
                             @endphp
@@ -205,12 +208,16 @@
                             @endif
                         </div>
                     </div>
-                    <div class="mb-4 mt-5">
+                </div>
+
+                <!-- Delete Button Column -->
+                <div class="col-md-2 text-end">
+                    <div class="mb-4">
                         <form action="{{ route('customer.reviews.destroy', $item->review->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm mt-5" onclick="return confirm('Are you sure you want to delete this review?');">
-                                <i class="fas fa-trash"></i>
+                                <i class="fas fa-trash"></i> Delete Review
                             </button>
                         </form>
                     </div>
@@ -222,6 +229,7 @@
         @endforelse
     </div>
 </div>
+
 
 
 
